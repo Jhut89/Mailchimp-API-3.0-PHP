@@ -64,7 +64,7 @@ This library handles PUT and PATCH request similar to that of POST requests. Mea
 
 ###DELETE
 
-Deleting a record from MailChimp is performed with the `DELETE()` and is constructed similar to GET requests. If I wanted to delete the above subscriber I would:
+Deleting a record from MailChimp is performed with the `DELETE()` method and is constructed similar to GET requests. If I wanted to delete the above subscriber I would:
 
 	$mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELETE();
 
