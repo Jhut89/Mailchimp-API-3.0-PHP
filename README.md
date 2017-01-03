@@ -156,6 +156,7 @@ Deleting a record from MailChimp is performed with the `DELETE()` method and is 
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 
+\*\*Please watch for updates, and feel free to Fork or Pull Request. 
 
 
 
