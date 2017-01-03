@@ -32,7 +32,7 @@ Methods available for each position in the chain depend on what the prior method
 
 Notice that I provided a `list_id` to the list method, as there would be no way to retrieve a list of subscribers from a lists collection. The above request however will only return 10 subscriber instances from the members collection. This is because MailChimp's API uses pagination (documented [HERE](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/#parameters)) that defaults to `count=10` and `offset=0`. This library allows you to alter query string parameters by by passing them as an argument to the `GET()` method. We do this by providing an array of key value pairs where the keys are the query parameter you wish to provide/alter and its value is the parameters value. As an example if I wanted to retrieve the second 100 subscribers from my list I could:
 
-	$mailchimp->lists('1a2b3c4d')->members()->GET([ "count" => "100", "offset" => "2"]);
+	$mailchimp->lists('1a2b3c4d')->members()->GET([ "count" => "100", "offset" => "100"]);
 
 This would be equivalent to making a get request against:
 
