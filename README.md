@@ -36,7 +36,7 @@ Notice that I provided a `list_id` to the list method, as there would be no way 
 
 This would be equivalent to making a get request against:
 
-	Https://us0.api.mailchimp.com/3.0/lists/1a2b3c4d/members?count=100&offset=2
+	Https://us0.api.mailchimp.com/3.0/lists/1a2b3c4d/members?count=100&offset=100
 
 Going a little further we can retrieve a single list member by giving the `members_hash` (md5 hash of lower-case address) to the `members()` method. Like this:
 
