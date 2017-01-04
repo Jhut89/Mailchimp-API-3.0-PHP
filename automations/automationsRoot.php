@@ -22,7 +22,7 @@ class automations extends mailchimp {
         $this->subclass_resource = $class_input;
 	}
 
-	public function GET($query_params = null)
+	public function GET( $query_params = null )
 	{
 	    
 	    $query_string = '';

@@ -9,7 +9,7 @@ class automations_removed_subscribers extends automations {
 
     }
 
-	public function GET()
+	public function GET( $query_params = null )
     {
         
         $query_string = '';

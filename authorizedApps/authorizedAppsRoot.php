@@ -16,7 +16,7 @@ class authorized_apps extends mailchimp {
 
     }
 
-    public function GET($query_params = null)
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
