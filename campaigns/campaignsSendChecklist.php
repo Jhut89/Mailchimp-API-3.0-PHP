@@ -8,9 +8,16 @@ class campaigns_send_checklist extends campaigns {
         $this->url .= '/send-checklist/';
     }
 
-	public function GET()
+	public function GET( $query_params = null )
     {
-        $url = $this->url;
+        $query_string = '';
+
+        if (is_array($query_params)) 
+        {
+            $query_string = $this->construct_query_params($query_params);
+        }
+
+        $url = $this->url . $query_string;
         $response = $this->curl_get($url);
 
         return $response;

@@ -15,7 +15,7 @@ class lists_abuse_reports extends lists {
 
     }
 
-	public function GET()
+	public function GET( $query_params = null )
     {
         $query_string = '';
 
