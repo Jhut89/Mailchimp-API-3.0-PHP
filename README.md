@@ -94,7 +94,7 @@ $mailchimp->lists('1a2b3c4d')->members()->POST('subscribed', 'example@domain.com
 
 ###PATCH/PUT
 
-This library handles PUT and PATCH request similar to that of POST requests. Meaning that if there are required fields listed in MailChimps documentation they will be listed arguments for that method. Those methods that do not have any required parameters take a single argument being and array of parameters you wish to patch. As an example if I was patching the subscriber that we used above, to have a new first name, that would look like this.
+This library handles PUT and PATCH request similar to that of POST requests. Meaning that if there are required fields listed in MailChimp's documentation they will be listed arguments for that method. Those methods that do not have any required parameters take a single argument being and array of parameters you wish to patch. As an example if I was patching the subscriber that we used above, to have a new first name, that would look like this.
 
 ```php
 $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->PATCH( [ "merge_fields" => ["FNAME" => "Jane"] ] );
