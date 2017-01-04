@@ -34,7 +34,7 @@ The only file that you need to require is mailchimpRoot.php. The file structure 
 $mailchimp = new mailchimp('123abc123abc123abc123abc-us0');
 ```
 
-To instantiate you will need a new instance of the `mailchimp` class with your MailChimp accounts API key as its only argument.
+To instantiate you will need a new instance of the `mailchimp` class with your MailChimp account's API key as its only argument.
 
 ##Constructing a Request
 
@@ -44,7 +44,7 @@ Once you have instantiated the `mailchimp` class you can start constructing requ
 $mailchimp->lists()->GET();
 ```
 
-Retrieving an instance can be accomplished by giving a unique identifier for the instance you want as an argument to the appropriate method. For example if I wanted to retrieve a list instance from the above example I would simply pass a `list_id`, as the only argument, for the `lists()` method. Like this:
+Retrieving an instance can be accomplished by giving a unique identifier for the instance you want as an argument to the appropriate method. For example if I wanted to retrieve a list instance from the above example I would simply pass a `list_id`, as the only argument for the `lists()` method. Like this:
 
 ```php
 $mailchimp->lists('1a2b3c4d')->GET();
@@ -56,7 +56,7 @@ Methods available for each position in the chain depend on what the prior method
 $mailchimp->lists('1a2b3c4d')->members()->GET();
 ```
 
-Notice that I provided a `list_id` to the list method, as there would be no way to retrieve a list of subscribers from a lists collection. The above request however will only return 10 subscriber instances from the members collection. This is because MailChimp's API uses pagination (documented [HERE](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/#parameters)) that defaults to `count=10` and `offset=0`. This library allows you to alter query string parameters by by passing them as an argument to the `GET()` method. We do this by providing an array of key value pairs where the keys are the query parameter you wish to provide/alter and its value is the parameters value. As an example if I wanted to retrieve the second 100 subscribers from my list I could:
+Notice that I provided a `list_id` to the `lists()` method, as there would be no way to retrieve a list of subscribers from a lists collection. The above request however will only return 10 subscriber instances from the members collection. This is because MailChimp's API uses pagination (documented [HERE](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/#parameters)) that defaults to `count=10` and `offset=0`. This library allows you to alter query string parameters by by passing them as an argument to the `GET()` method. We do this by providing an array of key-value pairs where the keys are the query parameter you wish to provide/alter and its value is the parameter's value. As an example if I wanted to retrieve the second 100 subscribers from my list I could:
 
 ```php
 $mailchimp->lists('1a2b3c4d')->members()->GET([ "count" => "100", "offset" => "100"]);
@@ -94,7 +94,7 @@ $mailchimp->lists('1a2b3c4d')->members()->POST('subscribed', 'example@domain.com
 
 ###PATCH/PUT
 
-This library handles PUT and PATCH request similar to that of POST requests. Meaning that if there are required fields listed in MailChimps documentation they will be listed arguments for that method. Those methods that do not have any required parameters take a single argument being and array of parameters you wish to patch. As an example if i was patching the subscriber that we used above to have a new first name that would look like this.
+This library handles PUT and PATCH request similar to that of POST requests. Meaning that if there are required fields listed in MailChimps documentation they will be listed arguments for that method. Those methods that do not have any required parameters take a single argument being and array of parameters you wish to patch. As an example if I was patching the subscriber that we used above, to have a new first name, that would look like this.
 
 ```php
 $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->PATCH( [ "merge_fields" => ["FNAME" => "Jane"] ] );
