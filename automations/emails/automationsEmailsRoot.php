@@ -65,6 +65,8 @@ class automations_emails extends automations {
         return $response;
     }
 
+    //SUBCLASS FUNCTIONS ------------------------------------------------------------
+
     public function queue( $member = null )
     {
         $this->queue = new automations_email_queue($this->apikey, $this->subclass_resource, $this->grandchild_resource, $member);
