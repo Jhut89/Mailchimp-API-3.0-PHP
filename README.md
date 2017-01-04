@@ -6,6 +6,26 @@ This library assumes a basic understanding of the MailChimp application and its 
 
 ##Installation
 
+There are two way you can include this library in you project. One is through composer and the other is by cloning this repository and manualy including the `mailchimpRoot.php` file.
+
+###Composer:
+
+Run:
+
+```php
+composer require jhut89/mailchimp3php
+```
+
+Then run `composer install` and add composer autoloader to your project with:
+
+```php
+require "vendor/autoload.php";
+```
+
+###Manual
+
+You can clone this repository and use it with:
+
 ```php
 require '/path/to/mailchimpRoot.php';
 ```
