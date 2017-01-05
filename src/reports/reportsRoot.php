@@ -51,8 +51,8 @@ class reports extends mailchimp {
 
     public function unsubscribes( $class_input = null )
     {
-        $this->unsubscibres = new reports_unsubscribes($this->apikey, $this->subclass_resource, $class_input);
-        return $this->unsubscibres;
+        $this->unsubscribes = new reports_unsubscribes($this->apikey, $this->subclass_resource, $class_input);
+        return $this->unsubscribes;
     }
 
     public function sub_reports( $class_input = null )

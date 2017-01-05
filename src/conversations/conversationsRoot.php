@@ -13,7 +13,7 @@ class conversations extends mailchimp {
 
         if (isset($class_input))
         {
-            $this->url .= '/conversations/' . $conversationid;
+            $this->url .= '/conversations/' . $class_input;
         } else
         {
             $this->url .= '/conversations/';

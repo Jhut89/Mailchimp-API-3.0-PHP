@@ -50,8 +50,9 @@ class templates extends mailchimp {
 		$payload = json_encode($params);
 		$url = $this->url;
 
-		$response = $this->curl_post($url); 
+		$response = $this->curl_post($url, $payload);
 
+        return $response;
 
 	}
 

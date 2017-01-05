@@ -22,6 +22,8 @@ class campaigns_content extends campaigns {
     	$payload = array($content_type => $content);
     	$url = $this->url;
     	$response = $this->curl_put($url, $payload);
+
+        return $response;
     }
 
 }

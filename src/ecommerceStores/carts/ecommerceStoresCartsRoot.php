@@ -32,7 +32,7 @@ class ecommerce_store_carts extends ecommerce_stores {
         $params = array_merge($params, $optional_parameters);
 
         $payload = json_encode($params);
-        $url = $this->url . '/ecommerce/stores/' . $storeid . '/carts/';
+        $url = $this->url;
 
         $response = $this->curl_post($url, $payload);
 
@@ -58,10 +58,12 @@ class ecommerce_store_carts extends ecommerce_stores {
 
     public function PATCH( $patch_params =  array() )
     {
-    	$payload = json_encode($params);
+    	$payload = json_encode($patch_params);
     	$url = $this->url;
 
-    	$response = $this->patch($url, $payload);
+    	$response = $this->curl_patch($url, $payload);
+
+        return $response;
     }
 
     public function DELETE()

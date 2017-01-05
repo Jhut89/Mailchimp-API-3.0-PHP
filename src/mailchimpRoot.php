@@ -215,7 +215,7 @@ class mailchimp
         $query_string = '?';
         foreach ($query_input as $parameter => $value) {
             $encoded_value = urlencode($value);
-            $query_string .= $parameter . '=' . $value . '&';
+            $query_string .= $parameter . '=' . $encoded_value . '&';
         }
         $query_string = trim($query_string, '&');
         return $query_string;

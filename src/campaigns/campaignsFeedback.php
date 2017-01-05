@@ -25,7 +25,7 @@ class campaigns_feedback extends campaigns {
             $query_string = $this->construct_query_params($query_params);
         }
 
-        $url = $this->url;
+        $url = $this->url . $query_string;
         $response = $this->curl_get($url);
 
         return $response;

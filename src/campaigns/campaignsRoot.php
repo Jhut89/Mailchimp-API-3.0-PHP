@@ -123,7 +123,7 @@ class campaigns extends mailchimp {
     public function SCHEDULE($schedule_time, $optional_parameters = array())
     {
     	$params = array("schedule_time" => $schedule_time);
-    	$params = array_merge($payload, $optional_parameters);
+    	$params = array_merge($params, $optional_parameters);
 
         $payload = json_encode($params);
         $url = $this->url . '/actions/schedule';

@@ -52,15 +52,19 @@ class ecommerce_stores_cart_lines extends ecommerce_store_carts {
 
 	public function PATCH($patch_params = array())
 	{
-		$payload = json_encode($params);
+		$payload = json_encode($patch_params);
 		$url = $this->url;
 		$response = $this->curl_patch($url, $payload);
+
+        return $response;
 	}
 
 	public function DELETE()
 	{
 		$url = $this->url;
 		$response = $this->curl_delete($url);
+
+        return $response;
 	}
 	
 }
