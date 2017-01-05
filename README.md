@@ -196,7 +196,7 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 
-\*\*Please watch for updates, and feel free to Fork or Pull Request. 
+\*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
 
 
 
