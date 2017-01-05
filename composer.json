@@ -9,7 +9,7 @@
         }
     ],
     "autoload":{
-        "files": ["mailchimpRoot.php"]
+        "files": ["src/mailchimpRoot.php"]
     },
     "require": {
         "php": ">=5.3.0"
