@@ -1,6 +1,7 @@
 <?php
 
-class conversations extends mailchimp {
+class Conversations extends Mailchimp
+{
 
     public $subclass_resource;
 
@@ -11,24 +12,21 @@ class conversations extends mailchimp {
     {
         parent::__construct($apikey);
 
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/conversations/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/conversations/';
         }
         
         $this->subclass_resource = $class_input;
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -42,7 +40,11 @@ class conversations extends mailchimp {
 
     public function messages( $class_input = null )
     {
-        $this->messages = new conversations_messages($this->apikey, $this->subclass_resource, $class_input);
+        $this->messages = new Conversations_Messages(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->messages;
     }
     

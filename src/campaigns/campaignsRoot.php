@@ -5,7 +5,7 @@ class Campaigns extends Mailchimp
 
     public $subclass_resource;
 
-    //SUBCLASS INTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $checklist;
     public $feedback;
     public $content;

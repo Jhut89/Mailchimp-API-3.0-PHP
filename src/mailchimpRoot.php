@@ -71,13 +71,13 @@ class Mailchimp
 
     public function campaigns( $class_input = null )
     {
-        $this->campaigns = new campaigns($this->apikey, $class_input);
+        $this->campaigns = new Campaigns($this->apikey, $class_input);
         return $this->campaigns;
     } 
 
     public function conversations( $class_input = null )
     {
-        $this->conversations = new conversations($this->apikey, $class_input);
+        $this->conversations = new Conversations($this->apikey, $class_input);
         return $this->conversations;
     }
 

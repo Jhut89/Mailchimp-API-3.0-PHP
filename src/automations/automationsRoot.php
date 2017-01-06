@@ -37,13 +37,19 @@ class Automations extends Mailchimp
 
     public function removedSubscribers()
     {
-        $this->removed_subs = new Automations_Removed_Subscribers($this->apikey, $this->subclass_resource);
+        $this->removed_subs = new Automations_Removed_Subscribers(
+            $this->apikey,
+            $this->subclass_resource
+        );
         return $this->removed_subs;
     }
 
     public function emails( $class_input = null )
     {
-        $this->emails = new Automations_Emails($this->apikey, $this->subclass_resource, $class_input);
+        $this->emails = new Automations_Emails(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input);
         return $this->emails;
     }
 

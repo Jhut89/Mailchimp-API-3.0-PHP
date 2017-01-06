@@ -1,6 +1,7 @@
 <?php
 
-class conversations_messages extends conversations {
+class Conversations_Messages extends Conversations
+{
 
     function __construct($apikey, $parent_input, $class_input)
     {
