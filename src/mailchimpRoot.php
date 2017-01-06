@@ -59,13 +59,13 @@ class Mailchimp
 
     public function batches( $class_input = null )
     {
-        $this->batches = new batch_operations($this->apikey, $class_input);
+        $this->batches = new Batch_Operations($this->apikey, $class_input);
         return $this->batches;
     }
 
     public function campaignFolders( $class_input = null )
     {
-        $this->campaign_folders = new campaign_folders($this->apikey, $class_input);
+        $this->campaign_folders = new Campaign_Folders($this->apikey, $class_input);
         return $this->campaign_folders;
     }
 

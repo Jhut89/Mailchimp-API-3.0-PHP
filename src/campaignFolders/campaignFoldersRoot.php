@@ -1,20 +1,18 @@
 <?php
 
-class campaign_folders extends mailchimp {
+class Campaign_Folders extends Mailchimp {
 
     function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/campaign-folders/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/campaign-folders/';
         }
     }
 
-	public function POST($foldername)
+    public function POST($foldername)
     {
 
         $params = array('name' => $foldername);
@@ -31,8 +29,7 @@ class campaign_folders extends mailchimp {
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
