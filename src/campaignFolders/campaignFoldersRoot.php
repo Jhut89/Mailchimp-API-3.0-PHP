@@ -1,6 +1,7 @@
 <?php
 
-class Campaign_Folders extends Mailchimp {
+class Campaign_Folders extends Mailchimp
+{
 
     function __construct($apikey, $class_input)
     {

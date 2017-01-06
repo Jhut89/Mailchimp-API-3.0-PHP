@@ -1,27 +1,25 @@
 <?php
 
-class campaigns_feedback extends campaigns {
+class Campaigns_Feedback extends Campaigns
+{
 
     function __construct($apikey, $parent_input, $class_input)
     {
         parent::__construct($apikey, $parent_input);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/feedback/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/feedback/';
         }
 
     }
 
 
-	 public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 

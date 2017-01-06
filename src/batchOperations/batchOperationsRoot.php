@@ -1,6 +1,7 @@
 <?php
 
-class Batch_Operations extends Mailchimp {
+class Batch_Operations extends Mailchimp
+{
 
     function __construct($apikey, $class_input)
     {

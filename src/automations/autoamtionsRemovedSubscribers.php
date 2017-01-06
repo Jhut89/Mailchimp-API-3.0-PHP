@@ -1,6 +1,7 @@
 <?php
 
-class Automations_Removed_Subscribers extends Automations {
+class Automations_Removed_Subscribers extends Automations
+{
 
     function __construct($apikey, $class_input = null)
     {

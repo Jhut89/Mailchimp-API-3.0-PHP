@@ -1,6 +1,7 @@
 <?php
 
-class Automations_Emails extends Automations {
+class Automations_Emails extends Automations
+{
 
     public $grandchild_resource;
 
