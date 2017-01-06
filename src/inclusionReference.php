@@ -61,7 +61,7 @@ require 'lists/listsWebhooks.php';
 require 'reports/reportsRoot.php';
 require 'reports/reportsCampaignAbuse.php';
 require 'reports/reportsCampaignAdvice.php';
-require 'reports/reportsDoaminPerformance.php';
+require 'reports/reportsDomainPerformance.php';
 require 'reports/reportsEepurlReports.php';
 require 'reports/reportsEmailActivity.php';
 require 'reports/reportsLocations.php';

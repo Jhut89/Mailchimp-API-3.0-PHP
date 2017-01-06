@@ -32,7 +32,9 @@ class Mailchimp
     public function __construct($apikey)
     {
         $this->exp_apikey = explode('-', $apikey);
-        $this->auth = array('Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]);
+        $this->auth = array(
+            'Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]
+        );
         $this->url = "Https://" . $this->exp_apikey[1] . ".api.mailchimp.com/3.0";
         $this->apikey = $apikey;
     }
@@ -131,13 +133,13 @@ class Mailchimp
 
     public function templateFolders( $class_input = null )
     {
-        $this->template_folders = new template_folders($this->apikey, $class_input);
+        $this->template_folders = new Template_Folders($this->apikey, $class_input);
         return $this->template_folders;
     }
 
     public function templates( $class_input = null )
     {
-        $this->templates = new templates($this->apikey, $class_input);
+        $this->templates = new Templates($this->apikey, $class_input);
         return $this->templates;
     }
 
