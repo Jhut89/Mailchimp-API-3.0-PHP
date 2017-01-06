@@ -119,13 +119,13 @@ class Mailchimp
 
     public function searchCampaigns( $class_input = null )
     {
-        $this->search_campaigns = new search_campaigns($this->apikey, $class_input);
+        $this->search_campaigns = new Search_Campaigns($this->apikey, $class_input);
         return $this->search_campaigns;
     }
 
     public function searchMembers( $class_input = null )
     {
-        $this->search_members = new search_members($this->apikey, $class_input);
+        $this->search_members = new Search_Members($this->apikey, $class_input);
         return $this->search_members;
     }
 
