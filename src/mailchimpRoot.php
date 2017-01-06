@@ -89,13 +89,19 @@ class Mailchimp
 
     public function fileManagerFiles(  $class_input = null )
     {
-        $this->file_manager_files = new file_manager_files($this->apikey, $class_input);
+        $this->file_manager_files = new File_Manager_Files(
+            $this->apikey,
+            $class_input
+        );
         return $this->file_manager_files;
     }
 
     public function fileManagerFolders( $class_input = null )
     {
-        $this->file_manager_folders = new file_manager_folders($this->apikey, $class_input);
+        $this->file_manager_folders = new File_Manager_Folders(
+            $this->apikey,
+            $class_input
+        );
         return $this->file_manager_folders;
     }
 
