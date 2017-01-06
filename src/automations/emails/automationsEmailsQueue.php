@@ -1,31 +1,29 @@
 <?php
 
-class automations_email_queue extends automations_emails {
+class Automations_Email_Queue extends Automations_Emails
+{
 
     function __construct($apikey, $parent_reference, $grandchild_resource, $member)
     {
 
         parent::__construct($apikey, $parent_reference, $grandchild_resource);
-        if (isset($member)) 
-        {
+        if (isset($member)) {
             $this->url .= '/queue/' . md5(strtolower($member));
-        } else 
-        {
+        } else {
             $this->url .= '/queue/';
         }
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -39,7 +37,7 @@ class automations_email_queue extends automations_emails {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }

@@ -1,6 +1,7 @@
 <?php
 
-class automations_emails extends automations {
+class Automations_Emails extends Automations
+{
 
     public $grandchild_resource;
 
@@ -11,31 +12,29 @@ class automations_emails extends automations {
     {
 
         parent::__construct($apikey, $parent_reference);  
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/emails/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/emails/';
         }
         $this->grandchild_resource = $class_input;
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
+
     }
 
     // PAUSE AND START FUNCTIONS
@@ -48,7 +47,7 @@ class automations_emails extends automations {
         $payload = json_encode($params);
         $url = $this->url . '/actions/pause';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -60,7 +59,7 @@ class automations_emails extends automations {
         $payload = json_encode($params);
         $url = $this->url . '/actions/start';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -69,7 +68,12 @@ class automations_emails extends automations {
 
     public function queue( $member = null )
     {
-        $this->queue = new automations_email_queue($this->apikey, $this->subclass_resource, $this->grandchild_resource, $member);
+        $this->queue = new Automations_Email_Queue(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $member
+        );
         return $this->queue;
     }
     

@@ -1,10 +1,11 @@
 <?php
 
-class reports extends mailchimp {
+class Reports extends Mailchimp
+{
 
     public $subclass_resource;
 
-    #SUBCLASs INSTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $unsubscribes;
     public $sub_reports;
     public $sent_to;
@@ -18,31 +19,27 @@ class reports extends mailchimp {
 
 
     function __construct($apikey, $class_input)
-  {
-      parent::__construct($apikey);
-
-      if (isset($class_input))
-      {
-          $this->url .= '/reports/' . $class_input;;
-      } else
-      {
-          $this->url .= '/reports/';
-      }
+    {
+        parent::__construct($apikey);
+        if (isset($class_input)) {
+            $this->url .= '/reports/' . $class_input;;
+        } else {
+            $this->url .= '/reports/';
+        }
       
-      $this->subclass_resource = $class_input;
-  }
+        $this->subclass_resource = $class_input;
+    }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -51,62 +48,102 @@ class reports extends mailchimp {
 
     public function unsubscribes( $class_input = null )
     {
-        $this->unsubscribes = new reports_unsubscribes($this->apikey, $this->subclass_resource, $class_input);
+        $this->unsubscribes = new Reports_Unsubscribes(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->unsubscribes;
     }
 
-    public function sub_reports( $class_input = null )
+    public function subReports( $class_input = null )
     {
-        $this->sub_reports = new reports_sub_reports($this->apikey, $this->subclass_resource, $class_input);
+        $this->sub_reports = new Reports_Sub_Reports(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->sub_reports;
     }
 
-    public function sent_to( $class_input = null )
+    public function sentTo( $class_input = null )
     {
-        $this->sent_to = new reports_sent_to($this->apikey, $this->subclass_resource, $class_input);
+        $this->sent_to = new Reports_Sent_To(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->sent_to;
     }
 
     public function locations( $class_input = null )
     {
-        $this->locations = new reports_top_locations($this->apikey, $this->subclass_resource, $class_input);
+        $this->locations = new Reports_Top_Locations(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->locations;
     }
 
-    public function email_activity( $class_input = null )
+    public function emailActivity( $class_input = null )
     {
-        $this->email_activity = new reports_email_activity($this->apikey, $this->subclass_resource, $class_input);
+        $this->email_activity = new Reports_Email_Activity(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->email_activity;
     }
 
     public function eepurl( $class_input = null )
     {
-      $this->eepurl = new reports_eepurl_reoprts($this->apikey, $this->subclass_resource, $class_input);
-      return $this->eepurl;
+        $this->eepurl = new Reports_Eepurl_Reports(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->eepurl;
     }
 
-    public function domain_performance( $class_input = null )
+    public function domainPerformance( $class_input = null )
     {
-      $this->domain_performance = new reports_domain_performance($this->apikey, $this->subclass_resource, $class_input);
-      return $this->domain_performance;
+        $this->domain_performance = new Reports_Domain_Performance(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->domain_performance;
     }
 
     public function advice( $class_input = null )
     {
-      $this->advice = new reports_campaign_advice($this->apikey, $this->subclass_resource, $class_input);
-      return $this->advice;
+        $this->advice = new Reports_Campaign_Advice(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->advice;
     }
 
     public function abuse( $class_input = null )
     {
-      $this->abuse = new reports_campaign_abuse($this->apikey, $this->subclass_resource, $class_input);
-      return $this->abuse;
+        $this->abuse = new Reports_Campaign_Abuse(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->abuse;
     }
 
-    public function click_reports( $class_input = null )
+    public function clickReports( $class_input = null )
     {
-      $this->click_reports = new reports_click_reports($this->apikey, $this->subclass_resource, $class_input);
-      return $this->click_reports;
+        $this->click_reports = new Reports_Click_Reports(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->click_reports;
     }
 
 }

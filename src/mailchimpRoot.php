@@ -2,7 +2,7 @@
 
 require 'inclusionReference.php';
 
-class mailchimp
+class Mailchimp
 {
 
     public $auth;
@@ -32,113 +32,121 @@ class mailchimp
     public function __construct($apikey)
     {
         $this->exp_apikey = explode('-', $apikey);
-        $this->auth = array('Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]);
+        $this->auth = array(
+            'Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]
+        );
         $this->url = "Https://" . $this->exp_apikey[1] . ".api.mailchimp.com/3.0";
         $this->apikey = $apikey;
     }
 
     // ROOT OBJECT FUNCTIONS
 
-    function account()
+    public function account()
     {
-        $this->account = new mailchimp_account($this->apikey);
+        $this->account = new Mailchimp_Account($this->apikey);
         return $this->account;
     }
 
-    function apps( $class_input = null )
+    public function apps( $class_input = null )
     {
-        $this->apps = new authorized_apps($this->apikey, $class_input);
+        $this->apps = new Authorized_Apps($this->apikey, $class_input);
         return $this->apps;
     }
 
-    function automations( $class_input = null )
+    public function automations( $class_input = null )
     {
-        $this->automations = new automations($this->apikey, $class_input);
+        $this->automations = new Automations($this->apikey, $class_input);
         return $this->automations;
     }
 
-    function batches( $class_input = null )
+    public function batches( $class_input = null )
     {
-        $this->batches = new batch_operations($this->apikey, $class_input);
+        $this->batches = new Batch_Operations($this->apikey, $class_input);
         return $this->batches;
     }
 
-    function campaign_folders( $class_input = null )
+    public function campaignFolders( $class_input = null )
     {
-        $this->campaign_folders = new campaign_folders($this->apikey, $class_input);
+        $this->campaign_folders = new Campaign_Folders($this->apikey, $class_input);
         return $this->campaign_folders;
     }
 
-    function campaigns( $class_input = null )
+    public function campaigns( $class_input = null )
     {
-        $this->campaigns = new campaigns($this->apikey, $class_input);
+        $this->campaigns = new Campaigns($this->apikey, $class_input);
         return $this->campaigns;
     } 
 
-    function conversations( $class_input = null )
+    public function conversations( $class_input = null )
     {
-        $this->conversations = new conversations($this->apikey, $class_input);
+        $this->conversations = new Conversations($this->apikey, $class_input);
         return $this->conversations;
     }
 
-    function ecomm_stores( $class_input = null )
+    public function ecommStores( $class_input = null )
     {
-        $this->ecomm_stores = new ecommerce_stores($this->apikey, $class_input);
+        $this->ecomm_stores = new Ecommerce_Stores($this->apikey, $class_input);
         return $this->ecomm_stores;
     }
 
-    function file_manager_files(  $class_input = null )
+    public function fileManagerFiles(  $class_input = null )
     {
-        $this->file_manager_files = new file_manager_files($this->apikey, $class_input);
+        $this->file_manager_files = new File_Manager_Files(
+            $this->apikey,
+            $class_input
+        );
         return $this->file_manager_files;
     }
 
-    function file_manager_folders( $class_input = null )
+    public function fileManagerFolders( $class_input = null )
     {
-        $this->file_manager_folders = new file_manager_folders($this->apikey, $class_input);
+        $this->file_manager_folders = new File_Manager_Folders(
+            $this->apikey,
+            $class_input
+        );
         return $this->file_manager_folders;
     }
 
-    function lists( $class_input = null )
+    public function lists( $class_input = null )
     {
-        $this->lists = new lists($this->apikey, $class_input);
+        $this->lists = new Lists($this->apikey, $class_input);
         return $this->lists;
     }
 
-    function reports( $class_input = null )
+    public function reports( $class_input = null )
     {
-        $this->reports = new reports($this->apikey, $class_input);
+        $this->reports = new Reports($this->apikey, $class_input);
         return $this->reports;
     }
 
-    function search_campaigns( $class_input = null )
+    public function searchCampaigns( $class_input = null )
     {
-        $this->search_campaigns = new search_campaigns($this->apikey, $class_input);
+        $this->search_campaigns = new Search_Campaigns($this->apikey, $class_input);
         return $this->search_campaigns;
     }
 
-    function search_members( $class_input = null )
+    public function searchMembers( $class_input = null )
     {
-        $this->search_members = new search_members($this->apikey, $class_input);
+        $this->search_members = new Search_Members($this->apikey, $class_input);
         return $this->search_members;
     }
 
-    function template_folders( $class_input = null )
+    public function templateFolders( $class_input = null )
     {
-        $this->template_folders = new template_folders($this->apikey, $class_input);
+        $this->template_folders = new Template_Folders($this->apikey, $class_input);
         return $this->template_folders;
     }
 
-    function templates( $class_input = null )
+    public function templates( $class_input = null )
     {
-        $this->templates = new templates($this->apikey, $class_input);
+        $this->templates = new Templates($this->apikey, $class_input);
         return $this->templates;
     }
 
     // VERBS
     // GET ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_get($url)
+    public function curlGet($url)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -151,7 +159,7 @@ class mailchimp
 
     // POST ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_post($url, $payload)
+    public function curlPost($url, $payload)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -166,7 +174,7 @@ class mailchimp
 
     // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_patch($url, $payload)
+    public function curlPatch($url, $payload)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -181,7 +189,7 @@ class mailchimp
 
     // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_delete($url)
+    public function curlDelete($url)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -195,7 +203,7 @@ class mailchimp
 
     // PUT ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_put($url, $payload)
+    public function curlPut($url, $payload)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -210,7 +218,7 @@ class mailchimp
 
     // END VERBS -----------------------------------------------------------------------------------------------------------------------------------
 
-    public function construct_query_params($query_input)
+    public function constructQueryParams($query_input)
     {
         $query_string = '?';
         foreach ($query_input as $parameter => $value) {

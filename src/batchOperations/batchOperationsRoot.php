@@ -1,15 +1,14 @@
 <?php
 
-class batch_operations extends mailchimp {
+class Batch_Operations extends Mailchimp
+{
 
     function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/batches/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/batches/';
         }
     }
@@ -22,7 +21,7 @@ class batch_operations extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -31,13 +30,12 @@ class batch_operations extends mailchimp {
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }

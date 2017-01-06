@@ -1,10 +1,11 @@
 <?php
 
-class lists_members extends lists {
+class Lists_Members extends Lists
+{
 
     public $grandchild_resource;
 
-    #SUBCLASS INSTANTIATION
+    //SUBCLASS INSTANTIATION
     public $notes;
     public $goals;
     public $member_activity;
@@ -12,28 +13,25 @@ class lists_members extends lists {
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/members/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/members/';
         }
         $this->grandchild_resource = $class_input;
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -49,7 +47,7 @@ class lists_members extends lists {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -60,13 +58,16 @@ class lists_members extends lists {
         $payload = json_encode($patch_parameters);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
 
-    public function PUT( $emailaddress, $status_if_new, $optional_parameters = array() )
-    {
+    public function PUT(
+        $emailaddress,
+        $status_if_new,
+        $optional_parameters = array()
+    ) {
 
         $params = array('email_address' => $emailaddress,
             'status_if_new' => $status_if_new
@@ -77,7 +78,7 @@ class lists_members extends lists {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_put($url, $payload);
+        $response = $this->curlPut($url, $payload);
 
         return $response;
     }
@@ -85,7 +86,7 @@ class lists_members extends lists {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }
@@ -94,19 +95,34 @@ class lists_members extends lists {
 
     public function notes( $class_input = null )
     {
-        $this->notes = new lists_members_member_notes($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->notes = new Lists_Members_Member_Notes(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->notes;
     }
 
     public function goals( $class_input = null )
     {
-        $this->goals = new lists_members_member_goals($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->goals = new Lists_Members_Member_Goals(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->goals;
     }
 
     public function activity( $class_input = null )
     {
-        $this->member_activity = new lists_members_member_activity($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->member_activity = new Lists_Members_Member_Activity(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->member_activity;
     }
 

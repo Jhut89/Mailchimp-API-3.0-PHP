@@ -1,15 +1,18 @@
 <?php
 
-class lists_members_member_notes extends lists_members {
+class Lists_Members_Member_Notes extends Lists_Members
+{
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/notes/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/notes/';
         }
 
@@ -19,13 +22,12 @@ class lists_members_member_notes extends lists_members {
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -37,7 +39,7 @@ class lists_members_member_notes extends lists_members {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -49,7 +51,7 @@ class lists_members_member_notes extends lists_members {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -57,7 +59,7 @@ class lists_members_member_notes extends lists_members {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }

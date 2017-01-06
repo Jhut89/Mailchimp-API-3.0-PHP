@@ -1,31 +1,29 @@
 <?php
 
-class templates_default_content extends templates {
+class Templates_Default_Content extends Templates
+{
 
-	function __construct($apikey, $parent_resource, $class_input)
+    function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/default-content/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/default-content/';
         }
 
     }
-	
-	public function GET( $query_params = null )
+
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }

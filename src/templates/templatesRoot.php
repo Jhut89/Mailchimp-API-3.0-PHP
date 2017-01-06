@@ -1,22 +1,21 @@
 <?php
 
-class templates extends mailchimp {
+class Templates extends Mailchimp
+{
 
     public $subclass_resource;
 
-    #SUBCLASS INSTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
 
     public $default_content;
 
     function __construct($apikey, $class_input)
     {
-      parent::__construct($apikey);
+        parent::__construct($apikey);
 
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/templates/' . $class_input;;
-        } else
-        {
+        } else {
             $this->url .= '/templates/';
         }
       
@@ -27,48 +26,45 @@ class templates extends mailchimp {
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
 
-	public function POST( $name, $html , $folder_id = null )
-	{
-		$params = array('name' => $name, 'html' => $html);
-
-        if(!is_null($folder_id))
-        {
-            $params['folder_id'] = $folder_id;
-        }
-		
-		$payload = json_encode($params);
-		$url = $this->url;
-
-		$response = $this->curl_post($url, $payload);
-
-        return $response;
-
-	}
-
-    public function PATCH( $name, $html, $folder_id = null )
+    public function POST( $name, $html , $folder_id = null )
     {
         $params = array('name' => $name, 'html' => $html);
 
-        if(!is_null($folder_id))
-        {
+        if (!is_null($folder_id)) {
             $params['folder_id'] = $folder_id;
         }
 
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPost($url, $payload);
+
+        return $response;
+
+    }
+
+    public function PATCH( $name, $html, $folder_id = null )
+    {
+        $params = array('name' => $name, 'html' => $html);
+
+        if (!is_null($folder_id)) {
+            $params['folder_id'] = $folder_id;
+        }
+
+        $payload = json_encode($params);
+        $url = $this->url;
+
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -76,16 +72,20 @@ class templates extends mailchimp {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function default_content( $class_input = null )
+    public function defaultContent( $class_input = null )
     {
-        $this->default_content = new templates_default_content($this->apikey, $this->subclass_resource, $class_input);
+        $this->default_content = new Templates_Default_Content(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->default_content;
     }
 

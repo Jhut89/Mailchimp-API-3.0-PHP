@@ -1,31 +1,29 @@
 <?php
 
-class reports_campaign_abuse extends reports {
+class Reports_Campaign_Abuse extends Reports
+{
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/abuse-reports/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/abuse-reports/';
         }
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }

@@ -1,10 +1,11 @@
 <?php
 
-class ecommerce_stores extends mailchimp {
+class Ecommerce_Stores extends Mailchimp
+{
 
     public $subclass_resource;
 
-    //SUBCLASS INSTANIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $customers;
     public $products;
     public $orders;
@@ -14,34 +15,35 @@ class ecommerce_stores extends mailchimp {
     {
         parent::__construct($apikey);
 
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/ecommerce/stores/' . $class_input;;
-        } else
-        {
+        } else {
             $this->url .= '/ecommerce/stores/';
         }
         
         $this->subclass_resource = $class_input;
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
 
-    public function POST($storeid, $listid, $name, $currencycode, $optional_parameters = array())
-    {
+    public function POST($storeid,
+        $listid,
+        $name,
+        $currencycode,
+        $optional_parameters = array()
+    ) {
 
         $required_params = array('id' => $storeid,
             'list_id' => $listid,
@@ -54,7 +56,7 @@ class ecommerce_stores extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -67,7 +69,7 @@ class ecommerce_stores extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -75,7 +77,7 @@ class ecommerce_stores extends mailchimp {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }
@@ -84,25 +86,41 @@ class ecommerce_stores extends mailchimp {
 
     public function customers( $class_input = null )
     {
-        $this->customers = new ecommerce_customers($this->apikey, $this->subclass_resource, $class_input);
+        $this->customers = new Ecommerce_Customers(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->customers;
     }
 
     public function products( $class_input = null )
     {
-        $this->products = new ecommerce_stores_porducts($this->apikey, $this->subclass_resource, $class_input);
+        $this->products = new Ecommerce_Stores_Products(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->products;
     }
 
     public function orders( $class_input = null )
     {
-        $this->orders = new ecommerce_stores_orders($this->apikey, $this->subclass_resource, $class_input);
+        $this->orders = new Ecommerce_Stores_Orders(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->orders;
     }
 
     public function carts( $class_input = null )
     {
-        $this->carts = new ecommerce_store_carts($this->apikey, $this->subclass_resource, $class_input);
+        $this->carts = new Ecommerce_Store_Carts(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->carts;
     }
 

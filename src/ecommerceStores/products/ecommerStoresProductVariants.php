@@ -1,25 +1,29 @@
 <?php
 
-class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
+class Ecommerce_Stores_Products_Variants extends Ecommerce_Stores_Products {
 
     public $class_input;
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
+
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+
+        if (isset($class_input)) {
             $this->url .= '/variants/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/variants/';
         }
 
-    $this->class_input = $class_input;
+        $this->class_input = $class_input;
 
     }
 
-	public function POST($variantid, $title, $optional_parameters = array())
+    public function POST($variantid, $title, $optional_parameters = array())
     {
         $params = array("id" => $variantid,
             "title" => $title
@@ -30,7 +34,7 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -40,13 +44,12 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     
@@ -57,7 +60,7 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
         $payload = json_encode($patch_parameters);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -73,7 +76,7 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_put($url, $payload);
+        $response = $this->curlPut($url, $payload);
 
         return $response;
     }
@@ -81,9 +84,8 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }
-	
 }

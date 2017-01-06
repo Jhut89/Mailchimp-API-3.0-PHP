@@ -1,6 +1,7 @@
 <?php
 
-class campaigns_content extends campaigns {
+class Campaigns_Content extends Campaigns
+{
 
     function __construct($apikey, $parent_input)
     {
@@ -8,10 +9,10 @@ class campaigns_content extends campaigns {
         $this->url .= '/content/';
     }
 
-	public function GET_campaign_content()
+    public function GET_campaign_content()
     {
         $url = $this->url;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -19,9 +20,9 @@ class campaigns_content extends campaigns {
     //content_type can be any of ['plain_text', 'html', 'url', 'template', 'archive', 'variate_contents']
     public function PUT($content_type, $content)
     {
-    	$payload = array($content_type => $content);
-    	$url = $this->url;
-    	$response = $this->curl_put($url, $payload);
+        $payload = array($content_type => $content);
+        $url = $this->url;
+        $response = $this->curlPut($url, $payload);
 
         return $response;
     }

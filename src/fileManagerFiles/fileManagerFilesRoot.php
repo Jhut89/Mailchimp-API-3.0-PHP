@@ -1,32 +1,30 @@
 <?php
 
-class file_manager_files extends mailchimp {
+class File_Manager_Files extends Mailchimp
+{
 
     function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
 
-        if (isset($class_input))
-        {
-            $this->url .= '/file-manager/files/' . $class_input;;
-        } else
-        {
+        if (isset($class_input)) {
+            $this->url .= '/file-manager/files/' . $class_input;
+        } else {
             $this->url .= '/file-manager/files/';
         }
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
 
@@ -43,12 +41,11 @@ class file_manager_files extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
 
-    // CURRENTLY YOU CAN ONLY UPDATE WHAT FOLDER A FILE IS LOCATED IN
     public function PATCH($folderid)
     {
         $params = array('folder_id' => $folderid);
@@ -56,7 +53,7 @@ class file_manager_files extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -64,9 +61,8 @@ class file_manager_files extends mailchimp {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }
-	
 }

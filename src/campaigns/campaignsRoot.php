@@ -1,10 +1,11 @@
 <?php
 
-class campaigns extends mailchimp {
+class Campaigns extends Mailchimp
+{
 
     public $subclass_resource;
 
-    //SUBCLASS INTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $checklist;
     public $feedback;
     public $content;
@@ -12,11 +13,9 @@ class campaigns extends mailchimp {
     function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/campaigns/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/campaigns/';
         }
         
@@ -24,17 +23,16 @@ class campaigns extends mailchimp {
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
-            $query_string = $this->construct_query_params($query_params);
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -48,7 +46,7 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -59,7 +57,7 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -67,7 +65,7 @@ class campaigns extends mailchimp {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }
@@ -79,7 +77,7 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url . '/actions/cancel-send/';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -91,7 +89,7 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url . '/actions/pause';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -103,7 +101,7 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url . '/actions/replicate';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -115,20 +113,20 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url . '/actions/resume';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
 
     public function SCHEDULE($schedule_time, $optional_parameters = array())
     {
-    	$params = array("schedule_time" => $schedule_time);
-    	$params = array_merge($params, $optional_parameters);
+        $params = array("schedule_time" => $schedule_time);
+        $params = array_merge($params, $optional_parameters);
 
         $payload = json_encode($params);
         $url = $this->url . '/actions/schedule';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -140,32 +138,31 @@ class campaigns extends mailchimp {
         $payload = json_encode($params);
         $url = $this->url . '/actions/send';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
 
-    public function TEST($test_addresses = array(), $send_type) 
+    public function TEST($test_addresses = array(), $send_type)
     {
-    	$params = array("test_emails" => $test_addresses, "send_type" => $send_type);
+        $params = array("test_emails" => $test_addresses, "send_type" => $send_type);
 
         $payload = json_encode($params);
-    	$url = $this->url . '/actions/test';
+        $url = $this->url . '/actions/test';
 
-    	$response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
-    	return $response;
+        return $response;
     }
 
     public function UNSCHEDULE()
     {
-
-    	$params = array();
+        $params = array();
 
         $payload = json_encode($params);
         $url = $this->url . '/actions/unschedule';
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -174,19 +171,29 @@ class campaigns extends mailchimp {
 
     public function checklist()
     {
-        $this->checklist = new campaigns_send_checklist($this->apikey, $this->subclass_resource);
+        $this->checklist = new Campaigns_Send_Checklist(
+            $this->apikey,
+            $this->subclass_resource
+        );
         return $this->checklist;
     }
 
     public function feedback( $class_input = null )
     {
-        $this->feedback = new campaigns_feedback ($this->apikey, $this->subclass_resource, $class_input);
+        $this->feedback = new Campaigns_Feedback(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->feedback;
     }
 
     public function content()
     {
-        $this->content = new campaigns_content($this->apikey, $this->subclass_resource);
+        $this->content = new Campaigns_Content(
+            $this->apikey,
+            $this->subclass_resource
+        );
         return $this->content;
     }
 }
