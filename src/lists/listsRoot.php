@@ -61,8 +61,23 @@ class lists extends mailchimp
 
     }
 
-    public function POST($name, $reminder, $emailtype, $company, $address_street, $address_street2, $address_city, $address_state, $address_zip, $country, $from_name, $from_email, $subject, $language, $optional_parameters = array())
-    {
+    public function POST(
+        $name,
+        $reminder,
+        $emailtype,
+        $company,
+        $address_street,
+        $address_street2,
+        $address_city,
+        $address_state,
+        $address_zip,
+        $country,
+        $from_name,
+        $from_email,
+        $subject,
+        $language,
+        $optional_parameters = array()
+    ) {
 
         $params = array('name' => $name,
                         'permission_reminder' => $reminder,

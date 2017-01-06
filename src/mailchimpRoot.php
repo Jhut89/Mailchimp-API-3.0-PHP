@@ -2,7 +2,7 @@
 
 require 'inclusionReference.php';
 
-class mailchimp
+class Mailchimp
 {
 
     public $auth;
@@ -63,7 +63,7 @@ class mailchimp
         return $this->batches;
     }
 
-    function campaign_folders( $class_input = null )
+    function campaignFolders( $class_input = null )
     {
         $this->campaign_folders = new campaign_folders($this->apikey, $class_input);
         return $this->campaign_folders;
@@ -81,19 +81,19 @@ class mailchimp
         return $this->conversations;
     }
 
-    function ecomm_stores( $class_input = null )
+    function ecommStores( $class_input = null )
     {
         $this->ecomm_stores = new ecommerce_stores($this->apikey, $class_input);
         return $this->ecomm_stores;
     }
 
-    function file_manager_files(  $class_input = null )
+    function fileManagerFiles(  $class_input = null )
     {
         $this->file_manager_files = new file_manager_files($this->apikey, $class_input);
         return $this->file_manager_files;
     }
 
-    function file_manager_folders( $class_input = null )
+    function fileManagerFolders( $class_input = null )
     {
         $this->file_manager_folders = new file_manager_folders($this->apikey, $class_input);
         return $this->file_manager_folders;
@@ -111,19 +111,19 @@ class mailchimp
         return $this->reports;
     }
 
-    function search_campaigns( $class_input = null )
+    function searchCampaigns( $class_input = null )
     {
         $this->search_campaigns = new search_campaigns($this->apikey, $class_input);
         return $this->search_campaigns;
     }
 
-    function search_members( $class_input = null )
+    function searchMembers( $class_input = null )
     {
         $this->search_members = new search_members($this->apikey, $class_input);
         return $this->search_members;
     }
 
-    function template_folders( $class_input = null )
+    function templateFolders( $class_input = null )
     {
         $this->template_folders = new template_folders($this->apikey, $class_input);
         return $this->template_folders;
@@ -138,7 +138,7 @@ class mailchimp
     // VERBS
     // GET ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_get($url)
+    public function curlGet($url)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -151,7 +151,7 @@ class mailchimp
 
     // POST ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_post($url, $payload)
+    public function curlPost($url, $payload)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -166,7 +166,7 @@ class mailchimp
 
     // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_patch($url, $payload)
+    public function curlPatch($url, $payload)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -181,7 +181,7 @@ class mailchimp
 
     // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_delete($url)
+    public function curlDelete($url)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -195,7 +195,7 @@ class mailchimp
 
     // PUT ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curl_put($url, $payload)
+    public function curlPut($url, $payload)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
@@ -210,7 +210,7 @@ class mailchimp
 
     // END VERBS -----------------------------------------------------------------------------------------------------------------------------------
 
-    public function construct_query_params($query_input)
+    public function constructQueryParams($query_input)
     {
         $query_string = '?';
         foreach ($query_input as $parameter => $value) {
