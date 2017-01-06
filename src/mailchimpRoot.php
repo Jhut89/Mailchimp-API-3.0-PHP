@@ -53,7 +53,7 @@ class Mailchimp
 
     public function automations( $class_input = null )
     {
-        $this->automations = new automations($this->apikey, $class_input);
+        $this->automations = new Automations($this->apikey, $class_input);
         return $this->automations;
     }
 

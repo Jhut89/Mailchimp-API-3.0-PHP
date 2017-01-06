@@ -1,6 +1,6 @@
 <?php
 
-class automations_removed_subscribers extends automations {
+class Automations_Removed_Subscribers extends Automations {
 
     function __construct($apikey, $class_input = null)
     {
@@ -9,13 +9,12 @@ class automations_removed_subscribers extends automations {
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 

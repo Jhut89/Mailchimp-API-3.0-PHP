@@ -1,55 +1,50 @@
 <?php
 
-class automations extends mailchimp {
+class Automations extends Mailchimp
+{
+    public $subclass_resource;
 
-	public $subclass_resource;
+    //SUBCLASS INSTANTIATIONS
+    public $removed_subs;
+    public $emails;
 
-	//SUBCLASS INSTANTIATIONS
-	public $removed_subs;
-	public $emails;
-	
-
-	function __construct($apikey, $class_input = null)
-	{
-		parent::__construct($apikey);
-		if (isset($class_input))
-        {
+    function __construct($apikey, $class_input = null)
+    {
+        parent::__construct($apikey);
+        if (isset($class_input)) {
             $this->url .=  '/automations/' . $class_input;
-        } else 
-        {
-        	$this->url .=  '/automations/';
+        } else {
+            $this->url .= '/automations/';
         }
         $this->subclass_resource = $class_input;
-	}
+    }
 
-	public function GET( $query_params = null )
-	{
-	    
-	    $query_string = '';
+    public function GET( $query_params = null )
+    {
+        $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-	    $response = $this->curlGet($url);
+        $response = $this->curlGet($url);
 
-	    return $response;
-	}
+        return $response;
+    }
 
-	//SUBCLASS FUNCTIONS ------------------------------------------------------------
-	
-	public function removed_subscribers()
-	{
-		$this->removed_subs = new automations_removed_subscribers($this->apikey, $this->subclass_resource);
-		return $this->removed_subs;
-	}
+    //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-	public function emails( $class_input = null )
-	{
-		$this->emails = new automations_emails($this->apikey, $this->subclass_resource, $class_input);
-		return $this->emails;
-	}
+    public function removedSubscribers()
+    {
+        $this->removed_subs = new Automations_Removed_Subscribers($this->apikey, $this->subclass_resource);
+        return $this->removed_subs;
+    }
+
+    public function emails( $class_input = null )
+    {
+        $this->emails = new Automations_Emails($this->apikey, $this->subclass_resource, $class_input);
+        return $this->emails;
+    }
 
 }

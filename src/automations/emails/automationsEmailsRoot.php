@@ -1,6 +1,6 @@
 <?php
 
-class automations_emails extends automations {
+class Automations_Emails extends Automations {
 
     public $grandchild_resource;
 
@@ -11,24 +11,21 @@ class automations_emails extends automations {
     {
 
         parent::__construct($apikey, $parent_reference);  
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/emails/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/emails/';
         }
         $this->grandchild_resource = $class_input;
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -36,6 +33,7 @@ class automations_emails extends automations {
         $response = $this->curlGet($url);
 
         return $response;
+
     }
 
     // PAUSE AND START FUNCTIONS
@@ -69,7 +67,7 @@ class automations_emails extends automations {
 
     public function queue( $member = null )
     {
-        $this->queue = new automations_email_queue($this->apikey, $this->subclass_resource, $this->grandchild_resource, $member);
+        $this->queue = new Automations_Email_Queue($this->apikey, $this->subclass_resource, $this->grandchild_resource, $member);
         return $this->queue;
     }
     
