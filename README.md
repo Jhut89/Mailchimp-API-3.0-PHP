@@ -116,13 +116,13 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 		apps()
 
 		automations()
-	  		removed_subscribers()
+	  		removedSubscribers()
 	    	emails()
 	    		queue()
 
 	    batches()
 
-	    campaign_folders()
+	    campaignFolders()
 
 	    campaigns()
 	    	CANCEL()
@@ -149,19 +149,19 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 	    	carts()
 	    		lines()
 
-	    file_manager_files()
+	    fileManagerFiles()
 
-	    file_manager_folders()
+	    fileManagerFolders()
 
 	    lists()
 	    	BATCH_SUB()
 	    	webhooks()
-	    	signup_forms()
-	    	merge_fields()
-	    	growth_history()
+	    	signupForms()
+	    	mergeFields()
+	    	growthHistory()
 	    	clients()
 	    	activity()
-	    	abuse_reports()
+	    	abuseReports()
 	    	segments()
 	    		BATCH()
 	    		members()
@@ -169,30 +169,30 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 	    		notes()
 	    		goals()
 	    		activity()
-	       	interest_categories()
+	       	interestCategories()
 	       		interests()
 
 	    reports()
 	    	unsubscribes()
-	    	sub_reports()
-	    	sent_to()
+	    	subReports()
+	    	sentTo()
 	    	locations()
-	    	email_activity()
+	    	emailActivity()
 	    	eepurl()
-	    	domain_performance()
+	    	domainPerformance()
 	    	advice()
 	    	abuse()
-	    	click_reports()
+	    	clickReports()
 	    		members()
 
-	    search_campaigns()
+	    searchCampaigns()
 
-	    search_members()
+	    searchMembers()
 
-	    template_folders()
+	    templateFolders()
 
 	    templates()
-	    	default_content()
+	    	defaultContent()
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 
