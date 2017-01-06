@@ -27,11 +27,11 @@ class reports_click_reports extends reports {
 
         if (is_array($query_params)) 
         {
-            $query_string = $this->construct_query_params($query_params);
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }

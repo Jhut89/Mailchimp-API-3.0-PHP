@@ -21,11 +21,11 @@ class automations_email_queue extends automations_emails {
 
         if (is_array($query_params)) 
         {
-            $query_string = $this->construct_query_params($query_params);
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -39,7 +39,7 @@ class automations_email_queue extends automations_emails {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }

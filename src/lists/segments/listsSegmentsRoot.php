@@ -28,11 +28,11 @@ class lists_segments extends lists {
 
         if (is_array($query_params)) 
         {
-            $query_string = $this->construct_query_params($query_params);
+            $query_string = $this->constructQueryParams($query_params);
         }
 
         $url = $this->url . $query_string;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -43,7 +43,7 @@ class lists_segments extends lists {
         $payload = json_encode($params);
 
         $url = $this->url;
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -62,7 +62,7 @@ class lists_segments extends lists {
 
         $payload = json_encode($params);
         $url = $this->url;
-        $response = $this->curl_post($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }
@@ -77,7 +77,7 @@ class lists_segments extends lists {
         $payload = json_encode($params);
         $url = $this->url;
 
-        $response = $this->curl_patch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -85,7 +85,7 @@ class lists_segments extends lists {
     public function DELETE()
     {
         $url = $this->url;
-        $response = $this->curl_delete($url);
+        $response = $this->curlDelete($url);
 
         return $response;
     }

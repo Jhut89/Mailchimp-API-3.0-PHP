@@ -39,97 +39,97 @@ class Mailchimp
 
     // ROOT OBJECT FUNCTIONS
 
-    function account()
+    public function account()
     {
-        $this->account = new mailchimp_account($this->apikey);
+        $this->account = new Mailchimp_Account($this->apikey);
         return $this->account;
     }
 
-    function apps( $class_input = null )
+    public function apps( $class_input = null )
     {
-        $this->apps = new authorized_apps($this->apikey, $class_input);
+        $this->apps = new Authorized_Apps($this->apikey, $class_input);
         return $this->apps;
     }
 
-    function automations( $class_input = null )
+    public function automations( $class_input = null )
     {
         $this->automations = new automations($this->apikey, $class_input);
         return $this->automations;
     }
 
-    function batches( $class_input = null )
+    public function batches( $class_input = null )
     {
         $this->batches = new batch_operations($this->apikey, $class_input);
         return $this->batches;
     }
 
-    function campaignFolders( $class_input = null )
+    public function campaignFolders( $class_input = null )
     {
         $this->campaign_folders = new campaign_folders($this->apikey, $class_input);
         return $this->campaign_folders;
     }
 
-    function campaigns( $class_input = null )
+    public function campaigns( $class_input = null )
     {
         $this->campaigns = new campaigns($this->apikey, $class_input);
         return $this->campaigns;
     } 
 
-    function conversations( $class_input = null )
+    public function conversations( $class_input = null )
     {
         $this->conversations = new conversations($this->apikey, $class_input);
         return $this->conversations;
     }
 
-    function ecommStores( $class_input = null )
+    public function ecommStores( $class_input = null )
     {
         $this->ecomm_stores = new ecommerce_stores($this->apikey, $class_input);
         return $this->ecomm_stores;
     }
 
-    function fileManagerFiles(  $class_input = null )
+    public function fileManagerFiles(  $class_input = null )
     {
         $this->file_manager_files = new file_manager_files($this->apikey, $class_input);
         return $this->file_manager_files;
     }
 
-    function fileManagerFolders( $class_input = null )
+    public function fileManagerFolders( $class_input = null )
     {
         $this->file_manager_folders = new file_manager_folders($this->apikey, $class_input);
         return $this->file_manager_folders;
     }
 
-    function lists( $class_input = null )
+    public function lists( $class_input = null )
     {
         $this->lists = new lists($this->apikey, $class_input);
         return $this->lists;
     }
 
-    function reports( $class_input = null )
+    public function reports( $class_input = null )
     {
         $this->reports = new reports($this->apikey, $class_input);
         return $this->reports;
     }
 
-    function searchCampaigns( $class_input = null )
+    public function searchCampaigns( $class_input = null )
     {
         $this->search_campaigns = new search_campaigns($this->apikey, $class_input);
         return $this->search_campaigns;
     }
 
-    function searchMembers( $class_input = null )
+    public function searchMembers( $class_input = null )
     {
         $this->search_members = new search_members($this->apikey, $class_input);
         return $this->search_members;
     }
 
-    function templateFolders( $class_input = null )
+    public function templateFolders( $class_input = null )
     {
         $this->template_folders = new template_folders($this->apikey, $class_input);
         return $this->template_folders;
     }
 
-    function templates( $class_input = null )
+    public function templates( $class_input = null )
     {
         $this->templates = new templates($this->apikey, $class_input);
         return $this->templates;

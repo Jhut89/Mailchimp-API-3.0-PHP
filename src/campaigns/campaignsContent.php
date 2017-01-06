@@ -11,7 +11,7 @@ class campaigns_content extends campaigns {
 	public function GET_campaign_content()
     {
         $url = $this->url;
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
 
         return $response;
     }
@@ -21,7 +21,7 @@ class campaigns_content extends campaigns {
     {
     	$payload = array($content_type => $content);
     	$url = $this->url;
-    	$response = $this->curl_put($url, $payload);
+    	$response = $this->curlPut($url, $payload);
 
         return $response;
     }

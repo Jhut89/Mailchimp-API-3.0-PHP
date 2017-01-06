@@ -1,11 +1,12 @@
 <?php
 
-class mailchimp_account extends mailchimp {
+class Mailchimp_Account extends Mailchimp
+{
 
 	public function GET()
     {
         $url = $this->url . "/";
-        $response = $this->curl_get($url);
+        $response = $this->curlGet($url);
         return $response;
     }
     
