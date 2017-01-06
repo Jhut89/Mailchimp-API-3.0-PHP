@@ -83,7 +83,7 @@ class Mailchimp
 
     public function ecommStores( $class_input = null )
     {
-        $this->ecomm_stores = new ecommerce_stores($this->apikey, $class_input);
+        $this->ecomm_stores = new Ecommerce_Stores($this->apikey, $class_input);
         return $this->ecomm_stores;
     }
 

@@ -1,25 +1,29 @@
 <?php
 
-class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
+class Ecommerce_Stores_Products_Variants extends Ecommerce_Stores_Products {
 
     public $class_input;
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
+
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+
+        if(isset($class_input)) {
             $this->url .= '/variants/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/variants/';
         }
 
-    $this->class_input = $class_input;
+        $this->class_input = $class_input;
 
     }
 
-	public function POST($variantid, $title, $optional_parameters = array())
+    public function POST($variantid, $title, $optional_parameters = array())
     {
         $params = array("id" => $variantid,
             "title" => $title
@@ -40,8 +44,7 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -85,5 +88,4 @@ class ecommerce_stores_products_variants extends ecommerce_stores_porducts {
 
         return $response;
     }
-	
 }

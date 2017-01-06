@@ -1,21 +1,25 @@
 <?php
 
-class ecommerce_stores_order_lines extends ecommerce_stores_orders {
+class Ecommerce_Stores_Order_Lines extends Ecommerce_Stores_Orders
+{
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+
+        if (isset($class_input)) {
             $this->url .= '/lines/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/lines/';
         }
 
     }
 
-	public function POST($lineid, $productid, $product_varientid, $quantity, $price)
+    public function POST($lineid, $productid, $product_varientid, $quantity, $price)
     {
         $params = array("id" => $lineid,
             "product_id" => $productid,
@@ -37,8 +41,7 @@ class ecommerce_stores_order_lines extends ecommerce_stores_orders {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -66,5 +69,4 @@ class ecommerce_stores_order_lines extends ecommerce_stores_orders {
 
         return $response;
     }
-	
 }

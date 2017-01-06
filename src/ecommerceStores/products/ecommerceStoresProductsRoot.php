@@ -1,28 +1,32 @@
 <?php
 
-class ecommerce_stores_porducts extends ecommerce_stores {
+class Ecommerce_Stores_Products extends Ecommerce_Stores
+{
 
     public $grandchild_resource;
 
-    #SUBCLASS INSTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $variants;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/products/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/products/';
         }
 
         $this->grandchild_resource = $class_input;
     }
 
-	 public function POST($productid, $title, $variants = array(), $optional_parameters = array())
-    {
+    public function POST(
+        $productid,
+        $title,
+        $variants = array(),
+        $optional_parameters = array()
+    ) {
+
         $params = array("id" => $productid,
             "title" => $title,
             "variants" => $variants
@@ -36,14 +40,14 @@ class ecommerce_stores_porducts extends ecommerce_stores {
         $response = $this->curlPost($url, $payload);
 
         return $response;
+
     }
 
     public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -76,7 +80,12 @@ class ecommerce_stores_porducts extends ecommerce_stores {
 
     public function variants( $class_input = null )
     {
-        $this->variants = new ecommerce_stores_products_variants($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->variants = new Ecommerce_Stores_Products_Variants(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->variants;
     }
 

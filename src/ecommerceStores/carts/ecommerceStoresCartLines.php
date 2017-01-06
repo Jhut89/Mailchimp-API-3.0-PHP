@@ -1,45 +1,47 @@
 <?php
 
-class ecommerce_stores_cart_lines extends ecommerce_store_carts {
+class Ecommerce_Stores_Cart_Lines extends Ecommerce_Store_Carts
+{
 
-	function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
-    	
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/lines/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/lines/';
         }
 
     }
 
-	public function POST($lineid, $productid, $productvariantid, $quantity, $price)
-	{
-		$params = array('id' => $lineid, 
-						'product_id' => $productid, 
-						'product_variant_id' => $productvariantid,
-						'quantity' => $quantity,
-						'price' => $price
-						);
+    public function POST($lineid, $productid, $productvariantid, $quantity, $price)
+    {
+        $params = array(
+            'id' => $lineid,
+            'product_id' => $productid,
+            'product_variant_id' => $productvariantid,
+            'quantity' => $quantity,
+            'price' => $price
+        );
 
-		$payload = json_encode($params);
-		$url =  $this->url ;
+        $payload = json_encode($params);
+        $url = $this->url;
 
-		$response = $this->curlPost($url, $payload);
+        $response = $this->curlPost($url, $payload);
 
         return $response;
-	}
+    }
 
-	public function GET( $query_params = null )
-	{
+    public function GET( $query_params = null )
+    {
         
-		$query_string = '';
+        $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -48,23 +50,22 @@ class ecommerce_stores_cart_lines extends ecommerce_store_carts {
 
         return $response;
 
-	}
+    }
 
-	public function PATCH($patch_params = array())
-	{
-		$payload = json_encode($patch_params);
-		$url = $this->url;
-		$response = $this->curlPatch($url, $payload);
-
-        return $response;
-	}
-
-	public function DELETE()
-	{
-		$url = $this->url;
-		$response = $this->curlDelete($url);
+    public function PATCH($patch_params = array())
+    {
+        $payload = json_encode($patch_params);
+        $url = $this->url;
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
-	}
-	
+    }
+
+    public function DELETE()
+    {
+        $url = $this->url;
+        $response = $this->curlDelete($url);
+
+        return $response;
+    }
 }

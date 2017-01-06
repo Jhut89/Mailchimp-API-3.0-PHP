@@ -1,28 +1,33 @@
 <?php
 
-class ecommerce_store_carts extends ecommerce_stores {
+class Ecommerce_Store_Carts extends Ecommerce_Stores
+{
 
     public $grandchild_resource;
 
-    #SUBCLASS INSTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $lines;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/carts/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/carts/';
         }
 
         $this->grandchild_resource = $class_input;
     }
 
-	public function POST($cartid, $customer = array(), $currency_code, $order_total, $lines, $optional_parameters = array())
-    {
+    public function POST(
+        $cartid,
+        $customer = array(),
+        $currency_code,
+        $order_total,
+        $lines,
+        $optional_parameters = array()
+    ) {
         $params = array("id" => $cartid,
             "customer" => $customer,
             "currency_code" => $currency_code,
@@ -44,8 +49,7 @@ class ecommerce_store_carts extends ecommerce_stores {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -58,10 +62,10 @@ class ecommerce_store_carts extends ecommerce_stores {
 
     public function PATCH( $patch_params =  array() )
     {
-    	$payload = json_encode($patch_params);
-    	$url = $this->url;
+        $payload = json_encode($patch_params);
+        $url = $this->url;
 
-    	$response = $this->curlPatch($url, $payload);
+        $response = $this->curlPatch($url, $payload);
 
         return $response;
     }
@@ -78,7 +82,12 @@ class ecommerce_store_carts extends ecommerce_stores {
 
     public function lines( $class_input = null )
     {
-        $this->lines = new ecommerce_stores_cart_lines($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->lines = new Ecommerce_Stores_Cart_Lines(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->lines;
     }
 

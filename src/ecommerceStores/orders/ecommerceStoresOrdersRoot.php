@@ -1,28 +1,34 @@
 <?php
 
-class ecommerce_stores_orders extends ecommerce_stores {
+class Ecommerce_Stores_Orders extends Ecommerce_Stores
+{
 
     public $grandchild_resource;
 
-    #SUBCLASS INSTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $lines;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/orders/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/orders/';
         }
 
         $this->grandchild_resource = $class_input;
     }
 
-	public function POST($orderid, $customer = array(), $currency_code, $order_total, $lines, $optional_parameters = array())
-    {
+    public function POST(
+        $orderid,
+        $customer = array(),
+        $currency_code,
+        $order_total,
+        $lines,
+        $optional_parameters = array()
+    ) {
+
         $params = array("id" => $orderid,
             "customer" => $customer,
             "currency_code" => $currency_code,
@@ -38,6 +44,7 @@ class ecommerce_stores_orders extends ecommerce_stores {
         $response = $this->curlPost($url, $payload);
 
         return $response;
+
     }
 
     public function GET( $query_params = null )
@@ -45,8 +52,7 @@ class ecommerce_stores_orders extends ecommerce_stores {
 
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -81,7 +87,12 @@ class ecommerce_stores_orders extends ecommerce_stores {
 
     public function lines( $class_input = null )
     {
-        $this->lines = new ecommerce_stores_order_lines($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->lines = new Ecommerce_Stores_Order_Lines(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->lines;
     }
 
