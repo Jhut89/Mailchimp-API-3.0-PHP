@@ -113,7 +113,7 @@ class Mailchimp
 
     public function reports( $class_input = null )
     {
-        $this->reports = new reports($this->apikey, $class_input);
+        $this->reports = new Reports($this->apikey, $class_input);
         return $this->reports;
     }
 

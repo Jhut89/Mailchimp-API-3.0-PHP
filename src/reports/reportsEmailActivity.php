@@ -1,26 +1,24 @@
 <?php
 
-class reports_email_activity extends reports {
+class Reports_Email_Activity extends Reports
+{
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/email-activity/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/email-activity/';
         }
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -29,5 +27,4 @@ class reports_email_activity extends reports {
 
         return $response;
     }
-
 }

@@ -1,32 +1,30 @@
 <?php
 
-class reports_click_reports extends reports {
+class Reports_Click_Reports extends Reports
+{
 
     public $grandchild_resource;
 
-    #SUBCLASS INSANTIATIONS
+    //SUBCLASS INSANTIATIONS
 
     public $click_members;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/click-details/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/click-details/';
         }
         $this->grandchild_resource = $class_input;
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -38,9 +36,15 @@ class reports_click_reports extends reports {
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+
     public function members( $class_input = null )
     {
-        $this->click_members = new reports_click_reports_members($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->click_members = new Reports_Click_Reports_Members(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->click_members;
     }
 

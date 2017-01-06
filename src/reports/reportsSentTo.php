@@ -1,26 +1,23 @@
 <?php
 
-class reports_sent_to extends reports {
+class Reports_Sent_To extends Reports {
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/sent-to/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/sent-to/';
         }
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -29,5 +26,4 @@ class reports_sent_to extends reports {
 
         return $response;
     }
-
 }
