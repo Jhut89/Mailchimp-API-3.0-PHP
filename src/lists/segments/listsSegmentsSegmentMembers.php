@@ -1,26 +1,28 @@
 <?php
 
-class lists_segment_segment_members extends lists_segments {
+class Lists_Segment_Segment_Members extends Lists_Segments
+{
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/members/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/members/';
         }
 
     }
 
-	public function GET( $query_params = null)
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -32,16 +34,16 @@ class lists_segment_segment_members extends lists_segments {
 
     public function POST( $member_hash )
     {
-    	$params = array('id' => $member_hash);
-    	$payload =  json_encode($params);
+        $params = array('id' => $member_hash);
+        $payload =  json_encode($params);
 
-    	$url = $this->url;
+        $url = $this->url;
         $response = $this->curlPost($url, $payload);
 
         return $response;
     }
 
-	public function DELETE()
+    public function DELETE()
     {
         $url = $this->url;
         $response = $this->curlDelete($url);

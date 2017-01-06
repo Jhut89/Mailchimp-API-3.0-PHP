@@ -1,6 +1,6 @@
 <?php
 
-class lists extends mailchimp
+class Lists extends Mailchimp
 {
 
     public $subclass_resource;
@@ -22,8 +22,7 @@ class lists extends mailchimp
     {
         parent::__construct($apikey);
 
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/lists/' . $class_input;;
         } else {
             $this->url .= '/lists/';
@@ -36,8 +35,7 @@ class lists extends mailchimp
     {
         $query_string = '';
 
-        if (is_array($query_params))
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -50,7 +48,10 @@ class lists extends mailchimp
     public function BATCH_SUB($members = array(), $update_existing)
     {
 
-        $params = array('members' => $members, 'update_existing' => $update_existing);
+        $params = array(
+            'members' => $members,
+            'update_existing' => $update_existing
+        );
         $payload = json_encode($params);
 
         $url = $this->url;
@@ -134,61 +135,101 @@ class lists extends mailchimp
 
     public function webhooks( $class_input = null )
     {
-        $this->webhooks = new lists_webhooks($this->apikey, $this->subclass_resource, $class_input);
+        $this->webhooks = new Lists_Webhooks(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->webhooks;
     }
 
-    public function signup_forms( $class_input = null )
+    public function signupForms( $class_input = null )
     {
-        $this->signup_forms = new lists_signup_forms($this->apikey, $this->subclass_resource, $class_input);
+        $this->signup_forms = new Lists_Signup_Forms(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->signup_forms;
     }
 
-    public function merge_fields( $class_input = null )
+    public function mergeFields( $class_input = null )
     {
-        $this->merge_fields = new lists_merge_fields($this->apikey, $this->subclass_resource, $class_input);
+        $this->merge_fields = new Lists_Merge_Fields(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->merge_fields;
     }
 
-    public function growth_history( $class_input = null )
+    public function growthHistory( $class_input = null )
     {
-        $this->growth_history = new lists_growth_history($this->apikey, $this->subclass_resource, $class_input);
+        $this->growth_history = new Lists_Growth_History(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->growth_history;
     }
 
     public function clients( $class_input = null )
     {
-        $this->clients = new lists_clients($this->apikey, $this->subclass_resource, $class_input);
+        $this->clients = new Lists_Clients(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->clients;
     }
 
     public function activity( $class_input = null )
     {
-        $this->activity = new lists_activity($this->apikey, $this->subclass_resource, $class_input);
+        $this->activity = new Lists_Activity(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->activity;
     }
 
-    public function abuse_reports( $class_input = null )
+    public function abuseReports( $class_input = null )
     {
-        $this->abuse = new lists_abuse_reports($this->apikey, $this->subclass_resource, $class_input);
+        $this->abuse = new Lists_Abuse_Reports(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->abuse;
     }
 
     public function segments( $class_input = null )
     {
-        $this->segments =  new lists_segments($this->apikey, $this->subclass_resource, $class_input);
+        $this->segments =  new Lists_Segments(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->segments;
     }
 
     public function members( $class_input = null )
     {
-        $this->members = new lists_members($this->apikey, $this->subclass_resource, $class_input);
+        $this->members = new Lists_Members(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->members;
     }
 
-    public function interest_categories( $class_input = null )
+    public function interestCategories( $class_input = null )
     {
-        $this->interest_categories = new lists_interest_categories($this->apikey, $this->subclass_resource, $class_input);
+        $this->interest_categories = new Lists_Interest_Categories(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
         return $this->interest_categories;
     }
 

@@ -107,7 +107,7 @@ class Mailchimp
 
     public function lists( $class_input = null )
     {
-        $this->lists = new lists($this->apikey, $class_input);
+        $this->lists = new Lists($this->apikey, $class_input);
         return $this->lists;
     }
 

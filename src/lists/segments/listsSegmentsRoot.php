@@ -1,6 +1,7 @@
 <?php
 
-class lists_segments extends lists {
+class Lists_Segments extends Lists
+{
 
     public $grandchild_resource;
 
@@ -10,11 +11,9 @@ class lists_segments extends lists {
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/segments/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/segments/';
         }
 
@@ -22,12 +21,11 @@ class lists_segments extends lists {
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -37,7 +35,7 @@ class lists_segments extends lists {
         return $response;
     }
         
-    public function BATCH ( $add = array() , $remove = array() )
+    public function BATCH( $add = array() , $remove = array() )
     {
         $params = array('members_to_add' => $add, 'members_to_remove' => $remove);
         $payload = json_encode($params);
@@ -48,7 +46,7 @@ class lists_segments extends lists {
         return $response;
     }
 
-    public function POST($name, $conditions = null , $static_segment = null)
+    public function POST( $name, $conditions = null , $static_segment = null )
     {
         $params = array('name' => $name);
 
@@ -68,7 +66,7 @@ class lists_segments extends lists {
     }
 
 
-    public function PATCH($name, $patch_params = array())
+    public function PATCH( $name, $patch_params = array() )
     {
         $params = array('name' => $name);
         $params = array_merge($params, $patch_params);
@@ -89,12 +87,17 @@ class lists_segments extends lists {
 
         return $response;
     }
-	
+
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
     public function members( $class_input = null )
     {
-        $this->segment_members = new lists_segment_segment_members($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->segment_members = new Lists_Segment_Segment_Members(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->members;
     }
 }

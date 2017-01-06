@@ -1,20 +1,18 @@
 <?php
 
-class lists_interest_categories extends lists {
+class Lists_Interest_Categories extends Lists {
 
     public $grandchild_resource;
 
-    #SUBCLASS INSTANTIATIONS
+    //SUBCLASS INSTANTIATIONS
     public $interests;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/interest-categories/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/interest-categories/';
         }
 
@@ -22,12 +20,11 @@ class lists_interest_categories extends lists {
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -74,7 +71,12 @@ class lists_interest_categories extends lists {
 
     public function interests( $class_input = null )
     {
-        $this->interests = new lists_interests_categories_interest($this->apikey, $this->subclass_resource, $this->grandchild_resource, $class_input);
+        $this->interests = new Lists_Interests_Categories_Interest(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
         return $this->interests;
     }
 }

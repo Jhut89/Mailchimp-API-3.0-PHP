@@ -1,26 +1,28 @@
 <?php
 
-class lists_interests_categories_interest extends lists_interest_categories {
+class Lists_Interests_Categories_Interest extends Lists_Interest_Categories
+{
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/interests/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/interests/';
         }
 
     }
- 
-	public function GET( $query_params = null )
+
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -61,5 +63,4 @@ class lists_interests_categories_interest extends lists_interest_categories {
 
         return $response;
     }
-	
 }

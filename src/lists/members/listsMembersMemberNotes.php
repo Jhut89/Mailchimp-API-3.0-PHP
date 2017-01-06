@@ -1,15 +1,18 @@
 <?php
 
-class lists_members_member_notes extends lists_members {
+class Lists_Members_Member_Notes extends Lists_Members
+{
 
-    function __construct($apikey, $parent_resource, $grandparent_resource, $class_input)
-    {
+    function __construct(
+        $apikey,
+        $parent_resource,
+        $grandparent_resource,
+        $class_input
+    ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if(isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/notes/' . $class_input;
-        } else 
-        {
+        } else {
             $this->url .= '/notes/';
         }
 
@@ -19,8 +22,7 @@ class lists_members_member_notes extends lists_members {
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 

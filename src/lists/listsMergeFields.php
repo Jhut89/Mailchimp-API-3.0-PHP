@@ -1,26 +1,24 @@
 <?php
 
-class lists_merge_fields extends lists {
+class Lists_Merge_Fields extends Lists
+{
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
-        if (isset($class_input))
-        {
+        if (isset($class_input)) {
             $this->url .= '/merge-fields/' . $class_input;
-        } else
-        {
+        } else {
             $this->url .= '/merge-fields/';
         }
 
     }
 
-	public function GET( $query_params = null )
+    public function GET( $query_params = null )
     {
         $query_string = '';
 
-        if (is_array($query_params)) 
-        {
+        if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
 
@@ -67,5 +65,4 @@ class lists_merge_fields extends lists {
 
         return $response;
     }
-	
 }
