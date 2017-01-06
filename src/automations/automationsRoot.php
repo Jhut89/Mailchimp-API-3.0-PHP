@@ -49,7 +49,8 @@ class Automations extends Mailchimp
         $this->emails = new Automations_Emails(
             $this->apikey,
             $this->subclass_resource,
-            $class_input);
+            $class_input
+        );
         return $this->emails;
     }
 

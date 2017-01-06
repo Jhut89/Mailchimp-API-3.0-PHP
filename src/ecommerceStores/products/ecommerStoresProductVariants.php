@@ -13,7 +13,7 @@ class Ecommerce_Stores_Products_Variants extends Ecommerce_Stores_Products {
 
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
 
-        if(isset($class_input)) {
+        if (isset($class_input)) {
             $this->url .= '/variants/' . $class_input;
         } else {
             $this->url .= '/variants/';

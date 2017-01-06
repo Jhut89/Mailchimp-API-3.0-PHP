@@ -1,6 +1,6 @@
 <?php
 
- class Search_Members extends Mailchimp
+class Search_Members extends Mailchimp
 {
 
     function __construct($apikey, $class_input)
@@ -28,4 +28,4 @@
         return $response; 
     }
 
- }
+}
