@@ -11,7 +11,7 @@ There are two ways you can include this library in you project. One is through C
 For Composer run:
 
 ```php
-composer require jhut89/mailchimp3php:dev-master
+composer require jhut89/mailchimp3php
 ```
 
 Then run `composer install` and add composer autoloader to your project with:
