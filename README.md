@@ -31,14 +31,14 @@ The only file that you need to require is mailchimpRoot.php. The file structure 
 ##Instantiation
 
 ```php
-$mailchimp = new mailchimp('123abc123abc123abc123abc-us0');
+$mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
 ```
 
-To instantiate you will need a new instance of the `mailchimp` class with your MailChimp account's API key as its only argument.
+To instantiate you will need a new instance of the `Mailchimp` class with your MailChimp account's API key as its only argument.
 
 ##Constructing a Request
 
-Once you have instantiated the `mailchimp` class you can start constructing requests. Constructing requests is done by 'chaining' methods to the `$mailchimp` instance. In most cases this 'chain' will end with the HTTP verb for your request. So an example of retrieving a lists collection would look like this:
+Once you have instantiated the `Mailchimp` class you can start constructing requests. Constructing requests is done by 'chaining' methods to the `$mailchimp` instance. In most cases this 'chain' will end with the HTTP verb for your request. So an example of retrieving a lists collection would look like this:
 
 ```php
 $mailchimp->lists()->GET();
