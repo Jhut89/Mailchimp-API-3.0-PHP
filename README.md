@@ -6,7 +6,7 @@ This library assumes a basic understanding of the MailChimp application and its 
 
 ##Installation
 
-There are two ways you can include this library in you project. One is through Composer and the other is by cloning this repository and manualy including `src/mailchimpRoot.php`.
+There are two ways you can include this library in you project. One is through Composer and the other is by cloning this repository and manually including `src/mailchimpRoot.php`.
 
 For Composer run:
 
