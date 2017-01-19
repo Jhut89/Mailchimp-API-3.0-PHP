@@ -6,7 +6,7 @@ class Mailchimp
 {
 
     // Settings
-    const DEBUGGER = true;
+    const DEBUGGER = false;
     const DEBUGGER_LOG_FILE = null;
     const VERIFY_SSL = true;
 
@@ -152,7 +152,7 @@ class Mailchimp
         return $this->templates;
     }
 
-    // VERBS
+    // CURL VERBS
     // GET ----------------------------------------------------------------------------------------------------------------------------------------
 
     public function curlGet($url)
@@ -235,11 +235,55 @@ class Mailchimp
         return self::finalizeRequest($this->response);
     }
 
-    // END VERBS -----------------------------------------------------------------------------------------------------------------------------------
+    // END CURL VERBS -----------------------------------------------------------------------------------------------------------------------------------
+    // BEGIN ENDPOINT VERB FUNCTIONS --------------------------------------------------------------------------------------------------------------------
+
+    public function GET($query_params = null)
+    {
+        $query_string = '';
+
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
+        }
+
+        $url = $this->url . $query_string;
+        $response = $this->curlGet($url);
+
+        return $response;
+    }
+
+    public function POST(
+        $required_params = array(),
+        $optional_params = array()
+    ) {
+        if (!empty($this::$req_post_prarams)) {
+            try {
+                Utils::checkRequiredFields(
+                    $required_params,
+                    $this::$req_post_prarams
+                );
+            } catch (Library_Exception $e) {
+                die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
+            }
+        }
+
+        $params = array_merge($required_params, $optional_params);
+        $payload = json_encode($params);
+        $url = $this->url;
+
+        $response = $this->curlPost($url, $payload);
+
+        return $response;
+
+
+    }
+
+    // END ENDPOINT VERB FUNCTIONS ---------------------------------------------------------------------------------------------------------------------
+
 
     public function finalizeRequest($response)
     {
-        if ( self::DEBUGGER == true ) {
+        if (self::DEBUGGER == true) {
             return Utils::debug( 
                 $this->url, 
                 $this->http_code,

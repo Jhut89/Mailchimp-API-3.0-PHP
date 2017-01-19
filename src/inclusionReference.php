@@ -82,4 +82,5 @@ require 'templates/templatesRoot.php';
 require 'templates/templateDefaultContent.php';
 
 ### Library Utilities
-require 'mailchimpUtilities.php';
+require 'libraryUtilities/mailchimpUtilities.php';
+require 'libraryExceptions/libraryExceptions.php';
