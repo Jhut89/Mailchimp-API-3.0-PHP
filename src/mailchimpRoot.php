@@ -264,7 +264,7 @@ class Mailchimp
                     $this->req_post_prarams
                 );
             } catch (Library_Exception $e) {
-                die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
         return  $this->curlPost($this->url, json_encode($params));
@@ -281,7 +281,7 @@ class Mailchimp
                     $this->req_patch_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
         return  $this->curlPatch($this->url, json_encode($params));
@@ -298,7 +298,7 @@ class Mailchimp
                     $this->req_put_prarams
                 );
             } catch (Library_Exception $e) {
-                die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
         return  $this->curlPut($this->url, json_encode($params));

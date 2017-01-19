@@ -36,14 +36,18 @@ class Utils
 
     public static function checkRequiredFields($given_params, $req_post_params)
     {
-        foreach ($given_params as $key => $value) {
-            $param_keys[] = $key;
-        }
-        foreach ($req_post_params as $param) {
-            if (!in_array($param, $param_keys)) {
-                throw new Library_Exception(
-                    'Missing required param "' . $param . '"'
-                );
+        if (empty($given_params)) {
+            throw new Library_Exception("verbs sending a payload cannot be empty");
+        } else {
+            foreach ($given_params as $key => $value) {
+                $param_keys[] = $key;
+            }
+            foreach ($req_post_params as $param) {
+                if (!in_array($param, $param_keys)) {
+                    throw new Library_Exception(
+                        'This request is missing a required param: "' . $param . '"'
+                    );
+                }
             }
         }
     }
