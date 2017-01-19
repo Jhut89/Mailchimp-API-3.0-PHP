@@ -79,22 +79,24 @@ $mailchimp->lists('1a2b3c4d')->members('8bdbf060209f35b52087992a3cbdf4d7')->GET(
 While being able to retrieve data from your account is great we also need to be able to post new data. This can be done by calling the `POST()` method at the end of a chain. As an example subscribing an address to a list would look like this:
 
 ```php
-$mailchimp->lists('1a2b3c4d')->members()->POST('subscribed', 'example@domain.com');
+$post_params = ['email_address'=>'example@domain.com', 'status'=>'subscribed']
+
+$mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 ```
 
-In this case I would not provide `members()` with an identifier as I want to post to its collection. Also notice that the post data is a series of arguments. These are the required parameters as defined by [MailChimp's documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members) in the order that they appear there (top to bottom). Assuming there are more parameters listed in MailChimp's documentation than just those required a final argument can be passed as an `array()` to add these optional parameters to the request. As an example if I wanted to add 'email_type' and merge-fields containing my subscriber's name to the above request I can:
+In this case I would not provide `members()` with an identifier as I want to post to its collection. Also notice that the post data is an array of key-value pairs representing what parameters I want to pass to the MailChimp API. Be sure that you provide all required fields for the endpoint you are posting to check [MailChimp's documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members) for what parameters are required. Non-required parameters can just be added to the post data, and MailChimp will ignore any unusable parameters. To illustrate here is an example of adding a subscriber to a list
 
 ```php
 $merge_values = array( "FNAME" => "John", "LNAME" => "Doe");
 
-$optional_parameters = array( "email_type" => "html", "merge_fields" => $merge_values )
+$post_params = array("email_address" => "example@domain.com", "status" => "subscribed", "email_type" => "html", "merge_fields" => $merge_values )
 
-$mailchimp->lists('1a2b3c4d')->members()->POST('subscribed', 'example@domain.com', $optional_parameters);
+$mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 ```
 
 ###PATCH/PUT
 
-This library handles PUT and PATCH request similar to that of POST requests. Meaning that if there are required fields listed in MailChimp's documentation they will be listed arguments for that method. Those methods that do not have any required parameters take a single argument being and array of parameters you wish to patch. As an example if I was patching the subscriber that we used above, to have a new first name, that would look like this.
+This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that reqpresent the data you wish altered in MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
 
 ```php
 $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->PATCH( [ "merge_fields" => ["FNAME" => "Jane"] ] );
@@ -197,6 +199,32 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 	    	defaultContent()
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
+
+## Settings
+
+This library offers several setting that can be altered by changing the value of the class constants at the begining of the `Mailchimp` class in the `mailchimpRoot.php` file. Be sure to check them out to see if they can be altered to fit your project a little better.
+
+### Debugger
+This library has a very small debug function that will allow you to output some request information and what was returned. This can be turned on by setting:
+
+```php
+const DEBUGGER = false;
+```
+The debugger can also log to a file if you provide a file for it to write to using `const DEBUGGER_LOG_FILE` like this:
+
+```php
+const DEBUGGER_LOG_FILE = 'path/to/some/file.php';
+```
+
+### SSL Verify
+`CURLOPT_SSL_VERIFYPEER` can be disabled by setting:
+
+```php
+ const VERIFY_SSL = false;
+````
+
+By default this option is on.
+
 
 \*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
 
