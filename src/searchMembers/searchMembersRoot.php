@@ -7,7 +7,7 @@ class Search_Members extends Mailchimp
          parent::__construct($apikey);
 
         if (isset($class_input)) {
-            $this->url .= '/search-members/' . $class_input;;
+            $this->url .= '/search-members/' . $class_input;
         } else {
             $this->url .= '/search-members/';
         }

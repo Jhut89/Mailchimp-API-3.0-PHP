@@ -23,7 +23,7 @@ class Templates extends Mailchimp
         parent::__construct($apikey);
 
         if (isset($class_input)) {
-            $this->url .= '/templates/' . $class_input;;
+            $this->url .= '/templates/' . $class_input;
         } else {
             $this->url .= '/templates/';
         }

@@ -15,7 +15,7 @@ class File_Manager_Folders extends Mailchimp {
         parent::__construct($apikey);
 
         if (isset($class_input)) {
-            $this->url .= '/file-manager/folders/' . $class_input;;
+            $this->url .= '/file-manager/folders/' . $class_input;
         } else {
             $this->url .= '/file-manager/folders/';
         }

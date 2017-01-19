@@ -22,7 +22,7 @@ class Reports extends Mailchimp
     {
         parent::__construct($apikey);
         if (isset($class_input)) {
-            $this->url .= '/reports/' . $class_input;;
+            $this->url .= '/reports/' . $class_input;
         } else {
             $this->url .= '/reports/';
         }

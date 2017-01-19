@@ -12,7 +12,7 @@ class Conversations_Messages extends Conversations
         parent::__construct($apikey, $parent_input);
 
         if (isset($class_input)) {
-            $this->url .= '/messages/' . $class_input;;
+            $this->url .= '/messages/' . $class_input;
         } else {
             $this->url .= '/messages/';
         }

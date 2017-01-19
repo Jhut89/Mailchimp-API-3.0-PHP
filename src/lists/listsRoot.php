@@ -39,7 +39,7 @@ class Lists extends Mailchimp
         parent::__construct($apikey);
 
         if (isset($class_input)) {
-            $this->url .= '/lists/' . $class_input;;
+            $this->url .= '/lists/' . $class_input;
         } else {
             $this->url .= '/lists/';
         }
