@@ -21,21 +21,6 @@ class Conversations extends Mailchimp
         $this->subclass_resource = $class_input;
     }
 
-    public function GET( $query_params = null )
-    {
-
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
     public function messages( $class_input = null )
