@@ -84,7 +84,7 @@ $post_params = ['email_address'=>'example@domain.com', 'status'=>'subscribed']
 $mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 ```
 
-In this case I would not provide `members()` with an identifier as I want to post to its collection. Also notice that the post data is an array of key-value pairs representing what parameters I want to pass to the MailChimp API. Be sure that you provide all required fields for the endpoint you are posting to check [MailChimp's documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members) for what parameters are required. Non-required parameters can just be added to the post data, and MailChimp will ignore any unusable parameters. To illustrate here is an example of adding a subscriber to a list
+In this case I would not provide `members()` with an identifier as I want to post to its collection. Also notice that the post data is an array of key-value pairs representing what parameters I want to pass to the MailChimp API. Be sure that you provide all required fields for the endpoint you are posting to check [MailChimp's documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members) for what parameters are required. Non-required parameters can just be added to the post data, and MailChimp will ignore any unusable parameters. To illustrate here is an example of adding a subscriber to a list with some non-required parameters:
 
 ```php
 $merge_values = array( "FNAME" => "John", "LNAME" => "Doe");
