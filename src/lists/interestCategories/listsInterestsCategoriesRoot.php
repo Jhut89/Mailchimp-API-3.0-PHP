@@ -4,6 +4,16 @@ class Lists_Interest_Categories extends Lists {
 
     public $grandchild_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'title',
+        'type'
+    ];
+    public $req_patch_prarams = [
+        'title',
+        'type'
+    ];
+
     //SUBCLASS INSTANTIATIONS
     public $interests;
 
@@ -18,53 +28,6 @@ class Lists_Interest_Categories extends Lists {
 
         $this->grandchild_resource = $class_input;
 
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    // $type can be "checkboxes", "radio", "hidden", or "dropdown"
-    public function POST($title, $type)
-    {
-        $params = array('title' => $title, 'type' => $type);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function PATCH($title, $type)
-    {
-        $params = array('title' => $title, 'type' => $type);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

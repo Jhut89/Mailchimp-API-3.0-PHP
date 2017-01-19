@@ -5,6 +5,16 @@ class Lists_Members extends Lists
 
     public $grandchild_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'email_address',
+        'status'
+    ];
+    public $req_put_prarams = [
+        'email_address',
+        'status_if_new'
+    ];
+
     //SUBCLASS INSTANTIATION
     public $notes;
     public $goals;
@@ -20,75 +30,6 @@ class Lists_Members extends Lists
         }
         $this->grandchild_resource = $class_input;
 
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    public function POST( $status, $emailaddress,  $optional_parameters = array() )
-    {
-        $params = array('email_address' => $emailaddress,
-            'status' => $status,
-        );
-
-        $params = array_merge($params, $optional_parameters);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function PATCH( $patch_parameters = array( ))
-    {
-
-        $payload = json_encode($patch_parameters);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function PUT(
-        $emailaddress,
-        $status_if_new,
-        $optional_parameters = array()
-    ) {
-
-        $params = array('email_address' => $emailaddress,
-            'status_if_new' => $status_if_new
-        );
-
-        $params = array_merge($params, $optional_parameters);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPut($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

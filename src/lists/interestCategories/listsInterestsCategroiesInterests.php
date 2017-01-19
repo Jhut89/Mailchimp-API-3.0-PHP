@@ -3,6 +3,14 @@
 class Lists_Interests_Categories_Interest extends Lists_Interest_Categories
 {
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'name'
+    ];
+    public $req_patch_prarams = [
+        'name'
+    ];
+
     function __construct(
         $apikey,
         $parent_resource,
@@ -16,51 +24,5 @@ class Lists_Interests_Categories_Interest extends Lists_Interest_Categories
             $this->url .= '/interests/';
         }
 
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    public function POST($name)
-    {
-        $params = array('name' => $name);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function PATCH($name)
-    {
-        $params = array('name' => $name);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 }

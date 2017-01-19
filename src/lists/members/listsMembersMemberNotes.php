@@ -3,6 +3,14 @@
 class Lists_Members_Member_Notes extends Lists_Members
 {
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'note'
+    ];
+    public $req_patch_prarams = [
+        'note'
+    ];
+
     function __construct(
         $apikey,
         $parent_resource,
@@ -17,51 +25,4 @@ class Lists_Members_Member_Notes extends Lists_Members
         }
 
     }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    public function POST($note)
-    {
-        $params = array('note' => $note);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function PATCH($note)
-    {
-        $params = array('note' => $note);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
-    }
-
 }

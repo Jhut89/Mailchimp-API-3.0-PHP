@@ -5,6 +5,22 @@ class Lists extends Mailchimp
 
     public $subclass_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'name',
+        'contact',
+        'permission_reminder',
+        'campaign_defaults',
+        'email_type_option'
+    ];
+    public $req_patch_prarams = [
+        'name',
+        'contact',
+        'permission_reminder',
+        'campaign_defaults',
+        'email_type_option'
+    ];
+
     //SUBCLASS INSTANTIATIONS
     public $webhooks;
     public $signup_forms;
@@ -31,20 +47,6 @@ class Lists extends Mailchimp
 
     }
 
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
     public function BATCH_SUB($members = array(), $update_existing)
     {
 
@@ -60,75 +62,6 @@ class Lists extends Mailchimp
 
         return $response;
 
-    }
-
-    public function POST(
-        $name,
-        $reminder,
-        $emailtype,
-        $company,
-        $address_street,
-        $address_street2,
-        $address_city,
-        $address_state,
-        $address_zip,
-        $country,
-        $from_name,
-        $from_email,
-        $subject,
-        $language,
-        $optional_parameters = array()
-    ) {
-
-        $params = array('name' => $name,
-                        'permission_reminder' => $reminder,
-                        'email_type_option' => $emailtype,
-                        'contact' => array('company' => $company,
-                                           'address1' => $address_street,
-                                           'city' => $address_city,
-                                           'state' => $address_state,
-                                           'zip' => $address_zip,
-                                           'country' => $country),
-                        'campaign_defaults' => array('from_name' => $from_name,
-                                                     'from_email' => $from_email,
-                                                     'subject' => $subject,
-                                                     'language' => $language)
-                        );
-
-        if (!is_null($address_street2)) {
-            $params['address2'] = $address_street2;
-        }
-
-        if (!is_null($optional_parameters['phone'])) {
-            $params['contact']['phone'] = $optional_parameters['phone'];
-        }
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-
-    }
-
-    public function PATCH($patch_params = null)
-    {
-
-        $payload = json_encode($patch_params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

@@ -2,7 +2,6 @@
 
 class Lists_Members_Member_Goals extends Lists_Members
 {
-
     function __construct($apikey,
         $parent_resource,
         $grandparent_resource,
@@ -15,19 +14,5 @@ class Lists_Members_Member_Goals extends Lists_Members
             $this->url .= '/goals/';
         }
 
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
     }
 }

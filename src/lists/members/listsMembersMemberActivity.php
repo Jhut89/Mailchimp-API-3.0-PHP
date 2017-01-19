@@ -2,7 +2,6 @@
 
 class Lists_Members_Member_Activity extends Lists_Members
 {
-
     function __construct(
         $apikey,
         $parent_resource,
@@ -16,19 +15,5 @@ class Lists_Members_Member_Activity extends Lists_Members
             $this->url .= '/activity/';
         }
 
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
     }
 }
