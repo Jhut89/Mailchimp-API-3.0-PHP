@@ -2,6 +2,10 @@
 
 class Batch_Operations extends Mailchimp
 {
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'operations'
+    ];
 
     function __construct($apikey, $class_input)
     {
@@ -13,31 +17,4 @@ class Batch_Operations extends Mailchimp
         }
     }
 
-    public function POST( $operations = array() )
-    {
-
-        $params = array('operations' => $operations);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-    
 }

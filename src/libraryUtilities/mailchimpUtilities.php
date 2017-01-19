@@ -19,6 +19,7 @@ class Utils
         ) {
             $log_file = fopen(Mailchimp::DEBUGGER_LOG_FILE, 'a');
             fwrite($log_file, print_r($debug_report, true) . "\n");
+            fclose($log_file);
         }
         return $debug_report;
     }

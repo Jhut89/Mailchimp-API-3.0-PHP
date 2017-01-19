@@ -256,31 +256,43 @@ class Mailchimp
 
     // POST ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function POST(
-        $required_params = array(),
-        $optional_params = array()
-    ) {
+    public function POST($params = array()) {
         if (!empty($this->req_post_prarams)) {
             try {
                 Utils::checkRequiredFields(
-                    $required_params,
+                    $params,
                     $this->req_post_prarams
                 );
             } catch (Library_Exception $e) {
                 die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
             }
         }
-
-        $params = array_merge($required_params, $optional_params);
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        return  $this->curlPost($this->url, json_encode($params));
     }
 
     // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function PATCH($params = array())
+    {
+        if (!empty($this->req_patch_params)) {
+            try {
+                Utils::checkRequiredFields(
+                    $params,
+                    $this->req_post_prarams
+                );
+            } catch (Library_Exception $e) {
+                die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
+            }
+        }
+        return  $this->curlPatch($this->url, json_encode($params));
+    }
+
+    // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function DELETE()
+    {
+        return $this->curlDelete($this->url);
+    }
 
     // END ENDPOINT VERB FUNCTIONS
 
