@@ -278,13 +278,30 @@ class Mailchimp
             try {
                 Utils::checkRequiredFields(
                     $params,
-                    $this->req_post_prarams
+                    $this->req_patch_params
                 );
             } catch (Library_Exception $e) {
                 die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
             }
         }
         return  $this->curlPatch($this->url, json_encode($params));
+    }
+
+    // PUT ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function PUT($params = array())
+    {
+        if (!empty($this->req_put_params)) {
+            try {
+                Utils::checkRequiredFields(
+                    $params,
+                    $this->req_put_prarams
+                );
+            } catch (Library_Exception $e) {
+                die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
+            }
+        }
+        return  $this->curlPut($this->url, json_encode($params));
     }
 
     // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
