@@ -235,8 +235,10 @@ class Mailchimp
         return self::finalizeRequest($this->response);
     }
 
-    // END CURL VERBS -----------------------------------------------------------------------------------------------------------------------------------
-    // BEGIN ENDPOINT VERB FUNCTIONS --------------------------------------------------------------------------------------------------------------------
+    // END CURL VERBS
+    // BEGIN ENDPOINT VERB FUNCTIONS
+
+    // GET ------------------------------------------------------------------------------------------------------------------------------------------
 
     public function GET($query_params = null)
     {
@@ -252,15 +254,17 @@ class Mailchimp
         return $response;
     }
 
+    // POST ----------------------------------------------------------------------------------------------------------------------------------------
+
     public function POST(
         $required_params = array(),
         $optional_params = array()
     ) {
-        if (!empty($this::$req_post_prarams)) {
+        if (!empty($this->req_post_prarams)) {
             try {
                 Utils::checkRequiredFields(
                     $required_params,
-                    $this::$req_post_prarams
+                    $this->req_post_prarams
                 );
             } catch (Library_Exception $e) {
                 die("Mailhimp-API-3.0-PHP Says: ".$e->getMessage()." for ". $this->url);
@@ -274,11 +278,11 @@ class Mailchimp
         $response = $this->curlPost($url, $payload);
 
         return $response;
-
-
     }
 
-    // END ENDPOINT VERB FUNCTIONS ---------------------------------------------------------------------------------------------------------------------
+    // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
+
+    // END ENDPOINT VERB FUNCTIONS
 
 
     public function finalizeRequest($response)
