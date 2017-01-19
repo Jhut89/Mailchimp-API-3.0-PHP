@@ -80,3 +80,6 @@ require 'templateFolders/templateFoldersRoot.php';
 ### Templates
 require 'templates/templatesRoot.php';
 require 'templates/templateDefaultContent.php';
+
+### Library Utilities
+require 'mailchimpUtilities.php';

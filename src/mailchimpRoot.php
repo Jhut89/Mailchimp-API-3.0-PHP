@@ -5,11 +5,20 @@ require 'inclusionReference.php';
 class Mailchimp
 {
 
+    // Settings
+    const DEBUGGER = true;
+    const DEBUGGER_LOG_FILE = null;
+    const VERIFY_SSL = true;
+
+
+    // Request components
     public $auth;
     public $url;
     public $exp_apikey;
     public $apikey;
     public $response;
+    public $http_code;
+
 
     // Instantiations for child classes
     public $account;
@@ -151,10 +160,12 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // POST ----------------------------------------------------------------------------------------------------------------------------------------
@@ -164,12 +175,14 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
@@ -179,12 +192,14 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
@@ -194,11 +209,13 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // PUT ----------------------------------------------------------------------------------------------------------------------------------------
@@ -208,15 +225,31 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // END VERBS -----------------------------------------------------------------------------------------------------------------------------------
+
+    public function finalizeRequest($response)
+    {
+        if ( self::DEBUGGER == true ) {
+            return Utils::debug( 
+                $this->url, 
+                $this->http_code,
+                $this->apikey,
+                $response
+            );
+        } else {
+            return Utils::validateResponse($response);
+        }
+    }
 
     public function constructQueryParams($query_input)
     {
