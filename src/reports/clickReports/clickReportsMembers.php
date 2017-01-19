@@ -2,7 +2,6 @@
 
 class Reports_Click_Reports_Members extends Reports_Click_Reports
 {
-
     function __construct(
         $apikey,
         $parent_resource,
@@ -17,19 +16,4 @@ class Reports_Click_Reports_Members extends Reports_Click_Reports
         }
 
     }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
 }
