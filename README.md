@@ -208,7 +208,7 @@ This library offers several setting that can be altered by changing the value of
 This library has a very small debug function that will allow you to output some request information and what was returned. This can be turned on by setting:
 
 ```php
-const DEBUGGER = false;
+const DEBUGGER = true;
 ```
 The debugger can also log to a file if you provide a file for it to write to using `const DEBUGGER_LOG_FILE` like this:
 
