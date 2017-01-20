@@ -14,7 +14,7 @@ For Composer run:
 composer require jhut89/mailchimp3php
 ```
 
-Then run `composer install` and add composer autoloader to your project with:
+Then run `composer update` and add composer autoloader to your project with:
 
 ```php
 require "vendor/autoload.php";
