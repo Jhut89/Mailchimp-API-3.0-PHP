@@ -40,12 +40,19 @@ class Mailchimp
 
     public function __construct($apikey)
     {
-        $this->exp_apikey = explode('-', $apikey);
+        $this->exp_apikey = explode('-', trim($apikey));
         $this->auth = array(
             'Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]
         );
+
         $this->url = "Https://" . $this->exp_apikey[1] . ".api.mailchimp.com/3.0";
         $this->apikey = $apikey;
+
+        try {
+            Utils::checkKey($this->exp_apikey);
+        } catch (Library_Exception $e) {
+            die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+        }
     }
 
     // ROOT OBJECT FUNCTIONS

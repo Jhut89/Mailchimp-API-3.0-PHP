@@ -2,6 +2,20 @@
 
 class Utils 
 {
+    public static function checkKey($exp_apikey)
+    {
+
+        if (strlen($exp_apikey[0]) < 10) {
+            throw new Library_Exception('You must provide a valid API key');
+        }
+
+        if (!isset($exp_apikey[1])) {
+            throw new Library_Exception(
+                'Make sure you provided the data-center at the end of your API key'
+            );
+        }
+    }
+
     public static function debug(
         $url,
         $http_code,
