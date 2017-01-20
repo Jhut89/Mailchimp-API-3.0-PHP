@@ -5,11 +5,20 @@ require 'inclusionReference.php';
 class Mailchimp
 {
 
+    // Settings
+    const DEBUGGER = false;
+    const DEBUGGER_LOG_FILE = null;
+    const VERIFY_SSL = true;
+    const HEADERS = false;
+
+    // Request components
     public $auth;
     public $url;
     public $exp_apikey;
     public $apikey;
     public $response;
+    public $http_code;
+
 
     // Instantiations for child classes
     public $account;
@@ -143,7 +152,7 @@ class Mailchimp
         return $this->templates;
     }
 
-    // VERBS
+    // CURL VERBS
     // GET ----------------------------------------------------------------------------------------------------------------------------------------
 
     public function curlGet($url)
@@ -151,10 +160,13 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // POST ----------------------------------------------------------------------------------------------------------------------------------------
@@ -164,12 +176,15 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
@@ -179,12 +194,15 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
@@ -194,11 +212,14 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
     // PUT ----------------------------------------------------------------------------------------------------------------------------------------
@@ -208,15 +229,109 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
+        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        return json_decode($this->response, false);
+        return self::finalizeRequest($this->response);
     }
 
-    // END VERBS -----------------------------------------------------------------------------------------------------------------------------------
+    // END CURL VERBS
+    // BEGIN ENDPOINT VERB FUNCTIONS
+
+    // GET ------------------------------------------------------------------------------------------------------------------------------------------
+
+    public function GET($query_params = null)
+    {
+        $query_string = '';
+
+        if (is_array($query_params)) {
+            $query_string = $this->constructQueryParams($query_params);
+        }
+
+        $url = $this->url . $query_string;
+        $response = $this->curlGet($url);
+
+        return $response;
+    }
+
+    // POST ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function POST($params = array()) {
+        if (!empty($this->req_post_prarams)) {
+            try {
+                Utils::checkRequiredFields(
+                    $params,
+                    $this->req_post_prarams
+                );
+            } catch (Library_Exception $e) {
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+            }
+        }
+        return  $this->curlPost($this->url, json_encode($params));
+    }
+
+    // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function PATCH($params = array())
+    {
+        if (!empty($this->req_patch_params)) {
+            try {
+                Utils::checkRequiredFields(
+                    $params,
+                    $this->req_patch_params
+                );
+            } catch (Library_Exception $e) {
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+            }
+        }
+        return  $this->curlPatch($this->url, json_encode($params));
+    }
+
+    // PUT ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function PUT($params = array())
+    {
+        if (!empty($this->req_put_params)) {
+            try {
+                Utils::checkRequiredFields(
+                    $params,
+                    $this->req_put_prarams
+                );
+            } catch (Library_Exception $e) {
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+            }
+        }
+        return  $this->curlPut($this->url, json_encode($params));
+    }
+
+    // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
+
+    public function DELETE()
+    {
+        return $this->curlDelete($this->url);
+    }
+
+    // END ENDPOINT VERB FUNCTIONS
+
+
+    public function finalizeRequest($response)
+    {
+        if (self::DEBUGGER == true) {
+            return Utils::debug( 
+                $this->url, 
+                $this->http_code,
+                $this->apikey,
+                $response
+            );
+        } else {
+            return Utils::validateResponse($response);
+        }
+    }
 
     public function constructQueryParams($query_input)
     {

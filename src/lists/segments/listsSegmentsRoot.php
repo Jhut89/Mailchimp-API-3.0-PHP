@@ -5,6 +5,14 @@ class Lists_Segments extends Lists
 
     public $grandchild_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'name'
+    ];
+    public $req_patch_prarams = [
+        'name'
+    ];
+
     //SUBCLASS INSTANTIATIONS
     public $segment_members;
 
@@ -20,20 +28,6 @@ class Lists_Segments extends Lists
         $this->grandchild_resource = $class_input;
 
     }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
         
     public function BATCH( $add = array() , $remove = array() )
     {
@@ -46,47 +40,6 @@ class Lists_Segments extends Lists
         return $response;
     }
 
-    public function POST( $name, $conditions = null , $static_segment = null )
-    {
-        $params = array('name' => $name);
-
-        if (!is_null($conditions)) {
-            $params['options'] = $conditions;
-        }
-
-        if (!is_null($static_segment)) {
-            $params['static_segment'] = $static_segment;
-        }
-
-        $payload = json_encode($params);
-        $url = $this->url;
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-
-    public function PATCH( $name, $patch_params = array() )
-    {
-        $params = array('name' => $name);
-        $params = array_merge($params, $patch_params);
-        
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
-    }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 

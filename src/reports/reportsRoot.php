@@ -22,26 +22,12 @@ class Reports extends Mailchimp
     {
         parent::__construct($apikey);
         if (isset($class_input)) {
-            $this->url .= '/reports/' . $class_input;;
+            $this->url .= '/reports/' . $class_input;
         } else {
             $this->url .= '/reports/';
         }
       
         $this->subclass_resource = $class_input;
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

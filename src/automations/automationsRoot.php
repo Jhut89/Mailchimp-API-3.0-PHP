@@ -19,16 +19,26 @@ class Automations extends Mailchimp
         $this->subclass_resource = $class_input;
     }
 
-    public function GET( $query_params = null )
+    public function PAUSE_ALL()
     {
-        $query_string = '';
+        $params = array();
 
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
+        $payload = json_encode($params);
+        $url = $this->url . '/actions/pause-all-emails/';
 
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
+        $response = $this->curlPost($url, $payload);
+
+        return $response;
+    }
+
+    public function START_ALL()
+    {
+        $params = array();
+
+        $payload = json_encode($params);
+        $url = $this->url . '/actions/start-all-emails/';
+
+        $response = $this->curlPost($url, $payload);
 
         return $response;
     }

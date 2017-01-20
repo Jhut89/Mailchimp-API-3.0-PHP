@@ -5,6 +5,13 @@ class Ecommerce_Stores_Products extends Ecommerce_Stores
 
     public $grandchild_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'id',
+        'title',
+        'variants'
+    ];
+
     //SUBCLASS INSTANTIATIONS
     public $variants;
 
@@ -18,62 +25,6 @@ class Ecommerce_Stores_Products extends Ecommerce_Stores
         }
 
         $this->grandchild_resource = $class_input;
-    }
-
-    public function POST(
-        $productid,
-        $title,
-        $variants = array(),
-        $optional_parameters = array()
-    ) {
-
-        $params = array("id" => $productid,
-            "title" => $title,
-            "variants" => $variants
-        );
-
-        $params = array_merge($params, $optional_parameters);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    public function PATCH( $params = array() )
-    {
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

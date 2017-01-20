@@ -21,22 +21,6 @@ class Automations_Emails extends Automations
 
     }
 
-    public function GET( $query_params = null )
-    {
-        
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-
-    }
-
     // PAUSE AND START FUNCTIONS
     // exemptions needed here for attempting to pause emails without providing email_id
 

@@ -5,6 +5,15 @@ class Campaigns extends Mailchimp
 
     public $subclass_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'type',
+        'settings'
+    ];
+    public $req_patch_params = [
+        'settings'
+    ];
+
     //SUBCLASS INSTANTIATIONS
     public $checklist;
     public $feedback;
@@ -21,53 +30,6 @@ class Campaigns extends Mailchimp
         
         $this->subclass_resource = $class_input;
 
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    public function POST($type, $settings = array(), $optional_parameters = array())
-    {
-
-        $params = array('type' => $type, 'settings' => $settings);
-        $params = array_merge($params, $optional_parameters);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function PATCH($params = array())
-    {
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 
     public function CANCEL()

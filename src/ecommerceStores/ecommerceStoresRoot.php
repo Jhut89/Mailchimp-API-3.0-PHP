@@ -5,6 +5,14 @@ class Ecommerce_Stores extends Mailchimp
 
     public $subclass_resource;
 
+    //REQUIRED FIELDS DEFINITIONS
+    public $req_post_prarams = [
+        'id',
+        'list_id',
+        'name',
+        'currency_code'
+    ];
+
     //SUBCLASS INSTANTIATIONS
     public $customers;
     public $products;
@@ -22,64 +30,6 @@ class Ecommerce_Stores extends Mailchimp
         }
         
         $this->subclass_resource = $class_input;
-    }
-
-    public function GET( $query_params = null )
-    {
-        $query_string = '';
-
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
-
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
-
-        return $response;
-    }
-
-    public function POST($storeid,
-        $listid,
-        $name,
-        $currencycode,
-        $optional_parameters = array()
-    ) {
-
-        $required_params = array('id' => $storeid,
-            'list_id' => $listid,
-            'name' => $name,
-            'currency_code' => $currencycode
-        );
-
-        $params = array_merge($required_params, $optional_parameters);
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
-    }
-
-    public function PATCH($update_params = array())
-    {
-
-        $params = $update_params;
-
-        $payload = json_encode($params);
-        $url = $this->url;
-
-        $response = $this->curlPatch($url, $payload);
-
-        return $response;
-    }
-
-    public function DELETE()
-    {
-        $url = $this->url;
-        $response = $this->curlDelete($url);
-
-        return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
