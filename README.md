@@ -225,6 +225,15 @@ const DEBUGGER_LOG_FILE = 'path/to/some/file.php';
 
 By default this option is on.
 
+### Request Headers
+To include the returned headers in the output from this library set:
+
+```php
+const HEADERS = true;
+```
+
+By default this option is set to false. 
+
 
 \*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
 

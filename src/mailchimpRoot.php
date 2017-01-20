@@ -9,7 +9,7 @@ class Mailchimp
     const DEBUGGER = false;
     const DEBUGGER_LOG_FILE = null;
     const VERIFY_SSL = true;
-
+    const HEADERS = false;
 
     // Request components
     public $auth;
@@ -160,6 +160,7 @@ class Mailchimp
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         $this->response = curl_exec($ch);
         $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -176,6 +177,7 @@ class Mailchimp
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
@@ -193,6 +195,7 @@ class Mailchimp
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
@@ -210,6 +213,7 @@ class Mailchimp
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         $this->response = curl_exec($ch);
         $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -226,6 +230,7 @@ class Mailchimp
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
+        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         $this->response = curl_exec($ch);
