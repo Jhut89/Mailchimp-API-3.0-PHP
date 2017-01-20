@@ -216,6 +216,8 @@ The debugger can also log to a file if you provide a file for it to write to usi
 const DEBUGGER_LOG_FILE = 'path/to/some/file.php';
 ```
 
+By default this option is set to `false`.
+
 ### SSL Verify
 `CURLOPT_SSL_VERIFYPEER` can be disabled by setting:
 
@@ -223,7 +225,7 @@ const DEBUGGER_LOG_FILE = 'path/to/some/file.php';
  const VERIFY_SSL = false;
 ````
 
-By default this option is on.
+By default this option is set to `true`.
 
 ### Request Headers
 To include the returned headers in the output from this library set:
@@ -232,7 +234,7 @@ To include the returned headers in the output from this library set:
 const HEADERS = true;
 ```
 
-By default this option is set to false. 
+By default this option is set to `false`.
 
 
 \*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
