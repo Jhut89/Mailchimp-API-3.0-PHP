@@ -38,7 +38,7 @@ To instantiate you will need a new instance of the `Mailchimp` class with your M
 
 ##Oauth
 
-If you are using [Oauth] to obtain an access token. This library can handle the handshake for you once you have received the `code` for the exchange. Since you do not yet have and API key you will need to call the `oauthExchange()` method statically like this:
+If you are using [Oauth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token. This library can handle the handshake for you once you have received the `code` for the exchange. Since you do not yet have and API key you will need to call the `oauthExchange()` method statically like this:
 
 ```php
 $code = 'abc123abc123abc123abc123';
