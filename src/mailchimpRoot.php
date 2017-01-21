@@ -49,7 +49,7 @@ class Mailchimp
         $this->apikey = $apikey;
 
         try {
-            Utils::checkKey($this->exp_apikey);
+            MC_Utils::checkKey($this->exp_apikey);
         } catch (Library_Exception $e) {
             die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
         }
@@ -271,7 +271,7 @@ class Mailchimp
     public function POST($params = array()) {
         if (!empty($this->req_post_prarams)) {
             try {
-                Utils::checkRequiredFields(
+                MC_Utils::checkRequiredFields(
                     $params,
                     $this->req_post_prarams
                 );
@@ -288,7 +288,7 @@ class Mailchimp
     {
         if (!empty($this->req_patch_params)) {
             try {
-                Utils::checkRequiredFields(
+                MC_Utils::checkRequiredFields(
                     $params,
                     $this->req_patch_params
                 );
@@ -305,7 +305,7 @@ class Mailchimp
     {
         if (!empty($this->req_put_params)) {
             try {
-                Utils::checkRequiredFields(
+                MC_Utils::checkRequiredFields(
                     $params,
                     $this->req_put_prarams
                 );
@@ -325,18 +325,44 @@ class Mailchimp
 
     // END ENDPOINT VERB FUNCTIONS
 
+    // BEGIN OAUTH FUNCTIONS
+
+    public static function oathExchange(
+        $code,
+        $client_id,
+        $client_sec,
+        $redirect_uri
+    ) {
+
+        $encoded_uri = urldecode($redirect_uri);
+
+        $oauth_string = "grant_type=authorization_code";
+        $oauth_string .= "&client_id=".$client_id;
+        $oauth_string .= "&client_secret=".$client_sec;
+        $oauth_string .= "&redirect_uri=".$encoded_uri;
+        $oauth_string .= "&code=".$code;
+
+        try {
+            MC_Utils::oauthRun($oauth_string);
+        } catch (Library_Exception $e) {
+            die("Mailchimp-API-3.0-PHP Oauth Exchange Says: ".$e->getMessage());
+        }
+
+    }
+
+    // BEGIN LIBRARY FUNCTIONS
 
     public function finalizeRequest($response)
     {
         if (self::DEBUGGER == true) {
-            return Utils::debug( 
+            return MC_Utils::debug(
                 $this->url, 
                 $this->http_code,
                 $this->apikey,
                 $response
             );
         } else {
-            return Utils::validateResponse($response);
+            return MC_Utils::validateResponse($response);
         }
     }
 
