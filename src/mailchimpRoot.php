@@ -51,7 +51,7 @@ class Mailchimp
         try {
             MC_Utils::checkKey($this->exp_apikey);
         } catch (Library_Exception $e) {
-            die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+            die("Mailchimp-API-3.0-PHP Says: ".$e->message);
         }
     }
 
@@ -276,7 +276,7 @@ class Mailchimp
                     $this->req_post_prarams
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+                die("Mailchimp-API-3.0-PHP Says: ".$e->message);
             }
         }
         return  $this->curlPost($this->url, json_encode($params));
@@ -293,7 +293,7 @@ class Mailchimp
                     $this->req_patch_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+                die("Mailchimp-API-3.0-PHP Says: ".$e->message);
             }
         }
         return  $this->curlPatch($this->url, json_encode($params));
@@ -310,7 +310,7 @@ class Mailchimp
                     $this->req_put_prarams
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+                die("Mailchimp-API-3.0-PHP Says: ".$e->message);
             }
         }
         return  $this->curlPut($this->url, json_encode($params));
@@ -327,7 +327,7 @@ class Mailchimp
 
     // BEGIN OAUTH FUNCTIONS
 
-    public static function oathExchange(
+    public static function oauthExchange(
         $code,
         $client_id,
         $client_sec,
@@ -343,12 +343,18 @@ class Mailchimp
         $oauth_string .= "&code=".$code;
 
         try {
-            MC_Utils::oauthRun($oauth_string);
+            return MC_Utils::oauthRun($oauth_string);
         } catch (Library_Exception $e) {
-            die("Mailchimp-API-3.0-PHP Oauth Exchange Says: ".$e->getMessage());
+            die(
+                "Mailchimp-API-3.0-PHP Oauth Exchange Says: "
+                .$e->message
+                .$e->output
+            );
         }
 
     }
+
+    // END OAUTH FUNCTIONS
 
     // BEGIN LIBRARY FUNCTIONS
 
