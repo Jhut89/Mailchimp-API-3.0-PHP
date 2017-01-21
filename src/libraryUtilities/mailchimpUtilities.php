@@ -19,7 +19,7 @@ class MC_Utils
 
         if (!$return->access_token) {
             throw new Library_Exception(
-                'MailChimp did not return an access token, instead: ',
+                'MailChimp did not return an access token',
                 $return
             );
         }
@@ -36,7 +36,7 @@ class MC_Utils
 
         if (!$account->dc) {
             throw new Library_Exception(
-                'Unable to retrieve account meta-data, instead: ',
+                'Unable to retrieve account meta-data',
                 $account
             );
         }

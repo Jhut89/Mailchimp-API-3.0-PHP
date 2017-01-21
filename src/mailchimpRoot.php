@@ -345,11 +345,18 @@ class Mailchimp
         try {
             return MC_Utils::oauthRun($oauth_string);
         } catch (Library_Exception $e) {
-            die(
-                "Mailchimp-API-3.0-PHP Oauth Exchange Says: "
-                .$e->message
-                .$e->output
-            );
+
+            if (self::DEBUGGER == true) {
+                die(
+                    "Mailchimp-API-3.0-PHP Oauth Exchange Says: "
+                    . $e->message
+                    . "Instead recieved: \n"
+                    . $e->output
+                );
+            }
+
+            die("Mailchimp-API-3.0-PHP Oauth Exchange Says: " . $e->message);
+
         }
 
     }
