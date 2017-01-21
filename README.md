@@ -36,6 +36,22 @@ $mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
 
 To instantiate you will need a new instance of the `Mailchimp` class with your MailChimp account's API key as its only argument.
 
+##Oauth
+
+If you are using [Oauth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token, this library can handle the "handshake" for you once you have received a `code` for the exchange. Since you do not yet have and API key you will need to call the `oauthExchange()` method statically like this:
+
+```php
+$code = 'abc123abc123abc123abc123';
+$client_id =   '12345676543';
+$client_secret =  '789xyz789xyz789xyz789xyz';
+$redirect_url =  'https://www.some-domain.com/callback_file.php';
+
+Mailchimp::oauthExchange($code, $client_id, $client_secret, $redirect_url);
+```
+
+If the handshake is successful, then this method will return a string containing your API key like this: `123abc123abc123abc123abc123abc-us0`. This API key can now be used to instantiate your `Mailchimp` class as we have above.
+
+
 ##Constructing a Request
 
 Once you have instantiated the `Mailchimp` class you can start constructing requests. Constructing requests is done by 'chaining' methods to the `$mailchimp` instance. In most cases this 'chain' will end with the HTTP verb for your request. So an example of retrieving a lists collection would look like this:
