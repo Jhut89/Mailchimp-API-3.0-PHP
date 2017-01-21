@@ -166,6 +166,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
+        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
@@ -182,6 +183,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
+        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -200,6 +202,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
+        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -218,6 +221,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
+        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -235,6 +239,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
+        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);

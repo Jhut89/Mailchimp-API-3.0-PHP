@@ -3,6 +3,8 @@
 class MC_Utils
 {
 
+    const USER_AGENT = 'jhut89/Mailchimp-API-3.0-PHP (https://github.com/Jhut89/Mailchimp-API-3.0-PHP)';
+
     public static function oauthRun($oauth_string)
     {
 
