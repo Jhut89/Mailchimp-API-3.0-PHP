@@ -112,7 +112,7 @@ $mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 
 ###PATCH/PUT
 
-This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that reqpresent the data you wish altered in MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
+This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that represent the data you wish altered/provided to MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
 
 ```php
 $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->PATCH( [ "merge_fields" => ["FNAME" => "Jane"] ] );
