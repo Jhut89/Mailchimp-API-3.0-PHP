@@ -95,7 +95,7 @@ $mailchimp->lists('1a2b3c4d')->members('8bdbf060209f35b52087992a3cbdf4d7')->GET(
 While being able to retrieve data from your account is great we also need to be able to post new data. This can be done by calling the `POST()` method at the end of a chain. As an example subscribing an address to a list would look like this:
 
 ```php
-$post_params = ['email_address'=>'example@domain.com', 'status'=>'subscribed']
+$post_params = ['email_address'=>'example@domain.com', 'status'=>'subscribed'];
 
 $mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 ```
