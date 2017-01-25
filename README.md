@@ -20,7 +20,7 @@ Then run `composer update` and add composer autoloader to your project with:
 require "vendor/autoload.php";
 ```
 
-To manually include this library you can clone this repository and use it with:
+To manually include this library you can clone `https://github.com/Jhut89/Mailchimp-API-3.0-PHP.git` and use it with:
 
 ```php
 require '/path/to/mailchimpRoot.php';
@@ -103,7 +103,7 @@ $mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 In this case I would not provide `members()` with an identifier as I want to post to its collection. Also notice that the post data is an array of key-value pairs representing what parameters I want to pass to the MailChimp API. Be sure that you provide all required fields for the endpoint you are posting to. Check [MailChimp's documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members) for what parameters are required. Non-required parameters can just be added to the post data, and MailChimp will ignore any that are unusable. To illustrate here is an example of adding a subscriber to a list with some non-required parameters:
 
 ```php
-$merge_values = array( "FNAME" => "John", "LNAME" => "Doe");
+$merge_values = array( "FNAME" => "John", "LNAME" => "Doe" );
 
 $post_params = array("email_address" => "example@domain.com", "status" => "subscribed", "email_type" => "html", "merge_fields" => $merge_values )
 
