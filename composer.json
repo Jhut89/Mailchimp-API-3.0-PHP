@@ -12,7 +12,7 @@
         "files": ["src/mailchimpRoot.php"]
     },
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.4.0"
     },
     "homepage": "https://github.com/Jhut89/Mailchimp-API-3.0-PHP"
 }
