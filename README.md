@@ -142,6 +142,8 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 
 	    batches()
 
+	    batchWebhooks()
+
 	    campaignFolders()
 
 	    campaigns()
@@ -164,6 +166,7 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 	    	customers()
 	    	products()
 	    		variants()
+	    		images()
 	    	orders()
 	    		lines()
 	    	carts()
