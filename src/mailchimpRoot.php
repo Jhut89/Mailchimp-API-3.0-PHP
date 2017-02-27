@@ -25,6 +25,7 @@ class Mailchimp
     public $apps;
     public $automations;
     public $batches;
+    public $batch_webhooks;
     public $campaign_folders;
     public $campaigns;
     public $conversations;
@@ -79,6 +80,12 @@ class Mailchimp
     {
         $this->batches = new Batch_Operations($this->apikey, $class_input);
         return $this->batches;
+    }
+
+    public function batchWebhooks( $class_input = null )
+    {
+        $this->batch_webhooks = new Batch_Webhooks($this->apikey, $class_input);
+        return $this->batch_webhooks;
     }
 
     public function campaignFolders( $class_input = null )

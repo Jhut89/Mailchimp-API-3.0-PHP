@@ -14,6 +14,7 @@ class Ecommerce_Stores_Products extends Ecommerce_Stores
 
     //SUBCLASS INSTANTIATIONS
     public $variants;
+    public $images;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
@@ -38,6 +39,17 @@ class Ecommerce_Stores_Products extends Ecommerce_Stores
             $class_input
         );
         return $this->variants;
+    }
+
+    public function images( $class_input = null )
+    {
+        $this->images = new Ecommerce_Stores_Product_Images(
+            $this->apikey,
+            $this->subclass_resource,
+            $this->grandchild_resource,
+            $class_input
+        );
+        return $this->images;
     }
 
 }
