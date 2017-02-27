@@ -11,6 +11,8 @@ require 'automations/autoamtionsRemovedSubscribers.php';
 	require 'automations/emails/automationsEmailsQueue.php';
 ### Batch Operations
 require 'batchOperations/batchOperationsRoot.php';
+### Batch Webhooks
+require 'batchWebhooks/batchWebhooksRoot.php';
 ### Campaign Folders
 require 'campaignFolders/campaignFoldersRoot.php';
 ### Campaigns
@@ -33,6 +35,7 @@ require 'ecommerceStores/ecommerceStoresCustomers.php';
 	### Products
 	require 'ecommerceStores/products/ecommerceStoresProductsRoot.php';
 	require 'ecommerceStores/products/ecommerStoresProductVariants.php';
+    require 'ecommerceStores/products/ecommerceStoresProductImages.php';
 ### File Manager Files
 require 'fileManagerFiles/fileManagerFilesRoot.php';
 ### File Manager Folders
