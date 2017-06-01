@@ -137,8 +137,8 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
 	  		removedSubscribers()
 	    	emails()
 	    		queue()
-	    	PAUSE_ALL()
-	    	START_ALL()
+	    	    PAUSE_ALL()
+	    	    START_ALL()
 
 	    batches()
 
