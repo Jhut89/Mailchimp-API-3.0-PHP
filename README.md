@@ -126,96 +126,121 @@ Deleting a record from MailChimp is performed with the `DELETE()` method and is 
 $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELETE();
 ```
 
-## Method Tree (\*excluding verbs)
+## Method Chart (\*excluding verbs)
 
-	mailchimp()
-		account()
-
-		apps()
-
-		automations()
-	  		removedSubscribers()
-	    	emails()
-	    	    queue()
-	    	    PAUSE_ALL()
-	    	    START_ALL()
-
-	    batches()
-
-	    batchWebhooks()
-
-	    campaignFolders()
-
-	    campaigns()
-	    	CANCEL()
-	    	PAUSE()
-	    	REPLICATE()
-	    	RESUME()
-	    	SCHEDULE()
-	    	SEND()
-	    	TEST()
-	    	UNSCHEDULE()
-	    	checklist()
-	    	feedback()
-	    	content()
-
-	    conversations()
-	    	messages()
-
-	    ecommStores()
-	    	customers()
-	    	products()
-	    		variants()
-	    		images()
-	    	orders()
-	    		lines()
-	    	carts()
-	    		lines()
-
-	    fileManagerFiles()
-
-	    fileManagerFolders()
-
-	    lists()
-	    	BATCH_SUB()
-	    	webhooks()
-	    	signupForms()
-	    	mergeFields()
-	    	growthHistory()
-	    	clients()
-	    	activity()
-	    	abuseReports()
-	    	segments()
-	    		BATCH()
-	    		members()
-	    	members()
-	    		notes()
-	    		goals()
-	    		activity()
-	       	interestCategories()
-	       		interests()
-
-	    reports()
-	    	unsubscribes()
-	    	subReports()
-	    	sentTo()
-	    	locations()
-	    	emailActivity()
-	    	eepurl()
-	    	domainPerformance()
-	    	advice()
-	    	abuse()
-	    	clickReports()
-	    		members()
-
-	    searchCampaigns()
-
-	    searchMembers()
-
-	    templateFolders()
-
-	    templates()
-	    	defaultContent()
+                                    
+      mailchimp()                       
+      |                                 
+      |----account()                    
+      |                                 
+      |----apps()                       
+      |                                 
+      |----automations()                
+      |    |                            
+      |    |----removedSubscribers()    
+      |    |----emails()                
+      |         |                       
+      |         |---queue()             
+      |         |---PAUSE_ALL()         
+      |         |---START_ALL()         
+      |                                 
+      |----batches()                    
+      |                                 
+      |----batchWebhooks()              
+      |                                 
+      |----campaignFolders()            
+      |                                 
+      |----campaigns()                  
+      |    |                            
+      |    |----CANCEL()                
+      |    |----PAUSE()                 
+      |    |----REPLICATE()             
+      |    |----RESUME()                
+      |    |----SCHEDULE()              
+      |    |----SEND()                  
+      |    |----TEST()                  
+      |    |----UNSCHEDULE()            
+      |    |----checklist()             
+      |    |----feedback()              
+      |    |----content()               
+      |                                 
+      |----conversations()              
+      |    |                            
+      |    |----messages()              
+      |                                 
+      |----ecommStores()                
+      |    |                            
+      |    |----customers()             
+      |    |----products()              
+      |    |    |                       
+      |    |    |----variants()         
+      |    |    |----images()           
+      |    |                            
+      |    |----orders()                
+      |    |    |                       
+      |    |    |----lines()            
+      |    |                            
+      |    |----carts()                 
+      |         |                       
+      |         |----lines()            
+      |                                 
+      |----fileManagerFiles()           
+      |                                 
+      |----fileManagerFolders()         
+      |                                 
+      |----lists()                      
+      |    |                            
+      |    |----BATCH_SUB()             
+      |    |----webhooks()              
+      |    |----signupForms()           
+      |    |----mergeFields()           
+      |    |----growthHistory()         
+      |    |----clients()               
+      |    |----activity()              
+      |    |----abuseReports()          
+      |    |----segments()              
+      |    |    |                       
+      |    |    |----BATCH()            
+      |    |    |----members()          
+      |    |                            
+      |    |----members()               
+      |    |    |                       
+      |    |    |---notes()             
+      |    |    |---goals()             
+      |    |    |---activity()          
+      |    |                            
+      |    |----interestCategories()    
+      |         |                       
+      |         |----interests()        
+      |                                 
+      |----reports()                    
+      |    |                            
+      |    |----unsubscribes()          
+      |    |----subReports()            
+      |    |----sentTo()                
+      |    |----locations()             
+      |    |----emailActivity()         
+      |    |----eepurl()                
+      |    |----domainPerformance()     
+      |    |----advice()                
+      |    |----abuse()                 
+      |    |----clickReports()          
+      |         |                       
+      |         |----members()          
+      |                                 
+      |----searchCampaigns()            
+      |                                 
+      |----searchMembers()              
+      |                                 
+      |----templateFolders()            
+      |                                 
+      |----templates()                  
+           |                            
+           |----defaultContent()        
+                                    
+                                    
+                                    
+                                    
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 

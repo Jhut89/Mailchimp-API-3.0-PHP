@@ -319,7 +319,7 @@ class Mailchimp
             try {
                 MC_Utils::checkRequiredFields(
                     $params,
-                    $this->req_put_prarams
+                    $this->req_put_params
                 );
             } catch (Library_Exception $e) {
                 die("Mailchimp-API-3.0-PHP Says: ".$e->message);
