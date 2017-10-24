@@ -38,7 +38,20 @@ To instantiate you will need a new instance of the `Mailchimp` class with your M
 
 ## Oauth
 
-If you are using [Oauth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token, this library can handle the "handshake" for you once you have received a `code` for the exchange. Since you do not yet have an API key you will need to call the `oauthExchange()` method statically like this:
+If you are using [Oauth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token, this library can handle the "handshake" for you.
+ 
+You must first send the user to the `authorize_uri`. You can get this url like this:
+
+```php 
+$client_id =   '12345676543';
+$redirect_url =  'https://www.some-domain.com/callback_file.php';
+
+Mailchimp::getAuthUrl($client_id, $redirect_url);
+```
+
+Then the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
+
+Since you do not yet have an API key you will need to call the `oauthExchange()` method statically like this:
 
 ```php
 $code = 'abc123abc123abc123abc123';
