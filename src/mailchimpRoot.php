@@ -339,6 +339,20 @@ class Mailchimp
 
     // BEGIN OAUTH FUNCTIONS
 
+    public static function getAuthUrl(
+        $client_id,
+        $redirect_uri
+    ){
+        $encoded_uri = urldecode($redirect_uri);
+
+        $authUrl = "https://login.mailchimp.com/oauth2/authorize";
+        $authUrl .= "?client_id=".$client_id;
+        $authUrl .= "&redirect_uri=".$encoded_uri;
+        $authUrl .= "&response_type=code";
+
+        return $authUrl;
+    }
+
     public static function oauthExchange(
         $code,
         $client_id,
