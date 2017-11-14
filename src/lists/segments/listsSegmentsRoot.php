@@ -51,6 +51,6 @@ class Lists_Segments extends Lists
             $this->grandchild_resource,
             $class_input
         );
-        return $this->members;
+        return $this->segment_members;
     }
 }
