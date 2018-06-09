@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Reports;
+
 class Reports_Sent_To extends Reports
 {
     function __construct($apikey, $parent_resource, $class_input)

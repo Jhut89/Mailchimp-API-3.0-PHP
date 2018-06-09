@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Temalate_Folders;
+
 class Template_Folders extends Mailchimp
 {
     //REQUIRED FIELDS DEFINITIONS

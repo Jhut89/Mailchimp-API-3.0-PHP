@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Templates;
+
 class Templates_Default_Content extends Templates
 {
     function __construct($apikey, $parent_resource, $class_input)

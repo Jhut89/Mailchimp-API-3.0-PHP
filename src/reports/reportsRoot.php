@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Reports;
+
 class Reports extends Mailchimp
 {
 

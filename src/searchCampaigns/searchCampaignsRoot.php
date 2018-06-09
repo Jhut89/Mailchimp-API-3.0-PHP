@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Search_Campaigns;
+
 class Search_Campaigns extends Mailchimp
 {
     function __construct($apikey, $class_input)

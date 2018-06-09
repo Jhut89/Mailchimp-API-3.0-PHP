@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Reports\Click_Reports;
+
 class Reports_Click_Reports_Members extends Reports_Click_Reports
 {
     function __construct(

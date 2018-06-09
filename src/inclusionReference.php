@@ -1,65 +1,65 @@
 <?php
 ### Account
-require 'account/accountRoot.php';
+require 'Account/Account.php';
 ### Authorized Apps
-require 'authorizedApps/authorizedAppsRoot.php';
+require 'authorizedApps/Authorized_Apps.php';
 ### Automations
-require 'automations/automationsRoot.php';
-require 'automations/autoamtionsRemovedSubscribers.php';
+require 'Automations/Automations.php';
+require 'Automations/Removed_Subscribers.php';
 	### Emails
-	require 'automations/emails/automationsEmailsRoot.php';
-	require 'automations/emails/automationsEmailsQueue.php';
+	require 'Automations/Emails/Emails.php';
+	require 'Automations/Emails/Queue.php';
 ### Batch Operations
-require 'batchOperations/batchOperationsRoot.php';
+require 'batchOperations/Batch_Operations.php';
 ### Batch Webhooks
-require 'batchWebhooks/batchWebhooksRoot.php';
+require 'batchWebhooks/Batch_Webhooks.php';
 ### Campaign Folders
-require 'campaignFolders/campaignFoldersRoot.php';
+require 'campaignFolders/Campaign_Folders.php';
 ### Campaigns
-require 'campaigns/campaignsRoot.php';
-require 'campaigns/campaignsContent.php';
-require 'campaigns/campaignsFeedback.php';
-require 'campaigns/campaignsSendChecklist.php';
+require 'Campaigns/Campaigns.php';
+require 'Campaigns/Content.php';
+require 'Campaigns/Feedback.php';
+require 'Campaigns/Send_Checklist.php';
 ### Conversations
-require 'conversations/conversationsRoot.php';
-require 'conversations/conversationsMessages.php';
+require 'Conversations/Conversations.php';
+require 'Conversations/Messages.php';
 ### Eccommerce Stores
-require 'ecommerceStores/ecommerceStoresRoot.php';
-require 'ecommerceStores/ecommerceStoresCustomers.php';
+require 'Ecommerce_Stores/Ecommerce_Stores.php';
+require 'Ecommerce_Stores/Customers.php';
 	### Carts
-	require 'ecommerceStores/carts/ecommerceStoresCartsRoot.php'; 
-	require 'ecommerceStores/carts/ecommerceStoresCartLines.php';
+	require 'Ecommerce_Stores/Carts/Carts.php';
+	require 'Ecommerce_Stores/Carts/Lines.php';
 	### Orders
-	require 'ecommerceStores/orders/ecommerceStoresOrdersRoot.php';
-	require 'ecommerceStores/orders/ecommerceStoresOrderLines.php';
+	require 'Ecommerce_Stores/Orders/Orders.php';
+	require 'Ecommerce_Stores/Orders/Lines.php';
 	### Products
-	require 'ecommerceStores/products/ecommerceStoresProductsRoot.php';
-	require 'ecommerceStores/products/ecommerStoresProductVariants.php';
-    require 'ecommerceStores/products/ecommerceStoresProductImages.php';
+	require 'Ecommerce_Stores/Products/Products.php';
+	require 'Ecommerce_Stores/Products/Variants.php';
+    require 'Ecommerce_Stores/Products/Images.php';
 ### File Manager Files
-require 'fileManagerFiles/fileManagerFilesRoot.php';
+require 'fileManagerFiles/File_Manager_Files.php';
 ### File Manager Folders
-require 'fileManagerFolders/fileManagerFoldersRoot.php';
+require 'fileManagerFolders/File_Manager_Folders.php';
 ### Lists
-require 'lists/listsRoot.php';
-require 'lists/listsAbuseReports.php';
-require 'lists/listsActivity.php';
-require 'lists/listsClients.php';
-require 'lists/listsGrowthHistory.php';
-require 'lists/listsMergeFields.php';
-require 'lists/listsSignupForms.php';
-require 'lists/listsWebhooks.php';
+require 'Lists/Lists.php';
+require 'Lists/Abuse_Reports.php';
+require 'Lists/Activity.php';
+require 'Lists/Clients.php';
+require 'Lists/listsGrowthHistory.php';
+require 'Lists/listsMergeFields.php';
+require 'Lists/listsSignupForms.php';
+require 'Lists/listsWebhooks.php';
 	### Interest Categories
-	require 'lists/interestCategories/listsInterestsCategoriesRoot.php';
-	require 'lists/interestCategories/listsInterestsCategroiesInterests.php';
+	require 'Lists/interestCategories/listsInterestsCategoriesRoot.php';
+	require 'Lists/interestCategories/listsInterestsCategroiesInterests.php';
 	### Members
-	require 'lists/members/listsMembersRoot.php';
-	require 'lists/members/listsMembersMemberActivity.php';
-	require 'lists/members/listsMembersMemberGoals.php';
-	require 'lists/members/listsMembersMemberNotes.php';
+	require 'Lists/members/listsMembersRoot.php';
+	require 'Lists/members/listsMembersMemberActivity.php';
+	require 'Lists/members/listsMembersMemberGoals.php';
+	require 'Lists/members/listsMembersMemberNotes.php';
 	### Segments
-	require 'lists/segments/listsSegmentsRoot.php';
-	require 'lists/segments/listsSegmentsSegmentMembers.php';
+	require 'Lists/segments/listsSegmentsRoot.php';
+	require 'Lists/segments/listsSegmentsSegmentMembers.php';
 ### Reports
 require 'reports/reportsRoot.php';
 require 'reports/reportsCampaignAbuse.php';
@@ -85,5 +85,5 @@ require 'templates/templatesRoot.php';
 require 'templates/templateDefaultContent.php';
 
 ### Library Utilities
-require 'libraryUtilities/mailchimpUtilities.php';
-require 'libraryExceptions/libraryExceptions.php';
+require 'libraryUtilities/Utilities.php';
+require 'libraryExceptions/Library_Exception.php';

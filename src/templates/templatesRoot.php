@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API\Templates;
+
 class Templates extends Mailchimp
 {
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailchimp_API;
+
 require 'inclusionReference.php';
 
 class Mailchimp
@@ -50,9 +52,9 @@ class Mailchimp
         $this->apikey = $apikey;
 
         try {
-            MC_Utils::checkKey($this->exp_apikey);
+            Utilities::checkKey($this->exp_apikey);
         } catch (Library_Exception $e) {
-            die("Mailchimp-API-3.0-PHP Says: ".$e->message);
+            die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
         }
     }
 
@@ -60,7 +62,7 @@ class Mailchimp
 
     public function account()
     {
-        $this->account = new Mailchimp_Account($this->apikey);
+        $this->account = new Account($this->apikey);
         return $this->account;
     }
 
@@ -173,7 +175,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
@@ -190,7 +192,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -209,7 +211,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -228,7 +230,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -246,7 +248,7 @@ class Mailchimp
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, MC_Utils::USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
         curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
@@ -283,12 +285,12 @@ class Mailchimp
     public function POST($params = array()) {
         if (!empty($this->req_post_prarams)) {
             try {
-                MC_Utils::checkRequiredFields(
+                Utilities::checkRequiredFields(
                     $params,
                     $this->req_post_prarams
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->message);
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
         return  $this->curlPost($this->url, json_encode($params));
@@ -300,12 +302,12 @@ class Mailchimp
     {
         if (!empty($this->req_patch_params)) {
             try {
-                MC_Utils::checkRequiredFields(
+                Utilities::checkRequiredFields(
                     $params,
                     $this->req_patch_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->message);
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
         return  $this->curlPatch($this->url, json_encode($params));
@@ -317,12 +319,12 @@ class Mailchimp
     {
         if (!empty($this->req_put_params)) {
             try {
-                MC_Utils::checkRequiredFields(
+                Utilities::checkRequiredFields(
                     $params,
                     $this->req_put_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->message);
+                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
         return  $this->curlPut($this->url, json_encode($params));
@@ -369,19 +371,19 @@ class Mailchimp
         $oauth_string .= "&code=".$code;
 
         try {
-            return MC_Utils::oauthRun($oauth_string);
+            return Utilities::oauthRun($oauth_string);
         } catch (Library_Exception $e) {
 
             if (self::DEBUGGER == true) {
                 die(
                     "Mailchimp-API-3.0-PHP Oauth Exchange Says: "
-                    . $e->message
+                    . $e->getMessage()
                     . "Instead recieved: \n"
                     . $e->output
                 );
             }
 
-            die("Mailchimp-API-3.0-PHP Oauth Exchange Says: " . $e->message);
+            die("Mailchimp-API-3.0-PHP Oauth Exchange Says: " . $e->getMessage());
 
         }
 
@@ -394,14 +396,14 @@ class Mailchimp
     public function finalizeRequest($response)
     {
         if (self::DEBUGGER == true) {
-            return MC_Utils::debug(
+            return Utilities::debug(
                 $this->url, 
                 $this->http_code,
                 $this->apikey,
                 $response
             );
         } else {
-            return MC_Utils::validateResponse($response);
+            return Utilities::validateResponse($response);
         }
     }
 
