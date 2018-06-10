@@ -2,6 +2,17 @@
 
 namespace Mailchimp_API;
 
+use Mailchimp_API\Lists\Abuse_Reports;
+use Mailchimp_API\Lists\Activity;
+use Mailchimp_API\Lists\Clients;
+use Mailchimp_API\Lists\Growth_History;
+use Mailchimp_API\Lists\Interest_Categories;
+use Mailchimp_API\Lists\Members;
+use Mailchimp_API\Lists\Merge_Fields;
+use Mailchimp_API\Lists\Segments;
+use Mailchimp_API\Lists\Signup_Forms;
+use Mailchimp_API\Lists\Webhooks;
+
 class Lists extends Mailchimp
 {
 
@@ -70,7 +81,7 @@ class Lists extends Mailchimp
 
     public function webhooks( $class_input = null )
     {
-        $this->webhooks = new Lists_Webhooks(
+        $this->webhooks = new Webhooks(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -80,7 +91,7 @@ class Lists extends Mailchimp
 
     public function signupForms( $class_input = null )
     {
-        $this->signup_forms = new Lists_Signup_Forms(
+        $this->signup_forms = new Signup_Forms(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -90,7 +101,7 @@ class Lists extends Mailchimp
 
     public function mergeFields( $class_input = null )
     {
-        $this->merge_fields = new Lists_Merge_Fields(
+        $this->merge_fields = new Merge_Fields(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -100,7 +111,7 @@ class Lists extends Mailchimp
 
     public function growthHistory( $class_input = null )
     {
-        $this->growth_history = new Lists_Growth_History(
+        $this->growth_history = new Growth_History(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -110,7 +121,7 @@ class Lists extends Mailchimp
 
     public function clients( $class_input = null )
     {
-        $this->clients = new Lists_Clients(
+        $this->clients = new Clients(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -120,7 +131,7 @@ class Lists extends Mailchimp
 
     public function activity( $class_input = null )
     {
-        $this->activity = new Lists_Activity(
+        $this->activity = new Activity(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -130,7 +141,7 @@ class Lists extends Mailchimp
 
     public function abuseReports( $class_input = null )
     {
-        $this->abuse = new Lists_Abuse_Reports(
+        $this->abuse = new Abuse_Reports(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -140,7 +151,7 @@ class Lists extends Mailchimp
 
     public function segments( $class_input = null )
     {
-        $this->segments =  new Lists_Segments(
+        $this->segments =  new Segments(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -150,7 +161,7 @@ class Lists extends Mailchimp
 
     public function members( $class_input = null )
     {
-        $this->members = new Lists_Members(
+        $this->members = new Members(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -160,7 +171,7 @@ class Lists extends Mailchimp
 
     public function interestCategories( $class_input = null )
     {
-        $this->interest_categories = new Lists_Interest_Categories(
+        $this->interest_categories = new Interest_Categories(
             $this->apikey,
             $this->subclass_resource,
             $class_input

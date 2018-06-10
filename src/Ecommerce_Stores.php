@@ -2,6 +2,11 @@
 
 namespace Mailchimp_API;
 
+use Mailchimp_API\Ecommerce_Stores\Carts;
+use Mailchimp_API\Ecommerce_Stores\Customers;
+use Mailchimp_API\Ecommerce_Stores\Orders;
+use Mailchimp_API\Ecommerce_Stores\Products;
+
 class Ecommerce_Stores extends Mailchimp
 {
 
@@ -38,7 +43,7 @@ class Ecommerce_Stores extends Mailchimp
 
     public function customers( $class_input = null )
     {
-        $this->customers = new Ecommerce_Customers(
+        $this->customers = new Customers(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -48,7 +53,7 @@ class Ecommerce_Stores extends Mailchimp
 
     public function products( $class_input = null )
     {
-        $this->products = new Ecommerce_Stores_Products(
+        $this->products = new Products(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -58,7 +63,7 @@ class Ecommerce_Stores extends Mailchimp
 
     public function orders( $class_input = null )
     {
-        $this->orders = new Ecommerce_Stores_Orders(
+        $this->orders = new Orders(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -68,7 +73,7 @@ class Ecommerce_Stores extends Mailchimp
 
     public function carts( $class_input = null )
     {
-        $this->carts = new Ecommerce_Store_Carts(
+        $this->carts = new Carts(
             $this->apikey,
             $this->subclass_resource,
             $class_input

@@ -2,6 +2,8 @@
 
 namespace Mailchimp_API\Lists\Members;
 
+use Mailchimp_API\Lists\Members;
+
 class Activity extends Members
 {
     function __construct(

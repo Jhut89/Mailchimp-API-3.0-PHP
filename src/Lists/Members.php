@@ -3,6 +3,9 @@
 namespace Mailchimp_API\Lists;
 
 use Mailchimp_API\Lists;
+use Mailchimp_API\Lists\Members\Notes;
+use Mailchimp_API\Lists\Members\Goals;
+use Mailchimp_API\Lists\Members\Activity;
 
 class Members extends Lists
 {
