@@ -6,7 +6,7 @@ use Mailchimp_API\Conversations;
 
 class Messages extends Conversations
 {
-    public $req_post_prarams = [
+    public $req_post_params = [
         'from_email',
         'read'
     ];

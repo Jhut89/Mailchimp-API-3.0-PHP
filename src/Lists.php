@@ -8,14 +8,14 @@ class Lists extends Mailchimp
     public $subclass_resource;
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'name',
         'contact',
         'permission_reminder',
         'campaign_defaults',
         'email_type_option'
     ];
-    public $req_patch_prarams = [
+    public $req_patch_params = [
         'name',
         'contact',
         'permission_reminder',

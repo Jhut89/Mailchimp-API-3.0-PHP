@@ -7,7 +7,7 @@ use Mailchimp_API\Automations;
 class Removed_Subscribers extends Automations
 {
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'email_address'
     ];
 

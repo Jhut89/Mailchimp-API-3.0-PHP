@@ -12,7 +12,7 @@ class Products extends Ecommerce_Stores
     public $grandchild_resource;
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'id',
         'title',
         'variants'

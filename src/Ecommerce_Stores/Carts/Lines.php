@@ -8,7 +8,7 @@ class Lines extends Carts
 {
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'id',
         'product_id',
         'product_variant_id',

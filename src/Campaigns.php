@@ -12,7 +12,7 @@ class Campaigns extends Mailchimp
     public $subclass_resource;
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'type',
         'settings'
     ];

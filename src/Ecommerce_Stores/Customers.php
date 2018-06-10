@@ -10,12 +10,12 @@ class Customers extends Ecommerce_Stores
     public $class_input;
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'id',
         'email_address',
         'opt_in_status'
     ];
-    public $req_put_prarams = [
+    public $req_put_params = [
         'id',
         'email_address',
         'opt_in_status'

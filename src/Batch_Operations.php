@@ -5,7 +5,7 @@ namespace Mailchimp_API;
 class Batch_Operations extends Mailchimp
 {
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'operations'
     ];
 

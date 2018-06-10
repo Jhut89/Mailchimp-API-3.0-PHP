@@ -5,7 +5,7 @@ namespace Mailchimp_API\Automations\Emails;
 class Queue extends Emails
 {
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'email_address'
     ];
 

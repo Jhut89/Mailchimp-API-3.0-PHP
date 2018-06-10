@@ -7,7 +7,7 @@ class Authorized_Apps extends Mailchimp
 {
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'client_id',
         'client_secret'
     ];

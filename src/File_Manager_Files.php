@@ -6,11 +6,11 @@ class File_Manager_Files extends Mailchimp
 {
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'name',
         'file_data'
     ];
-    public $req_patch_prarams = [
+    public $req_patch_params = [
         'name',
         'file_data'
     ];

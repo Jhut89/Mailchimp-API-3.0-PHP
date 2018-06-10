@@ -1,19 +1,18 @@
 <?php
 
-namespace Mailchimp_API\Ecommerce_Stores\Orders;
+namespace Mailchimp_API\Lists\Interests_Categories;
 
-use Mailchimp_API\Ecommerce_Stores\Orders;
+use Mailchimp_API\Lists\Interest_Categories;
 
-class Lines extends Orders
+class Interests extends Interest_Categories
 {
 
     //REQUIRED FIELDS DEFINITIONS
     public $req_post_params = [
-        'id',
-        'product_id',
-        'product_variant_id',
-        'quantity',
-        'price'
+        'name'
+    ];
+    public $req_patch_params = [
+        'name'
     ];
 
     function __construct(
@@ -23,11 +22,10 @@ class Lines extends Orders
         $class_input
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-
         if (isset($class_input)) {
-            $this->url .= '/lines/' . $class_input;
+            $this->url .= '/interests/' . $class_input;
         } else {
-            $this->url .= '/lines/';
+            $this->url .= '/interests/';
         }
 
     }

@@ -4,7 +4,7 @@ namespace Mailchimp_API;
 
 class Batch_Webhooks extends Mailchimp
 {
-    public $req_post_prarams = [
+    public $req_post_params = [
         'url'
     ];
 

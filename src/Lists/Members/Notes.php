@@ -1,16 +1,16 @@
 <?php
 
-namespace Mailchimp_API\Ecommerce_Stores\Products;
+namespace Mailchimp_API\Lists\Members;
 
-use Mailchimp_API\Ecommerce_Stores\Products;
-
-class Images extends Products
+class Notes extends Members
 {
-    public $class_input;
 
+    //REQUIRED FIELDS DEFINITIONS
     public $req_post_params = [
-        'id',
-        'url'
+        'note'
+    ];
+    public $req_patch_params = [
+        'note'
     ];
 
     function __construct(
@@ -19,16 +19,12 @@ class Images extends Products
         $grandparent_resource,
         $class_input
     ) {
-
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-
         if (isset($class_input)) {
-            $this->url .= '/images/' . $class_input;
+            $this->url .= '/notes/' . $class_input;
         } else {
-            $this->url .= '/images/';
+            $this->url .= '/notes/';
         }
-
-        $this->class_input = $class_input;
 
     }
 }

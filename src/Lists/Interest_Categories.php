@@ -1,50 +1,50 @@
 <?php
 
-namespace Mailchimp_API\Ecommerce_Stores;
+namespace Mailchimp_API\Lists;
 
-use Mailchimp_API\Ecommerce_Stores;
-use Mailchimp_API\Ecommerce_Stores\Orders\Lines;
+use Mailchimp_API\Lists;
+use Mailchimp_API\Lists\Interests_Categories\Interests;
 
-class Orders extends Ecommerce_Stores
-{
+class Interest_Categories extends Lists {
 
     public $grandchild_resource;
 
     //REQUIRED FIELDS DEFINITIONS
     public $req_post_params = [
-        'id',
-        'customer',
-        'currency_code',
-        'order_total',
-        'lines'
+        'title',
+        'type'
+    ];
+    public $req_patch_params = [
+        'title',
+        'type'
     ];
 
     //SUBCLASS INSTANTIATIONS
-    public $lines;
+    public $interests;
 
     function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
         if (isset($class_input)) {
-            $this->url .= '/orders/' . $class_input;
+            $this->url .= '/interest-categories/' . $class_input;
         } else {
-            $this->url .= '/orders/';
+            $this->url .= '/interest-categories/';
         }
 
         $this->grandchild_resource = $class_input;
+
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function lines( $class_input = null )
+    public function interests( $class_input = null )
     {
-        $this->lines = new Lines(
+        $this->interests = new Interests(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,
             $class_input
         );
-        return $this->lines;
+        return $this->interests;
     }
-
 }

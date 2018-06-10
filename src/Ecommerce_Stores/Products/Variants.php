@@ -9,11 +9,11 @@ class Variants extends Products {
     public $class_input;
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'id',
         'title'
     ];
-    public $req_put_prarams = [
+    public $req_put_params = [
         'id',
         'title'
     ];

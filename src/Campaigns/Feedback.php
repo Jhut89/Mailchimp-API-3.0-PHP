@@ -7,7 +7,7 @@ use Mailchimp_API\Campaigns;
 class Feedback extends Campaigns
 {
 
-    public $req_post_prarams = [
+    public $req_post_params = [
         'message'
     ];
     public $req_patch_params = [

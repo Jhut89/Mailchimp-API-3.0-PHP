@@ -2,8 +2,8 @@
 
 namespace Mailchimp_API;
 
-class File_Manager_Folders extends Mailchimp {
-
+class Template_Folders extends Mailchimp
+{
     //REQUIRED FIELDS DEFINITIONS
     public $req_post_params = [
         'name'
@@ -17,9 +17,9 @@ class File_Manager_Folders extends Mailchimp {
         parent::__construct($apikey);
 
         if (isset($class_input)) {
-            $this->url .= '/file-manager/folders/' . $class_input;
+            $this->url .= '/template-folders/' . $class_input;
         } else {
-            $this->url .= '/file-manager/folders/';
+            $this->url .= '/template-folders/';
         }
     }
 }

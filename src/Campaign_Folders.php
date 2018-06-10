@@ -6,7 +6,7 @@ class Campaign_Folders extends Mailchimp
 {
 
     //REQUIRED FIELDS DEFINITIONS
-    public $req_post_prarams = [
+    public $req_post_params = [
         'name'
     ];
     public $req_patch_params = [
