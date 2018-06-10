@@ -2,6 +2,8 @@
 
 namespace Mailchimp_API;
 
+use Mailchimp_API\Templates\Default_Content;
+
 class Templates extends Mailchimp
 {
 
@@ -37,7 +39,7 @@ class Templates extends Mailchimp
 
     public function defaultContent( $class_input = null )
     {
-        $this->default_content = new Templates_Default_Content(
+        $this->default_content = new Default_Content(
             $this->apikey,
             $this->subclass_resource,
             $class_input

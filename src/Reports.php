@@ -2,6 +2,17 @@
 
 namespace Mailchimp_API;
 
+use Mailchimp_API\Reports\Campaign_Abuse;
+use Mailchimp_API\Reports\Campaign_Advice;
+use Mailchimp_API\Reports\Click_Reports;
+use Mailchimp_API\Reports\Domain_Performance;
+use Mailchimp_API\Reports\Eepurl_Reports;
+use Mailchimp_API\Reports\Email_Activity;
+use Mailchimp_API\Reports\Sent_To;
+use Mailchimp_API\Reports\Sub_Reports;
+use Mailchimp_API\Reports\Top_Locations;
+use Mailchimp_API\Reports\Unsubscribes;
+
 class Reports extends Mailchimp
 {
 
@@ -36,7 +47,7 @@ class Reports extends Mailchimp
 
     public function unsubscribes( $class_input = null )
     {
-        $this->unsubscribes = new Reports_Unsubscribes(
+        $this->unsubscribes = new Unsubscribes(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -46,7 +57,7 @@ class Reports extends Mailchimp
 
     public function subReports( $class_input = null )
     {
-        $this->sub_reports = new Reports_Sub_Reports(
+        $this->sub_reports = new Sub_Reports(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -56,7 +67,7 @@ class Reports extends Mailchimp
 
     public function sentTo( $class_input = null )
     {
-        $this->sent_to = new Reports_Sent_To(
+        $this->sent_to = new Sent_To(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -126,7 +137,7 @@ class Reports extends Mailchimp
 
     public function clickReports( $class_input = null )
     {
-        $this->click_reports = new Reports_Click_Reports(
+        $this->click_reports = new Click_Reports(
             $this->apikey,
             $this->subclass_resource,
             $class_input

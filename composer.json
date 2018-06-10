@@ -9,7 +9,9 @@
         }
     ],
     "autoload":{
-        "files": ["src/mailchimpRoot.php"]
+        "psr-4": {
+          "Mailchimp_API\\" : "src/"
+        }
     },
     "require": {
         "php": ">=5.4.0"
