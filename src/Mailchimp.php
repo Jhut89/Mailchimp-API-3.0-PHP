@@ -42,9 +42,9 @@ class Mailchimp
     public function __construct($apikey)
     {
         $this->exp_apikey = explode('-', trim($apikey));
-        $this->auth = array(
+        $this->auth = [
             'Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]
-        );
+        ];
 
         $this->url = "Https://" . $this->exp_apikey[1] . ".api.mailchimp.com/3.0";
         $this->apikey = $apikey;
@@ -343,7 +343,7 @@ class Mailchimp
         $client_id,
         $redirect_uri
     ){
-        $encoded_uri = urldecode($redirect_uri);
+        $encoded_uri = urlencode($redirect_uri);
 
         $authUrl = "https://login.mailchimp.com/oauth2/authorize";
         $authUrl .= "?client_id=".$client_id;
