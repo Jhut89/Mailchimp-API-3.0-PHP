@@ -1,3 +1,23 @@
+## VERSION 3.0.0 COMING
+
+Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
+
+### Incoming Features
+
+* Namespaced classes
+* Full PSR-4 Autoloading via _Composer_
+* Tests 
+* Programmatically alterable settings
+* Support for new endpoints
+
+### Breaks From Older Versions
+
+* No non-autoloading option
+* Class names and directory structure changes
+
+If these changes are breaking for your app we suggest you wait on updating to 3.0.0. You can start to get a feel for what some of the auto-loading will look like on __[this branch](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/tree/AutoLoading/NameSpacing)__.
+ I will make a version 3.0.0 branch soon and link to it here. Upcoming changes can then be viewed before merged into master.
+
 # MAILCHIMP API 3.0 PHP
 
 This is a PHP library for [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
