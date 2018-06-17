@@ -1,24 +1,20 @@
 <?php
 
 namespace Mailchimp_API;
+use Mailchimp_API\Utilities\CurlUtility;
+use Mailchimp_API\Utilities\MailchimpRequest;
 
 class Mailchimp
 {
 
-    // Settings
-    const DEBUGGER = false;
-    const DEBUGGER_LOG_FILE = null;
-    const VERIFY_SSL = true;
-    const HEADERS = false;
+    // A MailchimpRequest Object
+    public $request;
 
-    // Request components
-    public $auth;
-    public $url;
-    public $exp_apikey;
+    // A MailChimp Settings Object
+    public $settings;
+
+    // The provided MailChimp API key
     public $apikey;
-    public $response;
-    public $http_code;
-
 
     // Instantiations for child classes
     public $account;
@@ -41,19 +37,17 @@ class Mailchimp
 
     public function __construct($apikey)
     {
-        $this->exp_apikey = explode('-', trim($apikey));
-        $this->auth = [
-            'Authorization: apikey ' . $this->exp_apikey[0] . '-' . $this->exp_apikey[1]
-        ];
-
-        $this->url = "Https://" . $this->exp_apikey[1] . ".api.mailchimp.com/3.0";
         $this->apikey = $apikey;
+        $this->request = new MailchimpRequest($this->apikey);
+    }
 
-        try {
-            Utilities::checkKey($this->exp_apikey);
-        } catch (Library_Exception $e) {
-            die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+    private function resetRequest()
+    {
+        if (isset($this->request)) {
+            unset($this->request);
         }
+
+        $this->request = new MailchimpRequest($this->apikey);
     }
 
     // ROOT OBJECT FUNCTIONS
@@ -166,100 +160,7 @@ class Mailchimp
         return $this->templates;
     }
 
-    // CURL VERBS
-    // GET ----------------------------------------------------------------------------------------------------------------------------------------
 
-    public function curlGet($url)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    // POST ----------------------------------------------------------------------------------------------------------------------------------------
-
-    public function curlPost($url, $payload)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
-
-    public function curlPatch($url, $payload)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
-
-    public function curlDelete($url)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    // PUT ----------------------------------------------------------------------------------------------------------------------------------------
-
-    public function curlPut($url, $payload)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    // END CURL VERBS
     // BEGIN ENDPOINT VERB FUNCTIONS
 
     // GET ------------------------------------------------------------------------------------------------------------------------------------------

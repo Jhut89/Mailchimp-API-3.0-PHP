@@ -22,6 +22,6 @@ final class AccountTest extends TestCase
             ->mailchimp
             ->account();
 
-        self::assertEquals($expected_url, $account->url, "The root url is constructed correctly");
+        self::assertEquals($expected_url, $account->url, "The root url should be constructed correctly");
     }
 }
