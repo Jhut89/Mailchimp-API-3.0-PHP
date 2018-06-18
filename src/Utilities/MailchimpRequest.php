@@ -8,14 +8,21 @@ use Mailchimp_API\Utilities;
 /**
  * Class MailchimpRequest
  *
- * A class for structuring a request to be sent to the MailChimp API
+ * A class for structuring a request for
+ * and handling responses from
+ * the MailChimp API
  *
  * @package Mailchimp_API\Utilities
  */
 class MailchimpRequest
 {
+    const GET = "GET";
+    const POST = "POST";
+    const PUT = "PUT";
+    const PATCH = "PATCH";
+    const DELETE = "DELETE";
 
-    private $valid_methods = ["GET", "POST", "PATCH", "PUT", "DELETE"];
+    private static $valid_methods = [self::GET, self::POST, self::PATCH, self::PUT, self::DELETE];
 
     /*************************************
      * Request Components
@@ -27,14 +34,20 @@ class MailchimpRequest
     // Base URL for Mailchimp API
     private $base_url;
 
-    // Complete request URI
+    // String representation of the resource we want to reach
     private $endpoint;
+
+    // Query string for this request
+    private $query_string;
 
     // Exploded API key
     private $exp_apikey;
 
     // Provided API Key
     private $apikey;
+
+    // The payload being sent to MailChimp
+    private $payload = [];
 
     // Response from MailChimp API
     private $response;
@@ -48,12 +61,20 @@ class MailchimpRequest
     // Headers to be sent with request
     private $headers = [];
 
+
+    /**
+     * MailchimpRequest constructor.
+     *
+     * @param $apikey
+     *
+     * @throws Library_Exception
+     */
     public function __construct($apikey)
     {
         $this->apikey = $apikey;
         $this->exp_apikey = explode('-', trim($apikey));
         $this->setAuth();
-        $this->setBaseUrl($this->exp_apikey[0]);
+        $this->setBaseUrl($this->exp_apikey[1]);
         Utilities::checkKey($this->exp_apikey);
     }
 
@@ -104,9 +125,19 @@ class MailchimpRequest
     /**
      * @return mixed
      */
+    public function getPayload()
+    {
+        return $this->payload;
+    }
+
+    /**
+     * @return mixed
+     *
+     * @throws Library_Exception when cant deserialize response
+     */
     public function getResponse()
     {
-        return $this->response;
+        return $this->deserializeResponse($this->response);
     }
 
     /**
@@ -141,6 +172,16 @@ class MailchimpRequest
         return $this->headers;
     }
 
+    /**
+     * Gets the entire request URI without query params
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->base_url . $this->endpoint . $this->query_string;
+    }
+
     /*************************************
      * SETTERS
      *************************************/
@@ -171,6 +212,17 @@ class MailchimpRequest
     }
 
     /**
+     * @param mixed $payload
+     *
+     * @throws Library_Exception when cant serialize payload
+     */
+    public function setPayload($payload)
+    {
+        $payload = $this->serializePayload($payload);
+        $this->payload = $payload;
+    }
+
+    /**
      * @param mixed $response
      */
     public function setResponse($response)
@@ -193,7 +245,7 @@ class MailchimpRequest
      */
     public function setMethod($method)
     {
-        if (!in_array($method, $this->valid_methods)) {
+        if (!in_array($method, self::$valid_methods)) {
             throw new Library_Exception("Method not allowed");
         }
 
@@ -205,7 +257,7 @@ class MailchimpRequest
      */
     public function setBaseUrl($data_center)
     {
-        $this->base_url = "Https://" . $data_center . ".api.mailchimp.com/3.0";;
+        $this->base_url = "Https://" . $data_center . ".api.mailchimp.com/3.0";
     }
 
     /*************************************
@@ -264,13 +316,20 @@ class MailchimpRequest
      *
      * @param string $string
      */
-    public function appendToUrl($string)
+    public function appendToEndpoint($string)
     {
         $this->endpoint = $this->endpoint .= $string;
     }
 
     /**
      * Returns a new MailchimpRequest
+     *
+     * @param string $apikey
+     *
+     * @return MailchimpRequest
+     *
+     * @throws Library_Exception when invalid API key
+     *
      */
     public function getInstance($apikey)
     {

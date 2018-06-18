@@ -16,7 +16,7 @@ class Template_Folders extends Mailchimp
     {
         parent::__construct($apikey);
 
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/template-folders/' . $class_input;
         } else {
             $this->url .= '/template-folders/';

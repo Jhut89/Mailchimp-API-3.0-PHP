@@ -16,7 +16,7 @@ class Emails extends Automations
     {
 
         parent::__construct($apikey, $parent_reference);  
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/emails/' . $class_input;
         } else {
             $this->url .= '/emails/';

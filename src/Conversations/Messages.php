@@ -15,7 +15,7 @@ class Messages extends Conversations
     {
         parent::__construct($apikey, $parent_input);
 
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/messages/' . $class_input;
         } else {
             $this->url .= '/messages/';

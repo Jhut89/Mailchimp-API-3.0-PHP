@@ -1,24 +1,11 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use Mailchimp_API\Mailchimp;
+use Mailchimp_Tests\MailChimpTestCase;
+use Mailchimp_API\Utilities\MailchimpSettings;
+use Mailchimp_API\Utilities\MailchimpRequest;
 
-final class MailchimpTest extends TestCase
+final class MailchimpTest extends MailChimpTestCase
 {
-    protected $apikey;
-    protected $mailchimp;
-    protected $client_id;
-    protected $redirect_uri;
-
-    public function __construct($name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-        $this->apikey = "123abc123abc123abc123abc123abc12-us0";
-        $this->mailchimp = new Mailchimp($this->apikey);
-        $this->client_id =   '12345676543';
-        $this->redirect_uri =  'https://www.some-domain.com/callback_file.php';
-    }
-
     public function testAuthKeysSet()
     {
         $expected_auth_string = "Authorization: apikey " . $this->apikey;
@@ -26,18 +13,7 @@ final class MailchimpTest extends TestCase
 
         //ASSERTIONS
         self::assertEquals($this->apikey, $mc->apikey, "The apikey must  be set on the parent mailchimp class");
-        self::assertEquals($expected_auth_string, $mc->auth[0], "The auth string must be correctly set");
-
-    }
-
-
-    public function testBaseUrlSet()
-    {
-        $expected_base_url = "Https://us0.api.mailchimp.com/3.0";
-        $mc = $this->mailchimp;
-
-        //ASSERTIONS
-        self::assertEquals($expected_base_url, $mc->url, "The api base URL must be correctly constructed");
+        self::assertEquals($expected_auth_string, $mc->request->getAuth(), "The auth string must be correctly set");
     }
 
     public function testGetAuthUrl()
@@ -52,6 +28,20 @@ final class MailchimpTest extends TestCase
 
         //ASSERTION
         $this->assertEquals($expected_uri, $url, "oAuth URI should be correctly constructed");
+    }
 
+    public function testApikeySet()
+    {
+        self::assertTrue(isset($this->mailchimp->apikey));
+    }
+
+    public function testRequestSet()
+    {
+        self::assertTrue($this->mailchimp->request instanceof MailchimpRequest, "The request must be an instance of a MailChimpRequest");
+    }
+
+    public function testSettingsSet()
+    {
+        self::assertTrue($this->mailchimp->settings instanceof MailchimpSettings, "The settings must be an instance of a MailChimpSettings");
     }
 }

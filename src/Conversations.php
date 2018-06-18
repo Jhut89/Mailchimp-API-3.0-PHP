@@ -16,7 +16,7 @@ class Conversations extends Mailchimp
     {
         parent::__construct($apikey);
 
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/conversations/' . $class_input;
         } else {
             $this->url .= '/conversations/';

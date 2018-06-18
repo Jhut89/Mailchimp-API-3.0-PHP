@@ -12,7 +12,7 @@ class Goals extends Members
         $class_input
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/goals/' . $class_input;
         } else {
             $this->url .= '/goals/';

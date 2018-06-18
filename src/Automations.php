@@ -4,6 +4,8 @@ namespace Mailchimp_API;
 
 use Mailchimp_API\Automations\Emails\Emails;
 use Mailchimp_API\Automations\Removed_Subscribers;
+use Mailchimp_API\Utilities\CurlUtility;
+use Mailchimp_API\Utilities\MailchimpRequest;
 
 class Automations extends Mailchimp
 {
@@ -16,36 +18,38 @@ class Automations extends Mailchimp
     function __construct($apikey, $class_input = null)
     {
         parent::__construct($apikey);
-        if (isset($class_input)) {
-            $this->url .=  '/automations/' . $class_input;
+        if ($class_input) {
+            $this->request->appendToEndpoint('/automations/' . $class_input);
         } else {
-            $this->url .= '/automations/';
+            $this->request->appendToEndpoint('/automations/');
         }
         $this->subclass_resource = $class_input;
     }
 
-    public function PAUSE_ALL()
+    public function PAUSE_ALL($exec = true)
     {
-        $params = array();
+        $this->request->appendToEndpoint('/actions/pause-all-emails/');
+        $this->request->setMethod(MailchimpRequest::POST);
 
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/pause-all-emails/';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if ($exec) {
+            CurlUtility::makeRequest($this->request, $this->settings);
+            $response = $this->request->getResponse();
+            $this->resetRequest();
+            return $response;
+        }
     }
 
-    public function START_ALL()
+    public function START_ALL($exec = true)
     {
-        $params = array();
+        $this->request->appendToEndpoint('/actions/start-all-emails/');
+        $this->request->setMethod(MailchimpRequest::POST);
 
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/start-all-emails/';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if ($exec) {
+            CurlUtility::makeRequest($this->request, $this->settings);
+            $response = $this->request->getResponse();
+            $this->resetRequest();
+            return $response;
+        }
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

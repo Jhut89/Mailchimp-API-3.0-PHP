@@ -10,7 +10,8 @@
     ],
     "autoload":{
         "psr-4": {
-          "Mailchimp_API\\" : "src/"
+          "Mailchimp_API\\" : "src/",
+          "Mailchimp_Tests\\" : "tests"
         }
     },
     "require": {

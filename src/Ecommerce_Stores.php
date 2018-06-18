@@ -30,7 +30,7 @@ class Ecommerce_Stores extends Mailchimp
     {
         parent::__construct($apikey);
 
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/ecommerce/stores/' . $class_input;
         } else {
             $this->url .= '/ecommerce/stores/';

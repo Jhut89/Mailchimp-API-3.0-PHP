@@ -16,7 +16,7 @@ class Campaign_Folders extends Mailchimp
     function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/campaign-folders/' . $class_input;
         } else {
             $this->url .= '/campaign-folders/';

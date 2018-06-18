@@ -1,16 +1,17 @@
 <?php
 
 namespace Mailchimp_API;
-use Mailchimp_API\Utilities\CurlUtility;
+
 use Mailchimp_API\Utilities\MailchimpRequest;
+use Mailchimp_API\Utilities\MailchimpSettings;
 
 class Mailchimp
 {
 
-    // A MailchimpRequest Object
+    /* @var MailchimpRequest $request */
     public $request;
 
-    // A MailChimp Settings Object
+    /* @var MailchimpSettings $settings */
     public $settings;
 
     // The provided MailChimp API key
@@ -39,15 +40,7 @@ class Mailchimp
     {
         $this->apikey = $apikey;
         $this->request = new MailchimpRequest($this->apikey);
-    }
-
-    private function resetRequest()
-    {
-        if (isset($this->request)) {
-            unset($this->request);
-        }
-
-        $this->request = new MailchimpRequest($this->apikey);
+        $this->settings = new MailchimpSettings();
     }
 
     // ROOT OBJECT FUNCTIONS
@@ -162,13 +155,14 @@ class Mailchimp
 
 
     // BEGIN ENDPOINT VERB FUNCTIONS
+    // TODO implement new request verbs
 
     // GET ------------------------------------------------------------------------------------------------------------------------------------------
 
     public function GET($query_params = null)
     {
-        $query_string = '';
 
+        $query_string = '';
         if (is_array($query_params)) {
             $query_string = $this->constructQueryParams($query_params);
         }
@@ -291,6 +285,7 @@ class Mailchimp
     // END OAUTH FUNCTIONS
 
     // BEGIN LIBRARY FUNCTIONS
+    // TODO move these to request class
 
     public function finalizeRequest($response)
     {
@@ -315,6 +310,15 @@ class Mailchimp
         }
         $query_string = trim($query_string, '&');
         return $query_string;
+    }
+
+    protected function resetRequest()
+    {
+        if (isset($this->request)) {
+            unset($this->request);
+        }
+
+        $this->request = new MailchimpRequest($this->apikey);
     }
 
 }

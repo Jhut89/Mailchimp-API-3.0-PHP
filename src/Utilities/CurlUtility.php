@@ -2,96 +2,65 @@
 
 namespace Mailchimp_API\Utilities;
 
+use Mailchimp_API\Utilities;
 
-trait CurlUtility
+class CurlUtility
 {
-    public static function makeRequest(MailChimpSettings $settings, MailchimpRequest $request)
+    /**
+     * @param MailchimpRequest $request
+     * @param MailChimpSettings $settings
+     *
+     * @return void
+     */
+    public static function makeRequest(MailchimpRequest $request, MailChimpSettings $settings)
     {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ;
-    }
+        $payload = false;
 
+        // set curl url
+        $ch = curl_init($request->getUrl());
 
-    public function curlGet($url)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
+        // set header to be sent
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
+
+        // set custom user-agent
         curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
+
+        // make response returnable
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
 
-        return self::finalizeRequest($this->response);
+        // set should return headers
+        curl_setopt($ch, CURLOPT_HEADER, $settings->isReturnHeaders());
+
+        // set verify ssl
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $settings->isVerifySsl());
+
+        // if post set method and set payload to true
+        if ($request->getMethod() === MailchimpRequest::POST) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            $payload = true;
+        }
+
+        // if method is PUT or PATCH set custom request method
+        // and set payload to true
+        if (in_array($request->getMethod(), [MailchimpRequest::PUT, MailchimpRequest::PATCH])) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->getMethod());
+            $payload = true;
+        }
+
+        // if method is DELETE set custom request method
+        if ($request->getMethod() === MailchimpRequest::DELETE) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->getMethod());
+        }
+
+        // if payload import serialized request payload to curl body
+        if ($payload) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getPayload());
+        }
+
+        // exec the request and set MailchimpRequest response to return value
+        $request->setResponse(curl_exec($ch));
+
+        // set MailChimpRequest response code
+        $request->setHttpCode(curl_getinfo($ch, CURLINFO_HTTP_CODE));
     }
-
-    public function curlPost($url, $payload)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    public function curlPatch($url, $payload)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    public function curlDelete($url)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
-    public function curlPut($url, $payload)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->auth);
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, self::VERIFY_SSL);
-        curl_setopt($ch, CURLOPT_HEADER, self::HEADERS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        $this->response = curl_exec($ch);
-        $this->http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        return self::finalizeRequest($this->response);
-    }
-
 }

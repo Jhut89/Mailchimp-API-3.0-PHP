@@ -23,7 +23,7 @@ class Lines extends Carts
         $class_input
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/lines/' . $class_input;
         } else {
             $this->url .= '/lines/';

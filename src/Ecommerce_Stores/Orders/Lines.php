@@ -24,7 +24,7 @@ class Lines extends Orders
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
 
-        if (isset($class_input)) {
+        if ($class_input) {
             $this->url .= '/lines/' . $class_input;
         } else {
             $this->url .= '/lines/';

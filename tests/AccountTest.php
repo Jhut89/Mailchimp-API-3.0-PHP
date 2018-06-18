@@ -1,27 +1,16 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use Mailchimp_API\Mailchimp;
+use Mailchimp_Tests\MailChimpTestCase;
 
-final class AccountTest extends TestCase
+final class AccountTest extends MailChimpTestCase
 {
-    protected $apikey = "123abc123abc123abc123abc123abc12-us0";
-    protected $expected_base_url = 'Https://us0.api.mailchimp.com/3.0';
-    protected $mailchimp;
-
-    public function __construct($name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-        $this->mailchimp = new Mailchimp($this->apikey);
-    }
-
     public function testRootUrl()
     {
-        $expected_url = $this->expected_base_url . "/";
+        $expected_url = $this->request->getBaseUrl(). "/";
         $account = $this
             ->mailchimp
             ->account();
 
-        self::assertEquals($expected_url, $account->url, "The root url should be constructed correctly");
+        self::assertEquals($expected_url, $account->request->getUrl(), "The root url should be constructed correctly");
     }
 }
