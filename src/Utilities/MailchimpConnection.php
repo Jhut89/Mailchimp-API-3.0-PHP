@@ -4,6 +4,12 @@ namespace Mailchimp_API\Utilities;
 
 use Mailchimp_API\Utilities;
 
+/**
+ * TODO should take in settings and request
+ * TODO should make iver the wire request
+ * TODO should give back a serialized response
+ */
+
 class MailchimpConnection
 {
 

@@ -9,8 +9,7 @@ use Mailchimp_API\Utilities;
  * Class MailchimpRequest
  *
  * A class for structuring a request for
- * and handling responses from
- * the MailChimp API
+ * and MailChimp API
  *
  * @package Mailchimp_API\Utilities
  */
@@ -49,9 +48,11 @@ class MailchimpRequest
     // The payload being sent to MailChimp
     private $payload = [];
 
+    //TODO move to MailchimpResponse
     // Response from MailChimp API
     private $response;
 
+    //TODO move to MailchimpResponse
     // HTTP Response Code
     private $http_code;
 
@@ -116,6 +117,8 @@ class MailchimpRequest
 
     /**
      * @return mixed
+     *
+     * TODO move to MailchimpResponse
      */
     public function getHttpCode()
     {
@@ -134,6 +137,8 @@ class MailchimpRequest
      * @return mixed
      *
      * @throws Library_Exception when cant deserialize response
+     *
+     * TODO move to MailchimpResponse
      */
     public function getResponse()
     {
@@ -205,6 +210,8 @@ class MailchimpRequest
 
     /**
      * @param mixed $http_code
+     *
+     * TODO move to MailchimpResponse
      */
     public function setHttpCode($http_code)
     {
@@ -224,6 +231,8 @@ class MailchimpRequest
 
     /**
      * @param mixed $response
+     *
+     * TODO move to MailchimpResponse
      */
     public function setResponse($response)
     {
@@ -296,6 +305,8 @@ class MailchimpRequest
      * @return mixed
      *
      * @throws Library_Exception
+     *
+     * TODO move to MailchimpResponse
      */
     public function deserializeResponse($response)
     {
