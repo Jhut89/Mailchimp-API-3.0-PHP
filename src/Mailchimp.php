@@ -2,6 +2,7 @@
 
 namespace Mailchimp_API;
 
+use Mailchimp_API\Utilities\MailchimpConnection;
 use Mailchimp_API\Utilities\MailchimpRequest;
 use Mailchimp_API\Utilities\MailchimpSettings;
 
@@ -154,26 +155,31 @@ class Mailchimp
     }
 
 
-    // BEGIN ENDPOINT VERB FUNCTIONS
+    /*************************************
+     * BEGIN ENDPOINT VERB FUNCTIONS
+     *************************************/
     // TODO implement new request verbs
 
-    // GET ------------------------------------------------------------------------------------------------------------------------------------------
-
-    public function GET($query_params = null)
+    /**
+     * @param array $query_params
+     *
+     * @return mixed
+     *
+     * @throws Library_Exception
+     */
+    public function GET($query_params = [])
     {
+        $this->request->setMethod(MailchimpRequest::GET);
+        $this->request->setQueryString($query_params);
 
-        $query_string = '';
-        if (is_array($query_params)) {
-            $query_string = $this->constructQueryParams($query_params);
-        }
+        // Make GET Request with the current settings and Request Object
+        MailchimpConnection::makeRequest($this->request, $this->settings);
 
-        $url = $this->url . $query_string;
-        $response = $this->curlGet($url);
+        $response = $this->request->getResponse();
+        $this->resetRequest();
 
         return $response;
     }
-
-    // POST ----------------------------------------------------------------------------------------------------------------------------------------
 
     public function POST($params = array()) {
         if (!empty($this->req_post_params)) {
@@ -188,8 +194,6 @@ class Mailchimp
         }
         return  $this->curlPost($this->url, json_encode($params));
     }
-
-    // PATCH ----------------------------------------------------------------------------------------------------------------------------------------
 
     public function PATCH($params = array())
     {
@@ -299,17 +303,6 @@ class Mailchimp
         } else {
             return Utilities::validateResponse($response);
         }
-    }
-
-    public function constructQueryParams($query_input)
-    {
-        $query_string = '?';
-        foreach ($query_input as $parameter => $value) {
-            $encoded_value = urlencode($value);
-            $query_string .= $parameter . '=' . $encoded_value . '&';
-        }
-        $query_string = trim($query_string, '&');
-        return $query_string;
     }
 
     protected function resetRequest()

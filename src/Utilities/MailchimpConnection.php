@@ -4,15 +4,28 @@ namespace Mailchimp_API\Utilities;
 
 use Mailchimp_API\Utilities;
 
-class CurlUtility
+class MailchimpConnection
 {
+
+    private $request;
+
+    private $request_settings;
+
+    private $response;
+
+    public function __construct(MailchimpRequest $request, MailChimpSettings $settings)
+    {
+        $this->request = $request;
+        $this->request_settings = $settings;
+    }
+
     /**
      * @param MailchimpRequest $request
      * @param MailChimpSettings $settings
      *
      * @return void
      */
-    public static function makeRequest(MailchimpRequest $request, MailChimpSettings $settings)
+    public static function makeRequest()
     {
         $payload = false;
 

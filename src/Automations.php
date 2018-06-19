@@ -4,7 +4,7 @@ namespace Mailchimp_API;
 
 use Mailchimp_API\Automations\Emails\Emails;
 use Mailchimp_API\Automations\Removed_Subscribers;
-use Mailchimp_API\Utilities\CurlUtility;
+use Mailchimp_API\Utilities\MailchimpConnection;
 use Mailchimp_API\Utilities\MailchimpRequest;
 
 class Automations extends Mailchimp
@@ -32,7 +32,7 @@ class Automations extends Mailchimp
         $this->request->setMethod(MailchimpRequest::POST);
 
         if ($exec) {
-            CurlUtility::makeRequest($this->request, $this->settings);
+            MailchimpConnection::makeRequest($this->request, $this->settings);
             $response = $this->request->getResponse();
             $this->resetRequest();
             return $response;
@@ -45,7 +45,7 @@ class Automations extends Mailchimp
         $this->request->setMethod(MailchimpRequest::POST);
 
         if ($exec) {
-            CurlUtility::makeRequest($this->request, $this->settings);
+            MailchimpConnection::makeRequest($this->request, $this->settings);
             $response = $this->request->getResponse();
             $this->resetRequest();
             return $response;

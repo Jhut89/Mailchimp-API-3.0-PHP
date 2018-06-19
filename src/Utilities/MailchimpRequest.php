@@ -35,7 +35,7 @@ class MailchimpRequest
     private $base_url;
 
     // String representation of the resource we want to reach
-    private $endpoint;
+    private $endpoint = "";
 
     // Query string for this request
     private $query_string;
@@ -74,8 +74,8 @@ class MailchimpRequest
         $this->apikey = $apikey;
         $this->exp_apikey = explode('-', trim($apikey));
         $this->setAuth();
-        $this->setBaseUrl($this->exp_apikey[1]);
         Utilities::checkKey($this->exp_apikey);
+        $this->setBaseUrl($this->exp_apikey[1]);
     }
 
     /*************************************
@@ -161,7 +161,7 @@ class MailchimpRequest
      */
     public function getValidMethods()
     {
-        return $this->valid_methods;
+        return self::$valid_methods;
     }
 
     /**
@@ -173,7 +173,7 @@ class MailchimpRequest
     }
 
     /**
-     * Gets the entire request URI without query params
+     * Gets the entire request URI
      *
      * @return string
      */
@@ -260,6 +260,14 @@ class MailchimpRequest
         $this->base_url = "Https://" . $data_center . ".api.mailchimp.com/3.0";
     }
 
+    /**
+     * @param array $query_array
+     */
+    public function setQueryString($query_array)
+    {
+        $this->query_string = $this->constructQueryParams($query_array);
+    }
+
     /*************************************
      * Helpers
      *************************************/
@@ -299,6 +307,24 @@ class MailchimpRequest
 
         return $decoded;
 
+    }
+
+    /**
+     * Construct a query string from an array
+     *
+     * @param array $query_input
+     *
+     * @return string
+     */
+    public function constructQueryParams($query_input)
+    {
+        $query_string = '?';
+        foreach ($query_input as $parameter => $value) {
+            $encoded_value = urlencode($value);
+            $query_string .= $parameter . '=' . $encoded_value . '&';
+        }
+        $query_string = trim($query_string, '&');
+        return $query_string;
     }
 
     /**
