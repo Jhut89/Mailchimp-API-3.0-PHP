@@ -9,7 +9,6 @@ class MailchimpSettings
     public $debug = false;
     public $log_file = null;
     public $verify_ssl = true;
-    public $return_headers = false;
 
 
     /*************************************
@@ -35,7 +34,7 @@ class MailchimpSettings
     /**
      * @return bool
      */
-    public function isVerifySsl()
+    public function shouldVerifySsl()
     {
         return $this->verify_ssl;
     }
@@ -43,7 +42,7 @@ class MailchimpSettings
     /**
      * @return bool
      */
-    public function isReturnHeaders()
+    public function shouldReturnHeaders()
     {
         return $this->return_headers;
     }

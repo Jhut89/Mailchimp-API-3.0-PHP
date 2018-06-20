@@ -48,14 +48,6 @@ class MailchimpRequest
     // The payload being sent to MailChimp
     private $payload = [];
 
-    //TODO move to MailchimpResponse
-    // Response from MailChimp API
-    private $response;
-
-    //TODO move to MailchimpResponse
-    // HTTP Response Code
-    private $http_code;
-
     // HTTP Method to be implemented for request
     private $method;
 
@@ -117,32 +109,10 @@ class MailchimpRequest
 
     /**
      * @return mixed
-     *
-     * TODO move to MailchimpResponse
-     */
-    public function getHttpCode()
-    {
-        return $this->http_code;
-    }
-
-    /**
-     * @return mixed
      */
     public function getPayload()
     {
         return $this->payload;
-    }
-
-    /**
-     * @return mixed
-     *
-     * @throws Library_Exception when cant deserialize response
-     *
-     * TODO move to MailchimpResponse
-     */
-    public function getResponse()
-    {
-        return $this->deserializeResponse($this->response);
     }
 
     /**
@@ -209,16 +179,6 @@ class MailchimpRequest
     }
 
     /**
-     * @param mixed $http_code
-     *
-     * TODO move to MailchimpResponse
-     */
-    public function setHttpCode($http_code)
-    {
-        $this->http_code = $http_code;
-    }
-
-    /**
      * @param mixed $payload
      *
      * @throws Library_Exception when cant serialize payload
@@ -227,16 +187,6 @@ class MailchimpRequest
     {
         $payload = $this->serializePayload($payload);
         $this->payload = $payload;
-    }
-
-    /**
-     * @param mixed $response
-     *
-     * TODO move to MailchimpResponse
-     */
-    public function setResponse($response)
-    {
-        $this->response = $response;
     }
 
     /**
@@ -297,27 +247,6 @@ class MailchimpRequest
         }
 
         return $encoded;
-    }
-
-    /**
-     * @param $response
-     *
-     * @return mixed
-     *
-     * @throws Library_Exception
-     *
-     * TODO move to MailchimpResponse
-     */
-    public function deserializeResponse($response)
-    {
-        $decoded = json_decode($response);
-
-        if (!$decoded) {
-            throw new Library_Exception("Unable to deserialize response");
-        }
-
-        return $decoded;
-
     }
 
     /**

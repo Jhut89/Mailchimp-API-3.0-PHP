@@ -5,81 +5,165 @@ namespace Mailchimp_API\Utilities;
 use Mailchimp_API\Utilities;
 
 /**
- * TODO should take in settings and request
- * TODO should make iver the wire request
- * TODO should give back a serialized response
+ * TODO should make over wire request
  */
 
-class MailchimpConnection
+class MailchimpConnection implements HttpRequest
 {
+    /**
+     * @var MailchimpRequest
+     */
+    private $mc_request;
 
-    private $request;
+    /**
+     * @var MailChimpSettings
+     */
+    private $mc_settings;
 
-    private $request_settings;
+    /**
+     * @var MailchimpResponse
+     */
+    private $mc_response;
 
-    private $response;
+    /**
+     * @var resource
+     */
+    private $handle;
 
+    /**
+     * @var array
+     */
+    private $current_options = [];
+
+    /**
+     * MailchimpConnection constructor.
+     * @param MailchimpRequest $request
+     * @param MailChimpSettings $settings
+     */
     public function __construct(MailchimpRequest $request, MailChimpSettings $settings)
     {
-        $this->request = $request;
-        $this->request_settings = $settings;
+        $this->mc_request = $request;
+        $this->mc_settings = $settings;
+        $this->handle = curl_init($request->getUrl());
+    }
+
+    public function prepareHandle()
+    {
+        // set headers to be sent
+        $this->setOption(CURLOPT_HTTPHEADER, $this
+            ->mc_request
+            ->getHeaders()
+        );
+
+        // set custom user-agent
+        $this->setOption(CURLOPT_USERAGENT, Utilities::USER_AGENT);
+
+        // make response returnable
+        $this->setOption(CURLOPT_RETURNTRANSFER, true);
+
+        // get headers in return
+        $this->setOption(CURLOPT_HEADER, true);
+
+        // set verify ssl
+        $this->setOption(CURLOPT_SSL_VERIFYPEER, $this
+            ->mc_settings
+            ->shouldVerifySsl()
+        );
+
+        // TODO handle headers with CURLOPT_HEADERFUNCTION
+
+        $this->setHandlerOptionsForMethod();
+
     }
 
     /**
-     * @param MailchimpRequest $request
-     * @param MailChimpSettings $settings
-     *
      * @return void
      */
-    public static function makeRequest()
+    private function setHandlerOptionsForMethod()
     {
-        $payload = false;
+        $method = $this->mc_request->getMethod();
 
-        // set curl url
-        $ch = curl_init($request->getUrl());
+        switch ($method) {
+            case MailchimpRequest::POST:
+                $this->setOption(CURLOPT_POST, true);
+                $this->setOption(CURLOPT_POSTFIELDS, $this
+                    ->mc_request
+                    ->getPayload()
+                );
+                break;
+            case MailchimpRequest::PUT:
+            case MailchimpRequest::PATCH:
+                $this->setOption(CURLOPT_CUSTOMREQUEST, $method);
+                $this->setOption(CURLOPT_POSTFIELDS, $this
+                    ->mc_request
+                    ->getPayload()
+                );
+                break;
+            case MailchimpRequest::DELETE:
+                $this->setOption(CURLOPT_CUSTOMREQUEST, $method);
+                break;
+        }
+    }
 
-        // set header to be sent
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
-
-        // set custom user-agent
-        curl_setopt($ch, CURLOPT_USERAGENT, Utilities::USER_AGENT);
-
-        // make response returnable
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        // set should return headers
-        curl_setopt($ch, CURLOPT_HEADER, $settings->isReturnHeaders());
-
-        // set verify ssl
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $settings->isVerifySsl());
-
-        // if post set method and set payload to true
-        if ($request->getMethod() === MailchimpRequest::POST) {
-            curl_setopt($ch, CURLOPT_POST, true);
-            $payload = true;
+    private function handleResponseHeader($handle, $header)
+    {
+        $header_length = strlen($header);
+        $header_array = explode(':', $header, 2);
+        if (count($header_array) == 2) {
+            $this->mc_response->pushToHeaders($header_array);
         }
 
-        // if method is PUT or PATCH set custom request method
-        // and set payload to true
-        if (in_array($request->getMethod(), [MailchimpRequest::PUT, MailchimpRequest::PATCH])) {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->getMethod());
-            $payload = true;
+        return $header_length;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentOptions()
+    {
+        return $this->current_options;
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setCurrentOptions($options)
+    {
+        $this->current_options = [];
+        foreach ($options as $option_name => $option_value) {
+            $this->setOption($option_name, $option_value);
         }
+    }
 
-        // if method is DELETE set custom request method
-        if ($request->getMethod() === MailchimpRequest::DELETE) {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request->getMethod());
-        }
+    /**
+     * @param $name
+     * @param $value
+     * @return mixed|void
+     */
+    public function setOption($name, $value) {
+        curl_setopt($this->handle, $name, $value);
+        $this->current_options[$name] = $value;
+    }
 
-        // if payload import serialized request payload to curl body
-        if ($payload) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getPayload());
-        }
+    /**
+     * @return mixed
+     */
+    public function execute() {
+        return curl_exec($this->handle);
+    }
 
-        // exec the request and set MailchimpRequest response to return value
-        $request->setResponse(curl_exec($ch));
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function getInfo($name) {
+        return curl_getinfo($this->handle, $name);
+    }
 
-        // set MailChimpRequest response code
-        $request->setHttpCode(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+    /**
+     * @return mixed|void
+     */
+    public function close() {
+        curl_close($this->handle);
     }
 }
