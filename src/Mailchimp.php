@@ -172,13 +172,13 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::GET);
         $this->request->setQueryString($query_params);
 
-        // Make GET Request with the current settings and Request Object
-        MailchimpConnection::makeRequest($this->request, $this->settings);
+        $connection = new MailchimpConnection(
+            $this->request,
+            $this->settings
+        );
 
-        $response = $this->request->getResponse();
-        $this->resetRequest();
-
-        return $response;
+        $connection->prepareHandle();
+        $connection->execute();
     }
 
     public function POST($params = array()) {

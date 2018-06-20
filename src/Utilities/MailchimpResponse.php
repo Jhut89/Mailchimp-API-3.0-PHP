@@ -12,16 +12,14 @@ class MailchimpResponse
     // The headers received as an array of key value pairs
     private $headers = [];
 
+    // raw response
+    private $raw;
+
     // Response from MailChimp API
     private $response;
 
     // HTTP Response Code
     private $http_code;
-
-    public function __construct($raw_serever_response)
-    {
-
-    }
 
     /**
      * @return array
@@ -113,7 +111,22 @@ class MailchimpResponse
      */
     public function pushToHeaders($header)
     {
-        array_push($this->headers, $header);
+        $this->headers[$header[0]] = trim($header[1]);
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRaw()
+    {
+        return $this->raw;
+    }
+
+    /**
+     * @param mixed $raw
+     */
+    public function setRaw($raw)
+    {
+        $this->raw = $raw;
+    }
 }

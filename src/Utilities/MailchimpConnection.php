@@ -44,6 +44,7 @@ class MailchimpConnection implements HttpRequest
     {
         $this->mc_request = $request;
         $this->mc_settings = $settings;
+        $this->mc_response = new MailchimpResponse();
         $this->handle = curl_init($request->getUrl());
     }
 
@@ -70,10 +71,9 @@ class MailchimpConnection implements HttpRequest
             ->shouldVerifySsl()
         );
 
-        // TODO handle headers with CURLOPT_HEADERFUNCTION
+        $this->setOption(CURLOPT_HEADERFUNCTION, [$this, "handleResponseHeader"]);
 
         $this->setHandlerOptionsForMethod();
-
     }
 
     /**
@@ -105,6 +105,13 @@ class MailchimpConnection implements HttpRequest
         }
     }
 
+    /**
+     * Called statically during prepareHandle();
+     *
+     * @param $handle
+     * @param $header
+     * @return int
+     */
     private function handleResponseHeader($handle, $header)
     {
         $header_length = strlen($header);
@@ -145,11 +152,8 @@ class MailchimpConnection implements HttpRequest
         $this->current_options[$name] = $value;
     }
 
-    /**
-     * @return mixed
-     */
     public function execute() {
-        return curl_exec($this->handle);
+        curl_exec($this->handle);
     }
 
     /**
@@ -166,4 +170,14 @@ class MailchimpConnection implements HttpRequest
     public function close() {
         curl_close($this->handle);
     }
+
+    // TODO pares into $this->mc_response
+    private function parseIntoMailchimpResponse($raw_response)
+    {
+        $http_code = $this->getInfo(CURLINFO_HTTP_CODE);
+        $this->mc_response->setRaw($raw_response);
+        $this->mc_response->setHttpCode($http_code);
+    }
+
+    // TODO implement method to call API from outside this class
 }
