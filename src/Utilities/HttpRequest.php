@@ -23,7 +23,7 @@ interface HttpRequest
     /**
      * @return mixed
      */
-    public function execute();
+    public function executeCurl();
 
     /**
      * @param $name

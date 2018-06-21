@@ -15,11 +15,29 @@ class MailchimpResponse
     // raw response
     private $raw;
 
+    // MailchimpConnection
+    private $connection;
+
     // Response from MailChimp API
-    private $response;
+    private $body;
 
     // HTTP Response Code
     private $http_code;
+
+    public function __construct(MailchimpConnection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function parseRaw($raw_response)
+    {
+        $this->setRaw($raw_response);
+        $this->http_code = $this->connection->getInfo(CURLINFO_HTTP_CODE);
+        $head_len  = $this->connection->getInfo(CURLINFO_HEADER_SIZE);
+
+        $this->setHead(substr($raw_response, 0, $head_len));
+        $this->setBody(substr($raw_response, $head_len, strlen($raw_response)));
+    }
 
     /**
      * @return array
@@ -67,9 +85,9 @@ class MailchimpResponse
      *
      * @throws Library_Exception when cant deserialize response
      */
-    public function getResponse()
+    public function deserialize()
     {
-        return $this->deserializeResponse($this->response);
+        return $this->deserializeResponse($this->body);
     }
 
     /**
@@ -81,18 +99,16 @@ class MailchimpResponse
     }
 
     /**
-     * @param mixed $response
+     * @param mixed $body
      */
-    public function setResponse($response)
+    public function setBody($body)
     {
-        $this->response = $response;
+        $this->body = $body;
     }
 
     /**
      * @param $response
-     *
      * @return mixed
-     *
      * @throws Library_Exception
      */
     public function deserializeResponse($response)
@@ -112,6 +128,24 @@ class MailchimpResponse
     public function pushToHeaders($header)
     {
         $this->headers[$header[0]] = trim($header[1]);
+    }
+
+    /**
+     * Called statically during prepareHandle();
+     *
+     * @param $handle
+     * @param $header
+     * @return int
+     */
+    public function handleResponseHeader($handle, $header)
+    {
+        $header_length = strlen($header);
+        $header_array = explode(':', $header, 2);
+        if (count($header_array) == 2) {
+            $this->pushToHeaders($header_array);
+        }
+
+        return $header_length;
     }
 
     /**

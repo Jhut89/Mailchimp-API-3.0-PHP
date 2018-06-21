@@ -6,9 +6,10 @@ use Mailchimp_API\Mailchimp;
 
 $mc = new Mailchimp("7a119e6089a1b03c341feff04870526d-us8");
 
-$account = $mc
+/* @var \Mailchimp_API\Utilities\MailchimpResponse $response */
+$response = $mc
     ->account()
     ->GET();
 
 
-//var_dump($account->request);
+var_dump($response->getHttpCode());

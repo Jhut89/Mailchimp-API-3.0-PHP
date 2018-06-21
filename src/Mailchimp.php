@@ -4,39 +4,113 @@ namespace Mailchimp_API;
 
 use Mailchimp_API\Utilities\MailchimpConnection;
 use Mailchimp_API\Utilities\MailchimpRequest;
+use Mailchimp_API\Utilities\MailchimpResponse;
 use Mailchimp_API\Utilities\MailchimpSettings;
 
+/**
+ * Class Mailchimp
+ *
+ * @package Mailchimp_API
+ */
 class Mailchimp
 {
 
-    /* @var MailchimpRequest $request */
+    /**
+     * @var MailchimpRequest $request
+     */
     public $request;
 
-    /* @var MailchimpSettings $settings */
+    /**
+     * @var MailchimpSettings $settings
+     */
     public $settings;
 
-    // The provided MailChimp API key
+    /**
+     * @var MailchimpResponse $response
+     */
+    public $response;
+
+    /**
+     * @var string
+     */
     public $apikey;
 
-    // Instantiations for child classes
+    /**
+     * @var Account
+     */
     public $account;
+    /**
+     * @var Authorized_Apps
+     */
     public $apps;
+    /**
+     * @var Automations
+     */
     public $automations;
+    /**
+     * @var Batch_Operations
+     */
     public $batches;
+    /**
+     * @var Batch_Webhooks
+     */
     public $batch_webhooks;
+    /**
+     * @var Campaign_Folders
+     */
     public $campaign_folders;
+    /**
+     * @var Campaigns
+     */
     public $campaigns;
+    /**
+     * @var Conversations
+     */
     public $conversations;
+    /**
+     * @var Ecommerce_Stores
+     */
     public $ecomm_stores;
+    /**
+     * @var File_Manager_Files
+     */
     public $file_manager_files;
+    /**
+     * @var File_Manager_Folders
+     */
     public $file_manager_folders;
+    /**
+     * @var Lists
+     */
     public $lists;
+    /**
+     * @var Reports
+     */
     public $reports;
+    /**
+     * @var Search_Campaigns
+     */
     public $search_campaigns;
+    /**
+     * @var Search_Members
+     */
     public $search_members;
+    /**
+     * @var Template_Folders
+     */
     public $template_folders;
+    /**
+     * @var Templates
+     */
     public $templates;
 
+    /**
+     * Mailchimp constructor.
+     *
+     * @param $apikey
+     *
+     * @throws Library_Exception
+     */
     public function __construct($apikey)
     {
         $this->apikey = $apikey;
@@ -44,63 +118,110 @@ class Mailchimp
         $this->settings = new MailchimpSettings();
     }
 
-    // ROOT OBJECT FUNCTIONS
-
+    /**
+     * @return Account
+     * @throws Library_Exception
+     */
     public function account()
     {
         $this->account = new Account($this->apikey);
         return $this->account;
     }
 
-    public function apps( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Authorized_Apps
+     * @throws Library_Exception
+     */
+    public function apps($class_input = null )
     {
         $this->apps = new Authorized_Apps($this->apikey, $class_input);
         return $this->apps;
     }
 
-    public function automations( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Automations
+     * @throws Library_Exception
+     */
+    public function automations($class_input = null )
     {
         $this->automations = new Automations($this->apikey, $class_input);
         return $this->automations;
     }
 
-    public function batches( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Batch_Operations
+     * @throws Library_Exception
+     */
+    public function batches($class_input = null )
     {
         $this->batches = new Batch_Operations($this->apikey, $class_input);
         return $this->batches;
     }
 
-    public function batchWebhooks( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Batch_Webhooks
+     * @throws Library_Exception
+     */
+    public function batchWebhooks($class_input = null )
     {
         $this->batch_webhooks = new Batch_Webhooks($this->apikey, $class_input);
         return $this->batch_webhooks;
     }
 
-    public function campaignFolders( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Campaign_Folders
+     * @throws Library_Exception
+     */
+    public function campaignFolders($class_input = null )
     {
         $this->campaign_folders = new Campaign_Folders($this->apikey, $class_input);
         return $this->campaign_folders;
     }
 
-    public function campaigns( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Campaigns
+     * @throws Library_Exception
+     */
+    public function campaigns($class_input = null )
     {
         $this->campaigns = new Campaigns($this->apikey, $class_input);
         return $this->campaigns;
-    } 
+    }
 
-    public function conversations( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Conversations
+     * @throws Library_Exception
+     */
+    public function conversations($class_input = null )
     {
         $this->conversations = new Conversations($this->apikey, $class_input);
         return $this->conversations;
     }
 
-    public function ecommStores( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Ecommerce_Stores
+     * @throws Library_Exception
+     */
+    public function ecommStores($class_input = null )
     {
         $this->ecomm_stores = new Ecommerce_Stores($this->apikey, $class_input);
         return $this->ecomm_stores;
     }
 
-    public function fileManagerFiles(  $class_input = null )
+    /**
+     * @param null $class_input
+     * @return File_Manager_Files
+     * @throws Library_Exception
+     */
+    public function fileManagerFiles($class_input = null )
     {
         $this->file_manager_files = new File_Manager_Files(
             $this->apikey,
@@ -109,7 +230,12 @@ class Mailchimp
         return $this->file_manager_files;
     }
 
-    public function fileManagerFolders( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return File_Manager_Folders
+     * @throws Library_Exception
+     */
+    public function fileManagerFolders($class_input = null )
     {
         $this->file_manager_folders = new File_Manager_Folders(
             $this->apikey,
@@ -118,37 +244,67 @@ class Mailchimp
         return $this->file_manager_folders;
     }
 
-    public function lists( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Lists
+     * @throws Library_Exception
+     */
+    public function lists($class_input = null )
     {
         $this->lists = new Lists($this->apikey, $class_input);
         return $this->lists;
     }
 
-    public function reports( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Reports
+     * @throws Library_Exception
+     */
+    public function reports($class_input = null )
     {
         $this->reports = new Reports($this->apikey, $class_input);
         return $this->reports;
     }
 
-    public function searchCampaigns( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Search_Campaigns
+     * @throws Library_Exception
+     */
+    public function searchCampaigns($class_input = null )
     {
         $this->search_campaigns = new Search_Campaigns($this->apikey, $class_input);
         return $this->search_campaigns;
     }
 
-    public function searchMembers( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Search_Members
+     * @throws Library_Exception
+     */
+    public function searchMembers($class_input = null )
     {
         $this->search_members = new Search_Members($this->apikey, $class_input);
         return $this->search_members;
     }
 
-    public function templateFolders( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Template_Folders
+     * @throws Library_Exception
+     */
+    public function templateFolders($class_input = null )
     {
         $this->template_folders = new Template_Folders($this->apikey, $class_input);
         return $this->template_folders;
     }
 
-    public function templates( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Templates
+     * @throws Library_Exception
+     */
+    public function templates($class_input = null )
     {
         $this->templates = new Templates($this->apikey, $class_input);
         return $this->templates;
@@ -162,9 +318,7 @@ class Mailchimp
 
     /**
      * @param array $query_params
-     *
-     * @return mixed
-     *
+     * @return MailchimpResponse
      * @throws Library_Exception
      */
     public function GET($query_params = [])
@@ -172,16 +326,20 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::GET);
         $this->request->setQueryString($query_params);
 
-        $connection = new MailchimpConnection(
-            $this->request,
-            $this->settings
-        );
+        $connection = new MailchimpConnection($this);
+        $response = $connection->execute();
 
-        $connection->prepareHandle();
-        $connection->execute();
+        return $response;
     }
 
-    public function POST($params = array()) {
+
+    /**
+     * @param array $params
+     * @return MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function POST($params = []) {
+        // TODO re-implement how we check for required params
         if (!empty($this->req_post_params)) {
             try {
                 Utilities::checkRequiredFields(
@@ -192,11 +350,24 @@ class Mailchimp
                 die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
-        return  $this->curlPost($this->url, json_encode($params));
+
+        $this->request->setMethod(MailchimpRequest::POST);
+        $this->request->setPayload($params);
+
+        $connection = new MailchimpConnection($this);
+        $response = $connection->execute();
+
+        return $response;
     }
 
-    public function PATCH($params = array())
+    /**
+     * @param array $params
+     * @return MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function PATCH($params = [])
     {
+        // TODO re-implement how we check for required params
         if (!empty($this->req_patch_params)) {
             try {
                 Utilities::checkRequiredFields(
@@ -207,13 +378,24 @@ class Mailchimp
                 die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
-        return  $this->curlPatch($this->url, json_encode($params));
+
+        $this->request->setMethod(MailchimpRequest::PATCH);
+        $this->request->setPayload($params);
+
+        $connection = new MailchimpConnection($this);
+        $response = $connection->execute();
+
+        return $response;
     }
 
-    // PUT ----------------------------------------------------------------------------------------------------------------------------------------
-
-    public function PUT($params = array())
+    /**
+     * @param array $params
+     * @return MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function PUT($params = [])
     {
+        // TODO re-implement how we check for required params
         if (!empty($this->req_put_params)) {
             try {
                 Utilities::checkRequiredFields(
@@ -224,19 +406,29 @@ class Mailchimp
                 die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
             }
         }
-        return  $this->curlPut($this->url, json_encode($params));
+
+        $this->request->setMethod(MailchimpRequest::PUT);
+        $this->request->setPayload($params);
+
+        $connection = new MailchimpConnection($this);
+        $response = $connection->execute();
+
+        return $response;
     }
 
-    // DELETE ----------------------------------------------------------------------------------------------------------------------------------------
-
+    /**
+     * @return MailchimpResponse
+     * @throws Library_Exception
+     */
     public function DELETE()
     {
-        return $this->curlDelete($this->url);
+        $this->request->setMethod(MailchimpRequest::DELETE);
+
+        $connection = new MailchimpConnection($this);
+        $response = $connection->execute();
+
+        return $response;
     }
-
-    // END ENDPOINT VERB FUNCTIONS
-
-    // BEGIN OAUTH FUNCTIONS
 
     public static function getAuthUrl(
         $client_id,
