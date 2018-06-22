@@ -2,15 +2,20 @@
 
 namespace Mailchimp_API\Utilities;
 
-use Mailchimp_API\Mailchimp;
-use Mailchimp_API\Utilities;
-
 /**
  * TODO should make over wire request
  */
 
 class MailchimpConnection implements HttpRequest
 {
+
+    /**
+     * Custom user agent for this library
+     */
+    const USER_AGENT = 'jhut89/Mailchimp-API-3.0-PHP (https://github.com/Jhut89/Mailchimp-API-3.0-PHP)';
+    const TOKEN_REQUEST_URL = 'https://login.mailchimp.com/oauth2/token';
+    const OAUTH_METADATA_URL ='https://login.mailchimp.com/oauth2/metadata/';
+
     /**
      * @var MailchimpRequest
      */
@@ -20,11 +25,6 @@ class MailchimpConnection implements HttpRequest
      * @var MailChimpSettings
      */
     private $current_settings;
-
-    /**
-     * @var Mailchimp
-     */
-    private $current;
 
     /**
      * @var MailchimpResponse
@@ -44,18 +44,25 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * MailchimpConnection constructor.
-     * @param Mailchimp $current
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings|null $settings
      */
-    public function __construct(Mailchimp &$current)
+    public function __construct(MailchimpRequest &$request, MailchimpSettings &$settings = null)
     {
-        $this->current = $current;
-        $this->current_request = $current->request;
-        $this->current_settings = $current->settings;
+        $this->current_request = $request;
+
+        $settings ?
+            $this->current_settings = $settings :
+            $this->current_settings = new MailchimpSettings();
+
         $this->handle = curl_init($this->current_request->getUrl());
         $this->prepareHandle();
         $this->setHandlerOptionsForMethod();
     }
 
+    /**
+     *
+     */
     private function prepareHandle()
     {
         // set headers to be sent
@@ -65,7 +72,7 @@ class MailchimpConnection implements HttpRequest
         );
 
         // set custom user-agent
-        $this->setOption(CURLOPT_USERAGENT, Utilities::USER_AGENT);
+        $this->setOption(CURLOPT_USERAGENT, self::USER_AGENT);
 
         // make response returnable
         $this->setOption(CURLOPT_RETURNTRANSFER, true);
@@ -111,6 +118,9 @@ class MailchimpConnection implements HttpRequest
         }
     }
 
+    /**
+     * @return MailchimpResponse
+     */
     public function execute()
     {
         $this->mc_response = new MailchimpResponse($this);
@@ -137,11 +147,6 @@ class MailchimpConnection implements HttpRequest
         }
     }
 
-    public function setCurrentResponse(MailchimpResponse $response)
-    {
-        $this->current->response = $response;
-    }
-
     /**
      * @param $name
      * @param $value
@@ -152,6 +157,9 @@ class MailchimpConnection implements HttpRequest
         $this->current_options[$name] = $value;
     }
 
+    /**
+     * @return mixed
+     */
     public function executeCurl() {
         return curl_exec($this->handle);
     }

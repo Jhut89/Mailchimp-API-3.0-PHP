@@ -54,7 +54,6 @@ class MailchimpRequest
     // Headers to be sent with request
     private $headers = [];
 
-
     /**
      * MailchimpRequest constructor.
      *
@@ -62,13 +61,19 @@ class MailchimpRequest
      *
      * @throws Library_Exception
      */
-    public function __construct($apikey)
+    public function __construct($apikey = null)
     {
+        if (!$apikey) {
+            return;
+        }
+
         $this->apikey = $apikey;
         $this->exp_apikey = explode('-', trim($apikey));
         $this->setAuth();
         Utilities::checkKey($this->exp_apikey);
-        $this->setBaseUrl($this->exp_apikey[1]);
+        $data_center = $this->exp_apikey[1];
+
+        $this->setBaseUrl("Https://" . $data_center . ".api.mailchimp.com/3.0");
     }
 
     /*************************************
@@ -214,9 +219,9 @@ class MailchimpRequest
     /**
      * @param mixed $data_center
      */
-    public function setBaseUrl($data_center)
+    public function setBaseUrl($base_url)
     {
-        $this->base_url = "Https://" . $data_center . ".api.mailchimp.com/3.0";
+        $this->base_url = $base_url;
     }
 
     /**
@@ -278,27 +283,12 @@ class MailchimpRequest
     }
 
     /**
-     *  Appends a string to this endpoint
+     * Appends a string to this endpoint
      *
      * @param string $string
      */
     public function appendToEndpoint($string)
     {
         $this->endpoint = $this->endpoint .= $string;
-    }
-
-    /**
-     * Returns a new MailchimpRequest
-     *
-     * @param string $apikey
-     *
-     * @return MailchimpRequest
-     *
-     * @throws Library_Exception when invalid API key
-     *
-     */
-    public function getInstance($apikey)
-    {
-        return self::__construct($apikey);
     }
 }

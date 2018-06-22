@@ -12,4 +12,4 @@ $response = $mc
     ->GET();
 
 
-var_dump($response->getHttpCode());
+var_dump($response->deserialize());

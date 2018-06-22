@@ -326,8 +326,9 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::GET);
         $this->request->setQueryString($query_params);
 
-        $connection = new MailchimpConnection($this);
+        $connection = new MailchimpConnection($this->request, $this->settings);
         $response = $connection->execute();
+        $this->resetRequest();
 
         return $response;
     }
@@ -354,8 +355,9 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::POST);
         $this->request->setPayload($params);
 
-        $connection = new MailchimpConnection($this);
+        $connection = new MailchimpConnection($this->request, $this->settings);
         $response = $connection->execute();
+        $this->resetRequest();
 
         return $response;
     }
@@ -382,8 +384,9 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::PATCH);
         $this->request->setPayload($params);
 
-        $connection = new MailchimpConnection($this);
+        $connection = new MailchimpConnection($this->request, $this->settings);
         $response = $connection->execute();
+        $this->resetRequest();
 
         return $response;
     }
@@ -410,8 +413,9 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::PUT);
         $this->request->setPayload($params);
 
-        $connection = new MailchimpConnection($this);
+        $connection = new MailchimpConnection($this->request, $this->settings);
         $response = $connection->execute();
+        $this->resetRequest();
 
         return $response;
     }
@@ -424,12 +428,18 @@ class Mailchimp
     {
         $this->request->setMethod(MailchimpRequest::DELETE);
 
-        $connection = new MailchimpConnection($this);
+        $connection = new MailchimpConnection($this->request, $this->settings);
         $response = $connection->execute();
+        $this->resetRequest();
 
         return $response;
     }
 
+    /**
+     * @param $client_id
+     * @param $redirect_uri
+     * @return string
+     */
     public static function getAuthUrl(
         $client_id,
         $redirect_uri
@@ -444,13 +454,24 @@ class Mailchimp
         return $authUrl;
     }
 
+    /**
+     *
+     *
+     * @param $code
+     * @param $client_id
+     * @param $client_sec
+     * @param $redirect_uri
+     *
+     * @return string
+     *
+     * @throws Library_Exception
+     */
     public static function oauthExchange(
         $code,
         $client_id,
         $client_sec,
         $redirect_uri
     ) {
-
         $encoded_uri = urldecode($redirect_uri);
 
         $oauth_string = "grant_type=authorization_code";
@@ -459,28 +480,12 @@ class Mailchimp
         $oauth_string .= "&redirect_uri=".$encoded_uri;
         $oauth_string .= "&code=".$code;
 
-        try {
-            return Utilities::oauthRun($oauth_string);
-        } catch (Library_Exception $e) {
+        $access_token = self::requestAccessToken($oauth_string);
+        $apiKey = self::requestKeyFromToken($access_token);
 
-            if (self::DEBUGGER == true) {
-                die(
-                    "Mailchimp-API-3.0-PHP Oauth Exchange Says: "
-                    . $e->getMessage()
-                    . "Instead recieved: \n"
-                    . $e->output
-                );
-            }
-
-            die("Mailchimp-API-3.0-PHP Oauth Exchange Says: " . $e->getMessage());
-
-        }
-
+        return $apiKey;
     }
 
-    // END OAUTH FUNCTIONS
-
-    // BEGIN LIBRARY FUNCTIONS
     // TODO move these to request class
 
     public function finalizeRequest($response)
@@ -504,6 +509,52 @@ class Mailchimp
         }
 
         $this->request = new MailchimpRequest($this->apikey);
+    }
+
+    /**
+     * @param $oath_string
+     * @return mixed
+     * @throws Library_Exception
+     */
+    private static function requestAccessToken($oath_string)
+    {
+        $request = new MailchimpRequest();
+        $request->setMethod("POST");
+        $request->setPayload($oath_string);
+        $request->setBaseUrl(MailchimpConnection::TOKEN_REQUEST_URL);
+
+        $connection = new MailchimpConnection($request);
+        $response = $connection->execute();
+
+        $access_token = $response->deserialize()->access_token;
+
+        if (!$access_token) {
+            throw new Library_Exception(
+                'MailChimp did not return an access token'
+            );
+        }
+
+        return $access_token;
+    }
+
+    /**
+     * @param $access_token
+     * @return string
+     * @throws Library_Exception
+     */
+    private static function requestKeyFromToken($access_token)
+    {
+        $request = new MailchimpRequest();
+        $request->setMethod("GET");
+        $request->setBaseUrl(MailchimpConnection::OAUTH_METADATA_URL);
+        $request->addHeader('Authorization: OAuth ' . $access_token);
+
+        $connection = new MailchimpConnection($request);
+        $response = $connection->execute();
+
+        $dc = $response->deserialize()->dc;
+
+        return $access_token . '-' . $dc;
     }
 
 }
