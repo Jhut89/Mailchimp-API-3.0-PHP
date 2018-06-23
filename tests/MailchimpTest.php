@@ -51,4 +51,9 @@ final class MailchimpTest extends MailChimpTestCase
             "The settings must be an instance of a MailChimpSettings"
         );
     }
+
+    public function testAssertTrue()
+    {
+        self::assertTrue(true);
+    }
 }
