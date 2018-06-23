@@ -15,43 +15,84 @@ use MailchimpAPI\Utilities;
  */
 class MailchimpRequest
 {
+    /**
+     * GET
+     */
     const GET = "GET";
+
+    /**
+     * POST
+     */
     const POST = "POST";
+
+    /**
+     * PUT
+     */
     const PUT = "PUT";
+
+    /**
+     * PATCH
+     */
     const PATCH = "PATCH";
+
+    /**
+     * DELETE
+     */
     const DELETE = "DELETE";
 
+    /**
+     * @var array
+     */
     private static $valid_methods = [self::GET, self::POST, self::PATCH, self::PUT, self::DELETE];
 
     /*************************************
      * Request Components
      *************************************/
 
-    // Authorization string for header
+    /**
+     * @var string
+     */
     private $auth;
 
-    // Base URL for Mailchimp API
+    /**
+     * @var string
+     */
     private $base_url;
 
-    // String representation of the resource we want to reach
+    /**
+     * @var string
+     */
     private $endpoint = "";
 
-    // Query string for this request
+    /**
+     * @var string
+     */
     private $query_string;
 
-    // Exploded API key
+
+    /**
+     * @var array
+     */
     private $exp_apikey;
 
-    // Provided API Key
+    /**
+     * @var null
+     */
     private $apikey;
 
-    // The payload being sent to MailChimp
+    /**
+     * @var array
+     */
     private $payload = [];
 
-    // HTTP Method to be implemented for request
+    /**
+     * @var string
+     */
     private $method;
 
-    // Headers to be sent with request
+    /**
+     * @var array
+     */
     private $headers = [];
 
     /**
@@ -70,7 +111,7 @@ class MailchimpRequest
         $this->apikey = $apikey;
         $this->exp_apikey = explode('-', trim($apikey));
         $this->setAuth();
-        Utilities::checkKey($this->exp_apikey);
+        $this->checkKey($this->exp_apikey);
         $data_center = $this->exp_apikey[1];
 
         $this->setBaseUrl("Https://" . $data_center . ".api.mailchimp.com/3.0");
@@ -283,12 +324,28 @@ class MailchimpRequest
     }
 
     /**
-     * Appends a string to this endpoint
-     *
      * @param string $string
      */
     public function appendToEndpoint($string)
     {
         $this->endpoint = $this->endpoint .= $string;
+    }
+
+    /**
+     * @param $exp_apikey
+     * @throws Library_Exception
+     */
+    public static function checkKey($exp_apikey)
+    {
+
+        if (strlen($exp_apikey[0]) < 10) {
+            throw new Library_Exception('You must provide a valid API key');
+        }
+
+        if (!isset($exp_apikey[1])) {
+            throw new Library_Exception(
+                'You must provided the data-center at the end of your API key'
+            );
+        }
     }
 }

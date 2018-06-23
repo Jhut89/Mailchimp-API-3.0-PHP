@@ -5,64 +5,6 @@ namespace MailchimpAPI;
 class Utilities
 {
 
-
-
-    public static function oauthRun($oauth_string)
-    {
-
-        $ch = curl_init('https://login.mailchimp.com/oauth2/token');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $oauth_string);
-        $return = curl_exec($ch);
-        if (!is_null(json_decode($return))) {
-            $return = json_decode($return);
-        }
-        curl_close($ch);
-
-        if (!$return->access_token) {
-            throw new Library_Exception(
-                'MailChimp did not return an access token',
-                $return
-            );
-        }
-
-        $headers = array('Authorization: OAuth '.$return->access_token);
-        $ch = curl_init("https://login.mailchimp.com/oauth2/metadata/");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $account = curl_exec($ch);
-        if (!is_null(json_decode($account))) {
-            $account = json_decode($account);
-        }
-        curl_close($ch);
-
-        if (!$account->dc) {
-            throw new Library_Exception(
-                'Unable to retrieve account meta-data',
-                $account
-            );
-        }
-
-        return $return->access_token. "-" . $account->dc;
-
-    }
-
-    public static function checkKey($exp_apikey)
-    {
-
-        if (strlen($exp_apikey[0]) < 10) {
-            throw new Library_Exception('You must provide a valid API key');
-        }
-
-        if (!isset($exp_apikey[1])) {
-            throw new Library_Exception(
-                'Make sure you provided the data-center at the end of your API key'
-            );
-        }
-    }
-
     public static function debug(
         $url,
         $http_code,
