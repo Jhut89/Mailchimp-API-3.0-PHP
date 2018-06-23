@@ -4,18 +4,34 @@ namespace MailchimpAPI\Lists\Members;
 
 use MailchimpAPI\Lists\Members;
 
+/**
+ * Class Notes
+ * @package MailchimpAPI\Lists\Members
+ */
 class Notes extends Members
 {
-
-    //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'note'
     ];
+    /**
+     * @var array
+     */
     public $req_patch_params = [
         'note'
     ];
 
-    function __construct(
+    /**
+     * Notes constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $grandparent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct(
         $apikey,
         $parent_resource,
         $grandparent_resource,
@@ -23,10 +39,9 @@ class Notes extends Members
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->url .= '/notes/' . $class_input;
+            $this->request->appendToEndpoint('/notes/' . $class_input);
         } else {
-            $this->url .= '/notes/';
+            $this->request->appendToEndpoint('/notes/');
         }
-
     }
 }

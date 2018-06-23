@@ -2,53 +2,83 @@
 
 namespace MailchimpAPI\Lists;
 
+use MailchimpAPI\Library_Exception;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Segments\Members;
 
+/**
+ * Class Segments
+ * @package MailchimpAPI\Lists
+ */
 class Segments extends Lists
 {
 
+    /**
+     * @var string
+     */
     public $grandchild_resource;
 
-    //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'name'
     ];
+    /**
+     * @var array
+     */
     public $req_patch_params = [
         'name'
     ];
 
-    //SUBCLASS INSTANTIATIONS
+    /**
+     * @var
+     */
     public $segment_members;
 
-    function __construct($apikey, $parent_resource, $class_input)
+    /**
+     * Segments constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $class_input
+     * @throws Library_Exception
+     */
+    public function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->url .= '/segments/' . $class_input;
+            $this->request->appendToEndpoint('/segments/' . $class_input);
         } else {
-            $this->url .= '/segments/';
+            $this->request->appendToEndpoint('/segments/');
         }
-
         $this->grandchild_resource = $class_input;
-
     }
-        
-    public function BATCH( $add = array() , $remove = array() )
+
+    /**
+     * @param array $add
+     * @param array $remove
+     * @return \MailchimpAPI\Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function batch($add = [], $remove = [])
     {
-        $params = array('members_to_add' => $add, 'members_to_remove' => $remove);
-        $payload = json_encode($params);
+        if (!$this->grandchild_resource) {
+            throw new Library_Exception("You must provide a segment ID to Batch");
+        }
+        $params = ['members_to_add' => $add, 'members_to_remove' => $remove];
 
-        $url = $this->url;
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        return $this->postToActionEndpoint('', $params);
     }
 
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function members( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return \MailchimpAPI\Lists\Members|Members
+     * @throws Library_Exception
+     */
+    public function members($class_input = null)
     {
         $this->segment_members = new Members(
             $this->apikey,

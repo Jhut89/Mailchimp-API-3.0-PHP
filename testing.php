@@ -8,8 +8,8 @@ $mc = new Mailchimp("7a119e6089a1b03c341feff04870526d-us8");
 
 /* @var \MailchimpAPI\Utilities\MailchimpResponse $response */
 $response = $mc
-    ->automations('01757c2d68')
-    ->pauseAll();
+    ->ecommStores()
+    ->GET();
 
 
 var_dump($response->getRaw());

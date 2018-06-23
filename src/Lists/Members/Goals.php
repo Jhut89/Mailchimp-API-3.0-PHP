@@ -4,19 +4,31 @@ namespace MailchimpAPI\Lists\Members;
 
 use MailchimpAPI\Lists\Members;
 
+/**
+ * Class Goals
+ * @package MailchimpAPI\Lists\Members
+ */
 class Goals extends Members
 {
-    function __construct($apikey,
+    /**
+     * Goals constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $grandparent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct(
+        $apikey,
         $parent_resource,
         $grandparent_resource,
         $class_input
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->url .= '/goals/' . $class_input;
+            $this->request->appendToEndpoint('/goals/' . $class_input);
         } else {
-            $this->url .= '/goals/';
+            $this->request->appendToEndpoint('/goals/');
         }
-
     }
 }

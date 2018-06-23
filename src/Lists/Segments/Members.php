@@ -4,14 +4,28 @@ namespace MailchimpAPI\Lists\Segments;
 
 use MailchimpAPI\Lists\Segments;
 
+/**
+ * Class Members
+ * @package MailchimpAPI\Lists\Segments
+ */
 class Members extends Segments
 {
-    //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'email_address'
     ];
 
-    function __construct(
+    /**
+     * Members constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $grandparent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct(
         $apikey,
         $parent_resource,
         $grandparent_resource,
@@ -19,10 +33,9 @@ class Members extends Segments
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->url .= '/members/' . $class_input;
+            $this->request->appendToEndpoint('/members/' . $class_input);
         } else {
-            $this->url .= '/members/';
+            $this->request->appendToEndpoint('/members/');
         }
-
     }
 }

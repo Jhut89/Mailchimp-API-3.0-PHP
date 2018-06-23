@@ -4,9 +4,21 @@ namespace MailchimpAPI\Lists\Members;
 
 use MailchimpAPI\Lists\Members;
 
+/**
+ * Class Activity
+ * @package MailchimpAPI\Lists\Members
+ */
 class Activity extends Members
 {
-    function __construct(
+    /**
+     * Activity constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $grandparent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct(
         $apikey,
         $parent_resource,
         $grandparent_resource,
@@ -14,10 +26,9 @@ class Activity extends Members
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->url .= '/activity/' . $class_input;
+            $this->request->appendToEndpoint('/activity/' . $class_input);
         } else {
-            $this->url .= '/activity/';
+            $this->request->appendToEndpoint('/activity/');
         }
-
     }
 }

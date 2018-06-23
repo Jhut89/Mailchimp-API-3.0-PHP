@@ -5,13 +5,27 @@ namespace MailchimpAPI\Lists;
 use MailchimpAPI\Lists;
 
 /**
- * Class Webhooks
+ * Class MergeFields
  * @package MailchimpAPI\Lists
  */
-class Webhooks extends Lists
+class MergeFields extends Lists
 {
     /**
-     * Webhooks constructor.
+     * @var array
+     */
+    public $req_post_params = [
+        'name',
+        'type'
+    ];
+    /**
+     * @var array
+     */
+    public $req_patch_params = [
+        'name'
+    ];
+
+    /**
+     * MergeFields constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
@@ -21,9 +35,9 @@ class Webhooks extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/webhooks/' . $class_input);
+            $this->request->appendToEndpoint('/merge-fields/' . $class_input);
         } else {
-            $this->request->appendToEndpoint('/webhooks/');
+            $this->request->appendToEndpoint('/merge-fields/');
         }
     }
 }

@@ -2,20 +2,37 @@
 
 namespace MailchimpAPI\Lists\Interests_Categories;
 
-use MailchimpAPI\Lists\Interest_Categories;
+use MailchimpAPI\Lists\InterestCategories;
 
-class Interests extends Interest_Categories
+/**
+ * Class Interests
+ * @package MailchimpAPI\Lists\Interests_Categories
+ */
+class Interests extends InterestCategories
 {
 
-    //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'name'
     ];
+    /**
+     * @var array
+     */
     public $req_patch_params = [
         'name'
     ];
 
-    function __construct(
+    /**
+     * Interests constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $grandparent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct(
         $apikey,
         $parent_resource,
         $grandparent_resource,
@@ -23,10 +40,9 @@ class Interests extends Interest_Categories
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->url .= '/interests/' . $class_input;
+            $this->request->appendToEndpoint('/interests/' . $class_input);
         } else {
-            $this->url .= '/interests/';
+            $this->request->appendToEndpoint('/interests/');
         }
-
     }
 }

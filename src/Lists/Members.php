@@ -7,41 +7,72 @@ use MailchimpAPI\Lists\Members\Notes;
 use MailchimpAPI\Lists\Members\Goals;
 use MailchimpAPI\Lists\Members\Activity;
 
+/**
+ * Class Members
+ * @package MailchimpAPI\Lists
+ */
 class Members extends Lists
 {
 
+    /**
+     * @var string
+     */
     public $grandchild_resource;
 
-    //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'email_address',
         'status'
     ];
+    /**
+     * @var array
+     */
     public $req_put_params = [
         'email_address',
         'status_if_new'
     ];
 
-    //SUBCLASS INSTANTIATION
+    /**
+     * @var Notes
+     */
     public $notes;
+    /**
+     * @var Goals
+     */
     public $goals;
+    /**
+     * @var Activity
+     */
     public $member_activity;
 
-    function __construct($apikey, $parent_resource, $class_input)
+    /**
+     * Members constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->url .= '/members/' . $class_input;
+            $this->request->appendToEndpoint('/members/' . $class_input);
         } else {
-            $this->url .= '/members/';
+            $this->request->appendToEndpoint('/members/');
         }
         $this->grandchild_resource = $class_input;
-
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function notes( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Notes
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function notes($class_input = null)
     {
         $this->notes = new Notes(
             $this->apikey,
@@ -52,7 +83,12 @@ class Members extends Lists
         return $this->notes;
     }
 
-    public function goals( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Goals
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function goals($class_input = null)
     {
         $this->goals = new Goals(
             $this->apikey,
@@ -63,7 +99,12 @@ class Members extends Lists
         return $this->goals;
     }
 
-    public function activity( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return \MailchimpAPI\Lists\Activity|Activity
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function activity($class_input = null)
     {
         $this->member_activity = new Activity(
             $this->apikey,
@@ -73,5 +114,4 @@ class Members extends Lists
         );
         return $this->member_activity;
     }
-
 }

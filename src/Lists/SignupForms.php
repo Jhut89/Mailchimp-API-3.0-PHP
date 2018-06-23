@@ -5,13 +5,13 @@ namespace MailchimpAPI\Lists;
 use MailchimpAPI\Lists;
 
 /**
- * Class Webhooks
+ * Class SignupForms
  * @package MailchimpAPI\Lists
  */
-class Webhooks extends Lists
+class SignupForms extends Lists
 {
     /**
-     * Webhooks constructor.
+     * SignupForms constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
@@ -21,9 +21,9 @@ class Webhooks extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/webhooks/' . $class_input);
+            $this->request->appendToEndpoint('/signup-forms/' . $class_input);
         } else {
-            $this->request->appendToEndpoint('/webhooks/');
+            $this->request->appendToEndpoint('/signup-forms/');
         }
     }
 }
