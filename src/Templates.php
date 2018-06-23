@@ -40,7 +40,7 @@ class Templates extends Mailchimp
      * Templates constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {
@@ -58,7 +58,7 @@ class Templates extends Mailchimp
     /**
      * @param null $class_input
      * @return DefaultContent
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function defaultContent($class_input = null)
     {

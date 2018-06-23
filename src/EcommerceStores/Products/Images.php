@@ -29,7 +29,7 @@ class Images extends Products
      * @param $parent_resource
      * @param $grandparent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct(
         $apikey,

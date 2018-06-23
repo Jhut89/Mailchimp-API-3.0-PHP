@@ -25,7 +25,7 @@ class Lists extends Mailchimp
      */
     public $subclass_resource;
 
-    //REQUIRED FIELDS DEFINITIONS
+
     /**
      * @var array
      */
@@ -94,7 +94,7 @@ class Lists extends Mailchimp
      * Lists constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {
@@ -112,13 +112,13 @@ class Lists extends Mailchimp
      * @param $members
      * @param $update_existing
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function batchSubscribe($members, $update_existing)
     {
 
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a list ID to Batch Subscribe");
+            throw new MailchimpException("You must provide a list ID to Batch Subscribe");
         }
 
         $params = [
@@ -134,7 +134,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return Webhooks
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function webhooks($class_input = null)
     {
@@ -149,7 +149,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return SignupForms
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function signupForms($class_input = null)
     {
@@ -164,7 +164,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return MergeFields
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function mergeFields($class_input = null)
     {
@@ -179,7 +179,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return GrowthHistory
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function growthHistory($class_input = null)
     {
@@ -194,7 +194,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return Clients
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function clients($class_input = null)
     {
@@ -209,7 +209,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return Activity
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function activity($class_input = null)
     {
@@ -224,7 +224,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return AbuseReports
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function abuseReports($class_input = null)
     {
@@ -239,7 +239,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return Segments
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function segments($class_input = null)
     {
@@ -254,7 +254,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return Members
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function members($class_input = null)
     {
@@ -269,7 +269,7 @@ class Lists extends Mailchimp
     /**
      * @param null $class_input
      * @return InterestCategories
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function interestCategories($class_input = null)
     {

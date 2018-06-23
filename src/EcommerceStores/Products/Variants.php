@@ -4,21 +4,43 @@ namespace MailchimpAPI\EcommerceStores\Products;
 
 use MailchimpAPI\EcommerceStores\Products;
 
-class Variants extends Products {
+/**
+ * Class Variants
+ * @package MailchimpAPI\EcommerceStores\Products
+ */
+class Variants extends Products
+{
 
+    /**
+     * @var
+     */
     public $class_input;
 
-    //REQUIRED FIELDS DEFINITIONS
+
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'id',
         'title'
     ];
+    /**
+     * @var array
+     */
     public $req_put_params = [
         'id',
         'title'
     ];
 
-    function __construct(
+    /**
+     * Variants constructor.
+     * @param $apikey
+     * @param $parent_resource
+     * @param $grandparent_resource
+     * @param $class_input
+     * @throws \MailchimpAPI\MailchimpException
+     */
+    public function __construct(
         $apikey,
         $parent_resource,
         $grandparent_resource,
@@ -28,12 +50,11 @@ class Variants extends Products {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
 
         if ($class_input) {
-            $this->url .= '/variants/' . $class_input;
+            $this->request->appendToEndpoint('/variants/' . $class_input);
         } else {
-            $this->url .= '/variants/';
+            $this->request->appendToEndpoint('/variants/');
         }
 
         $this->class_input = $class_input;
-
     }
 }

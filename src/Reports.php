@@ -73,7 +73,7 @@ class Reports extends Mailchimp
      * Reports constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {
@@ -91,7 +91,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return Unsubscribes
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function unsubscribes($class_input = null)
     {
@@ -106,7 +106,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return SubReports
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function subReports($class_input = null)
     {
@@ -121,7 +121,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return SentTo
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function sentTo($class_input = null)
     {
@@ -136,7 +136,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return TopLocations
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function locations($class_input = null)
     {
@@ -151,7 +151,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return EmailActivity
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function emailActivity($class_input = null)
     {
@@ -166,7 +166,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return EepurlReports
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function eepurl($class_input = null)
     {
@@ -181,7 +181,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return DomainPerformance
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function domainPerformance($class_input = null)
     {
@@ -196,7 +196,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return CampaignAdvice
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function advice($class_input = null)
     {
@@ -211,7 +211,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return CampaignAbuse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function abuse($class_input = null)
     {
@@ -226,7 +226,7 @@ class Reports extends Mailchimp
     /**
      * @param null $class_input
      * @return ClickReports
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function clickReports($class_input = null)
     {

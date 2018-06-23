@@ -17,7 +17,7 @@ class InterestCategories extends Lists
      */
     public $grandchild_resource;
 
-    //REQUIRED FIELDS DEFINITIONS
+
     /**
      * @var array
      */
@@ -44,7 +44,7 @@ class InterestCategories extends Lists
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct($apikey, $parent_resource, $class_input)
     {
@@ -62,7 +62,7 @@ class InterestCategories extends Lists
     /**
      * @param null $class_input
      * @return Interests
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function interests($class_input = null)
     {

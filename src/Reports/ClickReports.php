@@ -27,7 +27,7 @@ class ClickReports extends Reports
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct($apikey, $parent_resource, $class_input)
     {
@@ -46,7 +46,7 @@ class ClickReports extends Reports
     /**
      * @param null $class_input
      * @return Members
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function members($class_input = null)
     {

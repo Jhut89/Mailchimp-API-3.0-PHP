@@ -25,7 +25,7 @@ class Conversations extends Mailchimp
      * Conversations constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {
@@ -45,7 +45,7 @@ class Conversations extends Mailchimp
     /**
      * @param null $class_input
      * @return Messages
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function messages($class_input = null)
     {

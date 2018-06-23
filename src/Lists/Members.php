@@ -52,7 +52,7 @@ class Members extends Lists
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct($apikey, $parent_resource, $class_input)
     {
@@ -70,7 +70,7 @@ class Members extends Lists
     /**
      * @param null $class_input
      * @return Notes
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function notes($class_input = null)
     {
@@ -86,7 +86,7 @@ class Members extends Lists
     /**
      * @param null $class_input
      * @return Goals
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function goals($class_input = null)
     {
@@ -102,7 +102,7 @@ class Members extends Lists
     /**
      * @param null $class_input
      * @return \MailchimpAPI\Lists\Activity|Activity
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function activity($class_input = null)
     {

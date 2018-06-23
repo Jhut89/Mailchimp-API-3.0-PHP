@@ -2,8 +2,7 @@
 
 namespace MailchimpAPI\Utilities;
 
-use MailchimpAPI\Library_Exception;
-use MailchimpAPI\Utilities;
+use MailchimpAPI\MailchimpException;
 
 /**
  * Class MailchimpRequest
@@ -100,7 +99,7 @@ class MailchimpRequest
      *
      * @param $apikey
      *
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey = null)
     {
@@ -227,7 +226,7 @@ class MailchimpRequest
     /**
      * @param mixed $payload
      *
-     * @throws Library_Exception when cant serialize payload
+     * @throws MailchimpException when cant serialize payload
      */
     public function setPayload($payload)
     {
@@ -246,12 +245,12 @@ class MailchimpRequest
     /**
      * @param mixed $method
      *
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function setMethod($method)
     {
         if (!in_array($method, self::$valid_methods)) {
-            throw new Library_Exception("Method not allowed");
+            throw new MailchimpException("Method not allowed");
         }
 
         $this->method = $method;
@@ -282,14 +281,14 @@ class MailchimpRequest
      *
      * @return mixed
      *
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function serializePayload($payload)
     {
         $encoded = json_encode($payload);
 
         if (!$encoded) {
-            throw new Library_Exception("Unable to serialize payload");
+            throw new MailchimpException("Unable to serialize payload");
         }
 
         return $encoded;
@@ -333,17 +332,17 @@ class MailchimpRequest
 
     /**
      * @param $exp_apikey
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public static function checkKey($exp_apikey)
     {
 
         if (strlen($exp_apikey[0]) < 10) {
-            throw new Library_Exception('You must provide a valid API key');
+            throw new MailchimpException('You must provide a valid API key');
         }
 
         if (!isset($exp_apikey[1])) {
-            throw new Library_Exception(
+            throw new MailchimpException(
                 'You must provided the data-center at the end of your API key'
             );
         }

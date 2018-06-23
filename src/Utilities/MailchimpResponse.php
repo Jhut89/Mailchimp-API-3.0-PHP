@@ -2,7 +2,7 @@
 
 namespace MailchimpAPI\Utilities;
 
-use MailchimpAPI\Library_Exception;
+use MailchimpAPI\MailchimpException;
 
 class MailchimpResponse
 {
@@ -83,7 +83,7 @@ class MailchimpResponse
     /**
      * @return mixed
      *
-     * @throws Library_Exception when cant deserialize response
+     * @throws MailchimpException when cant deserialize response
      */
     public function deserialize()
     {
@@ -109,14 +109,14 @@ class MailchimpResponse
     /**
      * @param $response
      * @return mixed
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function deserializeResponse($response)
     {
         $decoded = json_decode($response);
 
         if (!$decoded) {
-            throw new Library_Exception("Unable to deserialize response");
+            throw new MailchimpException("Unable to deserialize response");
         }
 
         return $decoded;

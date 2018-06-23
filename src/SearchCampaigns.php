@@ -12,7 +12,7 @@ class SearchCampaigns extends Mailchimp
      * SearchCampaigns constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {

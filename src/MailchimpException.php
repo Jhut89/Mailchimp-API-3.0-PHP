@@ -2,12 +2,12 @@
 
 namespace MailchimpAPI;
 
-class Library_Exception extends \Exception
+class MailchimpException extends \Exception
 {
     public $message;
     public $output;
 
-    function __construct($message, $output = null)
+    public function __construct($message, $output = null)
     {
         $this->message = $message;
         $this->output = $output;

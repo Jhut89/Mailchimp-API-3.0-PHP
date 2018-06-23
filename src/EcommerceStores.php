@@ -50,7 +50,7 @@ class EcommerceStores extends Mailchimp
      * EcommerceStores constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {
@@ -70,7 +70,7 @@ class EcommerceStores extends Mailchimp
     /**
      * @param null $class_input
      * @return Customers
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function customers($class_input = null)
     {
@@ -99,7 +99,7 @@ class EcommerceStores extends Mailchimp
     /**
      * @param null $class_input
      * @return Orders
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function orders($class_input = null)
     {
@@ -114,7 +114,7 @@ class EcommerceStores extends Mailchimp
     /**
      * @param null $class_input
      * @return Carts
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function carts($class_input = null)
     {
