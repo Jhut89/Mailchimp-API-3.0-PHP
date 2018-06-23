@@ -1,6 +1,6 @@
 <?php
 
-use MailchimpTests\MailChimpTestCase;
+namespace MailchimpTests;
 
 final class AuthorizedAppsTest extends MailChimpTestCase
 {
@@ -14,7 +14,11 @@ final class AuthorizedAppsTest extends MailChimpTestCase
             ->mailchimp
             ->apps();
 
-        self::assertEquals($expected_url, $auth_apps->request->getUrl(), "The authorized apps url should be constructed correctly");
+        self::assertEquals(
+            $expected_url,
+            $auth_apps->request->getUrl(),
+            "The authorized apps url should be constructed correctly"
+        );
     }
 
     public function testAuthorizedAppsInstanceUrl()
@@ -25,6 +29,10 @@ final class AuthorizedAppsTest extends MailChimpTestCase
             ->mailchimp
             ->apps("1");
 
-        self::assertEquals($expected_url, $auth_apps->request->getUrl(), "The authorized apps url should be constructed correctly");
+        self::assertEquals(
+            $expected_url,
+            $auth_apps->request->getUrl(),
+            "The authorized apps url should be constructed correctly"
+        );
     }
 }

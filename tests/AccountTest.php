@@ -1,6 +1,6 @@
 <?php
 
-use MailchimpTests\MailChimpTestCase;
+namespace MailchimpTests;
 
 final class AccountTest extends MailChimpTestCase
 {
@@ -11,6 +11,10 @@ final class AccountTest extends MailChimpTestCase
             ->mailchimp
             ->account();
 
-        self::assertEquals($expected_url, $account->request->getUrl(), "The root url should be constructed correctly");
+        self::assertEquals(
+            $expected_url,
+            $account->request->getUrl(),
+            "The root url should be constructed correctly"
+        );
     }
 }

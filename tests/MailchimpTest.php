@@ -1,6 +1,7 @@
 <?php
 
-use MailchimpTests\MailChimpTestCase;
+namespace MailchimpTests;
+
 use MailchimpAPI\Utilities\MailchimpSettings;
 use MailchimpAPI\Utilities\MailchimpRequest;
 
@@ -23,7 +24,7 @@ final class MailchimpTest extends MailChimpTestCase
 
         $expected_uri = "https://login.mailchimp.com/oauth2/authorize";
         $expected_uri .= "?client_id=12345676543";
-        $expected_uri .= "&redirect_uri=".urlencode($this->redirect_uri);
+        $expected_uri .= "&redirect_uri=" . urlencode($this->redirect_uri);
         $expected_uri .= "&response_type=code";
 
         //ASSERTION
@@ -37,11 +38,17 @@ final class MailchimpTest extends MailChimpTestCase
 
     public function testRequestSet()
     {
-        self::assertTrue($this->mailchimp->request instanceof MailchimpRequest, "The request must be an instance of a MailChimpRequest");
+        self::assertTrue(
+            $this->mailchimp->request instanceof MailchimpRequest,
+            "The request must be an instance of a MailChimpRequest"
+        );
     }
 
     public function testSettingsSet()
     {
-        self::assertTrue($this->mailchimp->settings instanceof MailchimpSettings, "The settings must be an instance of a MailChimpSettings");
+        self::assertTrue(
+            $this->mailchimp->settings instanceof MailchimpSettings,
+            "The settings must be an instance of a MailChimpSettings"
+        );
     }
 }

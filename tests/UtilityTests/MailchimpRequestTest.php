@@ -23,7 +23,11 @@ final class MailchimpRequestTest extends MailChimpTestCase
 
     public function testApikeySet()
     {
-        self::assertEquals($this->apikey, $this->requestInstance->getApikey(), "The request API Key should be set correctly");
+        self::assertEquals(
+            $this->apikey,
+            $this->requestInstance->getApikey(),
+            "The request API Key should be set correctly"
+        );
     }
 
     public function testBaseUrlSet()
