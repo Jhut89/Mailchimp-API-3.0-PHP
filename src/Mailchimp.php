@@ -133,7 +133,7 @@ class Mailchimp
      * @return AuthorizedApps
      * @throws Library_Exception
      */
-    public function apps($class_input = null )
+    public function apps($class_input = null)
     {
         $this->apps = new AuthorizedApps($this->apikey, $class_input);
         return $this->apps;
@@ -144,7 +144,7 @@ class Mailchimp
      * @return Automations
      * @throws Library_Exception
      */
-    public function automations($class_input = null )
+    public function automations($class_input = null)
     {
         $this->automations = new Automations($this->apikey, $class_input);
         return $this->automations;
@@ -155,7 +155,7 @@ class Mailchimp
      * @return BatchOperations
      * @throws Library_Exception
      */
-    public function batches($class_input = null )
+    public function batches($class_input = null)
     {
         $this->batches = new BatchOperations($this->apikey, $class_input);
         return $this->batches;
@@ -166,7 +166,7 @@ class Mailchimp
      * @return BatchWebhooks
      * @throws Library_Exception
      */
-    public function batchWebhooks($class_input = null )
+    public function batchWebhooks($class_input = null)
     {
         $this->batch_webhooks = new BatchWebhooks($this->apikey, $class_input);
         return $this->batch_webhooks;
@@ -177,7 +177,7 @@ class Mailchimp
      * @return CampaignFolders
      * @throws Library_Exception
      */
-    public function campaignFolders($class_input = null )
+    public function campaignFolders($class_input = null)
     {
         $this->campaign_folders = new CampaignFolders($this->apikey, $class_input);
         return $this->campaign_folders;
@@ -188,7 +188,7 @@ class Mailchimp
      * @return Campaigns
      * @throws Library_Exception
      */
-    public function campaigns($class_input = null )
+    public function campaigns($class_input = null)
     {
         $this->campaigns = new Campaigns($this->apikey, $class_input);
         return $this->campaigns;
@@ -199,7 +199,7 @@ class Mailchimp
      * @return Conversations
      * @throws Library_Exception
      */
-    public function conversations($class_input = null )
+    public function conversations($class_input = null)
     {
         $this->conversations = new Conversations($this->apikey, $class_input);
         return $this->conversations;
@@ -210,7 +210,7 @@ class Mailchimp
      * @return EcommerceStores
      * @throws Library_Exception
      */
-    public function ecommStores($class_input = null )
+    public function ecommStores($class_input = null)
     {
         $this->ecomm_stores = new EcommerceStores($this->apikey, $class_input);
         return $this->ecomm_stores;
@@ -221,7 +221,7 @@ class Mailchimp
      * @return File_Manager_Files
      * @throws Library_Exception
      */
-    public function fileManagerFiles($class_input = null )
+    public function fileManagerFiles($class_input = null)
     {
         $this->file_manager_files = new File_Manager_Files(
             $this->apikey,
@@ -235,7 +235,7 @@ class Mailchimp
      * @return File_Manager_Folders
      * @throws Library_Exception
      */
-    public function fileManagerFolders($class_input = null )
+    public function fileManagerFolders($class_input = null)
     {
         $this->file_manager_folders = new File_Manager_Folders(
             $this->apikey,
@@ -249,7 +249,7 @@ class Mailchimp
      * @return Lists
      * @throws Library_Exception
      */
-    public function lists($class_input = null )
+    public function lists($class_input = null)
     {
         $this->lists = new Lists($this->apikey, $class_input);
         return $this->lists;
@@ -260,7 +260,7 @@ class Mailchimp
      * @return Reports
      * @throws Library_Exception
      */
-    public function reports($class_input = null )
+    public function reports($class_input = null)
     {
         $this->reports = new Reports($this->apikey, $class_input);
         return $this->reports;
@@ -271,7 +271,7 @@ class Mailchimp
      * @return Search_Campaigns
      * @throws Library_Exception
      */
-    public function searchCampaigns($class_input = null )
+    public function searchCampaigns($class_input = null)
     {
         $this->search_campaigns = new Search_Campaigns($this->apikey, $class_input);
         return $this->search_campaigns;
@@ -282,7 +282,7 @@ class Mailchimp
      * @return Search_Members
      * @throws Library_Exception
      */
-    public function searchMembers($class_input = null )
+    public function searchMembers($class_input = null)
     {
         $this->search_members = new Search_Members($this->apikey, $class_input);
         return $this->search_members;
@@ -293,7 +293,7 @@ class Mailchimp
      * @return Template_Folders
      * @throws Library_Exception
      */
-    public function templateFolders($class_input = null )
+    public function templateFolders($class_input = null)
     {
         $this->template_folders = new Template_Folders($this->apikey, $class_input);
         return $this->template_folders;
@@ -304,7 +304,7 @@ class Mailchimp
      * @return Templates
      * @throws Library_Exception
      */
-    public function templates($class_input = null )
+    public function templates($class_input = null)
     {
         $this->templates = new Templates($this->apikey, $class_input);
         return $this->templates;
@@ -338,7 +338,8 @@ class Mailchimp
      * @return MailchimpResponse
      * @throws Library_Exception
      */
-    public function POST($params = []) {
+    public function POST($params = [])
+    {
         // TODO re-implement how we check for required params
         if (!empty($this->req_post_params)) {
             try {
@@ -347,7 +348,7 @@ class Mailchimp
                     $this->req_post_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+                die("Mailchimp-API-3.0-PHP Says: " . $e->getMessage());
             }
         }
 
@@ -376,7 +377,7 @@ class Mailchimp
                     $this->req_patch_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+                die("Mailchimp-API-3.0-PHP Says: " . $e->getMessage());
             }
         }
 
@@ -405,7 +406,7 @@ class Mailchimp
                     $this->req_put_params
                 );
             } catch (Library_Exception $e) {
-                die("Mailchimp-API-3.0-PHP Says: ".$e->getMessage());
+                die("Mailchimp-API-3.0-PHP Says: " . $e->getMessage());
             }
         }
 
@@ -442,27 +443,23 @@ class Mailchimp
     public static function getAuthUrl(
         $client_id,
         $redirect_uri
-    ){
+    ) {
         $encoded_uri = urlencode($redirect_uri);
 
         $authUrl = "https://login.mailchimp.com/oauth2/authorize";
-        $authUrl .= "?client_id=".$client_id;
-        $authUrl .= "&redirect_uri=".$encoded_uri;
+        $authUrl .= "?client_id=" . $client_id;
+        $authUrl .= "&redirect_uri=" . $encoded_uri;
         $authUrl .= "&response_type=code";
 
         return $authUrl;
     }
 
     /**
-     *
-     *
      * @param $code
      * @param $client_id
      * @param $client_sec
      * @param $redirect_uri
-     *
      * @return string
-     *
      * @throws Library_Exception
      */
     public static function oauthExchange(
@@ -474,10 +471,10 @@ class Mailchimp
         $encoded_uri = urldecode($redirect_uri);
 
         $oauth_string = "grant_type=authorization_code";
-        $oauth_string .= "&client_id=".$client_id;
-        $oauth_string .= "&client_secret=".$client_sec;
-        $oauth_string .= "&redirect_uri=".$encoded_uri;
-        $oauth_string .= "&code=".$code;
+        $oauth_string .= "&client_id=" . $client_id;
+        $oauth_string .= "&client_secret=" . $client_sec;
+        $oauth_string .= "&redirect_uri=" . $encoded_uri;
+        $oauth_string .= "&code=" . $code;
 
         $access_token = self::requestAccessToken($oauth_string);
         $apiKey = self::requestKeyFromToken($access_token);
@@ -491,7 +488,7 @@ class Mailchimp
      * @return MailchimpResponse
      * @throws Library_Exception
      */
-    protected function postToActionEndpoint($endpoint, $params =[])
+    protected function postToActionEndpoint($endpoint, $params = [])
     {
         $this->request->appendToEndpoint($endpoint);
         $this->request->setMethod(MailchimpRequest::POST);
@@ -562,5 +559,4 @@ class Mailchimp
 
         return $access_token . '-' . $dc;
     }
-
 }

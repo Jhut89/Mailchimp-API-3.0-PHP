@@ -2,50 +2,98 @@
 
 namespace MailchimpAPI;
 
-use MailchimpAPI\Reports\Campaign_Abuse;
-use MailchimpAPI\Reports\Campaign_Advice;
-use MailchimpAPI\Reports\Click_Reports;
-use MailchimpAPI\Reports\Domain_Performance;
-use MailchimpAPI\Reports\Eepurl_Reports;
-use MailchimpAPI\Reports\Email_Activity;
-use MailchimpAPI\Reports\Sent_To;
-use MailchimpAPI\Reports\Sub_Reports;
-use MailchimpAPI\Reports\Top_Locations;
+use MailchimpAPI\Lists\AbuseReports;
+use MailchimpAPI\Reports\CampaignAbuse;
+use MailchimpAPI\Reports\CampaignAdvice;
+use MailchimpAPI\Reports\ClickReports;
+use MailchimpAPI\Reports\DomainPerformance;
+use MailchimpAPI\Reports\EepurlReports;
+use MailchimpAPI\Reports\EmailActivity;
+use MailchimpAPI\Reports\SentTo;
+use MailchimpAPI\Reports\SubReports;
+use MailchimpAPI\Reports\TopLocations;
 use MailchimpAPI\Reports\Unsubscribes;
 
+/**
+ * Class Reports
+ * @package MailchimpAPI
+ */
 class Reports extends Mailchimp
 {
 
+    /**
+     * @var string
+     */
     public $subclass_resource;
 
     //SUBCLASS INSTANTIATIONS
+    /**
+     * @var Unsubscribes
+     */
     public $unsubscribes;
+    /**
+     * @var SubReports
+     */
     public $sub_reports;
+    /**
+     * @var SentTo
+     */
     public $sent_to;
+    /**
+     * @var TopLocations
+     */
     public $locations;
+    /**
+     * @var EmailActivity
+     */
     public $email_activity;
+    /**
+     * @var EepurlReports
+     */
     public $eepurl;
+    /**
+     * @var DomainPerformance
+     */
     public $domain_performance;
+    /**
+     * @var CampaignAdvice
+     */
     public $advice;
+    /**
+     * @var AbuseReports
+     */
     public $abuse;
+    /**
+     * @var ClickReports
+     */
     public $click_reports;
 
 
-    function __construct($apikey, $class_input)
+    /**
+     * Reports constructor.
+     * @param $apikey
+     * @param $class_input
+     * @throws Library_Exception
+     */
+    public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->url .= '/reports/' . $class_input;
+            $this->request->appendToEndpoint('/reports/' . $class_input);
         } else {
-            $this->url .= '/reports/';
+            $this->request->appendToEndpoint('/reports/');
         }
-      
         $this->subclass_resource = $class_input;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function unsubscribes( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Unsubscribes
+     * @throws Library_Exception
+     */
+    public function unsubscribes($class_input = null)
     {
         $this->unsubscribes = new Unsubscribes(
             $this->apikey,
@@ -55,9 +103,14 @@ class Reports extends Mailchimp
         return $this->unsubscribes;
     }
 
-    public function subReports( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return SubReports
+     * @throws Library_Exception
+     */
+    public function subReports($class_input = null)
     {
-        $this->sub_reports = new Sub_Reports(
+        $this->sub_reports = new SubReports(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -65,9 +118,14 @@ class Reports extends Mailchimp
         return $this->sub_reports;
     }
 
-    public function sentTo( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return SentTo
+     * @throws Library_Exception
+     */
+    public function sentTo($class_input = null)
     {
-        $this->sent_to = new Sent_To(
+        $this->sent_to = new SentTo(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -75,9 +133,14 @@ class Reports extends Mailchimp
         return $this->sent_to;
     }
 
-    public function locations( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return TopLocations
+     * @throws Library_Exception
+     */
+    public function locations($class_input = null)
     {
-        $this->locations = new Top_Locations(
+        $this->locations = new TopLocations(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -85,9 +148,14 @@ class Reports extends Mailchimp
         return $this->locations;
     }
 
-    public function emailActivity( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return EmailActivity
+     * @throws Library_Exception
+     */
+    public function emailActivity($class_input = null)
     {
-        $this->email_activity = new Email_Activity(
+        $this->email_activity = new EmailActivity(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -95,9 +163,14 @@ class Reports extends Mailchimp
         return $this->email_activity;
     }
 
-    public function eepurl( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return EepurlReports
+     * @throws Library_Exception
+     */
+    public function eepurl($class_input = null)
     {
-        $this->eepurl = new Eepurl_Reports(
+        $this->eepurl = new EepurlReports(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -105,9 +178,14 @@ class Reports extends Mailchimp
         return $this->eepurl;
     }
 
-    public function domainPerformance( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return DomainPerformance
+     * @throws Library_Exception
+     */
+    public function domainPerformance($class_input = null)
     {
-        $this->domain_performance = new Domain_Performance(
+        $this->domain_performance = new DomainPerformance(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -115,9 +193,14 @@ class Reports extends Mailchimp
         return $this->domain_performance;
     }
 
-    public function advice( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return CampaignAdvice
+     * @throws Library_Exception
+     */
+    public function advice($class_input = null)
     {
-        $this->advice = new Campaign_Advice(
+        $this->advice = new CampaignAdvice(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -125,9 +208,14 @@ class Reports extends Mailchimp
         return $this->advice;
     }
 
-    public function abuse( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return CampaignAbuse
+     * @throws Library_Exception
+     */
+    public function abuse($class_input = null)
     {
-        $this->abuse = new Campaign_Abuse(
+        $this->abuse = new CampaignAbuse(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -135,14 +223,18 @@ class Reports extends Mailchimp
         return $this->abuse;
     }
 
-    public function clickReports( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return ClickReports
+     * @throws Library_Exception
+     */
+    public function clickReports($class_input = null)
     {
-        $this->click_reports = new Click_Reports(
+        $this->click_reports = new ClickReports(
             $this->apikey,
             $this->subclass_resource,
             $class_input
         );
         return $this->click_reports;
     }
-
 }

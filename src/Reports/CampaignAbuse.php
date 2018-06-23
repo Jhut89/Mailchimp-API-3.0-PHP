@@ -5,13 +5,13 @@ namespace MailchimpAPI\Reports;
 use MailchimpAPI\Reports;
 
 /**
- * Class Unsubscribes
+ * Class CampaignAbuse
  * @package MailchimpAPI\Reports
  */
-class Unsubscribes extends Reports
+class CampaignAbuse extends Reports
 {
     /**
-     * Unsubscribes constructor.
+     * CampaignAbuse constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
@@ -21,9 +21,9 @@ class Unsubscribes extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/unsubscribed/' . $class_input);
+            $this->request->appendToEndpoint('/abuse-reports/' . $class_input);
         } else {
-            $this->request->appendToEndpoint('/unsubscribed/');
+            $this->request->appendToEndpoint('/abuse-reports/');
         }
     }
 }

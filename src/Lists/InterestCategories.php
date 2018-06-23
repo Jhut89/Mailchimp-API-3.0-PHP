@@ -3,7 +3,7 @@
 namespace MailchimpAPI\Lists;
 
 use MailchimpAPI\Lists;
-use MailchimpAPI\Lists\Interests_Categories\Interests;
+use MailchimpAPI\Lists\InterestsCategories\Interests;
 
 /**
  * Class InterestCategories

@@ -1,6 +1,6 @@
 <?php
 
-namespace MailchimpAPI\Lists\Interests_Categories;
+namespace MailchimpAPI\Lists\InterestsCategories;
 
 use MailchimpAPI\Lists\InterestCategories;
 
