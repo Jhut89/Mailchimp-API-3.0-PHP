@@ -1,6 +1,6 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
 class Search_Members extends Mailchimp
 {

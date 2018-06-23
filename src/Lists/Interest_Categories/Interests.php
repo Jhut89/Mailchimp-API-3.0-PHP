@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API\Lists\Interests_Categories;
+namespace MailchimpAPI\Lists\Interests_Categories;
 
-use Mailchimp_API\Lists\Interest_Categories;
+use MailchimpAPI\Lists\Interest_Categories;
 
 class Interests extends Interest_Categories
 {

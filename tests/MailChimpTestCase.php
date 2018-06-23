@@ -1,9 +1,9 @@
 <?php
 
-namespace Mailchimp_Tests;
+namespace MailchimpTests;
 
 use PHPUnit\Framework\TestCase;
-use Mailchimp_API\Mailchimp;
+use MailchimpAPI\Mailchimp;
 
 class MailChimpTestCase extends TestCase
 {

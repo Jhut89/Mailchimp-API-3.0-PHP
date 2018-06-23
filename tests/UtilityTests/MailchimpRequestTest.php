@@ -1,7 +1,7 @@
 <?php
 
-use Mailchimp_API\Utilities\MailchimpRequest;
-use Mailchimp_Tests\MailChimpTestCase;
+use MailchimpAPI\Utilities\MailchimpRequest;
+use MailchimpTests\MailChimpTestCase;
 
 final class MailchimpRequestTest extends MailChimpTestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mailchimp_API\Utilities;
+namespace MailchimpAPI\Utilities;
 
 /**
  * TODO should make over wire request
@@ -14,7 +14,7 @@ class MailchimpConnection implements HttpRequest
      */
     const USER_AGENT = 'jhut89/Mailchimp-API-3.0-PHP (https://github.com/Jhut89/Mailchimp-API-3.0-PHP)';
     const TOKEN_REQUEST_URL = 'https://login.mailchimp.com/oauth2/token';
-    const OAUTH_METADATA_URL ='https://login.mailchimp.com/oauth2/metadata/';
+    const OAUTH_METADATA_URL = 'https://login.mailchimp.com/oauth2/metadata/';
 
     /**
      * @var MailchimpRequest
@@ -66,10 +66,7 @@ class MailchimpConnection implements HttpRequest
     private function prepareHandle()
     {
         // set headers to be sent
-        $this->setOption(CURLOPT_HTTPHEADER, $this
-            ->current_request
-            ->getHeaders()
-        );
+        $this->setOption(CURLOPT_HTTPHEADER, $this->current_request->getHeaders());
 
         // set custom user-agent
         $this->setOption(CURLOPT_USERAGENT, self::USER_AGENT);
@@ -81,10 +78,7 @@ class MailchimpConnection implements HttpRequest
         $this->setOption(CURLOPT_HEADER, true);
 
         // set verify ssl
-        $this->setOption(CURLOPT_SSL_VERIFYPEER, $this
-            ->current_settings
-            ->shouldVerifySsl()
-        );
+        $this->setOption(CURLOPT_SSL_VERIFYPEER, $this->current_settings->shouldVerifySsl());
 
         $this->setOption(CURLOPT_HEADERFUNCTION, [&$this->mc_response, "handleResponseHeader"]);
     }
@@ -101,16 +95,14 @@ class MailchimpConnection implements HttpRequest
                 $this->setOption(CURLOPT_POST, true);
                 $this->setOption(CURLOPT_POSTFIELDS, $this
                     ->current_request
-                    ->getPayload()
-                );
+                    ->getPayload());
                 break;
             case MailchimpRequest::PUT:
             case MailchimpRequest::PATCH:
                 $this->setOption(CURLOPT_CUSTOMREQUEST, $method);
                 $this->setOption(CURLOPT_POSTFIELDS, $this
                     ->current_request
-                    ->getPayload()
-                );
+                    ->getPayload());
                 break;
             case MailchimpRequest::DELETE:
                 $this->setOption(CURLOPT_CUSTOMREQUEST, $method);
@@ -152,7 +144,8 @@ class MailchimpConnection implements HttpRequest
      * @param $value
      * @return mixed|void
      */
-    public function setOption($name, $value) {
+    public function setOption($name, $value)
+    {
         curl_setopt($this->handle, $name, $value);
         $this->current_options[$name] = $value;
     }
@@ -160,7 +153,8 @@ class MailchimpConnection implements HttpRequest
     /**
      * @return mixed
      */
-    public function executeCurl() {
+    public function executeCurl()
+    {
         return curl_exec($this->handle);
     }
 
@@ -168,14 +162,16 @@ class MailchimpConnection implements HttpRequest
      * @param $name
      * @return mixed
      */
-    public function getInfo($name) {
+    public function getInfo($name)
+    {
         return curl_getinfo($this->handle, $name);
     }
 
     /**
      * @return mixed|void
      */
-    public function close() {
+    public function close()
+    {
         curl_close($this->handle);
     }
 }

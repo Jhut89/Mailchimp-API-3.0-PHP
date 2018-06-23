@@ -1,60 +1,94 @@
 <?php
 
-namespace Mailchimp_API\Automations\Emails;
+namespace MailchimpAPI\Automations\Emails;
 
-use Mailchimp_API\Automations;
+use MailchimpAPI\Automations;
+use MailchimpAPI\Utilities\MailchimpConnection;
+use MailchimpAPI\Library_Exception;
+use MailchimpAPI\Utilities\MailchimpRequest;
 
+/**
+ * Class Emails
+ * @package Mailchimp_API\Automations\Emails
+ */
 class Emails extends Automations
 {
 
+    /**
+     * An email ID
+     */
     public $grandchild_resource;
 
-    //SUBCLASS INSTANTIATIONS
+    /**
+     * @var Queue
+     */
     public $queue;
 
-    function __construct($apikey, $parent_reference, $class_input)
+    /**
+     * Emails constructor.
+     * @param $apikey
+     * @param $parent_reference
+     * @param $class_input
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct($apikey, $parent_reference, $class_input)
     {
 
-        parent::__construct($apikey, $parent_reference);  
+        parent::__construct($apikey, $parent_reference);
         if ($class_input) {
-            $this->url .= '/emails/' . $class_input;
+            $this->request->appendToEndpoint('/emails/' . $class_input);
         } else {
-            $this->url .= '/emails/';
+            $this->request->appendToEndpoint('/emails/');
         }
         $this->grandchild_resource = $class_input;
-
     }
 
-    // PAUSE AND START FUNCTIONS
-    // exemptions needed here for attempting to pause emails without providing email_id
-
-    public function PAUSE()
+    /**
+     * @return \MailchimpAPI\Utilities\MailchimpResponse
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function pause()
     {
-        $params = array();
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide an email ID to pause an email");
+        }
+        $this->request->appendToEndpoint('/actions/pause');
+        $this->request->setMethod(MailchimpRequest::POST);
 
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/pause';
 
-        $response = $this->curlPost($url, $payload);
-
+        $connection = new MailchimpConnection($this->request, $this->settings);
+        $response = $connection->execute();
+        $this->resetRequest();
         return $response;
     }
 
-    public function START()
+    /**
+     * @return \MailchimpAPI\Utilities\MailchimpResponse
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function start()
     {
-        $params = array();
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide an email ID to start an email");
+        }
+        $this->request->appendToEndpoint('/actions/pause');
+        $this->request->setMethod(MailchimpRequest::POST);
 
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/start';
 
-        $response = $this->curlPost($url, $payload);
-
+        $connection = new MailchimpConnection($this->request, $this->settings);
+        $response = $connection->execute();
+        $this->resetRequest();
         return $response;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function queue( $member = null )
+    /**
+     * @param null $member
+     * @return Queue
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function queue($member = null)
     {
         $this->queue = new Queue(
             $this->apikey,

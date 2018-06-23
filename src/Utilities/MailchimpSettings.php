@@ -1,7 +1,6 @@
 <?php
 
-namespace Mailchimp_API\Utilities;
-
+namespace MailchimpAPI\Utilities;
 
 class MailchimpSettings
 {
@@ -39,14 +38,6 @@ class MailchimpSettings
         return $this->verify_ssl;
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldReturnHeaders()
-    {
-        return $this->return_headers;
-    }
-
     /*************************************
      * SETTERS
      *************************************/
@@ -65,14 +56,6 @@ class MailchimpSettings
     public function setLogFile($log_file)
     {
         $this->log_file = $log_file;
-    }
-
-    /**
-     * @param bool $return_headers
-     */
-    public function setReturnHeaders($return_headers)
-    {
-        $this->return_headers = (bool) $return_headers;
     }
 
     /**

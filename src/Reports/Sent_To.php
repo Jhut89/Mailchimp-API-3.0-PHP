@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API\Reports;
+namespace MailchimpAPI\Reports;
 
-use Mailchimp_API\Reports;
+use MailchimpAPI\Reports;
 
 class Sent_To extends Reports
 {

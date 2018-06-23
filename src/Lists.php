@@ -1,17 +1,17 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Lists\Abuse_Reports;
-use Mailchimp_API\Lists\Activity;
-use Mailchimp_API\Lists\Clients;
-use Mailchimp_API\Lists\Growth_History;
-use Mailchimp_API\Lists\Interest_Categories;
-use Mailchimp_API\Lists\Members;
-use Mailchimp_API\Lists\Merge_Fields;
-use Mailchimp_API\Lists\Segments;
-use Mailchimp_API\Lists\Signup_Forms;
-use Mailchimp_API\Lists\Webhooks;
+use MailchimpAPI\Lists\Abuse_Reports;
+use MailchimpAPI\Lists\Activity;
+use MailchimpAPI\Lists\Clients;
+use MailchimpAPI\Lists\Growth_History;
+use MailchimpAPI\Lists\Interest_Categories;
+use MailchimpAPI\Lists\Members;
+use MailchimpAPI\Lists\Merge_Fields;
+use MailchimpAPI\Lists\Segments;
+use MailchimpAPI\Lists\Signup_Forms;
+use MailchimpAPI\Lists\Webhooks;
 
 class Lists extends Mailchimp
 {

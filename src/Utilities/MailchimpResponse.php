@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API\Utilities;
+namespace MailchimpAPI\Utilities;
 
-use Mailchimp_API\Library_Exception;
+use MailchimpAPI\Library_Exception;
 
 class MailchimpResponse
 {

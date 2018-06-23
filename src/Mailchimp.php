@@ -1,11 +1,11 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Utilities\MailchimpConnection;
-use Mailchimp_API\Utilities\MailchimpRequest;
-use Mailchimp_API\Utilities\MailchimpResponse;
-use Mailchimp_API\Utilities\MailchimpSettings;
+use MailchimpAPI\Utilities\MailchimpConnection;
+use MailchimpAPI\Utilities\MailchimpRequest;
+use MailchimpAPI\Utilities\MailchimpResponse;
+use MailchimpAPI\Utilities\MailchimpSettings;
 
 /**
  * Class Mailchimp
@@ -40,7 +40,7 @@ class Mailchimp
      */
     public $account;
     /**
-     * @var Authorized_Apps
+     * @var AuthorizedApps
      */
     public $apps;
     /**
@@ -48,15 +48,15 @@ class Mailchimp
      */
     public $automations;
     /**
-     * @var Batch_Operations
+     * @var BatchOperations
      */
     public $batches;
     /**
-     * @var Batch_Webhooks
+     * @var BatchWebhooks
      */
     public $batch_webhooks;
     /**
-     * @var Campaign_Folders
+     * @var CampaignFolders
      */
     public $campaign_folders;
     /**
@@ -68,7 +68,7 @@ class Mailchimp
      */
     public $conversations;
     /**
-     * @var Ecommerce_Stores
+     * @var EcommerceStores
      */
     public $ecomm_stores;
     /**
@@ -130,12 +130,12 @@ class Mailchimp
 
     /**
      * @param null $class_input
-     * @return Authorized_Apps
+     * @return AuthorizedApps
      * @throws Library_Exception
      */
     public function apps($class_input = null )
     {
-        $this->apps = new Authorized_Apps($this->apikey, $class_input);
+        $this->apps = new AuthorizedApps($this->apikey, $class_input);
         return $this->apps;
     }
 
@@ -152,34 +152,34 @@ class Mailchimp
 
     /**
      * @param null $class_input
-     * @return Batch_Operations
+     * @return BatchOperations
      * @throws Library_Exception
      */
     public function batches($class_input = null )
     {
-        $this->batches = new Batch_Operations($this->apikey, $class_input);
+        $this->batches = new BatchOperations($this->apikey, $class_input);
         return $this->batches;
     }
 
     /**
      * @param null $class_input
-     * @return Batch_Webhooks
+     * @return BatchWebhooks
      * @throws Library_Exception
      */
     public function batchWebhooks($class_input = null )
     {
-        $this->batch_webhooks = new Batch_Webhooks($this->apikey, $class_input);
+        $this->batch_webhooks = new BatchWebhooks($this->apikey, $class_input);
         return $this->batch_webhooks;
     }
 
     /**
      * @param null $class_input
-     * @return Campaign_Folders
+     * @return CampaignFolders
      * @throws Library_Exception
      */
     public function campaignFolders($class_input = null )
     {
-        $this->campaign_folders = new Campaign_Folders($this->apikey, $class_input);
+        $this->campaign_folders = new CampaignFolders($this->apikey, $class_input);
         return $this->campaign_folders;
     }
 
@@ -207,12 +207,12 @@ class Mailchimp
 
     /**
      * @param null $class_input
-     * @return Ecommerce_Stores
+     * @return EcommerceStores
      * @throws Library_Exception
      */
     public function ecommStores($class_input = null )
     {
-        $this->ecomm_stores = new Ecommerce_Stores($this->apikey, $class_input);
+        $this->ecomm_stores = new EcommerceStores($this->apikey, $class_input);
         return $this->ecomm_stores;
     }
 
@@ -314,7 +314,6 @@ class Mailchimp
     /*************************************
      * BEGIN ENDPOINT VERB FUNCTIONS
      *************************************/
-    // TODO implement new request verbs
 
     /**
      * @param array $query_params
@@ -486,22 +485,29 @@ class Mailchimp
         return $apiKey;
     }
 
-    // TODO move these to request class
-
-    public function finalizeRequest($response)
+    /**
+     * @param $endpoint
+     * @param array $params
+     * @return MailchimpResponse
+     * @throws Library_Exception
+     */
+    protected function postToActionEndpoint($endpoint, $params =[])
     {
-        if (self::DEBUGGER == true) {
-            return Utilities::debug(
-                $this->url, 
-                $this->http_code,
-                $this->apikey,
-                $response
-            );
-        } else {
-            return Utilities::validateResponse($response);
+        $this->request->appendToEndpoint($endpoint);
+        $this->request->setMethod(MailchimpRequest::POST);
+        if (!empty($params)) {
+            $this->request->setPayload($params);
         }
+
+        $connection = new MailchimpConnection($this->request, $this->settings);
+        $response = $connection->execute();
+        $this->resetRequest();
+        return $response;
     }
 
+    /**
+     * @throws Library_Exception
+     */
     protected function resetRequest()
     {
         if (isset($this->request)) {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Mailchimp_API\Ecommerce_Stores;
+namespace MailchimpAPI\EcommerceStores;
 
-use Mailchimp_API\Ecommerce_Stores;
+use MailchimpAPI\EcommerceStores;
 
-class Customers extends Ecommerce_Stores
+class Customers extends EcommerceStores
 {
 
     public $class_input;
@@ -21,15 +21,14 @@ class Customers extends Ecommerce_Stores
         'opt_in_status'
     ];
 
-    function __construct($apikey, $parent_resource, $class_input)
+    public function __construct($apikey, $parent_resource, $class_input)
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->url .= '/customers/' . $class_input;
+            $this->request->appendToEndpoint('/customers/' . $class_input);
         } else {
-            $this->url .= '/customers/';
+            $this->request->appendToEndpoint('/customers/');
         }
-
         $this->class_input = $class_input;
     }
 

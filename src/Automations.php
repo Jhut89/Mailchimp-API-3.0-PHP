@@ -1,21 +1,39 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Automations\Emails\Emails;
-use Mailchimp_API\Automations\Removed_Subscribers;
-use Mailchimp_API\Utilities\MailchimpConnection;
-use Mailchimp_API\Utilities\MailchimpRequest;
+use MailchimpAPI\Automations\Emails\Emails;
+use MailchimpAPI\Automations\RemovedSubscribers;
+use MailchimpAPI\Utilities\MailchimpConnection;
+use MailchimpAPI\Utilities\MailchimpRequest;
 
+/**
+ * Class Automations
+ * @package Mailchimp_API
+ */
 class Automations extends Mailchimp
 {
+    /**
+     * A workflow ID
+     */
     public $subclass_resource;
 
-    //SUBCLASS INSTANTIATIONS
+    /**
+     * @var RemovedSubscribers
+     */
     public $removed_subs;
+    /**
+     * @var Emails
+     */
     public $emails;
 
-    function __construct($apikey, $class_input = null)
+    /**
+     * Automations constructor.
+     * @param $apikey
+     * @param null $class_input
+     * @throws Library_Exception
+     */
+    public function __construct($apikey, $class_input = null)
     {
         parent::__construct($apikey);
         if ($class_input) {
@@ -26,44 +44,51 @@ class Automations extends Mailchimp
         $this->subclass_resource = $class_input;
     }
 
-    public function PAUSE_ALL($exec = true)
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function pauseAll()
     {
-        $this->request->appendToEndpoint('/actions/pause-all-emails/');
-        $this->request->setMethod(MailchimpRequest::POST);
-
-        if ($exec) {
-            MailchimpConnection::makeRequest($this->request, $this->settings);
-            $response = $this->request->getResponse();
-            $this->resetRequest();
-            return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a workflow ID to pause all emails");
         }
+        return $this->postToActionEndpoint('/actions/pause-all-emails/');
     }
 
-    public function START_ALL($exec = true)
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function startAll()
     {
-        $this->request->appendToEndpoint('/actions/start-all-emails/');
-        $this->request->setMethod(MailchimpRequest::POST);
-
-        if ($exec) {
-            MailchimpConnection::makeRequest($this->request, $this->settings);
-            $response = $this->request->getResponse();
-            $this->resetRequest();
-            return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a workflow ID to start all emails");
         }
+        return $this->postToActionEndpoint('/actions/start-all-emails/');
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @return RemovedSubscribers
+     * @throws Library_Exception
+     */
     public function removedSubscribers()
     {
-        $this->removed_subs = new Removed_Subscribers(
+        $this->removed_subs = new RemovedSubscribers(
             $this->apikey,
             $this->subclass_resource
         );
         return $this->removed_subs;
     }
 
-    public function emails( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Emails
+     * @throws Library_Exception
+     */
+    public function emails($class_input = null)
     {
         $this->emails = new Emails(
             $this->apikey,
@@ -72,5 +97,4 @@ class Automations extends Mailchimp
         );
         return $this->emails;
     }
-
 }

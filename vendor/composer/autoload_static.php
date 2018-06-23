@@ -21,8 +21,8 @@ class ComposerStaticInita3dbe4f186a460631be77a84c606c332
         ),
         'M' => 
         array (
-            'Mailchimp_Tests\\' => 16,
-            'Mailchimp_API\\' => 14,
+            'MailchimpTests\\' => 15,
+            'MailchimpAPI\\' => 13,
         ),
         'D' => 
         array (
@@ -42,11 +42,11 @@ class ComposerStaticInita3dbe4f186a460631be77a84c606c332
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'Mailchimp_Tests\\' => 
+        'MailchimpTests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
         ),
-        'Mailchimp_API\\' => 
+        'MailchimpAPI\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

@@ -1,9 +1,9 @@
 <?php
 
-namespace Mailchimp_API\Reports;
+namespace MailchimpAPI\Reports;
 
-use Mailchimp_API\Reports;
-use Mailchimp_API\Reports\Click_Reports\Members;
+use MailchimpAPI\Reports;
+use MailchimpAPI\Reports\Click_Reports\Members;
 
 class Click_Reports extends Reports
 {

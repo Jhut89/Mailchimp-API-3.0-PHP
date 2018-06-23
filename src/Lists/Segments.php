@@ -1,9 +1,9 @@
 <?php
 
-namespace Mailchimp_API\Lists;
+namespace MailchimpAPI\Lists;
 
-use Mailchimp_API\Lists;
-use Mailchimp_API\Lists\Segments\Members;
+use MailchimpAPI\Lists;
+use MailchimpAPI\Lists\Segments\Members;
 
 class Segments extends Lists
 {

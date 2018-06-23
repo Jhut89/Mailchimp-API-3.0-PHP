@@ -1,9 +1,9 @@
 <?php
 
-namespace Mailchimp_API\Utilities;
+namespace MailchimpAPI\Utilities;
 
-use Mailchimp_API\Library_Exception;
-use Mailchimp_API\Utilities;
+use MailchimpAPI\Library_Exception;
+use MailchimpAPI\Utilities;
 
 /**
  * Class MailchimpRequest
@@ -217,7 +217,7 @@ class MailchimpRequest
     }
 
     /**
-     * @param mixed $data_center
+     * @param mixed $base_url
      */
     public function setBaseUrl($base_url)
     {

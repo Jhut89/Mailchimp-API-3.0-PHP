@@ -1,6 +1,6 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
 class Template_Folders extends Mailchimp
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API\Campaigns;
+namespace MailchimpAPI\Campaigns;
 
-use Mailchimp_API\Campaigns;
+use MailchimpAPI\Campaigns;
 
 class Feedback extends Campaigns
 {
@@ -14,14 +14,13 @@ class Feedback extends Campaigns
         'message'
     ];
 
-    function __construct($apikey, $parent_input, $class_input)
+    public function __construct($apikey, $parent_input, $class_input)
     {
         parent::__construct($apikey, $parent_input);
         if ($class_input) {
-            $this->url .= '/feedback/' . $class_input;
+            $this->request->appendToEndpoint('/feedback/' . $class_input);
         } else {
-            $this->url .= '/feedback/';
+            $this->request->appendToEndpoint('/feedback/');
         }
-
     }
 }

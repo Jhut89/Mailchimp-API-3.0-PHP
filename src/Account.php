@@ -1,10 +1,20 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
+/**
+ * Class Account
+ * is a representation of the root of the mailchimp api
+ * @package Mailchimp_API
+ */
 class Account extends Mailchimp
 {
-    function __construct($apikey)
+    /**
+     * Account constructor.
+     * @param $apikey
+     * @throws Library_Exception
+     */
+    public function __construct($apikey)
     {
         parent::__construct($apikey);
             $this->request->appendToEndpoint('/');

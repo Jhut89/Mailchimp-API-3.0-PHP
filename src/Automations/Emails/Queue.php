@@ -1,21 +1,36 @@
 <?php
 
-namespace Mailchimp_API\Automations\Emails;
+namespace MailchimpAPI\Automations\Emails;
 
+/**
+ * Class Queue
+ * @package Mailchimp_API\Automations\Emails
+ */
 class Queue extends Emails
 {
-    //REQUIRED FIELDS DEFINITIONS
+
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'email_address'
     ];
 
-    function __construct($apikey, $parent_reference, $grandchild_resource, $member)
+    /**
+     * Queue constructor.
+     * @param $apikey
+     * @param $parent_reference
+     * @param $grandchild_resource
+     * @param string $member An email address
+     * @throws \MailchimpAPI\Library_Exception
+     */
+    public function __construct($apikey, $parent_reference, $grandchild_resource, $member)
     {
         parent::__construct($apikey, $parent_reference, $grandchild_resource);
-        if (isset($member)) {
-            $this->url .= '/queue/' . md5(strtolower($member));
+        if ($member) {
+            $this->request->appendToEndpoint('/queue/' . md5(strtolower($member)));
         } else {
-            $this->url .= '/queue/';
+            $this->request->appendToEndpoint('/queue/');
         }
     }
 }

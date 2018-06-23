@@ -1,14 +1,14 @@
 <?php
 
-namespace Mailchimp_API\Campaigns;
+namespace MailchimpAPI\Campaigns;
 
-use Mailchimp_API\Campaigns;
+use MailchimpAPI\Campaigns;
 
 class Content extends Campaigns
 {
-    function __construct($apikey, $parent_input)
+    public function __construct($apikey, $parent_input)
     {
         parent::__construct($apikey, $parent_input);
-        $this->url .= '/content/';
+        $this->request->appendToEndpoint('/content/');
     }
 }

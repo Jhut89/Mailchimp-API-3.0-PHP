@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Templates\Default_Content;
+use MailchimpAPI\Templates\Default_Content;
 
 class Templates extends Mailchimp
 {

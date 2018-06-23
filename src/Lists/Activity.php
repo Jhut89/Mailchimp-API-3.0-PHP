@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API\Lists;
+namespace MailchimpAPI\Lists;
 
-use Mailchimp_API\Lists;
+use MailchimpAPI\Lists;
 
 class Activity extends Lists
 {

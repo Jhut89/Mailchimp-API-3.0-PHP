@@ -1,6 +1,6 @@
 <?php
 
-namespace Mailchimp_API\Utilities;
+namespace MailchimpAPI\Utilities;
 
 
 /**

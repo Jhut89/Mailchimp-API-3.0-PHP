@@ -1,152 +1,196 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Campaigns\Content;
-use Mailchimp_API\Campaigns\Feedback;
-use Mailchimp_API\Campaigns\Send_Checklist;
+use MailchimpAPI\Campaigns\Content;
+use MailchimpAPI\Campaigns\Feedback;
+use MailchimpAPI\Campaigns\SendChecklist;
 
+/**
+ * Class Campaigns
+ * @package Mailchimp_API
+ */
 class Campaigns extends Mailchimp
 {
 
+    /**
+     * @var
+     */
     public $subclass_resource;
 
     //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'type',
         'settings'
     ];
+    /**
+     * @var array
+     */
     public $req_patch_params = [
         'settings'
     ];
 
     //SUBCLASS INSTANTIATIONS
+    /**
+     * @var SendChecklist
+     */
     public $checklist;
+    /**
+     * @var Feedback
+     */
     public $feedback;
+    /**
+     * @var Content
+     */
     public $content;
 
-    function __construct($apikey, $class_input)
+    /**
+     * Campaigns constructor.
+     * @param $apikey
+     * @param $class_input
+     * @throws Library_Exception
+     */
+    public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->url .= '/campaigns/' . $class_input;
+            $this->request->appendToEndpoint('/campaigns/' . $class_input);
         } else {
-            $this->url .= '/campaigns/';
+            $this->request->appendToEndpoint('/campaigns/');
         }
         
         $this->subclass_resource = $class_input;
-
     }
 
-    public function CANCEL()
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function cancel()
     {
-        $params = array();
-
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/cancel-send/';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to cancel");
+        }
+        return $this->postToActionEndpoint('/actions/cancel-send/');
     }
 
-    public function PAUSE()
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function pause()
     {
-        $params = array();
-
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/pause';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to pause");
+        }
+        return $this->postToActionEndpoint('/actions/pause');
     }
 
-    public function REPLICATE()
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function replicate()
     {
-        $params = array();
-
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/replicate';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to replicate");
+        }
+        return $this->postToActionEndpoint('/actions/replicate');
     }
 
-    public function RESUME()
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function resume()
     {
-        $params = array();
-
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/resume';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to resume");
+        }
+        return $this->postToActionEndpoint('/actions/resume');
     }
 
-    public function SCHEDULE($schedule_time, $optional_parameters = array())
+    /**
+     * @param $schedule_time
+     * @param array $optional_parameters
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function schedule($schedule_time, $optional_parameters = [])
     {
-        $params = array("schedule_time" => $schedule_time);
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to schedule");
+        }
+        $params = ["schedule_time" => $schedule_time];
         $params = array_merge($params, $optional_parameters);
 
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/schedule';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        return $this->postToActionEndpoint('/actions/schedule', $params);
     }
 
-    public function SEND()
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function send()
     {
-        $params = array();
-
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/send';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to send");
+        }
+        return $this->postToActionEndpoint('/actions/send');
     }
 
-    public function TEST($test_addresses = array(), $send_type)
+    /**
+     * @param array $test_addresses
+     * @param $send_type
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function test($test_addresses, $send_type)
     {
-        $params = array("test_emails" => $test_addresses, "send_type" => $send_type);
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to test");
+        }
+        $params = ["test_emails" => $test_addresses, "send_type" => $send_type];
 
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/test';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        return $this->postToActionEndpoint('/actions/test', $params);
     }
 
-    public function UNSCHEDULE()
+    /**
+     * @return Utilities\MailchimpResponse
+     * @throws Library_Exception
+     */
+    public function unschedule()
     {
-        $params = array();
-
-        $payload = json_encode($params);
-        $url = $this->url . '/actions/unschedule';
-
-        $response = $this->curlPost($url, $payload);
-
-        return $response;
+        if (!$this->subclass_resource) {
+            throw new Library_Exception("You must provide a campaign ID to unschedule");
+        }
+        return $this->postToActionEndpoint('/actions/unschedule');
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @return SendChecklist
+     * @throws Library_Exception
+     */
     public function checklist()
     {
-        $this->checklist = new Send_Checklist(
+        $this->checklist = new SendChecklist(
             $this->apikey,
             $this->subclass_resource
         );
         return $this->checklist;
     }
 
-    public function feedback( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Feedback
+     * @throws Library_Exception
+     */
+    public function feedback($class_input = null)
     {
         $this->feedback = new Feedback(
             $this->apikey,
@@ -156,6 +200,10 @@ class Campaigns extends Mailchimp
         return $this->feedback;
     }
 
+    /**
+     * @return Content
+     * @throws Library_Exception
+     */
     public function content()
     {
         $this->content = new Content(

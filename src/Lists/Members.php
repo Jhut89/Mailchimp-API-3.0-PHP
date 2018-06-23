@@ -1,11 +1,11 @@
 <?php
 
-namespace Mailchimp_API\Lists;
+namespace MailchimpAPI\Lists;
 
-use Mailchimp_API\Lists;
-use Mailchimp_API\Lists\Members\Notes;
-use Mailchimp_API\Lists\Members\Goals;
-use Mailchimp_API\Lists\Members\Activity;
+use MailchimpAPI\Lists;
+use MailchimpAPI\Lists\Members\Notes;
+use MailchimpAPI\Lists\Members\Goals;
+use MailchimpAPI\Lists\Members\Activity;
 
 class Members extends Lists
 {

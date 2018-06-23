@@ -1,6 +1,6 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
 class File_Manager_Files extends Mailchimp
 {

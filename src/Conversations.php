@@ -1,25 +1,40 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Conversations\Messages;
+use MailchimpAPI\Conversations\Messages;
 
+/**
+ * Class Conversations
+ * @package Mailchimp_API
+ */
 class Conversations extends Mailchimp
 {
 
+    /**
+     * @var
+     */
     public $subclass_resource;
 
-    // SUBCLASS INSTANTIATIONS
+    /**
+     * @var Messages
+     */
     public $messages;
 
-    function __construct($apikey, $class_input)
+    /**
+     * Conversations constructor.
+     * @param $apikey
+     * @param $class_input
+     * @throws Library_Exception
+     */
+    public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->url .= '/conversations/' . $class_input;
+            $this->request->appendToEndpoint('/conversations/' . $class_input);
         } else {
-            $this->url .= '/conversations/';
+            $this->request->appendToEndpoint('/conversations/');
         }
         
         $this->subclass_resource = $class_input;
@@ -27,7 +42,12 @@ class Conversations extends Mailchimp
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function messages( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return Messages
+     * @throws Library_Exception
+     */
+    public function messages($class_input = null)
     {
         $this->messages = new Messages(
             $this->apikey,

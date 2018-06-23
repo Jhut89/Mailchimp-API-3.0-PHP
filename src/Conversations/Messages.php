@@ -1,8 +1,8 @@
 <?php
 
-namespace Mailchimp_API\Conversations;
+namespace MailchimpAPI\Conversations;
 
-use Mailchimp_API\Conversations;
+use MailchimpAPI\Conversations;
 
 class Messages extends Conversations
 {
@@ -11,14 +11,14 @@ class Messages extends Conversations
         'read'
     ];
 
-    function __construct($apikey, $parent_input, $class_input)
+    public function __construct($apikey, $parent_input, $class_input)
     {
         parent::__construct($apikey, $parent_input);
 
         if ($class_input) {
-            $this->url .= '/messages/' . $class_input;
+            $this->request->appendToEndpoint('/messages/' . $class_input);
         } else {
-            $this->url .= '/messages/';
+            $this->request->appendToEndpoint('/messages/');
         }
     }
 }

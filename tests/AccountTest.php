@@ -1,6 +1,6 @@
 <?php
 
-use Mailchimp_Tests\MailChimpTestCase;
+use MailchimpTests\MailChimpTestCase;
 
 final class AccountTest extends MailChimpTestCase
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace Mailchimp_API;
+namespace MailchimpAPI;
 
-use Mailchimp_API\Reports\Campaign_Abuse;
-use Mailchimp_API\Reports\Campaign_Advice;
-use Mailchimp_API\Reports\Click_Reports;
-use Mailchimp_API\Reports\Domain_Performance;
-use Mailchimp_API\Reports\Eepurl_Reports;
-use Mailchimp_API\Reports\Email_Activity;
-use Mailchimp_API\Reports\Sent_To;
-use Mailchimp_API\Reports\Sub_Reports;
-use Mailchimp_API\Reports\Top_Locations;
-use Mailchimp_API\Reports\Unsubscribes;
+use MailchimpAPI\Reports\Campaign_Abuse;
+use MailchimpAPI\Reports\Campaign_Advice;
+use MailchimpAPI\Reports\Click_Reports;
+use MailchimpAPI\Reports\Domain_Performance;
+use MailchimpAPI\Reports\Eepurl_Reports;
+use MailchimpAPI\Reports\Email_Activity;
+use MailchimpAPI\Reports\Sent_To;
+use MailchimpAPI\Reports\Sub_Reports;
+use MailchimpAPI\Reports\Top_Locations;
+use MailchimpAPI\Reports\Unsubscribes;
 
 class Reports extends Mailchimp
 {
