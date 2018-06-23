@@ -2,16 +2,29 @@
 
 namespace MailchimpAPI;
 
+/**
+ * Class AuthorizedApps
+ * @package MailchimpAPI
+ */
 class AuthorizedApps extends Mailchimp
 {
 
-    //REQUIRED FIELDS DEFINITIONS
+
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'client_id',
         'client_secret'
     ];
 
 
+    /**
+     * AuthorizedApps constructor.
+     * @param $apikey
+     * @param $class_input
+     * @throws MailchimpException
+     */
     public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);

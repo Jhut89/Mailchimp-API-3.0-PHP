@@ -3,11 +3,12 @@
 namespace MailchimpAPI;
 
 /**
- * Class TemplateFolders
+ * Class FileManagerFolders
  * @package MailchimpAPI
  */
-class TemplateFolders extends Mailchimp
-{
+class FileManagerFolders extends Mailchimp {
+
+
     /**
      * @var array
      */
@@ -22,7 +23,7 @@ class TemplateFolders extends Mailchimp
     ];
 
     /**
-     * TemplateFolders constructor.
+     * FileManagerFolders constructor.
      * @param $apikey
      * @param $class_input
      * @throws MailchimpException
@@ -32,9 +33,9 @@ class TemplateFolders extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/template-folders/' . $class_input);
+            $this->request->appendToEndpoint('/file-manager/folders/' . $class_input);
         } else {
-            $this->request->appendToEndpoint('/template-folders/');
+            $this->request->appendToEndpoint('/file-manager/folders/');
         }
     }
 }

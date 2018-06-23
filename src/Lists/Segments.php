@@ -2,7 +2,7 @@
 
 namespace MailchimpAPI\Lists;
 
-use MailchimpAPI\Library_Exception;
+use MailchimpAPI\MailchimpException;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Segments\Members;
 
@@ -41,7 +41,7 @@ class Segments extends Lists
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $parent_resource, $class_input)
     {
@@ -58,12 +58,12 @@ class Segments extends Lists
      * @param array $add
      * @param array $remove
      * @return \MailchimpAPI\Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function batch($add = [], $remove = [])
     {
         if (!$this->grandchild_resource) {
-            throw new Library_Exception("You must provide a segment ID to Batch");
+            throw new MailchimpException("You must provide a segment ID to Batch");
         }
         $params = ['members_to_add' => $add, 'members_to_remove' => $remove];
 
@@ -76,7 +76,7 @@ class Segments extends Lists
     /**
      * @param null $class_input
      * @return \MailchimpAPI\Lists\Members|Members
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function members($class_input = null)
     {

@@ -2,13 +2,26 @@
 
 namespace MailchimpAPI;
 
+/**
+ * Class BatchOperations
+ * @package MailchimpAPI
+ */
 class BatchOperations extends Mailchimp
 {
-    //REQUIRED FIELDS DEFINITIONS
+
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'operations'
     ];
 
+    /**
+     * BatchOperations constructor.
+     * @param $apikey
+     * @param $class_input
+     * @throws MailchimpException
+     */
     public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);

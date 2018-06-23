@@ -22,7 +22,7 @@ class Queue extends Emails
      * @param $parent_reference
      * @param $grandchild_resource
      * @param string $member An email address
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct($apikey, $parent_reference, $grandchild_resource, $member)
     {

@@ -11,7 +11,7 @@ use MailchimpAPI\EcommerceStores\Carts;
 class Lines extends Carts
 {
 
-    //REQUIRED FIELDS DEFINITIONS
+
     /**
      * @var array
      */
@@ -42,7 +42,7 @@ class Lines extends Carts
      * @param $parent_resource
      * @param $grandparent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct(
         $apikey,

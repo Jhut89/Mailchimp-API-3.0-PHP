@@ -31,7 +31,7 @@ class Automations extends Mailchimp
      * Automations constructor.
      * @param $apikey
      * @param null $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input = null)
     {
@@ -46,24 +46,24 @@ class Automations extends Mailchimp
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function pauseAll()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a workflow ID to pause all emails");
+            throw new MailchimpException("You must provide a workflow ID to pause all emails");
         }
         return $this->postToActionEndpoint('/actions/pause-all-emails/');
     }
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function startAll()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a workflow ID to start all emails");
+            throw new MailchimpException("You must provide a workflow ID to start all emails");
         }
         return $this->postToActionEndpoint('/actions/start-all-emails/');
     }
@@ -72,7 +72,7 @@ class Automations extends Mailchimp
 
     /**
      * @return RemovedSubscribers
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function removedSubscribers()
     {
@@ -86,7 +86,7 @@ class Automations extends Mailchimp
     /**
      * @param null $class_input
      * @return Emails
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function emails($class_input = null)
     {

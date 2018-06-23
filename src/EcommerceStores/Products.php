@@ -44,7 +44,7 @@ class Products extends EcommerceStores
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct($apikey, $parent_resource, $class_input)
     {
@@ -65,7 +65,7 @@ class Products extends EcommerceStores
     /**
      * @param null $class_input
      * @return Variants
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function variants($class_input = null)
     {
@@ -82,7 +82,7 @@ class Products extends EcommerceStores
     /**
      * @param null $class_input
      * @return Images
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function images($class_input = null)
     {

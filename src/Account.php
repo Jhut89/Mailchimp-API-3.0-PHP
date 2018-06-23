@@ -12,7 +12,7 @@ class Account extends Mailchimp
     /**
      * Account constructor.
      * @param $apikey
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey)
     {

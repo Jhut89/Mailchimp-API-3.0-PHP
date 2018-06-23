@@ -4,7 +4,7 @@ namespace MailchimpAPI\Automations\Emails;
 
 use MailchimpAPI\Automations;
 use MailchimpAPI\Utilities\MailchimpConnection;
-use MailchimpAPI\Library_Exception;
+use MailchimpAPI\MailchimpException;
 use MailchimpAPI\Utilities\MailchimpRequest;
 
 /**
@@ -29,7 +29,7 @@ class Emails extends Automations
      * @param $apikey
      * @param $parent_reference
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct($apikey, $parent_reference, $class_input)
     {
@@ -45,12 +45,12 @@ class Emails extends Automations
 
     /**
      * @return \MailchimpAPI\Utilities\MailchimpResponse
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function pause()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide an email ID to pause an email");
+            throw new MailchimpException("You must provide an email ID to pause an email");
         }
         $this->request->appendToEndpoint('/actions/pause');
         $this->request->setMethod(MailchimpRequest::POST);
@@ -64,12 +64,12 @@ class Emails extends Automations
 
     /**
      * @return \MailchimpAPI\Utilities\MailchimpResponse
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function start()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide an email ID to start an email");
+            throw new MailchimpException("You must provide an email ID to start an email");
         }
         $this->request->appendToEndpoint('/actions/pause');
         $this->request->setMethod(MailchimpRequest::POST);
@@ -86,7 +86,7 @@ class Emails extends Automations
     /**
      * @param null $member
      * @return Queue
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function queue($member = null)
     {

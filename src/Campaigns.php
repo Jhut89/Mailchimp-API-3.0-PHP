@@ -18,7 +18,7 @@ class Campaigns extends Mailchimp
      */
     public $subclass_resource;
 
-    //REQUIRED FIELDS DEFINITIONS
+
     /**
      * @var array
      */
@@ -51,7 +51,7 @@ class Campaigns extends Mailchimp
      * Campaigns constructor.
      * @param $apikey
      * @param $class_input
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function __construct($apikey, $class_input)
     {
@@ -67,48 +67,48 @@ class Campaigns extends Mailchimp
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function cancel()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to cancel");
+            throw new MailchimpException("You must provide a campaign ID to cancel");
         }
         return $this->postToActionEndpoint('/actions/cancel-send/');
     }
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function pause()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to pause");
+            throw new MailchimpException("You must provide a campaign ID to pause");
         }
         return $this->postToActionEndpoint('/actions/pause');
     }
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function replicate()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to replicate");
+            throw new MailchimpException("You must provide a campaign ID to replicate");
         }
         return $this->postToActionEndpoint('/actions/replicate');
     }
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function resume()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to resume");
+            throw new MailchimpException("You must provide a campaign ID to resume");
         }
         return $this->postToActionEndpoint('/actions/resume');
     }
@@ -117,12 +117,12 @@ class Campaigns extends Mailchimp
      * @param $schedule_time
      * @param array $optional_parameters
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function schedule($schedule_time, $optional_parameters = [])
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to schedule");
+            throw new MailchimpException("You must provide a campaign ID to schedule");
         }
         $params = ["schedule_time" => $schedule_time];
         $params = array_merge($params, $optional_parameters);
@@ -132,12 +132,12 @@ class Campaigns extends Mailchimp
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function send()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to send");
+            throw new MailchimpException("You must provide a campaign ID to send");
         }
         return $this->postToActionEndpoint('/actions/send');
     }
@@ -146,12 +146,12 @@ class Campaigns extends Mailchimp
      * @param array $test_addresses
      * @param $send_type
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function test($test_addresses, $send_type)
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to test");
+            throw new MailchimpException("You must provide a campaign ID to test");
         }
         $params = ["test_emails" => $test_addresses, "send_type" => $send_type];
 
@@ -160,12 +160,12 @@ class Campaigns extends Mailchimp
 
     /**
      * @return Utilities\MailchimpResponse
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function unschedule()
     {
         if (!$this->subclass_resource) {
-            throw new Library_Exception("You must provide a campaign ID to unschedule");
+            throw new MailchimpException("You must provide a campaign ID to unschedule");
         }
         return $this->postToActionEndpoint('/actions/unschedule');
     }
@@ -174,7 +174,7 @@ class Campaigns extends Mailchimp
 
     /**
      * @return SendChecklist
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function checklist()
     {
@@ -188,7 +188,7 @@ class Campaigns extends Mailchimp
     /**
      * @param null $class_input
      * @return Feedback
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function feedback($class_input = null)
     {
@@ -202,7 +202,7 @@ class Campaigns extends Mailchimp
 
     /**
      * @return Content
-     * @throws Library_Exception
+     * @throws MailchimpException
      */
     public function content()
     {

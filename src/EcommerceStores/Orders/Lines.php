@@ -11,7 +11,7 @@ use MailchimpAPI\EcommerceStores\Orders;
 class Lines extends Orders
 {
 
-    //REQUIRED FIELDS DEFINITIONS
+
     /**
      * @var array
      */
@@ -41,7 +41,7 @@ class Lines extends Orders
      * @param $parent_resource
      * @param $grandparent_resource
      * @param $class_input
-     * @throws \MailchimpAPI\Library_Exception
+     * @throws \MailchimpAPI\MailchimpException
      */
     public function __construct(
         $apikey,
