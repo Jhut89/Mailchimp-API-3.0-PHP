@@ -1,5 +1,7 @@
 <?php
 
+namespace MailchimpTests\UtilityTests;
+
 use MailchimpAPI\Utilities\MailchimpRequest;
 use MailchimpTests\MailChimpTestCase;
 
