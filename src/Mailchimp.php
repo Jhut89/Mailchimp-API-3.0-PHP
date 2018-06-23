@@ -88,15 +88,15 @@ class Mailchimp
      */
     public $reports;
     /**
-     * @var Search_Campaigns
+     * @var SearchCampaigns
      */
     public $search_campaigns;
     /**
-     * @var Search_Members
+     * @var SearchMembers
      */
     public $search_members;
     /**
-     * @var Template_Folders
+     * @var TemplateFolders
      */
     public $template_folders;
     /**
@@ -268,34 +268,34 @@ class Mailchimp
 
     /**
      * @param null $class_input
-     * @return Search_Campaigns
+     * @return SearchCampaigns
      * @throws Library_Exception
      */
     public function searchCampaigns($class_input = null)
     {
-        $this->search_campaigns = new Search_Campaigns($this->apikey, $class_input);
+        $this->search_campaigns = new SearchCampaigns($this->apikey, $class_input);
         return $this->search_campaigns;
     }
 
     /**
      * @param null $class_input
-     * @return Search_Members
+     * @return SearchMembers
      * @throws Library_Exception
      */
     public function searchMembers($class_input = null)
     {
-        $this->search_members = new Search_Members($this->apikey, $class_input);
+        $this->search_members = new SearchMembers($this->apikey, $class_input);
         return $this->search_members;
     }
 
     /**
      * @param null $class_input
-     * @return Template_Folders
+     * @return TemplateFolders
      * @throws Library_Exception
      */
     public function templateFolders($class_input = null)
     {
-        $this->template_folders = new Template_Folders($this->apikey, $class_input);
+        $this->template_folders = new TemplateFolders($this->apikey, $class_input);
         return $this->template_folders;
     }
 

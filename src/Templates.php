@@ -2,49 +2,71 @@
 
 namespace MailchimpAPI;
 
-use MailchimpAPI\Templates\Default_Content;
+use MailchimpAPI\Templates\DefaultContent;
 
+/**
+ * Class Templates
+ * @package MailchimpAPI
+ */
 class Templates extends Mailchimp
 {
 
+    /**
+     * @var string
+     */
     public $subclass_resource;
 
-    //REQUIRED FIELDS DEFINITIONS
+    /**
+     * @var array
+     */
     public $req_post_params = [
         'name',
         'html'
     ];
+    /**
+     * @var array
+     */
     public $req_patch_params = [
         'name',
         'html'
     ];
 
-    //SUBCLASS INSTANTIATIONS
+    /**
+     * @var DefaultContent
+     */
     public $default_content;
 
-    function __construct($apikey, $class_input)
+    /**
+     * Templates constructor.
+     * @param $apikey
+     * @param $class_input
+     * @throws Library_Exception
+     */
+    public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey);
-
         if ($class_input) {
-            $this->url .= '/templates/' . $class_input;
+            $this->request->appendToEndpoint('/templates/' . $class_input);
         } else {
-            $this->url .= '/templates/';
+            $this->request->appendToEndpoint('/templates/');
         }
-      
         $this->subclass_resource = $class_input;
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
-    public function defaultContent( $class_input = null )
+    /**
+     * @param null $class_input
+     * @return DefaultContent
+     * @throws Library_Exception
+     */
+    public function defaultContent($class_input = null)
     {
-        $this->default_content = new Default_Content(
+        $this->default_content = new DefaultContent(
             $this->apikey,
             $this->subclass_resource,
             $class_input
         );
         return $this->default_content;
     }
-
 }
