@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the phpunit-mock-objects package.
+ * This file is part of the PHPUnit_MockObject package.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -8,10 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\MockObject\MockBuilder;
-
-class MockBuilderTest extends TestCase
+class Framework_MockBuilderTest extends PHPUnit_Framework_TestCase
 {
     public function testMockBuilderRequiresClassName()
     {
@@ -124,6 +121,6 @@ class MockBuilderTest extends TestCase
                      ->disableOriginalClone()
                      ->disableAutoload();
 
-        $this->assertTrue($spec instanceof MockBuilder);
+        $this->assertTrue($spec instanceof PHPUnit_Framework_MockObject_MockBuilder);
     }
 }

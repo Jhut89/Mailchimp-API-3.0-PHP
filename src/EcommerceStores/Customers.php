@@ -50,5 +50,4 @@ class Customers extends EcommerceStores
         }
         $this->class_input = $class_input;
     }
-
 }

@@ -38,5 +38,4 @@ class CampaignFolders extends Mailchimp
             $this->request->appendToEndpoint('/campaign-folders/');
         }
     }
-
 }

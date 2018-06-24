@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /*
  * This file is part of sebastian/diff.
  *
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers SebastianBergmann\Diff\Line
  */
-final class LineTest extends TestCase
+class LineTest extends TestCase
 {
     /**
      * @var Line
@@ -29,16 +29,16 @@ final class LineTest extends TestCase
 
     public function testCanBeCreatedWithoutArguments()
     {
-        $this->assertInstanceOf(Line::class, $this->line);
+        $this->assertInstanceOf('SebastianBergmann\Diff\Line', $this->line);
     }
 
     public function testTypeCanBeRetrieved()
     {
-        $this->assertSame(Line::UNCHANGED, $this->line->getType());
+        $this->assertEquals(Line::UNCHANGED, $this->line->getType());
     }
 
     public function testContentCanBeRetrieved()
     {
-        $this->assertSame('', $this->line->getContent());
+        $this->assertEquals('', $this->line->getContent());
     }
 }

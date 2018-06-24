@@ -292,12 +292,18 @@ class CodeCoverageTest extends TestCase
             $coverage->getData()
         );
 
+        if (version_compare(\PHPUnit_Runner_Version::id(), '4.7', '>=')) {
+            $size = 'unknown';
+        } else {
+            $size = 'small';
+        }
+
         $this->assertEquals(
             [
-                'BankAccountTest::testBalanceIsInitiallyZero'       => ['size' => 'unknown', 'status' => null],
-                'BankAccountTest::testBalanceCannotBecomeNegative'  => ['size' => 'unknown', 'status' => null],
-                'BankAccountTest::testBalanceCannotBecomeNegative2' => ['size' => 'unknown', 'status' => null],
-                'BankAccountTest::testDepositWithdrawMoney'         => ['size' => 'unknown', 'status' => null]
+                'BankAccountTest::testBalanceIsInitiallyZero'       => ['size' => $size, 'status' => null],
+                'BankAccountTest::testBalanceCannotBecomeNegative'  => ['size' => $size, 'status' => null],
+                'BankAccountTest::testBalanceCannotBecomeNegative2' => ['size' => $size, 'status' => null],
+                'BankAccountTest::testDepositWithdrawMoney'         => ['size' => $size, 'status' => null]
             ],
             $coverage->getTests()
         );
@@ -424,6 +430,8 @@ class CodeCoverageTest extends TestCase
                 9,
                 10,
                 11,
+                12,
+                13,
                 14,
                 15,
                 16,
@@ -470,28 +478,7 @@ class CodeCoverageTest extends TestCase
         $this->coverage->setDisableIgnoredLines(true);
 
         $this->assertEquals(
-            [
-                7,
-                11,
-                12,
-                13,
-                16,
-                17,
-                18,
-                19,
-                20,
-                21,
-                22,
-                23,
-                26,
-                27,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37
-            ],
+            [],
             $this->getLinesToBeIgnored()->invoke(
                 $this->coverage,
                 TEST_FILES_PATH . 'source_with_ignore.php'

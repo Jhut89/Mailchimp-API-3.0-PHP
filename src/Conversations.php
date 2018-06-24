@@ -56,5 +56,4 @@ class Conversations extends Mailchimp
         );
         return $this->messages;
     }
-    
 }

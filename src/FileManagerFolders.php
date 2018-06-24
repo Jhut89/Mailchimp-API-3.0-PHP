@@ -6,7 +6,8 @@ namespace MailchimpAPI;
  * Class FileManagerFolders
  * @package MailchimpAPI
  */
-class FileManagerFolders extends Mailchimp {
+class FileManagerFolders extends Mailchimp
+{
 
 
     /**

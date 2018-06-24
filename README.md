@@ -1,18 +1,18 @@
-# MAILCHIMP API 3.0 PHP
+# MAILCHIMP API 3.0 PHP [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
 
-This is a PHP library for [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
+This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
 
 This library assumes a basic understanding of the MailChimp application and its associated functions. 
 
 ## Installation
-
-There are two ways you can include this library in your project. One is through Composer and the other is by cloning this repository and manually including `src/mailchimpRoot.php`.
 
 For Composer run:
 
 ```php
 composer require jhut89/mailchimp3php
 ```
+
+Alternatively you may add a require line to your projects `composer.json` for the package `jhut89/mailchimp3php`.
 
 Then run `composer update` and add composer autoloader to your project with:
 
@@ -31,7 +31,7 @@ To instantiate you will need a new instance of the `Mailchimp` class with your M
 
 If you are using [Oauth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token, this library can handle the "handshake" for you.
  
-You must first send the user to the `authorize_uri`. You can get this url like this:
+You must first send the user to your applications `authorize_uri`. You can get this url by calling the `Mailchimp::getAuthUrl()` statically:
 
 ```php 
 $client_id =   '12345676543';
@@ -40,9 +40,9 @@ $redirect_url =  'https://www.some-domain.com/callback_file.php';
 Mailchimp::getAuthUrl($client_id, $redirect_url);
 ```
 
-Then the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
+From there the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
 
-Since you do not yet have an API key you will need to call the `oauthExchange()` method statically like this:
+With that `code` you can now request an access token from mailchimp. You will need to call the `MAilchimp::oauthExchange()` method statically like this:
 
 ```php
 $code = 'abc123abc123abc123abc123';
@@ -61,25 +61,35 @@ If the handshake is successful, then this method will return a string containing
 Once you have instantiated the `Mailchimp` class you can start constructing requests. Constructing requests is done by 'chaining' methods to the `$mailchimp` instance. In most cases this 'chain' will end with the HTTP verb for your request. So an example of retrieving a lists collection would look like this:
 
 ```php
-$mailchimp->lists()->GET();
+$mailchimp
+    ->lists()
+    ->get();
 ```
 
 Retrieving an instance can be accomplished by giving a unique identifier for the instance you want as an argument to the appropriate method. For example if I wanted to retrieve a list instance from the above example I would simply pass a `list_id`, as the only argument for the `lists()` method. Like this:
 
 ```php
-$mailchimp->lists('1a2b3c4d')->GET();
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->get();
 ```
 
 Methods available for each position in the chain depend on what the prior method returns. For example if I wanted to retrieve subscribers from a list in my account I would:
 
 ```php
-$mailchimp->lists('1a2b3c4d')->members()->GET();
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members()
+    ->get();
 ```
 
 Notice that I provided a `list_id` to the `lists()` method, as there would be no way to retrieve a list of subscribers from a lists collection. The above request however will only return 10 subscriber instances from the members collection. This is because MailChimp's API uses pagination (documented [HERE](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/#parameters)) that defaults to `count=10` and `offset=0`. This library allows you to alter query string parameters by by passing them as an argument to the `GET()` method. We do this by providing an array of key-value pairs where the keys are the query parameter you wish to provide/alter and its value is the parameter's value. As an example if I wanted to retrieve the second 100 subscribers from my list I could:
 
 ```php
-$mailchimp->lists('1a2b3c4d')->members()->GET([ "count" => "100", "offset" => "100"]);
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members()
+    ->get([ "count" => "100", "offset" => "100"]);
 ```
 
 This would be equivalent to making a get request against:
@@ -91,7 +101,10 @@ Https://us0.api.mailchimp.com/3.0/lists/1a2b3c4d/members?count=100&offset=100
 Going a little further we can retrieve a single list member by giving the `members_hash` (md5 hash of lower-case address) to the `members()` method. Like this:
 
 ```php
-$mailchimp->lists('1a2b3c4d')->members('8bdbf060209f35b52087992a3cbdf4d7')->GET();
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members('8bdbf060209f35b52087992a3cbdf4d7')
+    ->get();
 ```
 
 ### POST
@@ -99,19 +112,36 @@ $mailchimp->lists('1a2b3c4d')->members('8bdbf060209f35b52087992a3cbdf4d7')->GET(
 While being able to retrieve data from your account is great we also need to be able to post new data. This can be done by calling the `POST()` method at the end of a chain. As an example subscribing an address to a list would look like this:
 
 ```php
-$post_params = ['email_address'=>'example@domain.com', 'status'=>'subscribed'];
+$post_params = [
+    'email_address'=>'example@domain.com', 
+    'status'=>'subscribed'
+];
 
-$mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members()
+    ->post($post_params);
 ```
 
 In this case I would not provide `members()` with an identifier as I want to post to its collection. Also notice that the post data is an array of key-value pairs representing what parameters I want to pass to the MailChimp API. Be sure that you provide all required fields for the endpoint you are posting to. Check [MailChimp's documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/lists/members/#create-post_lists_list_id_members) for what parameters are required. Non-required parameters can just be added to the post data, and MailChimp will ignore any that are unusable. To illustrate here is an example of adding a subscriber to a list with some non-required parameters:
 
 ```php
-$merge_values = array( "FNAME" => "John", "LNAME" => "Doe" );
+$merge_values = [
+    "FNAME" => "John",
+     "LNAME" => "Doe"
+];
 
-$post_params = array("email_address" => "example@domain.com", "status" => "subscribed", "email_type" => "html", "merge_fields" => $merge_values )
+$post_params = [
+    "email_address" => "example@domain.com", 
+    "status" => "subscribed", 
+    "email_type" => "html", 
+    "merge_fields" => $merge_values
+]
 
-$mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members()
+    ->post($post_params);
 ```
 
 ### PATCH/PUT
@@ -119,7 +149,10 @@ $mailchimp->lists('1a2b3c4d')->members()->POST($post_params);
 This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that represent the data you wish altered/provided to MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
 
 ```php
-$mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->PATCH( [ "merge_fields" => ["FNAME" => "Jane"] ] );
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members('a1167f5be2df7113beb69c95ebcdb2fd')
+    ->patch([ "merge_fields" => ["FNAME" => "Jane"]]);
 ```
 
 ### DELETE
@@ -127,7 +160,10 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->PATC
 Deleting a record from MailChimp is performed with the `DELETE()` method and is constructed similar to GET requests. If I wanted to delete the above subscriber I would:
 
 ```php
-$mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELETE();
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members('a1167f5be2df7113beb69c95ebcdb2fd')
+    ->delete();
 ```
 
 ## Method Chart (\*excluding verbs)
@@ -145,8 +181,8 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
       |    |----emails()                
       |         |                       
       |         |---queue()             
-      |         |---PAUSE_ALL()         
-      |         |---START_ALL()         
+      |         |---pauseAll()         
+      |         |---startAll()         
       |                                 
       |----batches()                    
       |                                 
@@ -156,14 +192,14 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
       |                                 
       |----campaigns()                  
       |    |                            
-      |    |----CANCEL()                
-      |    |----PAUSE()                 
-      |    |----REPLICATE()             
-      |    |----RESUME()                
-      |    |----SCHEDULE()              
-      |    |----SEND()                  
-      |    |----TEST()                  
-      |    |----UNSCHEDULE()            
+      |    |----cancel()                
+      |    |----pause()                 
+      |    |----replicate()             
+      |    |----resume()                
+      |    |----scedule()              
+      |    |----send()                  
+      |    |----test()                  
+      |    |----unschedule()            
       |    |----checklist()             
       |    |----feedback()              
       |    |----content()               
@@ -194,7 +230,7 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
       |                                 
       |----lists()                      
       |    |                            
-      |    |----BATCH_SUB()             
+      |    |----batchSubscribe()             
       |    |----webhooks()              
       |    |----signupForms()           
       |    |----mergeFields()           
@@ -204,7 +240,7 @@ $mailchimp->lists('1a2b3c4d')->members('a1167f5be2df7113beb69c95ebcdb2fd')->DELE
       |    |----abuseReports()          
       |    |----segments()              
       |    |    |                       
-      |    |    |----BATCH()            
+      |    |    |----batch()            
       |    |    |----members()          
       |    |                            
       |    |----members()               

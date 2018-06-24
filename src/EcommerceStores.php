@@ -85,6 +85,7 @@ class EcommerceStores extends Mailchimp
     /**
      * @param null $class_input
      * @return Products
+     * @throws MailchimpException
      */
     public function products($class_input = null)
     {
@@ -125,5 +126,4 @@ class EcommerceStores extends Mailchimp
         );
         return $this->carts;
     }
-
 }

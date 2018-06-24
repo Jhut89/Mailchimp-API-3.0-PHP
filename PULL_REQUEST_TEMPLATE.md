@@ -1,10 +1,12 @@
-#### Description of change or the problem you would like to fix
-<hr />
+#### __**Description of change:**__
 
 
-#### Description of implementation
-<hr />
 
 
-#### Risks / Mitigations
-<hr />
+#### __**Description of implementation:**__
+
+
+
+
+#### __**Risks & Mitigation:**__
+
