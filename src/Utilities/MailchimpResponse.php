@@ -163,4 +163,13 @@ class MailchimpResponse
     {
         $this->raw = $raw;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
 }

@@ -89,7 +89,10 @@ Notice that I provided a `list_id` to the `lists()` method, as there would be no
 $mailchimp
     ->lists('1a2b3c4d')
     ->members()
-    ->get([ "count" => "100", "offset" => "100"]);
+    ->get([
+        "count" => "100", 
+        "offset" => "100"
+    ]);
 ```
 
 This would be equivalent to making a get request against:
@@ -105,6 +108,35 @@ $mailchimp
     ->lists('1a2b3c4d')
     ->members('8bdbf060209f35b52087992a3cbdf4d7')
     ->get();
+```
+
+### Handling A Response
+
+Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`. I suggest you become familiar with this class as there a a number of modifiers and getters for different pieces of a response.
+
+There are a number of getters we can use to interact with pieces our `MailchimpResponse` instance. Some of the more commonly used ones are:
+
+```php
+$response->deserialize(); // returns a deserialized (to php object) resource returned by API
+$response->getRaw(); // return the raw text response
+$response->getHttpCode(); // returns an integer representation of the HTTP response code
+$response->getHeaders(); // returns an array of headers in key => value format
+$response->getBody(); // return the raw text body of the response
+```
+
+As an example, if I have an API key but want the contact email associated with its account I would:
+
+```php
+$mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
+$account = $mailchimp
+    ->account()
+    ->get()
+    
+$email = $account
+    ->deserialize()
+    ->email
+    
+print $email; // outputs something like "example@domain.com"
 ```
 
 ### POST
