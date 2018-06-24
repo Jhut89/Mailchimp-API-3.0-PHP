@@ -98,5 +98,4 @@ class Emails extends Automations
         );
         return $this->queue;
     }
-    
 }

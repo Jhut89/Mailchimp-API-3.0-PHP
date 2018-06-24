@@ -7,7 +7,7 @@ $_SERVER['argv'][2] = 'FailureTest';
 $_SERVER['argv'][3] = __DIR__ . '/../_files/FailureTest.php';
 
 require __DIR__ . '/../bootstrap.php';
-PHPUnit\TextUI\Command::main();
+PHPUnit_TextUI_Command::main();
 --EXPECTF--
 PHPUnit %s by Sebastian Bergmann and contributors.
 
@@ -26,6 +26,7 @@ Failed asserting that two arrays are equal.
  Array (
 -    0 => 1
 +    0 => 2
+ )
 
 %s:%i
 
@@ -44,6 +45,7 @@ Failed asserting that two objects are equal.
  stdClass Object (
 -    'foo' => 'bar'
 +    'bar' => 'foo'
+ )
 
 %s:%i
 
@@ -70,15 +72,16 @@ Failed asserting that two strings are equal.
 --- Expected
 +++ Actual
 @@ @@
- 'foo\n
--bar\n
-+baz\n
+ 'foo
+-bar
++baz
+ '
 
 %s:%i
 
 7) FailureTest::testAssertStringMatchesFormat
 message
-Failed asserting that string matches format description.
+Failed asserting that format description matches text.
 --- Expected
 +++ Actual
 @@ @@
@@ -99,8 +102,8 @@ Failed asserting that two strings are identical.
 --- Expected
 +++ Actual
 @@ @@
--'foo'
-+'bar'
+-foo
++bar
 
 %s:%i
 
@@ -123,11 +126,12 @@ Failed asserting that 1.5 is identical to 1.0.
 %s:%i
 
 13) FailureTest::testAssertStringMatchesFormatFile
-Failed asserting that string matches format description.
+Failed asserting that format description matches text.
 --- Expected
 +++ Actual
 @@ @@
 -FOO
+-
 +...BAR...
 
 %s:%i

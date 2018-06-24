@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of sebastian/comparator.
+ * This file is part of the Comparator package.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -18,9 +18,8 @@ class TypeComparator extends Comparator
     /**
      * Returns whether the comparator can compare two values.
      *
-     * @param mixed $expected The first value to compare
-     * @param mixed $actual   The second value to compare
-     *
+     * @param  mixed $expected The first value to compare
+     * @param  mixed $actual   The second value to compare
      * @return bool
      */
     public function accepts($expected, $actual)
@@ -41,7 +40,7 @@ class TypeComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0.0, $canonicalize = false, $ignoreCase = false)
     {
-        if (\gettype($expected) != \gettype($actual)) {
+        if (gettype($expected) != gettype($actual)) {
             throw new ComparisonFailure(
                 $expected,
                 $actual,
@@ -49,10 +48,10 @@ class TypeComparator extends Comparator
                 '',
                 '',
                 false,
-                \sprintf(
+                sprintf(
                     '%s does not match expected type "%s".',
                     $this->exporter->shortenedExport($actual),
-                    \gettype($expected)
+                    gettype($expected)
                 )
             );
         }

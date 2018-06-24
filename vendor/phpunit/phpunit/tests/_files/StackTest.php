@@ -1,15 +1,13 @@
 <?php
-use PHPUnit\Framework\TestCase;
-
-class StackTest extends TestCase
+class StackTest extends PHPUnit_Framework_TestCase
 {
     public function testPush()
     {
         $stack = [];
         $this->assertCount(0, $stack);
 
-        $stack[] = 'foo';
-        $this->assertEquals('foo', end($stack));
+        array_push($stack, 'foo');
+        $this->assertEquals('foo', $stack[count($stack)-1]);
         $this->assertCount(1, $stack);
 
         return $stack;

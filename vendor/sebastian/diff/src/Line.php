@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /*
  * This file is part of sebastian/diff.
  *
@@ -10,7 +10,7 @@
 
 namespace SebastianBergmann\Diff;
 
-final class Line
+class Line
 {
     const ADDED     = 1;
     const REMOVED   = 2;
@@ -26,18 +26,28 @@ final class Line
      */
     private $content;
 
-    public function __construct(int $type = self::UNCHANGED, string $content = '')
+    /**
+     * @param int    $type
+     * @param string $content
+     */
+    public function __construct($type = self::UNCHANGED, $content = '')
     {
         $this->type    = $type;
         $this->content = $content;
     }
 
-    public function getContent(): string
+    /**
+     * @return string
+     */
+    public function getContent()
     {
         return $this->content;
     }
 
-    public function getType(): int
+    /**
+     * @return int
+     */
+    public function getType()
     {
         return $this->type;
     }

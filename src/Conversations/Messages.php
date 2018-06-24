@@ -36,4 +36,3 @@ class Messages extends Conversations
         }
     }
 }
-

@@ -2,8 +2,8 @@
 class SampleClass
 {
     public $a;
-    public $b;
-    public $c;
+    protected $b;
+    protected $c;
 
     public function __construct($a, $b, $c)
     {

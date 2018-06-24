@@ -21,10 +21,12 @@ Due to time constraints, we are not always able to respond as quickly as we woul
 
 ## Coding Guidelines
 
-This project comes with a configuration file and an executable for [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) (`.php_cs`) that you can use to (re)format your sourcecode for compliance with this project's coding guidelines:
+This project comes with a configuration file for [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) (`.php_cs`) that you can use to (re)format your sourcecode for compliance with this project's coding guidelines:
 
 ```bash
-$ ./build/tools/php-cs-fixer fix
+$ wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O php-cs-fixer.phar
+
+$ php php-cs-fixer.phar fix
 ```
 
 ## Using PHPUnit from a Git checkout
@@ -64,6 +66,7 @@ Please use the most specific issue tracker to search for existing tickets and to
 * [General problems](https://github.com/sebastianbergmann/phpunit/issues)
 * [Code Coverage](https://github.com/sebastianbergmann/php-code-coverage/issues)
 * [Stub and Mock Objects](https://github.com/sebastianbergmann/phpunit-mock-objects/issues)
+* [DbUnit](https://github.com/sebastianbergmann/dbunit/issues)
 * [Documentation](https://github.com/sebastianbergmann/phpunit-documentation/issues)
 * [Website](https://github.com/sebastianbergmann/phpunit-website/issues)
 

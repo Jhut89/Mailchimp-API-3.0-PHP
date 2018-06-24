@@ -88,14 +88,14 @@ class File extends Renderer
                 'name'                         => 'Total',
                 'numClasses'                   => $node->getNumClassesAndTraits(),
                 'numTestedClasses'             => $node->getNumTestedClassesAndTraits(),
-                'numMethods'                   => $node->getNumFunctionsAndMethods(),
-                'numTestedMethods'             => $node->getNumTestedFunctionsAndMethods(),
+                'numMethods'                   => $node->getNumMethods(),
+                'numTestedMethods'             => $node->getNumTestedMethods(),
                 'linesExecutedPercent'         => $node->getLineExecutedPercent(false),
                 'linesExecutedPercentAsString' => $node->getLineExecutedPercent(),
                 'numExecutedLines'             => $node->getNumExecutedLines(),
                 'numExecutableLines'           => $node->getNumExecutableLines(),
-                'testedMethodsPercent'         => $node->getTestedFunctionsAndMethodsPercent(false),
-                'testedMethodsPercentAsString' => $node->getTestedFunctionsAndMethodsPercent(),
+                'testedMethodsPercent'         => $node->getTestedMethodsPercent(false),
+                'testedMethodsPercentAsString' => $node->getTestedMethodsPercent(),
                 'testedClassesPercent'         => $node->getTestedClassesAndTraitsPercent(false),
                 'testedClassesPercentAsString' => $node->getTestedClassesAndTraitsPercent(),
                 'crap'                         => '<abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr>'
@@ -131,23 +131,19 @@ class File extends Renderer
      */
     protected function renderTraitOrClassItems(array $items, \Text_Template $template, \Text_Template $methodItemTemplate)
     {
-        $buffer = '';
-
         if (empty($items)) {
-            return $buffer;
+            return '';
         }
 
+        $buffer = '';
+
         foreach ($items as $name => $item) {
-            $numMethods       = 0;
+            $numMethods       = count($item['methods']);
             $numTestedMethods = 0;
 
             foreach ($item['methods'] as $method) {
-                if ($method['executableLines'] > 0) {
-                    $numMethods++;
-
-                    if ($method['executedLines'] === $method['executableLines']) {
-                        $numTestedMethods++;
-                    }
+                if ($method['executedLines'] == $method['executableLines']) {
+                    $numTestedMethods++;
                 }
             }
 
@@ -248,29 +244,20 @@ class File extends Renderer
      */
     protected function renderFunctionOrMethodItem(\Text_Template $template, array $item, $indent = '')
     {
-        $numMethods       = 0;
-        $numTestedMethods = 0;
-
-        if ($item['executableLines'] > 0) {
-            $numMethods = 1;
-
-            if ($item['executedLines'] === $item['executableLines']) {
-                $numTestedMethods = 1;
-            }
-        }
+        $numTestedItems = $item['executedLines'] == $item['executableLines'] ? 1 : 0;
 
         return $this->renderItemTemplate(
             $template,
             [
-                'name'                         => \sprintf(
+                'name'                         => sprintf(
                     '%s<a href="#%d"><abbr title="%s">%s</abbr></a>',
                     $indent,
                     $item['startLine'],
-                    \htmlspecialchars($item['signature']),
+                    htmlspecialchars($item['signature']),
                     isset($item['functionName']) ? $item['functionName'] : $item['methodName']
                 ),
-                'numMethods'                   => $numMethods,
-                'numTestedMethods'             => $numTestedMethods,
+                'numMethods'                   => 1,
+                'numTestedMethods'             => $numTestedItems,
                 'linesExecutedPercent'         => Util::percent(
                     $item['executedLines'],
                     $item['executableLines'],
@@ -284,12 +271,12 @@ class File extends Renderer
                 'numExecutedLines'             => $item['executedLines'],
                 'numExecutableLines'           => $item['executableLines'],
                 'testedMethodsPercent'         => Util::percent(
-                    $numTestedMethods,
+                    $numTestedItems,
                     1,
                     false
                 ),
                 'testedMethodsPercentAsString' => Util::percent(
-                    $numTestedMethods,
+                    $numTestedItems,
                     1,
                     true
                 ),
@@ -316,8 +303,8 @@ class File extends Renderer
             $popoverContent = '';
             $popoverTitle   = '';
 
-            if (\array_key_exists($i, $coverageData)) {
-                $numTests = ($coverageData[$i] ? \count($coverageData[$i]) : 0);
+            if (array_key_exists($i, $coverageData)) {
+                $numTests = count($coverageData[$i]);
 
                 if ($coverageData[$i] === null) {
                     $trClass = ' class="warning"';
@@ -345,46 +332,39 @@ class File extends Renderer
                                 switch ($testData[$test]['size']) {
                                     case 'small':
                                         $testCSS = ' class="covered-by-small-tests"';
-
                                         break;
 
                                     case 'medium':
                                         $testCSS = ' class="covered-by-medium-tests"';
-
                                         break;
 
                                     default:
                                         $testCSS = ' class="covered-by-large-tests"';
-
                                         break;
                                 }
-
                                 break;
 
                             case 1:
                             case 2:
                                 $testCSS = ' class="warning"';
-
                                 break;
 
                             case 3:
                                 $testCSS = ' class="danger"';
-
                                 break;
 
                             case 4:
                                 $testCSS = ' class="danger"';
-
                                 break;
 
                             default:
                                 $testCSS = '';
                         }
 
-                        $popoverContent .= \sprintf(
+                        $popoverContent .= sprintf(
                             '<li%s>%s</li>',
                             $testCSS,
-                            \htmlspecialchars($test)
+                            htmlspecialchars($test)
                         );
                     }
 
@@ -394,16 +374,16 @@ class File extends Renderer
             }
 
             if (!empty($popoverTitle)) {
-                $popover = \sprintf(
+                $popover = sprintf(
                     ' data-title="%s" data-content="%s" data-placement="bottom" data-html="true"',
                     $popoverTitle,
-                    \htmlspecialchars($popoverContent)
+                    htmlspecialchars($popoverContent)
                 );
             } else {
                 $popover = '';
             }
 
-            $lines .= \sprintf(
+            $lines .= sprintf(
                 '     <tr%s%s><td><div align="right"><a name="%d"></a><a href="#%d">%d</a></div></td><td class="codeLine">%s</td></tr>' . "\n",
                 $trClass,
                 $popover,
@@ -426,28 +406,28 @@ class File extends Renderer
      */
     protected function loadFile($file)
     {
-        $buffer              = \file_get_contents($file);
-        $tokens              = \token_get_all($buffer);
+        $buffer              = file_get_contents($file);
+        $tokens              = token_get_all($buffer);
         $result              = [''];
         $i                   = 0;
         $stringFlag          = false;
-        $fileEndsWithNewLine = \substr($buffer, -1) == "\n";
+        $fileEndsWithNewLine = substr($buffer, -1) == "\n";
 
         unset($buffer);
 
         foreach ($tokens as $j => $token) {
-            if (\is_string($token)) {
+            if (is_string($token)) {
                 if ($token === '"' && $tokens[$j - 1] !== '\\') {
-                    $result[$i] .= \sprintf(
+                    $result[$i] .= sprintf(
                         '<span class="string">%s</span>',
-                        \htmlspecialchars($token)
+                        htmlspecialchars($token)
                     );
 
                     $stringFlag = !$stringFlag;
                 } else {
-                    $result[$i] .= \sprintf(
+                    $result[$i] .= sprintf(
                         '<span class="keyword">%s</span>',
-                        \htmlspecialchars($token)
+                        htmlspecialchars($token)
                     );
                 }
 
@@ -456,19 +436,19 @@ class File extends Renderer
 
             list($token, $value) = $token;
 
-            $value = \str_replace(
+            $value = str_replace(
                 ["\t", ' '],
                 ['&nbsp;&nbsp;&nbsp;&nbsp;', '&nbsp;'],
-                \htmlspecialchars($value, $this->htmlspecialcharsFlags)
+                htmlspecialchars($value, $this->htmlspecialcharsFlags)
             );
 
             if ($value === "\n") {
                 $result[++$i] = '';
             } else {
-                $lines = \explode("\n", $value);
+                $lines = explode("\n", $value);
 
                 foreach ($lines as $jj => $line) {
-                    $line = \trim($line);
+                    $line = trim($line);
 
                     if ($line !== '') {
                         if ($stringFlag) {
@@ -477,13 +457,11 @@ class File extends Renderer
                             switch ($token) {
                                 case T_INLINE_HTML:
                                     $colour = 'html';
-
                                     break;
 
                                 case T_COMMENT:
                                 case T_DOC_COMMENT:
                                     $colour = 'comment';
-
                                     break;
 
                                 case T_ABSTRACT:
@@ -543,7 +521,6 @@ class File extends Renderer
                                 case T_WHILE:
                                 case T_YIELD:
                                     $colour = 'keyword';
-
                                     break;
 
                                 default:
@@ -551,7 +528,7 @@ class File extends Renderer
                             }
                         }
 
-                        $result[$i] .= \sprintf(
+                        $result[$i] .= sprintf(
                             '<span class="%s">%s</span>',
                             $colour,
                             $line
@@ -566,7 +543,7 @@ class File extends Renderer
         }
 
         if ($fileEndsWithNewLine) {
-            unset($result[\count($result) - 1]);
+            unset($result[count($result)-1]);
         }
 
         return $result;
