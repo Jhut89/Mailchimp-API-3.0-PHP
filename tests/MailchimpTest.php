@@ -54,6 +54,6 @@ final class MailchimpTest extends MailChimpTestCase
 
     public function testAssertTrue()
     {
-        self::assertTrue(true);
+        self::assertTrue(false);
     }
 }
