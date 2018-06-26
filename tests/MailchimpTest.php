@@ -52,8 +52,9 @@ final class MailchimpTest extends MailChimpTestCase
         );
     }
 
-    public function testAssertTrue()
+    public function testStub()
     {
-        self::assertTrue(true);
+        $mc = $this->stubable_mailchimp;
+        var_dump($mc->get());
     }
 }

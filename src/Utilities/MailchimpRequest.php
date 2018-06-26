@@ -334,7 +334,7 @@ class MailchimpRequest
      * @param $exp_apikey
      * @throws MailchimpException
      */
-    public static function checkKey($exp_apikey)
+    public function checkKey($exp_apikey)
     {
 
         if (strlen($exp_apikey[0]) < 10) {

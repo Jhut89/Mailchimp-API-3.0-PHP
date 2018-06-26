@@ -4,8 +4,6 @@ namespace MailchimpAPI;
 
 use MailchimpAPI\Automations\Emails\Emails;
 use MailchimpAPI\Automations\RemovedSubscribers;
-use MailchimpAPI\Utilities\MailchimpConnection;
-use MailchimpAPI\Utilities\MailchimpRequest;
 
 /**
  * Class Automations

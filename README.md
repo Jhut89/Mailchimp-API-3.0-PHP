@@ -212,9 +212,9 @@ $mailchimp
       |    |----removedSubscribers()    
       |    |----emails()                
       |         |                       
-      |         |---queue()             
-      |         |---pauseAll()         
-      |         |---startAll()         
+      |         |---queue()*             
+      |         |---pauseAll()*         
+      |         |---startAll()*        
       |                                 
       |----batches()                    
       |                                 
@@ -224,14 +224,14 @@ $mailchimp
       |                                 
       |----campaigns()                  
       |    |                            
-      |    |----cancel()                
-      |    |----pause()                 
-      |    |----replicate()             
-      |    |----resume()                
-      |    |----scedule()              
-      |    |----send()                  
-      |    |----test()                  
-      |    |----unschedule()            
+      |    |----cancel()*                
+      |    |----pause()*                 
+      |    |----replicate()*             
+      |    |----resume()*                
+      |    |----scedule()*              
+      |    |----send()*                  
+      |    |----test()*                  
+      |    |----unschedule()*            
       |    |----checklist()             
       |    |----feedback()              
       |    |----content()               
@@ -262,7 +262,7 @@ $mailchimp
       |                                 
       |----lists()                      
       |    |                            
-      |    |----batchSubscribe()             
+      |    |----batchSubscribe()*             
       |    |----webhooks()              
       |    |----signupForms()           
       |    |----mergeFields()           
@@ -272,7 +272,7 @@ $mailchimp
       |    |----abuseReports()          
       |    |----segments()              
       |    |    |                       
-      |    |    |----batch()            
+      |    |    |----batch()*            
       |    |    |----members()          
       |    |                            
       |    |----members()               
@@ -316,6 +316,7 @@ $mailchimp
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 
+\** Methods marked with a `*` make a network request 
 ## Settings
 
 This library offers several setting that can be altered by changing the value of the class constants at the begining of the `Mailchimp` class in the `mailchimpRoot.php` file. Be sure to check them out to see if they can be altered to fit your project a little better.

@@ -171,5 +171,4 @@ class MailchimpResponse
     {
         return $this->body;
     }
-
 }
