@@ -33,7 +33,7 @@ class StubbableMailchimp extends Mailchimp
 
 
     /**
-     * StubbableMailchimp constructor.
+     * StubableMailchimp constructor.
      * @param $apikey
      * @param $mocked_connection
      * @throws \MailchimpAPI\MailchimpException
@@ -46,6 +46,8 @@ class StubbableMailchimp extends Mailchimp
 
 
     /**
+     * Overrides getConnection() in order to return a mocked connection
+     *
      * @param MailchimpRequest $request
      * @param MailchimpSettings $settings
      * @return MailchimpConnection|PHPUnit_Framework_MockObject_MockObject|\PHPUnit_Framework_MockObject_MockObject
@@ -57,6 +59,8 @@ class StubbableMailchimp extends Mailchimp
 
 
     /**
+     * Overrides getStaticConnection() in order to return a mocked connection
+     *
      * @param MailchimpRequest $request
      * @return MailchimpConnection|PHPUnit_Framework_MockObject_MockObject
      * @throws \MailchimpAPI\MailchimpException
@@ -78,7 +82,7 @@ class StubbableMailchimp extends Mailchimp
     }
 
     /**
-     * Override resetRequest to keep state for tests
+     * Overrides resetRequest to keep state for tests
      */
     protected function resetRequest()
     {

@@ -51,10 +51,4 @@ final class MailchimpTest extends MailChimpTestCase
             "The settings must be an instance of a MailChimpSettings"
         );
     }
-
-    public function testStub()
-    {
-        $mc = $this->stubable_mailchimp;
-        var_dump($mc->get());
-    }
 }
