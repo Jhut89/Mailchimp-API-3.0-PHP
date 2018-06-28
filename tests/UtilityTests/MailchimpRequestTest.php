@@ -2,6 +2,7 @@
 
 namespace MailchimpTests\UtilityTests;
 
+use MailchimpAPI\MailchimpException;
 use MailchimpAPI\Utilities\MailchimpRequest;
 use MailchimpTests\MailChimpTestCase;
 
@@ -40,5 +41,13 @@ final class MailchimpRequestTest extends MailChimpTestCase
         self::assertEquals($expected, $actual, "Base Url should be appropriately set");
     }
 
-    //TODO implement more test for this class
+    /**
+     * @expectedException
+     * @throws \MailchimpAPI\MailchimpException
+     */
+    public function testCheckKeyFailure()
+    {
+        $this->expectException(MailchimpException::class);
+        $this->requestInstance->checkKey('not an API key');
+    }
 }

@@ -8,7 +8,7 @@ final class AuthorizedAppsTest extends MailChimpTestCase
 
     public function testAuthorizedAppsCollectionUrl()
     {
-        $expected_url = $this->request->getBaseUrl() . "/authorized-apps/";
+        $expected_url = $this->expectedUrl("/authorized-apps/");
 
         $auth_apps = $this
             ->mailchimp
@@ -23,7 +23,7 @@ final class AuthorizedAppsTest extends MailChimpTestCase
 
     public function testAuthorizedAppsInstanceUrl()
     {
-        $expected_url = $this->request->getBaseUrl() . "/authorized-apps/1";
+        $expected_url = $this->expectedUrl("/authorized-apps/1");
 
         $auth_apps = $this
             ->mailchimp

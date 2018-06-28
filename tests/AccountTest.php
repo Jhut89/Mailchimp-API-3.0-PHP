@@ -6,7 +6,7 @@ final class AccountTest extends MailChimpTestCase
 {
     public function testRootUrl()
     {
-        $expected_url = $this->request->getBaseUrl(). "/";
+        $expected_url = $this->request->getBaseUrl() . "/";
         $account = $this
             ->mailchimp
             ->account();

@@ -325,7 +325,7 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::GET);
         $this->request->setQueryString($query_params);
 
-        $connection = new MailchimpConnection($this->request, $this->settings);
+        $connection = $this->getConnection($this->request, $this->settings);
         $response = $connection->execute();
         $this->resetRequest();
 
@@ -343,7 +343,7 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::POST);
         $this->request->setPayload($params);
 
-        $connection = new MailchimpConnection($this->request, $this->settings);
+        $connection = $this->getConnection($this->request, $this->settings);
         $response = $connection->execute();
         $this->resetRequest();
 
@@ -360,7 +360,7 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::PATCH);
         $this->request->setPayload($params);
 
-        $connection = new MailchimpConnection($this->request, $this->settings);
+        $connection = $this->getConnection($this->request, $this->settings);
         $response = $connection->execute();
         $this->resetRequest();
 
@@ -377,7 +377,7 @@ class Mailchimp
         $this->request->setMethod(MailchimpRequest::PUT);
         $this->request->setPayload($params);
 
-        $connection = new MailchimpConnection($this->request, $this->settings);
+        $connection = $this->getConnection($this->request, $this->settings);
         $response = $connection->execute();
         $this->resetRequest();
 
@@ -392,7 +392,7 @@ class Mailchimp
     {
         $this->request->setMethod(MailchimpRequest::DELETE);
 
-        $connection = new MailchimpConnection($this->request, $this->settings);
+        $connection = $this->getConnection($this->request, $this->settings);
         $response = $connection->execute();
         $this->resetRequest();
 
@@ -460,7 +460,7 @@ class Mailchimp
             $this->request->setPayload($params);
         }
 
-        $connection = new MailchimpConnection($this->request, $this->settings);
+        $connection = $this->getConnection($this->request, $this->settings);
         $response = $connection->execute();
         $this->resetRequest();
         return $response;
@@ -485,12 +485,12 @@ class Mailchimp
      */
     private static function requestAccessToken($oath_string)
     {
-        $request = new MailchimpRequest();
+        $request = self::getStaticRequest();
         $request->setMethod("POST");
         $request->setPayload($oath_string);
         $request->setBaseUrl(MailchimpConnection::TOKEN_REQUEST_URL);
 
-        $connection = new MailchimpConnection($request);
+        $connection = self::getStaticConnection($request);
         $response = $connection->execute();
 
         $access_token = $response->deserialize()->access_token;
@@ -511,16 +511,47 @@ class Mailchimp
      */
     private static function requestKeyFromToken($access_token)
     {
-        $request = new MailchimpRequest();
+        $request = self::getStaticRequest();
         $request->setMethod("GET");
         $request->setBaseUrl(MailchimpConnection::OAUTH_METADATA_URL);
         $request->addHeader('Authorization: OAuth ' . $access_token);
 
-        $connection = new MailchimpConnection($request);
+        $connection = self::getStaticConnection($request);
         $response = $connection->execute();
 
         $dc = $response->deserialize()->dc;
 
         return $access_token . '-' . $dc;
+    }
+
+    /**
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @return MailchimpConnection
+     */
+    protected function getConnection(MailchimpRequest $request, MailchimpSettings $settings)
+    {
+        $connection = new MailchimpConnection($request, $settings);
+        return $connection;
+    }
+
+    /**
+     * @param MailchimpRequest $request
+     * @return MailchimpConnection
+     */
+    protected static function getStaticConnection(MailchimpRequest $request)
+    {
+        $connection = new MailchimpConnection($request);
+        return $connection;
+    }
+
+    /**
+     * @return MailchimpRequest
+     * @throws MailchimpException
+     */
+    protected static function getStaticRequest()
+    {
+        $request = new MailchimpRequest();
+        return $request;
     }
 }

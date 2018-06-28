@@ -1,3 +1,30 @@
+## VERSION 3.0.0 COMING
+
+Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
+`master` is the current dev branch for version 3.0.0. A formal release with a tag will be made once it is considered stable.
+
+### Incoming Features
+
+* Namespaced classes
+* Full PSR-4 Autoloading via _Composer_
+* Tests 
+* Programmatically alterable settings
+* Support for new endpoints
+
+### Breaks From Older Versions
+
+* No non-autoloading option
+* Class names and directory structure changes
+
+If these changes are breaking for your app we suggest you wait on updating to 3.0.0. Upcoming changes can now be viewed in `master` (`dev-master` on [packagist](https://packagist.org/packages/jhut89/mailchimp3php)) before the release is made. As well feel free to pull in an
+older version by requiring the version you want:
+
+```json
+"require": {
+  "jhut89/mailchimp3php": "2.3.*"
+}
+``` 
+
 # MAILCHIMP API 3.0 PHP [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
 
 This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
@@ -212,9 +239,9 @@ $mailchimp
       |    |----removedSubscribers()    
       |    |----emails()                
       |         |                       
-      |         |---queue()             
-      |         |---pauseAll()         
-      |         |---startAll()         
+      |         |---queue()*             
+      |         |---pauseAll()*         
+      |         |---startAll()*        
       |                                 
       |----batches()                    
       |                                 
@@ -224,14 +251,14 @@ $mailchimp
       |                                 
       |----campaigns()                  
       |    |                            
-      |    |----cancel()                
-      |    |----pause()                 
-      |    |----replicate()             
-      |    |----resume()                
-      |    |----scedule()              
-      |    |----send()                  
-      |    |----test()                  
-      |    |----unschedule()            
+      |    |----cancel()*                
+      |    |----pause()*                 
+      |    |----replicate()*             
+      |    |----resume()*                
+      |    |----scedule()*              
+      |    |----send()*                  
+      |    |----test()*                  
+      |    |----unschedule()*            
       |    |----checklist()             
       |    |----feedback()              
       |    |----content()               
@@ -262,7 +289,7 @@ $mailchimp
       |                                 
       |----lists()                      
       |    |                            
-      |    |----batchSubscribe()             
+      |    |----batchSubscribe()*             
       |    |----webhooks()              
       |    |----signupForms()           
       |    |----mergeFields()           
@@ -272,7 +299,7 @@ $mailchimp
       |    |----abuseReports()          
       |    |----segments()              
       |    |    |                       
-      |    |    |----batch()            
+      |    |    |----batch()*            
       |    |    |----members()          
       |    |                            
       |    |----members()               
@@ -316,6 +343,7 @@ $mailchimp
 
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 
+\** Methods marked with a `*` make a network request 
 ## Settings
 
 This library offers several setting that can be altered by changing the value of the class constants at the begining of the `Mailchimp` class in the `mailchimpRoot.php` file. Be sure to check them out to see if they can be altered to fit your project a little better.
