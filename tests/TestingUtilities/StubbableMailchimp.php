@@ -6,7 +6,7 @@
  * Time: 6:08 PM
  */
 
-namespace MailchimpTests;
+namespace MailchimpTests\TestingUtilities;
 
 
 use MailchimpAPI\Mailchimp;
@@ -63,7 +63,6 @@ class StubbableMailchimp extends Mailchimp
      *
      * @param MailchimpRequest $request
      * @return MailchimpConnection|PHPUnit_Framework_MockObject_MockObject
-     * @throws \MailchimpAPI\MailchimpException
      */
     protected static function getStaticConnection(MailchimpRequest $request)
     {

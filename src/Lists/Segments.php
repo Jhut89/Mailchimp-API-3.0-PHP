@@ -62,9 +62,7 @@ class Segments extends Lists
      */
     public function batch($add = [], $remove = [])
     {
-        if (!$this->grandchild_resource) {
-            throw new MailchimpException("You must provide a segment ID to Batch");
-        }
+        $this->throwIfNot($this->grandchild_resource);
         $params = ['members_to_add' => $add, 'members_to_remove' => $remove];
 
         return $this->postToActionEndpoint('', $params);

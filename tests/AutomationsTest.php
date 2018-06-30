@@ -2,6 +2,8 @@
 
 namespace MailchimpTests;
 
+use MailchimpAPI\MailchimpException;
+
 final class AutomationsTest extends MailChimpTestCase
 {
     public function testAutomationsCollectionUrl()
@@ -36,5 +38,33 @@ final class AutomationsTest extends MailChimpTestCase
             $mc->request->getUrl(),
             "The automations instance url should be constructed correctly"
         );
+    }
+
+    public function testAutomationsPauseAllWithoutId()
+    {
+        $error = null;
+        try {
+            $this->stub_mailchimp
+                ->automations()
+                ->pauseAll();
+        } catch (MailchimpException $e) {
+            $error = $e;
+        }
+
+        self::assertInstanceOf(MailchimpException::class, $error);
+    }
+
+    public function testAutomationsStartAllWithoutId()
+    {
+        $error = null;
+        try {
+            $this->stub_mailchimp
+                ->automations()
+                ->startAll();
+        } catch (MailchimpException $e) {
+            $error = $e;
+        }
+
+        self::assertInstanceOf(MailchimpException::class, $error);
     }
 }

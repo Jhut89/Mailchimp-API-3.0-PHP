@@ -48,9 +48,7 @@ class Automations extends Mailchimp
      */
     public function pauseAll()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a workflow ID to pause all emails");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/pause-all-emails/');
     }
 
@@ -60,9 +58,7 @@ class Automations extends Mailchimp
      */
     public function startAll()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a workflow ID to start all emails");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/start-all-emails/');
     }
 

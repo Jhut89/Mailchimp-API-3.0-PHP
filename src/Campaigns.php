@@ -71,9 +71,7 @@ class Campaigns extends Mailchimp
      */
     public function cancel()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to cancel");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/cancel-send/');
     }
 
@@ -83,9 +81,7 @@ class Campaigns extends Mailchimp
      */
     public function pause()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to pause");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/pause');
     }
 
@@ -95,9 +91,7 @@ class Campaigns extends Mailchimp
      */
     public function replicate()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to replicate");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/replicate');
     }
 
@@ -107,9 +101,7 @@ class Campaigns extends Mailchimp
      */
     public function resume()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to resume");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/resume');
     }
 
@@ -121,9 +113,7 @@ class Campaigns extends Mailchimp
      */
     public function schedule($schedule_time, $optional_parameters = [])
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to schedule");
-        }
+        $this->throwIfNot($this->subclass_resource);
         $params = ["schedule_time" => $schedule_time];
         $params = array_merge($params, $optional_parameters);
 
@@ -136,9 +126,7 @@ class Campaigns extends Mailchimp
      */
     public function send()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to send");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/send');
     }
 
@@ -150,9 +138,7 @@ class Campaigns extends Mailchimp
      */
     public function test($test_addresses, $send_type)
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to test");
-        }
+        $this->throwIfNot($this->subclass_resource);
         $params = ["test_emails" => $test_addresses, "send_type" => $send_type];
 
         return $this->postToActionEndpoint('/actions/test', $params);
@@ -164,9 +150,7 @@ class Campaigns extends Mailchimp
      */
     public function unschedule()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a campaign ID to unschedule");
-        }
+        $this->throwIfNot($this->subclass_resource);
         return $this->postToActionEndpoint('/actions/unschedule');
     }
 
