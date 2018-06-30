@@ -117,10 +117,7 @@ class Lists extends Mailchimp
     public function batchSubscribe($members, $update_existing)
     {
 
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide a list ID to Batch Subscribe");
-        }
-
+        $this->throwIfNot($this->subclass_resource);
         $params = [
             'members' => $members,
             'update_existing' => $update_existing

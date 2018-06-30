@@ -554,4 +554,15 @@ class Mailchimp
         $request = new MailchimpRequest();
         return $request;
     }
+
+    /**
+     * @param $check mixed The resource to be checked for
+     * @throws MailchimpException
+     */
+    protected function throwIfNot($check)
+    {
+        if (!$check) {
+            throw new MailchimpException("You must provide an ID to " . debug_backtrace()[1]['function']);
+        }
+    }
 }

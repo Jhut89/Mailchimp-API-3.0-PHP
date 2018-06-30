@@ -137,35 +137,6 @@ $mailchimp
     ->get();
 ```
 
-### Handling A Response
-
-Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`. I suggest you become familiar with this class as there a a number of modifiers and getters for different pieces of a response.
-
-There are a number of getters we can use to interact with pieces our `MailchimpResponse` instance. Some of the more commonly used ones are:
-
-```php
-$response->deserialize(); // returns a deserialized (to php object) resource returned by API
-$response->getRaw(); // return the raw text response
-$response->getHttpCode(); // returns an integer representation of the HTTP response code
-$response->getHeaders(); // returns an array of headers in key => value format
-$response->getBody(); // return the raw text body of the response
-```
-
-As an example, if I have an API key but want the contact email associated with its account I would:
-
-```php
-$mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
-$account = $mailchimp
-    ->account()
-    ->get()
-    
-$email = $account
-    ->deserialize()
-    ->email
-    
-print $email; // outputs something like "example@domain.com"
-```
-
 ### POST
 
 While being able to retrieve data from your account is great we also need to be able to post new data. This can be done by calling the `POST()` method at the end of a chain. As an example subscribing an address to a list would look like this:
@@ -223,6 +194,34 @@ $mailchimp
     ->lists('1a2b3c4d')
     ->members('a1167f5be2df7113beb69c95ebcdb2fd')
     ->delete();
+```
+## Handling A Response
+
+Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`. I suggest you become familiar with this class as there a a number of modifiers and getters for different pieces of a response.
+
+There are a number of getters we can use to interact with pieces our `MailchimpResponse` instance. Some of the more commonly used ones are:
+
+```php
+$response->deserialize(); // returns a deserialized (to php object) resource returned by API
+$response->getRaw(); // return the raw text response
+$response->getHttpCode(); // returns an integer representation of the HTTP response code
+$response->getHeaders(); // returns an array of headers in key => value format
+$response->getBody(); // return the raw text body of the response
+```
+
+As an example, if I have an API key but want the contact email associated with its account I would:
+
+```php
+$mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
+$account = $mailchimp
+    ->account()
+    ->get()
+    
+$email = $account
+    ->deserialize()
+    ->email
+    
+print $email; // outputs something like "example@domain.com"
 ```
 
 ## Method Chart (\*excluding verbs)

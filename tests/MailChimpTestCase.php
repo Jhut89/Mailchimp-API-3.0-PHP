@@ -2,7 +2,9 @@
 
 namespace MailchimpTests;
 
+use MailchimpAPI\MailchimpException;
 use MailchimpAPI\Utilities\MailchimpConnection;
+use MailchimpTests\TestingUtilities\StubbableMailchimp;
 use PHPUnit\Framework\TestCase;
 use MailchimpAPI\Mailchimp;
 
@@ -23,7 +25,7 @@ class MailChimpTestCase extends TestCase
     /**
      * @var StubbableMailchimp
      */
-    protected $stubable_mailchimp;
+    protected $stub_mailchimp;
     /**
      * @var string
      */
@@ -53,7 +55,7 @@ class MailChimpTestCase extends TestCase
         parent::__construct($name, $data, $dataName);
         $this->apikey = "123abc123abc123abc123abc123abc12-us0";
         $this->mailchimp = new Mailchimp($this->apikey);
-        $this->stubable_mailchimp = $this->getStubableMailchimp();
+        $this->stub_mailchimp = $this->getStubMailchimp();
         $this->client_id =   '12345676543';
         $this->redirect_uri =  'https://www.some-domain.com/callback_file.php';
         $this->request = $this->mailchimp->request;
@@ -79,9 +81,9 @@ class MailChimpTestCase extends TestCase
 
     /**
      * @return StubbableMailchimp
-     * @throws \MailchimpAPI\MailchimpException
+     * @throws MailchimpException
      */
-    public function getStubableMailchimp()
+    public function getStubMailchimp()
     {
         $mockConnection = $this->createMock(MailchimpConnection::class);
         $mockConnection

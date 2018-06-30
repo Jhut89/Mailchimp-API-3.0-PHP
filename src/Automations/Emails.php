@@ -3,9 +3,7 @@
 namespace MailchimpAPI\Automations\Emails;
 
 use MailchimpAPI\Automations;
-use MailchimpAPI\Utilities\MailchimpConnection;
-use MailchimpAPI\MailchimpException;
-use MailchimpAPI\Utilities\MailchimpRequest;
+use MailchimpAPI\Utilities\MailchimpResponse;
 
 /**
  * Class Emails
@@ -44,41 +42,23 @@ class Emails extends Automations
     }
 
     /**
-     * @return \MailchimpAPI\Utilities\MailchimpResponse
+     * @return MailchimpResponse
      * @throws \MailchimpAPI\MailchimpException
      */
     public function pause()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide an email ID to pause an email");
-        }
-        $this->request->appendToEndpoint('/actions/pause');
-        $this->request->setMethod(MailchimpRequest::POST);
-
-
-        $connection = new MailchimpConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-        return $response;
+        $this->throwIfNot($this->grandchild_resource);
+        return $this->postToActionEndpoint('/actions/pause');
     }
 
     /**
-     * @return \MailchimpAPI\Utilities\MailchimpResponse
+     * @return MailchimpResponse
      * @throws \MailchimpAPI\MailchimpException
      */
     public function start()
     {
-        if (!$this->subclass_resource) {
-            throw new MailchimpException("You must provide an email ID to start an email");
-        }
-        $this->request->appendToEndpoint('/actions/pause');
-        $this->request->setMethod(MailchimpRequest::POST);
-
-
-        $connection = new MailchimpConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-        return $response;
+        $this->throwIfNot($this->grandchild_resource);
+        return $this->postToActionEndpoint('/actions/start');
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
