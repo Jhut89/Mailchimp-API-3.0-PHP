@@ -1,4 +1,4 @@
-# Table Of Contents | [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
+# Table Of Contents | [![GitHub license](https://img.shields.io/github/license/Jhut89/Mailchimp-API-3.0-PHP.svg)](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/blob/master/LICENSE) [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP) [![Slack Workspace](https://img.shields.io/badge/slack%20workspace-join-blue.svg?style=flat)](https://join.slack.com/t/mailchimp-api-30-php/shared_invite/enQtMzkwNTg3Mzc5NzI5LTdhOWE2ZGE1NzJmZGRjNDg2Mzg1MDYwZmVhNGM0MGJmMDY3NGVkOWQyZTI1Zjg1YTA2YjdkMDMxNjIyZjg5MGM)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
