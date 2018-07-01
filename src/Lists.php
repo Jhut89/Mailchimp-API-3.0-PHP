@@ -23,7 +23,7 @@ class Lists extends Mailchimp
     /**
      * @var string
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
 
     /**
@@ -51,43 +51,43 @@ class Lists extends Mailchimp
     /**
      * @var Webhooks
      */
-    public $webhooks;
+    private $webhooks;
     /**
      * @var SignupForms
      */
-    public $signup_forms;
+    private $signup_forms;
     /**
      * @var MergeFields
      */
-    public $merge_fields;
+    private $merge_fields;
     /**
      * @var GrowthHistory
      */
-    public $growth_history;
+    private $growth_history;
     /**
      * @var Clients
      */
-    public $clients;
+    private $clients;
     /**
      * @var Activity
      */
-    public $activity;
+    private $activity;
     /**
      * @var AbuseReports
      */
-    public $abuse;
+    private $abuse;
     /**
      * @var Segments
      */
-    public $segments;
+    private $segments;
     /**
      * @var Members
      */
-    public $members;
+    private $members;
     /**
      * @var InterestCategories
      */
-    public $interest_categories;
+    private $interest_categories;
 
 
     /**

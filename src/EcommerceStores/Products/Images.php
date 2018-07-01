@@ -13,7 +13,7 @@ class Images extends Products
     /**
      * @var string
      */
-    public $class_input;
+    private $class_input;
 
     /**
      * @var array

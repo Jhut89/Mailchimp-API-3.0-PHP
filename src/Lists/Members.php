@@ -17,7 +17,7 @@ class Members extends Lists
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var array
@@ -37,15 +37,15 @@ class Members extends Lists
     /**
      * @var Notes
      */
-    public $notes;
+    private $notes;
     /**
      * @var Goals
      */
-    public $goals;
+    private $goals;
     /**
      * @var Activity
      */
-    public $member_activity;
+    private $member_activity;
 
     /**
      * Members constructor.

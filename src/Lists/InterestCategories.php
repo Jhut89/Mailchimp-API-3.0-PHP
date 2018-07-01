@@ -15,7 +15,7 @@ class InterestCategories extends Lists
     /**
      * @var
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
 
     /**
@@ -37,7 +37,7 @@ class InterestCategories extends Lists
     /**
      * @var
      */
-    public $interests;
+    private $interests;
 
     /**
      * InterestCategories constructor.

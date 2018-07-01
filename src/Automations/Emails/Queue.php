@@ -2,6 +2,7 @@
 
 namespace MailchimpAPI\Automations\Emails;
 
+use MailchimpAPI\Automations\Emails;
 /**
  * Class Queue
  * @package Mailchimp_API\Automations\Emails

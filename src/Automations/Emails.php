@@ -1,6 +1,6 @@
 <?php
 
-namespace MailchimpAPI\Automations\Emails;
+namespace MailchimpAPI\Automations;
 
 use MailchimpAPI\Automations;
 use MailchimpAPI\Utilities\MailchimpResponse;
@@ -15,12 +15,12 @@ class Emails extends Automations
     /**
      * An email ID
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var Queue
      */
-    public $queue;
+    private $queue;
 
     /**
      * Emails constructor.
@@ -65,12 +65,12 @@ class Emails extends Automations
 
     /**
      * @param null $member
-     * @return Queue
+     * @return Automations\Emails\Queue
      * @throws \MailchimpAPI\MailchimpException
      */
     public function queue($member = null)
     {
-        $this->queue = new Queue(
+        $this->queue = new Automations\Emails\Queue(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,

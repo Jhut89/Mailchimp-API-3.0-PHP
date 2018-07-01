@@ -16,7 +16,7 @@ class Segments extends Lists
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var array
@@ -34,7 +34,7 @@ class Segments extends Lists
     /**
      * @var
      */
-    public $segment_members;
+    private $segment_members;
 
     /**
      * Segments constructor.

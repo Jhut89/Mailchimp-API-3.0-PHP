@@ -17,7 +17,7 @@ class EcommerceStores extends Mailchimp
     /**
      * @var
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
     /**
      * @var array
@@ -32,19 +32,19 @@ class EcommerceStores extends Mailchimp
     /**
      * @var Customers
      */
-    public $customers;
+    private $customers;
     /**
      * @var Products
      */
-    public $products;
+    private $products;
     /**
      * @var Orders
      */
-    public $orders;
+    private $orders;
     /**
      * @var Carts
      */
-    public $carts;
+    private $carts;
 
     /**
      * EcommerceStores constructor.

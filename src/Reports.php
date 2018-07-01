@@ -24,49 +24,48 @@ class Reports extends Mailchimp
     /**
      * @var string
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
-    //SUBCLASS INSTANTIATIONS
     /**
      * @var Unsubscribes
      */
-    public $unsubscribes;
+    private $unsubscribes;
     /**
      * @var SubReports
      */
-    public $sub_reports;
+    private $sub_reports;
     /**
      * @var SentTo
      */
-    public $sent_to;
+    private $sent_to;
     /**
      * @var TopLocations
      */
-    public $locations;
+    private $locations;
     /**
      * @var EmailActivity
      */
-    public $email_activity;
+    private $email_activity;
     /**
      * @var EepurlReports
      */
-    public $eepurl;
+    private $eepurl;
     /**
      * @var DomainPerformance
      */
-    public $domain_performance;
+    private $domain_performance;
     /**
      * @var CampaignAdvice
      */
-    public $advice;
+    private $advice;
     /**
      * @var AbuseReports
      */
-    public $abuse;
+    private $abuse;
     /**
      * @var ClickReports
      */
-    public $click_reports;
+    private $click_reports;
 
 
     /**

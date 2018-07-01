@@ -2,7 +2,7 @@
 
 namespace MailchimpAPI;
 
-use MailchimpAPI\Automations\Emails\Emails;
+use MailchimpAPI\Automations\Emails;
 use MailchimpAPI\Automations\RemovedSubscribers;
 
 /**
@@ -14,16 +14,16 @@ class Automations extends Mailchimp
     /**
      * A workflow ID
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
     /**
      * @var RemovedSubscribers
      */
-    public $removed_subs;
+    private $removed_subs;
     /**
      * @var Emails
      */
-    public $emails;
+    private $emails;
 
     /**
      * Automations constructor.

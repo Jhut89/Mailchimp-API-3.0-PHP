@@ -99,7 +99,7 @@ Mailchimp::getAuthUrl($client_id, $redirect_url);
 
 From there the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
 
-With that `code` you can now request an access token from mailchimp. You will need to call the `MAilchimp::oauthExchange()` method statically like this:
+With that `code` you can now request an access token from mailchimp. You will need to call the `Mailchimp::oauthExchange()` method statically like this:
 
 ```php
 $code = 'abc123abc123abc123abc123';

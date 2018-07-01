@@ -16,7 +16,7 @@ class Campaigns extends Mailchimp
     /**
      * @var
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
 
     /**
@@ -33,19 +33,18 @@ class Campaigns extends Mailchimp
         'settings'
     ];
 
-    //SUBCLASS INSTANTIATIONS
     /**
      * @var SendChecklist
      */
-    public $checklist;
+    private $checklist;
     /**
      * @var Feedback
      */
-    public $feedback;
+    private $feedback;
     /**
      * @var Content
      */
-    public $content;
+    private $content;
 
     /**
      * Campaigns constructor.

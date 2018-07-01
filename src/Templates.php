@@ -14,7 +14,7 @@ class Templates extends Mailchimp
     /**
      * @var string
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
     /**
      * @var array
@@ -34,7 +34,7 @@ class Templates extends Mailchimp
     /**
      * @var DefaultContent
      */
-    public $default_content;
+    private $default_content;
 
     /**
      * Templates constructor.

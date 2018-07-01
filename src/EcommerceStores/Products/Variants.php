@@ -14,7 +14,7 @@ class Variants extends Products
     /**
      * @var
      */
-    public $class_input;
+    private $class_input;
 
 
     /**

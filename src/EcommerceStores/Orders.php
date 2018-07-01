@@ -15,7 +15,7 @@ class Orders extends EcommerceStores
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var array
@@ -31,7 +31,7 @@ class Orders extends EcommerceStores
     /**
      * @var Lines
      */
-    public $lines;
+    private $lines;
 
     /**
      * Orders constructor.

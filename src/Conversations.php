@@ -14,12 +14,12 @@ class Conversations extends Mailchimp
     /**
      * @var
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
     /**
      * @var Messages
      */
-    public $messages;
+    private $messages;
 
     /**
      * Conversations constructor.

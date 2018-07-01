@@ -14,7 +14,7 @@ class Customers extends EcommerceStores
     /**
      * @var
      */
-    public $class_input;
+    protected $class_input;
 
     /**
      * @var array

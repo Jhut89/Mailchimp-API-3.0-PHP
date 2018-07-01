@@ -24,20 +24,20 @@ class Products extends EcommerceStores
     /**
      * @var Variants
      */
-    public $variants;
+    private $variants;
     /**
      * @var Images
      */
-    public $images;
+    private $images;
     /**
      * @var string
      */
-    public $parent_resource;
+    protected $parent_resource;
 
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * Products constructor.

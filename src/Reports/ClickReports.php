@@ -15,12 +15,12 @@ class ClickReports extends Reports
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var string
      */
-    public $click_members;
+    private $click_members;
 
     /**
      * ClickReports constructor.
