@@ -1,3 +1,30 @@
+# Table Of Contents | [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+  - [VERSION 3.0.0 COMING](#version-3.0.0-coming)
+    - [Incoming Features](#incoming-features)
+    - [Breaks From Older Versions](#breaks-from-older-versions)
+- [MAILCHIMP API 3.0 PHP](#mailchimp-api-3.0-php)
+  - [Installation](#installation)
+  - [Instantiation](#instantiation)
+  - [Oauth](#oauth)
+  - [Constructing a Request](#constructing-a-request)
+    - [GET](#get)
+    - [POST](#post)
+    - [PATCH & PUT](#patch-&-put)
+    - [DELETE](#delete)
+  - [Handling A Response](#handling-a-response)
+  - [Method Chart (\*excluding verbs)](#method-chart-%5Cexcluding-verbs)
+  - [Settings](#settings)
+    - [Debugger](#debugger)
+    - [SSL Verify](#ssl-verify)
+    - [Request Headers](#request-headers)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## VERSION 3.0.0 COMING
 
 Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
@@ -20,12 +47,15 @@ If these changes are breaking for your app we suggest you wait on updating to 3.
 older version by requiring the version you want:
 
 ```json
-"require": {
-  "jhut89/mailchimp3php": "2.3.*"
+{
+  "require": {
+    "jhut89/mailchimp3php": "2.3.*"
+  }
 }
+
 ``` 
 
-# MAILCHIMP API 3.0 PHP [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
+# MAILCHIMP API 3.0 PHP 
 
 This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
 
@@ -85,8 +115,11 @@ If the handshake is successful, then this method will return a string containing
 
 ## Constructing a Request
 
-Once you have instantiated the `Mailchimp` class you can start constructing requests. Constructing requests is done by 'chaining' methods to the `$mailchimp` instance. In most cases this 'chain' will end with the HTTP verb for your request. So an example of retrieving a lists collection would look like this:
+Once you have instantiated the `Mailchimp` class you can start constructing requests. Constructing requests is done by 'chaining' methods to the `$mailchimp` instance. In most cases this 'chain' will end with the HTTP verb for your request.
 
+### GET
+
+An Example of how to retrieve a list collection:
 ```php
 $mailchimp
     ->lists()
@@ -174,7 +207,7 @@ $mailchimp
     ->post($post_params);
 ```
 
-### PATCH/PUT
+### PATCH & PUT
 
 This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that represent the data you wish altered/provided to MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
 
