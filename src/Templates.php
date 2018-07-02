@@ -36,6 +36,8 @@ class Templates extends Mailchimp
      */
     private $default_content;
 
+    const URL_COMPONENT = '/templates/';
+
     /**
      * Templates constructor.
      * @param $apikey
@@ -46,9 +48,9 @@ class Templates extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/templates/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/templates/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->subclass_resource = $class_input;
     }

@@ -46,6 +46,8 @@ class EcommerceStores extends Mailchimp
      */
     private $carts;
 
+    const URL_COMPONENT = '/ecommerce/stores/';
+
     /**
      * EcommerceStores constructor.
      * @param $apikey
@@ -57,9 +59,9 @@ class EcommerceStores extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/ecommerce/stores/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/ecommerce/stores/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         
         $this->subclass_resource = $class_input;

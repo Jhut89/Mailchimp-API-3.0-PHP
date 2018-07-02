@@ -8,6 +8,8 @@ namespace MailchimpAPI;
  */
 class SearchMembers extends Mailchimp
 {
+    const URL_COMPONENT = '/search-members/';
+
     /**
      * SearchMembers constructor.
      * @param $apikey
@@ -18,9 +20,9 @@ class SearchMembers extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/search-members/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/search-members/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

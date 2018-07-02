@@ -22,6 +22,12 @@ class Emails extends Automations
      */
     private $queue;
 
+    const URL_COMPONENT = '/emails/';
+
+    const PAUSE_URL_COMPONENT = '/actions/pause';
+
+    const START_URL_COMPONENT = '/actions/start';
+
     /**
      * Emails constructor.
      * @param $apikey
@@ -34,9 +40,9 @@ class Emails extends Automations
 
         parent::__construct($apikey, $parent_reference);
         if ($class_input) {
-            $this->request->appendToEndpoint('/emails/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/emails/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->grandchild_resource = $class_input;
     }
@@ -48,7 +54,7 @@ class Emails extends Automations
     public function pause()
     {
         $this->throwIfNot($this->grandchild_resource);
-        return $this->postToActionEndpoint('/actions/pause');
+        return $this->postToActionEndpoint(self::PAUSE_URL_COMPONENT);
     }
 
     /**
@@ -58,7 +64,7 @@ class Emails extends Automations
     public function start()
     {
         $this->throwIfNot($this->grandchild_resource);
-        return $this->postToActionEndpoint('/actions/start');
+        return $this->postToActionEndpoint(self::START_URL_COMPONENT);
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

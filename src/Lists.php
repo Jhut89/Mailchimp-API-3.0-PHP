@@ -89,6 +89,7 @@ class Lists extends Mailchimp
      */
     private $interest_categories;
 
+    const URL_COMPONENT = '/lists/';
 
     /**
      * Lists constructor.
@@ -101,9 +102,9 @@ class Lists extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/lists/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/lists/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->subclass_resource = $class_input;
     }

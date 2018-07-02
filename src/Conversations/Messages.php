@@ -18,6 +18,8 @@ class Messages extends Conversations
         'read'
     ];
 
+    const URL_COMPONENT = '/messages/';
+
     /**
      * Messages constructor.
      * @param $apikey
@@ -30,9 +32,9 @@ class Messages extends Conversations
         parent::__construct($apikey, $parent_input);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/messages/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/messages/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

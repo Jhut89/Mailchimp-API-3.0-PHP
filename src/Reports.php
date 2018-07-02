@@ -67,6 +67,7 @@ class Reports extends Mailchimp
      */
     private $click_reports;
 
+    const URL_COMPONENT = '/reports/';
 
     /**
      * Reports constructor.
@@ -78,9 +79,9 @@ class Reports extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/reports/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/reports/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->subclass_resource = $class_input;
     }

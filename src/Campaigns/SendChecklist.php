@@ -10,6 +10,8 @@ use MailchimpAPI\Campaigns;
  */
 class SendChecklist extends Campaigns
 {
+    const URL_COMPONENT = '/send-checklist/';
+
     /**
      * SendChecklist constructor.
      * @param $apikey
@@ -19,6 +21,6 @@ class SendChecklist extends Campaigns
     public function __construct($apikey, $class_input)
     {
         parent::__construct($apikey, $class_input);
-        $this->request->appendToEndpoint('/send-checklist/');
+        $this->request->appendToEndpoint(self::URL_COMPONENT);
     }
 }

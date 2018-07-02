@@ -71,15 +71,6 @@ class MailChimpTestCase extends TestCase
     }
 
     /**
-     * @param $endpoint
-     * @return string
-     */
-    public function expectedUrl($endpoint)
-    {
-        return $this->request->getBaseUrl() . $endpoint;
-    }
-
-    /**
      * @return StubbableMailchimp
      * @throws MailchimpException
      */
@@ -90,5 +81,25 @@ class MailChimpTestCase extends TestCase
             ->method("execute")
             ->willReturn("not a response");
         return new StubbableMailchimp($this->apikey, $mockConnection);
+    }
+
+    protected function endpointUrlBuildTest($expected_endpoint, $chain_to_be_tested, $message)
+    {
+        $expected_url = $this->expectedUrl($expected_endpoint);
+        $mc = $chain_to_be_tested;
+        self::assertEquals(
+            $expected_url,
+            $mc->request->getUrl(),
+            $message
+        );
+    }
+
+    /**
+     * @param $endpoint
+     * @return string
+     */
+    private function expectedUrl($endpoint)
+    {
+        return $this->request->getBaseUrl() . $endpoint;
     }
 }

@@ -21,6 +21,8 @@ class TemplateFolders extends Mailchimp
         'name'
     ];
 
+    const URL_COMPONENT = '/template-folders/';
+
     /**
      * TemplateFolders constructor.
      * @param $apikey
@@ -32,9 +34,9 @@ class TemplateFolders extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/template-folders/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/template-folders/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

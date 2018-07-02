@@ -23,6 +23,8 @@ class CampaignFolders extends Mailchimp
         'name'
     ];
 
+    const URL_COMPONENT = '/campaign-folders/';
+
     /**
      * CampaignFolders constructor.
      * @param $apikey
@@ -33,9 +35,9 @@ class CampaignFolders extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/campaign-folders/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/campaign-folders/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

@@ -9,35 +9,25 @@
 namespace MailchimpTests;
 
 
+use MailchimpAPI\CampaignFolders;
+
 class CampaignFoldersTest extends MailChimpTestCase
 {
     public function testCampaignFoldersCollectionUrl()
     {
-        $expected_url = $this->expectedUrl("/campaign-folders/");
-
-        $resource = $this
-            ->mailchimp
-            ->campaignFolders();
-
-        self::assertEquals(
-            $expected_url,
-            $resource->request->getUrl(),
-            "The batch campaign folders collection url should be constructed correctly"
+        $this->endpointUrlBuildTest(
+            CampaignFolders::URL_COMPONENT,
+            $this->mailchimp->campaignFolders(),
+            "The campaign folders collection url should be constructed correctly"
         );
     }
 
     public function testCampaignFoldersInstanceUrl()
     {
-        $expected_url = $this->expectedUrl("/campaign-folders/1");
-
-        $resource = $this
-            ->mailchimp
-            ->campaignFolders(1);
-
-        self::assertEquals(
-            $expected_url,
-            $resource->request->getUrl(),
-            "The batch campaign folders instance url should be constructed correctly"
+        $this->endpointUrlBuildTest(
+            CampaignFolders::URL_COMPONENT . 1,
+            $this->mailchimp->campaignFolders(1),
+            "The campaign folders instance url should be constructed correctly"
         );
     }
 }

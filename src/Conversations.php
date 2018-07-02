@@ -22,6 +22,11 @@ class Conversations extends Mailchimp
     private $messages;
 
     /**
+     * the conversations endpoint url component
+     */
+    const URL_COMPONENT = '/conversations/';
+
+    /**
      * Conversations constructor.
      * @param $apikey
      * @param $class_input
@@ -32,9 +37,9 @@ class Conversations extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/conversations/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/conversations/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         
         $this->subclass_resource = $class_input;
