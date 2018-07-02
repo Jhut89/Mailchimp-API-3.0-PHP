@@ -23,6 +23,8 @@ class Notes extends Members
         'note'
     ];
 
+    const URL_COMPONENT = '/notes/';
+
     /**
      * Notes constructor.
      * @param $apikey
@@ -39,9 +41,9 @@ class Notes extends Members
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/notes/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/notes/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

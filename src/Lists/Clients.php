@@ -6,6 +6,8 @@ use MailchimpAPI\Lists;
 
 class Clients extends Lists
 {
+    const URL_COMPONENT = '/clients/';
+
     /**
      * Clients constructor.
      * @param $apikey
@@ -17,9 +19,9 @@ class Clients extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/clients/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/clients/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

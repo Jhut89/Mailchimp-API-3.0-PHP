@@ -24,6 +24,8 @@ class MergeFields extends Lists
         'name'
     ];
 
+    const URL_COMPONENT = '/merge-fields/';
+
     /**
      * MergeFields constructor.
      * @param $apikey
@@ -35,9 +37,9 @@ class MergeFields extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/merge-fields/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/merge-fields/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

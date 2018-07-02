@@ -23,6 +23,8 @@ class Images extends Products
         'url'
     ];
 
+    const URL_COMPONENT = '/images/';
+
     /**
      * Images constructor.
      * @param $apikey
@@ -41,9 +43,9 @@ class Images extends Products
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/images/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/images/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
 
         $this->class_input = $class_input;

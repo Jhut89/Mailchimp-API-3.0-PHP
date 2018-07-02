@@ -33,6 +33,8 @@ class Carts extends EcommerceStores
      */
     private $lines;
 
+    const URL_COMPONENT = '/carts/';
+
     /**
      * Carts constructor.
      * @param $apikey
@@ -44,9 +46,9 @@ class Carts extends EcommerceStores
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/carts/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/carts/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
 
         $this->grandchild_resource = $class_input;

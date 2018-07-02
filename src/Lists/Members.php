@@ -47,6 +47,8 @@ class Members extends Lists
      */
     private $member_activity;
 
+    const URL_COMPONENT = '/members/';
+
     /**
      * Members constructor.
      * @param $apikey
@@ -58,9 +60,9 @@ class Members extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/members/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/members/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->grandchild_resource = $class_input;
     }

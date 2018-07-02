@@ -10,6 +10,8 @@ use MailchimpAPI\Lists;
  */
 class GrowthHistory extends Lists
 {
+    const URL_COMPONENT = '/growth-history/';
+
     /**
      * GrowthHistory constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class GrowthHistory extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/growth-history/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/growth-history/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

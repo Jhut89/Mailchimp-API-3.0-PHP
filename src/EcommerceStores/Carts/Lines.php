@@ -36,6 +36,8 @@ class Lines extends Carts
      */
     private $class_input;
 
+    const URL_COMPONENT = '/lines/';
+
     /**
      * Lines constructor.
      * @param $apikey
@@ -52,9 +54,9 @@ class Lines extends Carts
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/lines/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/lines/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->apikey = $apikey;
         $this->parent_resource = $parent_resource;

@@ -1,5 +1,3 @@
-## [![GitHub license](https://img.shields.io/github/license/Jhut89/Mailchimp-API-3.0-PHP.svg)](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/blob/master/LICENSE) | [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP) | [![Slack Workspace](https://img.shields.io/badge/slack%20workspace-join-blue.svg?style=flat)](https://join.slack.com/t/mailchimp-api-30-php/shared_invite/enQtMzkwNTg3Mzc5NzI5LTdhOWE2ZGE1NzJmZGRjNDg2Mzg1MDYwZmVhNGM0MGJmMDY3NGVkOWQyZTI1Zjg1YTA2YjdkMDMxNjIyZjg5MGM) | [![Total Downloads](https://poser.pugx.org/jhut89/mailchimp3php/downloads?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php) | [![Latest Stable Version](https://poser.pugx.org/jhut89/mailchimp3php/v/stable?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php)
-
 ## VERSION 3.0.0 COMING
 
 Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
@@ -53,6 +51,12 @@ older version by requiring the version you want:
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # MAILCHIMP API 3.0 PHP 
+[![GitHub license](https://img.shields.io/github/license/Jhut89/Mailchimp-API-3.0-PHP.svg)](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/blob/master/LICENSE) 
+[![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
+[![Latest Stable Version](https://poser.pugx.org/jhut89/mailchimp3php/v/stable?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php)
+[![Total Downloads](https://poser.pugx.org/jhut89/mailchimp3php/downloads?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php) 
+[![Slack Workspace](https://img.shields.io/badge/slack%20workspace-join-blue.svg?style=flat)](https://join.slack.com/t/mailchimp-api-30-php/shared_invite/enQtMzkwNTg3Mzc5NzI5LTdhOWE2ZGE1NzJmZGRjNDg2Mzg1MDYwZmVhNGM0MGJmMDY3NGVkOWQyZTI1Zjg1YTA2YjdkMDMxNjIyZjg5MGM)
+
 
 This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
 

@@ -39,6 +39,8 @@ class Products extends EcommerceStores
      */
     protected $grandchild_resource;
 
+    const URL_COMPONENT = '/products/';
+
     /**
      * Products constructor.
      * @param $apikey
@@ -50,9 +52,9 @@ class Products extends EcommerceStores
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/products/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/products/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
 
         $this->grandchild_resource = $class_input;
