@@ -11,7 +11,7 @@ class SearchMembersTest extends MailChimpTestCase
         $this->endpointUrlBuildTest(
             SearchMembers::URL_COMPONENT,
             $this->mailchimp->searchMembers(),
-            "The Search Members collection endpoint should be constructed correctly"
+            "The Search SegmentsMembers collection endpoint should be constructed correctly"
         );
     }
 
@@ -20,7 +20,7 @@ class SearchMembersTest extends MailChimpTestCase
         $this->endpointUrlBuildTest(
             SearchMembers::URL_COMPONENT . 1,
             $this->mailchimp->searchMembers(1),
-            "The Search Members instance endpoint should be constructed correctly"
+            "The Search SegmentsMembers instance endpoint should be constructed correctly"
         );
     }
 }

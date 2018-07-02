@@ -6,7 +6,7 @@ use MailchimpAPI\Lists\Members;
 
 /**
  * Class MembersActivity
- * @package MailchimpAPI\Lists\Members
+ * @package MailchimpAPI\Lists\SegmentsMembers
  */
 class MembersActivity extends Members
 {

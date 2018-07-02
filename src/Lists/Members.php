@@ -8,7 +8,7 @@ use MailchimpAPI\Lists\Members\Goals;
 use MailchimpAPI\Lists\Members\MembersActivity;
 
 /**
- * Class Members
+ * Class SegmentsMembers
  * @package MailchimpAPI\Lists
  */
 class Members extends Lists
@@ -50,7 +50,7 @@ class Members extends Lists
     const URL_COMPONENT = '/members/';
 
     /**
-     * Members constructor.
+     * SegmentsMembers constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
