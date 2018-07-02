@@ -5,7 +5,7 @@ namespace MailchimpAPI\Lists;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Members\Notes;
 use MailchimpAPI\Lists\Members\Goals;
-use MailchimpAPI\Lists\Members\Activity as MembersActivity;
+use MailchimpAPI\Lists\Members\MembersActivity;
 
 /**
  * Class Members
@@ -43,7 +43,7 @@ class Members extends Lists
      */
     private $goals;
     /**
-     * @var Activity
+     * @var MembersActivity
      */
     private $member_activity;
 
@@ -103,7 +103,7 @@ class Members extends Lists
 
     /**
      * @param null $class_input
-     * @return \MailchimpAPI\Lists\Activity|Activity
+     * @return \MailchimpAPI\Lists\Activity|MembersActivity
      * @throws \MailchimpAPI\MailchimpException
      */
     public function activity($class_input = null)

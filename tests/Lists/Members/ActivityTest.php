@@ -8,7 +8,7 @@
 
 namespace MailchimpTests\Lists\Members;
 
-use MailchimpAPI\Lists\Members\Activity;
+use MailchimpAPI\Lists\Members\MembersActivity;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Members;
 use MailchimpTests\MailChimpTestCase;
@@ -18,18 +18,18 @@ class ActivityTest extends MailChimpTestCase
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
-            Lists::URL_COMPONENT . 1 . Members::URL_COMPONENT . 1 . Activity::URL_COMPONENT,
+            Lists::URL_COMPONENT . 1 . Members::URL_COMPONENT . 1 . MembersActivity::URL_COMPONENT,
             $this->mailchimp->lists(1)->members(1)->activity(),
-            "The Activity collection endpoint should be constructed correctly"
+            "The MembersActivity collection endpoint should be constructed correctly"
         );
     }
 
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(
-            Lists::URL_COMPONENT . 1 . Members::URL_COMPONENT . 1 . Activity::URL_COMPONENT . 1,
+            Lists::URL_COMPONENT . 1 . Members::URL_COMPONENT . 1 . MembersActivity::URL_COMPONENT . 1,
             $this->mailchimp->lists(1)->members(1)->activity(1),
-            "The Activity instance endpoint should be constructed correctly"
+            "The MembersActivity instance endpoint should be constructed correctly"
         );
     }
 }

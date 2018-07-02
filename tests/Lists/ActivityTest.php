@@ -19,7 +19,7 @@ class ActivityTest extends MailChimpTestCase
         $this->endpointUrlBuildTest(
             Lists::URL_COMPONENT . 1 . Activity::URL_COMPONENT,
             $this->mailchimp->lists(1)->activity(),
-            "The Activity collection endpoint should be constructed correctly"
+            "The MembersActivity collection endpoint should be constructed correctly"
         );
     }
 
@@ -28,7 +28,7 @@ class ActivityTest extends MailChimpTestCase
         $this->endpointUrlBuildTest(
             Lists::URL_COMPONENT . 1 . Activity::URL_COMPONENT . 1,
             $this->mailchimp->lists(1)->activity(1),
-            "The Activity instance endpoint should be constructed correctly"
+            "The MembersActivity instance endpoint should be constructed correctly"
         );
     }
 }
