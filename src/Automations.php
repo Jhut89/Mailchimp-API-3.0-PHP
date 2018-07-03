@@ -2,7 +2,7 @@
 
 namespace MailchimpAPI;
 
-use MailchimpAPI\Automations\Emails\Emails;
+use MailchimpAPI\Automations\Emails;
 use MailchimpAPI\Automations\RemovedSubscribers;
 
 /**
@@ -14,16 +14,22 @@ class Automations extends Mailchimp
     /**
      * A workflow ID
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
     /**
      * @var RemovedSubscribers
      */
-    public $removed_subs;
+    private $removed_subs;
     /**
      * @var Emails
      */
-    public $emails;
+    private $emails;
+
+    const URL_COMPONENT = '/automations/';
+
+    const PAUSE_ALL_URL_COMPONENT = '/actions/pause-all-emails/';
+
+    const START_ALL_URL_COMPONENT = '/actions/start-all-emails/';
 
     /**
      * Automations constructor.
@@ -35,9 +41,9 @@ class Automations extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/automations/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/automations/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->subclass_resource = $class_input;
     }
@@ -49,7 +55,7 @@ class Automations extends Mailchimp
     public function pauseAll()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/pause-all-emails/');
+        return $this->postToActionEndpoint(self::PAUSE_ALL_URL_COMPONENT);
     }
 
     /**
@@ -59,7 +65,7 @@ class Automations extends Mailchimp
     public function startAll()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/start-all-emails/');
+        return $this->postToActionEndpoint(self::START_ALL_URL_COMPONENT);
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------

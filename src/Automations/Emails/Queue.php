@@ -2,6 +2,7 @@
 
 namespace MailchimpAPI\Automations\Emails;
 
+use MailchimpAPI\Automations\Emails;
 /**
  * Class Queue
  * @package Mailchimp_API\Automations\Emails
@@ -16,6 +17,8 @@ class Queue extends Emails
         'email_address'
     ];
 
+    const URL_COMPONENT = '/queue/';
+
     /**
      * Queue constructor.
      * @param $apikey
@@ -28,9 +31,9 @@ class Queue extends Emails
     {
         parent::__construct($apikey, $parent_reference, $grandchild_resource);
         if ($member) {
-            $this->request->appendToEndpoint('/queue/' . md5(strtolower($member)));
+            $this->request->appendToEndpoint(self::URL_COMPONENT . md5(strtolower($member)));
         } else {
-            $this->request->appendToEndpoint('/queue/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

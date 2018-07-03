@@ -8,34 +8,24 @@
 
 namespace MailchimpTests;
 
+use MailchimpAPI\BatchOperations;
+
 class BatchOperationsTest extends MailChimpTestCase
 {
     public function testBatchOperationsCollectionUrl()
     {
-        $expected_url = $this->expectedUrl("/batches/");
-
-        $batches = $this
-            ->mailchimp
-            ->batches();
-
-        self::assertEquals(
-            $expected_url,
-            $batches->request->getUrl(),
+        $this->endpointUrlBuildTest(
+            BatchOperations::URL_COMPONENT,
+            $this->mailchimp->batches(),
             "The batch operations collection url should be constructed correctly"
         );
     }
 
     public function testBatchOperationsInstanceUrl()
     {
-        $expected_url = $this->expectedUrl("/batches/1");
-
-        $batches = $this
-            ->mailchimp
-            ->batches(1);
-
-        self::assertEquals(
-            $expected_url,
-            $batches->request->getUrl(),
+        $this->endpointUrlBuildTest(
+            BatchOperations::URL_COMPONENT . 1,
+            $this->mailchimp->batches(1),
             "The batch operations instance url should be constructed correctly"
         );
     }

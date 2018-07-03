@@ -2,40 +2,25 @@
 
 namespace MailchimpTests;
 
+use MailchimpAPI\Automations;
 use MailchimpAPI\MailchimpException;
 
 final class AutomationsTest extends MailChimpTestCase
 {
     public function testAutomationsCollectionUrl()
     {
-        $expected_url = $this->request->getBaseUrl() . "/automations/";
-
-        try {
-            $mc = $this
-                ->mailchimp
-                ->automations();
-        } catch (\Exception $e) {
-            self::fail("An Exception was thrown");
-        }
-
-        self::assertEquals(
-            $expected_url,
-            $mc->request->getUrl(),
+        $this->endpointUrlBuildTest(
+            Automations::URL_COMPONENT,
+            $this->mailchimp->automations(),
             "The automations collection url should be constructed correctly"
         );
     }
 
     public function testAutomationsInstanceUrl()
     {
-        $expected_url = $this->request->getBaseUrl() . "/automations/1";
-
-        $mc = $this
-            ->mailchimp
-            ->automations(1);
-
-        self::assertEquals(
-            $expected_url,
-            $mc->request->getUrl(),
+        $this->endpointUrlBuildTest(
+            Automations::URL_COMPONENT . 1,
+            $this->mailchimp->automations(1),
             "The automations instance url should be constructed correctly"
         );
     }

@@ -1,14 +1,14 @@
 <?php
 
-namespace MailchimpAPI\Lists\InterestsCategories;
+namespace MailchimpAPI\Lists\InterestCategories;
 
 use MailchimpAPI\Lists\InterestCategories;
 
 /**
- * Class Interests
+ * Class Interest
  * @package MailchimpAPI\Lists\Interests_Categories
  */
-class Interests extends InterestCategories
+class Interest extends InterestCategories
 {
 
     /**
@@ -24,8 +24,10 @@ class Interests extends InterestCategories
         'name'
     ];
 
+    const URL_COMPONENT = '/interests/';
+
     /**
-     * Interests constructor.
+     * Interest constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $grandparent_resource
@@ -40,9 +42,9 @@ class Interests extends InterestCategories
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/interests/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/interests/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

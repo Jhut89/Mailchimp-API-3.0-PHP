@@ -15,6 +15,8 @@ class BatchWebhooks extends Mailchimp
         'url'
     ];
 
+    const URL_COMPONENT = '/batch-webhooks/';
+
     /**
      * BatchWebhooks constructor.
      * @param $apikey
@@ -25,9 +27,9 @@ class BatchWebhooks extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/batch-webhooks/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/batch-webhooks/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

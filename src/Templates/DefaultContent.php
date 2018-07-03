@@ -10,6 +10,8 @@ use MailchimpAPI\Templates;
  */
 class DefaultContent extends Templates
 {
+    const URL_COMPONENT = '/default-content/';
+
     /**
      * DefaultContent constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class DefaultContent extends Templates
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/default-content/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/default-content/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

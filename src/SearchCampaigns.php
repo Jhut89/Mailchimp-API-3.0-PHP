@@ -8,6 +8,8 @@ namespace MailchimpAPI;
  */
 class SearchCampaigns extends Mailchimp
 {
+    const URL_COMPONENT = '/search-campaigns/';
+
     /**
      * SearchCampaigns constructor.
      * @param $apikey
@@ -19,9 +21,9 @@ class SearchCampaigns extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/search-campaigns/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/search-campaigns/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

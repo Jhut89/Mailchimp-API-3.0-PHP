@@ -23,6 +23,8 @@ class FileManagerFolders extends Mailchimp
         'name'
     ];
 
+    const URL_COMPONENT = '/file-manager/folders/';
+
     /**
      * FileManagerFolders constructor.
      * @param $apikey
@@ -34,9 +36,9 @@ class FileManagerFolders extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/file-manager/folders/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/file-manager/folders/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

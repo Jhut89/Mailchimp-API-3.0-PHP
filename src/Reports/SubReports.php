@@ -10,6 +10,8 @@ use MailchimpAPI\Reports;
  */
 class SubReports extends Reports
 {
+    const URL_COMPONENT = '/sub-reports/';
+
     /**
      * SubReports constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class SubReports extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/sub-reports/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/sub-reports/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

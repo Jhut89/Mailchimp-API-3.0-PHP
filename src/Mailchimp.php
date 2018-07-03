@@ -38,71 +38,71 @@ class Mailchimp
     /**
      * @var Account
      */
-    public $account;
+    private $account;
     /**
      * @var AuthorizedApps
      */
-    public $apps;
+    private $apps;
     /**
      * @var Automations
      */
-    public $automations;
+    private $automations;
     /**
      * @var BatchOperations
      */
-    public $batches;
+    private $batches;
     /**
      * @var BatchWebhooks
      */
-    public $batch_webhooks;
+    private $batch_webhooks;
     /**
      * @var CampaignFolders
      */
-    public $campaign_folders;
+    private $campaign_folders;
     /**
      * @var Campaigns
      */
-    public $campaigns;
+    private $campaigns;
     /**
      * @var Conversations
      */
-    public $conversations;
+    private $conversations;
     /**
      * @var EcommerceStores
      */
-    public $ecomm_stores;
+    private $ecomm_stores;
     /**
      * @var FileManagerFiles
      */
-    public $file_manager_files;
+    private $file_manager_files;
     /**
      * @var FileManagerFolders
      */
-    public $file_manager_folders;
+    private $file_manager_folders;
     /**
      * @var Lists
      */
-    public $lists;
+    private $lists;
     /**
      * @var Reports
      */
-    public $reports;
+    private $reports;
     /**
      * @var SearchCampaigns
      */
-    public $search_campaigns;
+    private $search_campaigns;
     /**
      * @var SearchMembers
      */
-    public $search_members;
+    private $search_members;
     /**
      * @var TemplateFolders
      */
-    public $template_folders;
+    private $template_folders;
     /**
      * @var Templates
      */
-    public $templates;
+    private $templates;
 
     /**
      * Mailchimp constructor.

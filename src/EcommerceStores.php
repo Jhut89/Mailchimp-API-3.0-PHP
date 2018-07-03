@@ -17,7 +17,7 @@ class EcommerceStores extends Mailchimp
     /**
      * @var
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
     /**
      * @var array
@@ -32,19 +32,21 @@ class EcommerceStores extends Mailchimp
     /**
      * @var Customers
      */
-    public $customers;
+    private $customers;
     /**
      * @var Products
      */
-    public $products;
+    private $products;
     /**
      * @var Orders
      */
-    public $orders;
+    private $orders;
     /**
      * @var Carts
      */
-    public $carts;
+    private $carts;
+
+    const URL_COMPONENT = '/ecommerce/stores/';
 
     /**
      * EcommerceStores constructor.
@@ -57,9 +59,9 @@ class EcommerceStores extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/ecommerce/stores/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/ecommerce/stores/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         
         $this->subclass_resource = $class_input;

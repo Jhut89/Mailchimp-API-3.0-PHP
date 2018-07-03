@@ -10,6 +10,8 @@ use MailchimpAPI\Reports;
  */
 class TopLocations extends Reports
 {
+    const URL_COMPONENT = '/locations/';
+
     /**
      * TopLocations constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class TopLocations extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/locations/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/locations/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

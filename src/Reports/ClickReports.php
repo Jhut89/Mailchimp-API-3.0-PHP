@@ -15,12 +15,14 @@ class ClickReports extends Reports
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var string
      */
-    public $click_members;
+    private $click_members;
+
+    const URL_COMPONENT = '/click-details/';
 
     /**
      * ClickReports constructor.
@@ -33,9 +35,9 @@ class ClickReports extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/click-details/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/click-details/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->grandchild_resource = $class_input;
     }

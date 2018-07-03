@@ -14,7 +14,7 @@ class Customers extends EcommerceStores
     /**
      * @var
      */
-    public $class_input;
+    protected $class_input;
 
     /**
      * @var array
@@ -33,6 +33,8 @@ class Customers extends EcommerceStores
         'opt_in_status'
     ];
 
+    const URL_COMPONENT = '/customers/';
+
     /**
      * Customers constructor.
      * @param $apikey
@@ -44,9 +46,9 @@ class Customers extends EcommerceStores
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/customers/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/customers/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->class_input = $class_input;
     }

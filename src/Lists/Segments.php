@@ -4,7 +4,6 @@ namespace MailchimpAPI\Lists;
 
 use MailchimpAPI\MailchimpException;
 use MailchimpAPI\Lists;
-use MailchimpAPI\Lists\Segments\Members;
 
 /**
  * Class Segments
@@ -16,7 +15,7 @@ class Segments extends Lists
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var array
@@ -34,7 +33,9 @@ class Segments extends Lists
     /**
      * @var
      */
-    public $segment_members;
+    private $segment_members;
+
+    const URL_COMPONENT = '/segments/';
 
     /**
      * Segments constructor.
@@ -47,9 +48,9 @@ class Segments extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/segments/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/segments/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->grandchild_resource = $class_input;
     }
@@ -78,7 +79,7 @@ class Segments extends Lists
      */
     public function members($class_input = null)
     {
-        $this->segment_members = new Members(
+        $this->segment_members = new Lists\Segments\Members(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,

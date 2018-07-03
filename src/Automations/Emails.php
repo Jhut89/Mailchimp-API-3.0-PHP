@@ -1,6 +1,6 @@
 <?php
 
-namespace MailchimpAPI\Automations\Emails;
+namespace MailchimpAPI\Automations;
 
 use MailchimpAPI\Automations;
 use MailchimpAPI\Utilities\MailchimpResponse;
@@ -15,12 +15,18 @@ class Emails extends Automations
     /**
      * An email ID
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var Queue
      */
-    public $queue;
+    private $queue;
+
+    const URL_COMPONENT = '/emails/';
+
+    const PAUSE_URL_COMPONENT = '/actions/pause';
+
+    const START_URL_COMPONENT = '/actions/start';
 
     /**
      * Emails constructor.
@@ -34,9 +40,9 @@ class Emails extends Automations
 
         parent::__construct($apikey, $parent_reference);
         if ($class_input) {
-            $this->request->appendToEndpoint('/emails/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/emails/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->grandchild_resource = $class_input;
     }
@@ -48,7 +54,7 @@ class Emails extends Automations
     public function pause()
     {
         $this->throwIfNot($this->grandchild_resource);
-        return $this->postToActionEndpoint('/actions/pause');
+        return $this->postToActionEndpoint(self::PAUSE_URL_COMPONENT);
     }
 
     /**
@@ -58,19 +64,19 @@ class Emails extends Automations
     public function start()
     {
         $this->throwIfNot($this->grandchild_resource);
-        return $this->postToActionEndpoint('/actions/start');
+        return $this->postToActionEndpoint(self::START_URL_COMPONENT);
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
     /**
      * @param null $member
-     * @return Queue
+     * @return Automations\Emails\Queue
      * @throws \MailchimpAPI\MailchimpException
      */
     public function queue($member = null)
     {
-        $this->queue = new Queue(
+        $this->queue = new Automations\Emails\Queue(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,

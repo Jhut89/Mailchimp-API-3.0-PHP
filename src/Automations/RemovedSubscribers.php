@@ -17,6 +17,8 @@ class RemovedSubscribers extends Automations
         'email_address'
     ];
 
+    const URL_COMPONENT = '/removed-subscribers/';
+
     /**
      * RemovedSubscribers constructor.
      * @param $apikey
@@ -26,6 +28,6 @@ class RemovedSubscribers extends Automations
     public function __construct($apikey, $class_input = null)
     {
         parent::__construct($apikey, $class_input);
-        $this->request->appendToEndpoint('/removed-subscribers/');
+        $this->request->appendToEndpoint(self::URL_COMPONENT);
     }
 }

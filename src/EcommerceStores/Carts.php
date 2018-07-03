@@ -15,7 +15,7 @@ class Carts extends EcommerceStores
     /**
      * @var
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
 
     /**
      * @var array
@@ -31,7 +31,9 @@ class Carts extends EcommerceStores
     /**
      * @var Lines
      */
-    public $lines;
+    private $lines;
+
+    const URL_COMPONENT = '/carts/';
 
     /**
      * Carts constructor.
@@ -44,9 +46,9 @@ class Carts extends EcommerceStores
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/carts/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/carts/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
 
         $this->grandchild_resource = $class_input;

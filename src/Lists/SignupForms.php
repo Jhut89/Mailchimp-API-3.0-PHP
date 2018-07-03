@@ -10,6 +10,8 @@ use MailchimpAPI\Lists;
  */
 class SignupForms extends Lists
 {
+    const URL_COMPONENT = '/signup-forms/';
+
     /**
      * SignupForms constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class SignupForms extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/signup-forms/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/signup-forms/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

@@ -10,6 +10,8 @@ use MailchimpAPI\Reports;
  */
 class DomainPerformance extends Reports
 {
+    const URL_COMPONENT = '/domain-performance/';
+
     /**
      * DomainPerformance constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class DomainPerformance extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/domain-performance/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/domain-performance/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

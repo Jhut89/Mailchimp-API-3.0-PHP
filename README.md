@@ -1,30 +1,3 @@
-# Table Of Contents | [![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-  - [VERSION 3.0.0 COMING](#version-3.0.0-coming)
-    - [Incoming Features](#incoming-features)
-    - [Breaks From Older Versions](#breaks-from-older-versions)
-- [MAILCHIMP API 3.0 PHP](#mailchimp-api-3.0-php)
-  - [Installation](#installation)
-  - [Instantiation](#instantiation)
-  - [Oauth](#oauth)
-  - [Constructing a Request](#constructing-a-request)
-    - [GET](#get)
-    - [POST](#post)
-    - [PATCH & PUT](#patch-&-put)
-    - [DELETE](#delete)
-  - [Handling A Response](#handling-a-response)
-  - [Method Chart (\*excluding verbs)](#method-chart-%5Cexcluding-verbs)
-  - [Settings](#settings)
-    - [Debugger](#debugger)
-    - [SSL Verify](#ssl-verify)
-    - [Request Headers](#request-headers)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## VERSION 3.0.0 COMING
 
 Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
@@ -55,7 +28,35 @@ older version by requiring the version you want:
 
 ``` 
 
+# Table Of Contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [MAILCHIMP API 3.0 PHP](#mailchimp-api-3.0-php)
+  - [Installation](#installation)
+  - [Instantiation](#instantiation)
+  - [Oauth](#oauth)
+  - [Constructing a Request](#constructing-a-request)
+    - [GET](#get)
+    - [POST](#post)
+    - [PATCH &amp; PUT](#patch-&amp;-put)
+    - [DELETE](#delete)
+  - [Handling A Response](#handling-a-response)
+  - [Method Chart (\*excluding verbs)](#method-chart-heading)
+  - [Settings](#settings)
+    - [Debugger](#debugger)
+    - [SSL Verify](#ssl-verify)
+    - [Request Headers](#request-headers)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # MAILCHIMP API 3.0 PHP 
+[![GitHub license](https://img.shields.io/github/license/Jhut89/Mailchimp-API-3.0-PHP.svg)](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/blob/master/LICENSE) 
+[![Build Status](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP.svg?branch=master)](https://travis-ci.com/Jhut89/Mailchimp-API-3.0-PHP)
+[![Latest Stable Version](https://poser.pugx.org/jhut89/mailchimp3php/v/stable?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php)
+[![Total Downloads](https://poser.pugx.org/jhut89/mailchimp3php/downloads?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php) 
+[![Slack Workspace](https://img.shields.io/badge/slack%20workspace-join-blue.svg?style=flat)](https://join.slack.com/t/mailchimp-api-30-php/shared_invite/enQtMzkwNTg3Mzc5NzI5LTdhOWE2ZGE1NzJmZGRjNDg2Mzg1MDYwZmVhNGM0MGJmMDY3NGVkOWQyZTI1Zjg1YTA2YjdkMDMxNjIyZjg5MGM)
+
 
 This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
 
@@ -99,7 +100,7 @@ Mailchimp::getAuthUrl($client_id, $redirect_url);
 
 From there the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
 
-With that `code` you can now request an access token from mailchimp. You will need to call the `MAilchimp::oauthExchange()` method statically like this:
+With that `code` you can now request an access token from mailchimp. You will need to call the `Mailchimp::oauthExchange()` method statically like this:
 
 ```php
 $code = 'abc123abc123abc123abc123';
@@ -207,7 +208,7 @@ $mailchimp
     ->post($post_params);
 ```
 
-### PATCH & PUT
+### PATCH &amp; PUT
 
 This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that represent the data you wish altered/provided to MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
 
@@ -257,7 +258,7 @@ $email = $account
 print $email; // outputs something like "example@domain.com"
 ```
 
-## Method Chart (\*excluding verbs)
+## <a name="method-chart-heading"></a>Method Chart (\*excluding verbs)
 
                                     
       mailchimp()                       

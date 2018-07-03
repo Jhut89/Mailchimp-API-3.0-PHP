@@ -10,6 +10,8 @@ use MailchimpAPI\Lists\Members;
  */
 class Activity extends Members
 {
+    const URL_COMPONENT = '/activity/';
+
     /**
      * Activity constructor.
      * @param $apikey
@@ -26,9 +28,9 @@ class Activity extends Members
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/activity/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/activity/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

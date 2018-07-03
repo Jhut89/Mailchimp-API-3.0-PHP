@@ -18,6 +18,7 @@ class AuthorizedApps extends Mailchimp
         'client_secret'
     ];
 
+    const URL_COMPONENT = '/authorized-apps/';
 
     /**
      * AuthorizedApps constructor.
@@ -29,9 +30,9 @@ class AuthorizedApps extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/authorized-apps/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/authorized-apps/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

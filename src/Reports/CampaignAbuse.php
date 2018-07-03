@@ -10,6 +10,8 @@ use MailchimpAPI\Reports;
  */
 class CampaignAbuse extends Reports
 {
+    const URL_COMPONENT = '/abuse-reports/';
+
     /**
      * CampaignAbuse constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class CampaignAbuse extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/abuse-reports/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/abuse-reports/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

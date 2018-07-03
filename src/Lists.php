@@ -3,11 +3,9 @@
 namespace MailchimpAPI;
 
 use MailchimpAPI\Lists\AbuseReports;
-use MailchimpAPI\Lists\Activity;
 use MailchimpAPI\Lists\Clients;
 use MailchimpAPI\Lists\GrowthHistory;
 use MailchimpAPI\Lists\InterestCategories;
-use MailchimpAPI\Lists\Members;
 use MailchimpAPI\Lists\MergeFields;
 use MailchimpAPI\Lists\Segments;
 use MailchimpAPI\Lists\SignupForms;
@@ -23,7 +21,7 @@ class Lists extends Mailchimp
     /**
      * @var string
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
 
     /**
@@ -51,44 +49,45 @@ class Lists extends Mailchimp
     /**
      * @var Webhooks
      */
-    public $webhooks;
+    private $webhooks;
     /**
      * @var SignupForms
      */
-    public $signup_forms;
+    private $signup_forms;
     /**
      * @var MergeFields
      */
-    public $merge_fields;
+    private $merge_fields;
     /**
      * @var GrowthHistory
      */
-    public $growth_history;
+    private $growth_history;
     /**
      * @var Clients
      */
-    public $clients;
+    private $clients;
     /**
-     * @var Activity
+     * @var \MailchimpAPI\Lists\Activity
      */
-    public $activity;
+    private $activity;
     /**
      * @var AbuseReports
      */
-    public $abuse;
+    private $abuse;
     /**
      * @var Segments
      */
-    public $segments;
+    private $segments;
     /**
-     * @var Members
+     * @var \MailchimpAPI\Lists\Members
      */
-    public $members;
+    private $members;
     /**
      * @var InterestCategories
      */
-    public $interest_categories;
+    private $interest_categories;
 
+    const URL_COMPONENT = '/lists/';
 
     /**
      * Lists constructor.
@@ -101,9 +100,9 @@ class Lists extends Mailchimp
         parent::__construct($apikey);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/lists/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/lists/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         $this->subclass_resource = $class_input;
     }
@@ -205,12 +204,12 @@ class Lists extends Mailchimp
 
     /**
      * @param null $class_input
-     * @return Activity
+     * @return \MailchimpAPI\Lists\Activity
      * @throws MailchimpException
      */
     public function activity($class_input = null)
     {
-        $this->activity = new Activity(
+        $this->activity = new Lists\Activity(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -250,12 +249,12 @@ class Lists extends Mailchimp
 
     /**
      * @param null $class_input
-     * @return Members
+     * @return \MailchimpAPI\Lists\Members
      * @throws MailchimpException
      */
     public function members($class_input = null)
     {
-        $this->members = new Members(
+        $this->members = new Lists\Members(
             $this->apikey,
             $this->subclass_resource,
             $class_input

@@ -10,6 +10,8 @@ use MailchimpAPI\Reports;
  */
 class EepurlReports extends Reports
 {
+    const URL_COMPONENT = '/eepurl/';
+
     /**
      * EepurlReports constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class EepurlReports extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/eepurl/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/eepurl/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

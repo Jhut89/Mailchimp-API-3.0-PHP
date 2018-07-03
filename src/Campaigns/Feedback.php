@@ -24,6 +24,8 @@ class Feedback extends Campaigns
         'message'
     ];
 
+    const URL_COMPONENT = '/feedback/';
+
     /**
      * Feedback constructor.
      * @param $apikey
@@ -35,9 +37,9 @@ class Feedback extends Campaigns
     {
         parent::__construct($apikey, $parent_input);
         if ($class_input) {
-            $this->request->appendToEndpoint('/feedback/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/feedback/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

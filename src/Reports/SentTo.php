@@ -10,6 +10,8 @@ use MailchimpAPI\Reports;
  */
 class SentTo extends Reports
 {
+    const URL_COMPONENT = '/sent-to/';
+
     /**
      * SentTo constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class SentTo extends Reports
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/sent-to/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/sent-to/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

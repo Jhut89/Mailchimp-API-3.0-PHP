@@ -16,6 +16,8 @@ class BatchOperations extends Mailchimp
         'operations'
     ];
 
+    const URL_COMPONENT = '/batches/';
+
     /**
      * BatchOperations constructor.
      * @param $apikey
@@ -26,9 +28,9 @@ class BatchOperations extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/batches/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/batches/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

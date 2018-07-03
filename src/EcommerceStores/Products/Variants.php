@@ -14,7 +14,7 @@ class Variants extends Products
     /**
      * @var
      */
-    public $class_input;
+    private $class_input;
 
 
     /**
@@ -31,6 +31,8 @@ class Variants extends Products
         'id',
         'title'
     ];
+
+    const URL_COMPONENT = '/variants/';
 
     /**
      * Variants constructor.
@@ -50,9 +52,9 @@ class Variants extends Products
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
 
         if ($class_input) {
-            $this->request->appendToEndpoint('/variants/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/variants/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
 
         $this->class_input = $class_input;

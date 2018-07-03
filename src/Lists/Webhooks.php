@@ -10,6 +10,8 @@ use MailchimpAPI\Lists;
  */
 class Webhooks extends Lists
 {
+    const URL_COMPONENT = '/webhooks/';
+
     /**
      * Webhooks constructor.
      * @param $apikey
@@ -21,9 +23,9 @@ class Webhooks extends Lists
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/webhooks/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/webhooks/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }

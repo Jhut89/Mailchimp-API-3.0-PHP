@@ -24,20 +24,22 @@ class Products extends EcommerceStores
     /**
      * @var Variants
      */
-    public $variants;
+    private $variants;
     /**
      * @var Images
      */
-    public $images;
+    private $images;
     /**
      * @var string
      */
-    public $parent_resource;
+    protected $parent_resource;
 
     /**
      * @var string
      */
-    public $grandchild_resource;
+    protected $grandchild_resource;
+
+    const URL_COMPONENT = '/products/';
 
     /**
      * Products constructor.
@@ -50,9 +52,9 @@ class Products extends EcommerceStores
     {
         parent::__construct($apikey, $parent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/products/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/products/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
 
         $this->grandchild_resource = $class_input;

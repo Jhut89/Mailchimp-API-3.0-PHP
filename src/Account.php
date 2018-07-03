@@ -9,6 +9,8 @@ namespace MailchimpAPI;
  */
 class Account extends Mailchimp
 {
+    const URL_COMPONENT = '/';
+
     /**
      * Account constructor.
      * @param $apikey
@@ -17,6 +19,6 @@ class Account extends Mailchimp
     public function __construct($apikey)
     {
         parent::__construct($apikey);
-            $this->request->appendToEndpoint('/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
     }
 }

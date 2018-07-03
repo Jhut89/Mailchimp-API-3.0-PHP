@@ -16,7 +16,7 @@ class Campaigns extends Mailchimp
     /**
      * @var
      */
-    public $subclass_resource;
+    protected $subclass_resource;
 
 
     /**
@@ -33,19 +33,36 @@ class Campaigns extends Mailchimp
         'settings'
     ];
 
-    //SUBCLASS INSTANTIATIONS
     /**
      * @var SendChecklist
      */
-    public $checklist;
+    private $checklist;
     /**
      * @var Feedback
      */
-    public $feedback;
+    private $feedback;
     /**
      * @var Content
      */
-    public $content;
+    private $content;
+
+    const URL_COMPONENT = '/campaigns/';
+
+    const CANCEL_URL_COMPONENT = '/actions/cancel-send/';
+
+    const PAUSE_URL_COMPONENT = '/actions/pause';
+
+    const REPLICATE_URL_COMPONENT = '/actions/replicate';
+
+    const RESUME_URL_COMPONENT = '/actions/resume';
+
+    const SCHEDULE_URL_COMPONENT = '/actions/schedule';
+
+    const SEND_URL_COMPONENT = '/actions/send';
+
+    const TEST_URL_COMPONENT = '/actions/test';
+
+    const UNSCHEDULE_URL_COMPONENT = '/actions/unschedule';
 
     /**
      * Campaigns constructor.
@@ -57,9 +74,9 @@ class Campaigns extends Mailchimp
     {
         parent::__construct($apikey);
         if ($class_input) {
-            $this->request->appendToEndpoint('/campaigns/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/campaigns/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
         
         $this->subclass_resource = $class_input;
@@ -72,7 +89,7 @@ class Campaigns extends Mailchimp
     public function cancel()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/cancel-send/');
+        return $this->postToActionEndpoint(self::CANCEL_URL_COMPONENT);
     }
 
     /**
@@ -82,7 +99,7 @@ class Campaigns extends Mailchimp
     public function pause()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/pause');
+        return $this->postToActionEndpoint(self::PAUSE_URL_COMPONENT);
     }
 
     /**
@@ -92,7 +109,7 @@ class Campaigns extends Mailchimp
     public function replicate()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/replicate');
+        return $this->postToActionEndpoint(self::REPLICATE_URL_COMPONENT);
     }
 
     /**
@@ -102,7 +119,7 @@ class Campaigns extends Mailchimp
     public function resume()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/resume');
+        return $this->postToActionEndpoint(self::RESUME_URL_COMPONENT);
     }
 
     /**
@@ -117,7 +134,7 @@ class Campaigns extends Mailchimp
         $params = ["schedule_time" => $schedule_time];
         $params = array_merge($params, $optional_parameters);
 
-        return $this->postToActionEndpoint('/actions/schedule', $params);
+        return $this->postToActionEndpoint(self::SCHEDULE_URL_COMPONENT, $params);
     }
 
     /**
@@ -127,7 +144,7 @@ class Campaigns extends Mailchimp
     public function send()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/send');
+        return $this->postToActionEndpoint(self::SEND_URL_COMPONENT);
     }
 
     /**
@@ -141,7 +158,7 @@ class Campaigns extends Mailchimp
         $this->throwIfNot($this->subclass_resource);
         $params = ["test_emails" => $test_addresses, "send_type" => $send_type];
 
-        return $this->postToActionEndpoint('/actions/test', $params);
+        return $this->postToActionEndpoint(self::TEST_URL_COMPONENT, $params);
     }
 
     /**
@@ -151,7 +168,7 @@ class Campaigns extends Mailchimp
     public function unschedule()
     {
         $this->throwIfNot($this->subclass_resource);
-        return $this->postToActionEndpoint('/actions/unschedule');
+        return $this->postToActionEndpoint(self::UNSCHEDULE_URL_COMPONENT);
     }
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
