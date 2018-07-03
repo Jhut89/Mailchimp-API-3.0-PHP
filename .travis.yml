@@ -3,7 +3,8 @@ php:
   - '5.6'
   - '7.0'
 before-script:
+  - composer install
   - composer update
-script: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
+script: composer update && ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
 matrix:
   fast_finish: true
