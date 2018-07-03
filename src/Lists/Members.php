@@ -5,7 +5,6 @@ namespace MailchimpAPI\Lists;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Members\Notes;
 use MailchimpAPI\Lists\Members\Goals;
-use MailchimpAPI\Lists\Members\Activity;
 
 /**
  * Class Members
@@ -108,7 +107,7 @@ class Members extends Lists
      */
     public function activity($class_input = null)
     {
-        $this->member_activity = new Activity(
+        $this->member_activity = new Lists\Members\Activity(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,
