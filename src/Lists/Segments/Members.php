@@ -17,6 +17,9 @@ class Members extends Segments
         'email_address'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/members/';
 
     /**

@@ -7,8 +7,15 @@ use MailchimpAPI\Campaigns\Feedback;
 use MailchimpTests\MailChimpTestCase;
 
 
+/**
+ * Class FeedbackTest
+ * @package MailchimpTests\Campaigns
+ */
 class FeedbackTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -18,6 +25,9 @@ class FeedbackTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

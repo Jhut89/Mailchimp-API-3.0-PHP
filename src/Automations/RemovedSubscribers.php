@@ -17,6 +17,9 @@ class RemovedSubscribers extends Automations
         'email_address'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/removed-subscribers/';
 
     /**

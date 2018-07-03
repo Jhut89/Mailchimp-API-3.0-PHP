@@ -13,8 +13,15 @@ use MailchimpTests\MailChimpTestCase;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\InterestCategories;
 
+/**
+ * Class InterestsTest
+ * @package MailchimpTests\Lists\InterestCategories
+ */
 class InterestsTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -24,6 +31,9 @@ class InterestsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

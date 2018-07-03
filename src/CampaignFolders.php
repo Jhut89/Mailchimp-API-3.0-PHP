@@ -23,6 +23,9 @@ class CampaignFolders extends Mailchimp
         'name'
     ];
 
+    /**
+     * The url component for this endpoint
+     */
     const URL_COMPONENT = '/campaign-folders/';
 
     /**

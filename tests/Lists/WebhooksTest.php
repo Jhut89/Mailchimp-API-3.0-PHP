@@ -12,8 +12,15 @@ use MailchimpAPI\Lists\Webhooks;
 use MailchimpTests\MailChimpTestCase;
 use MailchimpAPI\Lists;
 
+/**
+ * Class WebhooksTest
+ * @package MailchimpTests\Lists
+ */
 class WebhooksTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -23,6 +30,9 @@ class WebhooksTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

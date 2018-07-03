@@ -10,6 +10,9 @@ use MailchimpAPI\Campaigns;
  */
 class SendChecklist extends Campaigns
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/send-checklist/';
 
     /**

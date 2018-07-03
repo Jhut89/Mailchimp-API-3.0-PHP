@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/1/18
- * Time: 10:07 PM
- */
 
 namespace MailchimpTests\Automations;
 
@@ -12,8 +6,15 @@ use MailchimpAPI\Automations;
 use MailchimpAPI\Automations\Emails;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class EmailsTest
+ * @package MailchimpTests\Automations
+ */
 class EmailsTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -23,6 +24,9 @@ class EmailsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

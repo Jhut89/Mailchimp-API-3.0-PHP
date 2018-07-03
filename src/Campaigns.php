@@ -46,6 +46,9 @@ class Campaigns extends Mailchimp
      */
     private $content;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/campaigns/';
 
     const CANCEL_URL_COMPONENT = '/actions/cancel-send/';

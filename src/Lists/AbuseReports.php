@@ -10,6 +10,9 @@ use MailchimpAPI\Lists;
  */
 class AbuseReports extends Lists
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/abuse-reports/';
 
     /**

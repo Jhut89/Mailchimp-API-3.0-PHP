@@ -4,8 +4,15 @@ namespace MailchimpTests;
 
 use MailchimpAPI\TemplateFolders;
 
+/**
+ * Class TemplateFoldersTest
+ * @package MailchimpTests
+ */
 class TemplateFoldersTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testTemplateFoldersCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -15,6 +22,9 @@ class TemplateFoldersTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testTemplateFoldersInstanceUrl()
     {
         $this->endpointUrlBuildTest(

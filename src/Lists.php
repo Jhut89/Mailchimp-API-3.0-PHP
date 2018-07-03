@@ -87,6 +87,9 @@ class Lists extends Mailchimp
      */
     private $interest_categories;
 
+    /**
+     * The url component for this endpoint
+     */
     const URL_COMPONENT = '/lists/';
 
     /**

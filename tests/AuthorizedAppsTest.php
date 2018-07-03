@@ -4,10 +4,15 @@ namespace MailchimpTests;
 
 use MailchimpAPI\AuthorizedApps;
 
+/**
+ * Class AuthorizedAppsTest
+ * @package MailchimpTests
+ */
 final class AuthorizedAppsTest extends MailChimpTestCase
 {
-
-
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testAuthorizedAppsCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -17,6 +22,9 @@ final class AuthorizedAppsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testAuthorizedAppsInstanceUrl()
     {
         $this->endpointUrlBuildTest(

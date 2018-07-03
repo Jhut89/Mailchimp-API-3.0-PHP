@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 6/25/18
- * Time: 6:08 PM
- */
 
 namespace MailchimpTests\TestingUtilities;
 

@@ -67,6 +67,9 @@ class Reports extends Mailchimp
      */
     private $click_reports;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/reports/';
 
     /**

@@ -12,8 +12,15 @@ use MailchimpAPI\Templates\DefaultContent;
 use MailchimpTests\MailChimpTestCase;
 use MailchimpAPI\Templates;
 
+/**
+ * Class DefaultContentTest
+ * @package MailchimpTests\Templates
+ */
 class DefaultContentTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -23,6 +30,9 @@ class DefaultContentTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

@@ -10,6 +10,9 @@ use MailchimpAPI\Lists\Members;
  */
 class Goals extends Members
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/goals/';
 
     /**

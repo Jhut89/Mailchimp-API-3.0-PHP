@@ -33,6 +33,9 @@ class Customers extends EcommerceStores
         'opt_in_status'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/customers/';
 
     /**

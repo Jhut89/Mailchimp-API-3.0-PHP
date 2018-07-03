@@ -22,6 +22,9 @@ class ClickReports extends Reports
      */
     private $click_members;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/click-details/';
 
     /**

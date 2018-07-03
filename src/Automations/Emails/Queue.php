@@ -17,6 +17,9 @@ class Queue extends Emails
         'email_address'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/queue/';
 
     /**

@@ -6,8 +6,15 @@ use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\AbuseReports;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class AbuseReportsTest
+ * @package MailchimpTests\Lists
+ */
 class AbuseReportsTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -17,6 +24,9 @@ class AbuseReportsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

@@ -18,6 +18,9 @@ class Messages extends Conversations
         'read'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/messages/';
 
     /**

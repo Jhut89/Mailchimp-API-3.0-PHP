@@ -12,8 +12,15 @@ use MailchimpAPI\Reports;
 use MailchimpAPI\Reports\EmailActivity;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class EmailActivityTest
+ * @package MailchimpTests\Reports
+ */
 class EmailActivityTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -23,6 +30,9 @@ class EmailActivityTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

@@ -10,6 +10,9 @@ use MailchimpAPI\Reports\ClickReports;
  */
 class Members extends ClickReports
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/members/';
 
     /**

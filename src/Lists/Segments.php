@@ -35,6 +35,9 @@ class Segments extends Lists
      */
     private $segment_members;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/segments/';
 
     /**

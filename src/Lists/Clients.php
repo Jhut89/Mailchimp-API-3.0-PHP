@@ -6,6 +6,9 @@ use MailchimpAPI\Lists;
 
 class Clients extends Lists
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/clients/';
 
     /**

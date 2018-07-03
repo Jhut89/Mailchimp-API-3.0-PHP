@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/1/18
- * Time: 10:28 PM
- */
 
 namespace MailchimpTests\Campaigns;
 
@@ -12,8 +6,15 @@ use MailchimpAPI\Campaigns;
 use MailchimpAPI\Campaigns\Content;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class ContentTest
+ * @package MailchimpTests\Campaigns
+ */
 class ContentTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(

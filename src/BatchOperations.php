@@ -16,6 +16,9 @@ class BatchOperations extends Mailchimp
         'operations'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/batches/';
 
     /**

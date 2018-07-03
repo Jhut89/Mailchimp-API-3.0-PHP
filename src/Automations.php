@@ -25,6 +25,9 @@ class Automations extends Mailchimp
      */
     private $emails;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/automations/';
 
     const PAUSE_ALL_URL_COMPONENT = '/actions/pause-all-emails/';

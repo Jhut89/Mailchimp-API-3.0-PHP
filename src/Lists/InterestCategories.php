@@ -39,6 +39,9 @@ class InterestCategories extends Lists
      */
     private $interests;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/interest-categories/';
 
     /**

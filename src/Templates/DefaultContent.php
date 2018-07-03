@@ -10,6 +10,9 @@ use MailchimpAPI\Templates;
  */
 class DefaultContent extends Templates
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/default-content/';
 
     /**

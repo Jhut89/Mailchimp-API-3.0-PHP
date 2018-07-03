@@ -18,6 +18,9 @@ class AuthorizedApps extends Mailchimp
         'client_secret'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/authorized-apps/';
 
     /**

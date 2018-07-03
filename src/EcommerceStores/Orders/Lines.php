@@ -35,6 +35,9 @@ class Lines extends Orders
      */
     private $class_input;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/lines/';
 
     /**

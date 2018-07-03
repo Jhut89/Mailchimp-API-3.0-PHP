@@ -23,6 +23,9 @@ class FileManagerFolders extends Mailchimp
         'name'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/file-manager/folders/';
 
     /**

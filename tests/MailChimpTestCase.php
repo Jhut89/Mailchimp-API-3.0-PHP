@@ -83,6 +83,11 @@ class MailChimpTestCase extends TestCase
         return new StubbableMailchimp($this->apikey, $mockConnection);
     }
 
+    /**
+     * @param $expected_endpoint
+     * @param $chain_to_be_tested
+     * @param $message
+     */
     protected function endpointUrlBuildTest($expected_endpoint, $chain_to_be_tested, $message)
     {
         $expected_url = $this->expectedUrl($expected_endpoint);

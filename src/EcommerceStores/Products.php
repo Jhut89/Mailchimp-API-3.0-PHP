@@ -39,6 +39,9 @@ class Products extends EcommerceStores
      */
     protected $grandchild_resource;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/products/';
 
     /**

@@ -1,17 +1,18 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 6/24/18
- * Time: 12:40 PM
- */
 
 namespace MailchimpTests;
 
 use MailchimpAPI\BatchOperations;
 
+/**
+ * Class BatchOperationsTest
+ * @package MailchimpTests
+ */
 class BatchOperationsTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testBatchOperationsCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -21,6 +22,9 @@ class BatchOperationsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testBatchOperationsInstanceUrl()
     {
         $this->endpointUrlBuildTest(

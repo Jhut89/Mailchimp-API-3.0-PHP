@@ -1,18 +1,19 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 6/26/18
- * Time: 3:38 PM
- */
 
 namespace MailchimpTests;
 
 
 use MailchimpAPI\CampaignFolders;
 
+/**
+ * Class CampaignFoldersTest
+ * @package MailchimpTests
+ */
 class CampaignFoldersTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCampaignFoldersCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -22,6 +23,9 @@ class CampaignFoldersTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCampaignFoldersInstanceUrl()
     {
         $this->endpointUrlBuildTest(
