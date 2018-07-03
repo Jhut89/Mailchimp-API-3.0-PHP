@@ -10,6 +10,8 @@ use MailchimpAPI\Reports\ClickReports;
  */
 class Members extends ClickReports
 {
+    const URL_COMPONENT = '/members/';
+
     /**
      * Members constructor.
      * @param $apikey
@@ -26,9 +28,9 @@ class Members extends ClickReports
     ) {
         parent::__construct($apikey, $parent_resource, $grandparent_resource);
         if ($class_input) {
-            $this->request->appendToEndpoint('/members/' . $class_input);
+            $this->request->appendToEndpoint(self::URL_COMPONENT . $class_input);
         } else {
-            $this->request->appendToEndpoint('/members/');
+            $this->request->appendToEndpoint(self::URL_COMPONENT);
         }
     }
 }
