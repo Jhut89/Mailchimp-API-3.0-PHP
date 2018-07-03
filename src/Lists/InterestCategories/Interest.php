@@ -24,6 +24,9 @@ class Interest extends InterestCategories
         'name'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/interests/';
 
     /**

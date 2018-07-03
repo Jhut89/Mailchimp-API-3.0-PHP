@@ -24,6 +24,9 @@ class MergeFields extends Lists
         'name'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/merge-fields/';
 
     /**

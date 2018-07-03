@@ -12,8 +12,15 @@ use MailchimpAPI\Conversations;
 use MailchimpAPI\Conversations\Messages;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class MessagesTest
+ * @package MailchimpTests\Conversations
+ */
 class MessagesTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -23,6 +30,9 @@ class MessagesTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

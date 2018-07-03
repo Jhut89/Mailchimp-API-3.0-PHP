@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/1/18
- * Time: 10:38 PM
- */
 
 namespace MailchimpTests\Campaigns;
 
@@ -12,8 +6,15 @@ use MailchimpAPI\Campaigns;
 use MailchimpAPI\Campaigns\SendChecklist;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class SendChecklistTest
+ * @package MailchimpTests\Campaigns
+ */
 class SendChecklistTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(

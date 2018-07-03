@@ -4,8 +4,15 @@ namespace MailchimpTests;
 
 use MailchimpAPI\Reports;
 
+/**
+ * Class ReportsTest
+ * @package MailchimpTests
+ */
 class ReportsTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testReportsCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -15,6 +22,9 @@ class ReportsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testReportsInstanceUrl()
     {
         $this->endpointUrlBuildTest(

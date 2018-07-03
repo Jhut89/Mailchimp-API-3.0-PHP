@@ -5,8 +5,15 @@ namespace MailchimpTests;
 
 use MailchimpAPI\BatchWebhooks;
 
+/**
+ * Class BatchWebhooksTest
+ * @package MailchimpTests
+ */
 class BatchWebhooksTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testBatchWebhookCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -16,6 +23,9 @@ class BatchWebhooksTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testBatchWebhooksInstanceUrl()
     {
         $this->endpointUrlBuildTest(

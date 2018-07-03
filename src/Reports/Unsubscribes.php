@@ -10,6 +10,9 @@ use MailchimpAPI\Reports;
  */
 class Unsubscribes extends Reports
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/unsubscribed/';
 
     /**

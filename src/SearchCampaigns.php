@@ -8,6 +8,9 @@ namespace MailchimpAPI;
  */
 class SearchCampaigns extends Mailchimp
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/search-campaigns/';
 
     /**

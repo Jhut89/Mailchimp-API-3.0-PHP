@@ -24,6 +24,9 @@ class Feedback extends Campaigns
         'message'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/feedback/';
 
     /**

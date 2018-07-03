@@ -32,6 +32,9 @@ class Variants extends Products
         'title'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/variants/';
 
     /**

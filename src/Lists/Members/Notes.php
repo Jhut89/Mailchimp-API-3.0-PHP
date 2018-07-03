@@ -23,6 +23,9 @@ class Notes extends Members
         'note'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/notes/';
 
     /**

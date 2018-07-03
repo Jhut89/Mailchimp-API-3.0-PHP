@@ -36,6 +36,9 @@ class Templates extends Mailchimp
      */
     private $default_content;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/templates/';
 
     /**

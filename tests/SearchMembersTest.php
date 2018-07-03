@@ -4,8 +4,15 @@ namespace MailchimpTests;
 
 use MailchimpAPI\SearchMembers;
 
+/**
+ * Class SearchMembersTest
+ * @package MailchimpTests
+ */
 class SearchMembersTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testSearchMembersCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -15,6 +22,9 @@ class SearchMembersTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testSearchMembersInstanceUrl()
     {
         $this->endpointUrlBuildTest(

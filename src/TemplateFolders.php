@@ -21,6 +21,9 @@ class TemplateFolders extends Mailchimp
         'name'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/template-folders/';
 
     /**

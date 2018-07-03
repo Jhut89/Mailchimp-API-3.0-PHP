@@ -22,6 +22,9 @@ class Emails extends Automations
      */
     private $queue;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/emails/';
 
     const PAUSE_URL_COMPONENT = '/actions/pause';

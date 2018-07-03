@@ -5,8 +5,15 @@ namespace MailchimpTests;
 
 use MailchimpAPI\EcommerceStores;
 
+/**
+ * Class EcommerceStoresTest
+ * @package MailchimpTests
+ */
 class EcommerceStoresTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testEcommerceStoresCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -16,6 +23,9 @@ class EcommerceStoresTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testEcommerceStoresInstanceUrl()
     {
         $this->endpointUrlBuildTest(

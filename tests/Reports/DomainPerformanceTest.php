@@ -12,8 +12,15 @@ use MailchimpAPI\Reports;
 use MailchimpAPI\Reports\DomainPerformance;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class DomainPerformanceTest
+ * @package MailchimpTests\Reports
+ */
 class DomainPerformanceTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -23,6 +30,9 @@ class DomainPerformanceTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

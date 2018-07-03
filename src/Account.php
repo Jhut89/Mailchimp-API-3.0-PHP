@@ -9,6 +9,9 @@ namespace MailchimpAPI;
  */
 class Account extends Mailchimp
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/';
 
     /**

@@ -23,6 +23,9 @@ class FileManagerFiles extends Mailchimp
         'file_data'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/file-manager/files/';
 
     /**

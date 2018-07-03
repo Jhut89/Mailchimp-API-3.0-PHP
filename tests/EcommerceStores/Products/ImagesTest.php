@@ -14,8 +14,15 @@ use MailchimpAPI\EcommerceStores\Products\Images;
 use MailchimpTests\MailChimpTestCase;
 
 
+/**
+ * Class ImagesTest
+ * @package MailchimpTests\EcommerceStores\Products
+ */
 class ImagesTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -25,6 +32,9 @@ class ImagesTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

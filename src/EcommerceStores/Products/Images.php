@@ -23,6 +23,9 @@ class Images extends Products
         'url'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/images/';
 
     /**

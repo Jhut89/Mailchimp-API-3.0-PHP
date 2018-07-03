@@ -10,6 +10,9 @@ use MailchimpAPI\Campaigns;
  */
 class Content extends Campaigns
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/content/';
 
     /**

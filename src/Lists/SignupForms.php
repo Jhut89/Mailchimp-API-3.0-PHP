@@ -10,6 +10,9 @@ use MailchimpAPI\Lists;
  */
 class SignupForms extends Lists
 {
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/signup-forms/';
 
     /**

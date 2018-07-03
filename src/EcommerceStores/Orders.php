@@ -33,6 +33,9 @@ class Orders extends EcommerceStores
      */
     private $lines;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/orders/';
 
     /**

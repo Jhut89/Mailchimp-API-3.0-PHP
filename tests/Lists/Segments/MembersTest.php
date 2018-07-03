@@ -7,8 +7,15 @@ use MailchimpAPI\Lists\Segments;
 use MailchimpTests\MailChimpTestCase;
 use MailchimpAPI\Lists;
 
+/**
+ * Class MembersTest
+ * @package MailchimpTests\Lists\Segments
+ */
 class MembersTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -18,6 +25,9 @@ class MembersTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

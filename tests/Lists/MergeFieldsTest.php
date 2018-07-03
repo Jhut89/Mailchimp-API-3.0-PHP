@@ -6,8 +6,15 @@ use MailchimpAPI\Lists\MergeFields;
 use MailchimpTests\MailChimpTestCase;
 use MailchimpAPI\Lists;
 
+/**
+ * Class MergeFieldsTest
+ * @package MailchimpTests\Lists
+ */
 class MergeFieldsTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -17,6 +24,9 @@ class MergeFieldsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

@@ -13,8 +13,15 @@ use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Members;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class NotesTest
+ * @package MailchimpTests\Lists\Members
+ */
 class NotesTest extends MailChimpTestCase
 {
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -24,6 +31,9 @@ class NotesTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(

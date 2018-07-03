@@ -15,6 +15,9 @@ class BatchWebhooks extends Mailchimp
         'url'
     ];
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/batch-webhooks/';
 
     /**

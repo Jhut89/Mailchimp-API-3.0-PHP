@@ -46,6 +46,9 @@ class Members extends Lists
      */
     private $member_activity;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/members/';
 
     /**

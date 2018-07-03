@@ -5,8 +5,15 @@ namespace MailchimpTests;
 use MailchimpAPI\Automations;
 use MailchimpAPI\MailchimpException;
 
+/**
+ * Class AutomationsTest
+ * @package MailchimpTests
+ */
 final class AutomationsTest extends MailChimpTestCase
 {
+    /**
+     * @throws MailchimpException
+     */
     public function testAutomationsCollectionUrl()
     {
         $this->endpointUrlBuildTest(
@@ -16,6 +23,9 @@ final class AutomationsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws MailchimpException
+     */
     public function testAutomationsInstanceUrl()
     {
         $this->endpointUrlBuildTest(
@@ -25,6 +35,9 @@ final class AutomationsTest extends MailChimpTestCase
         );
     }
 
+    /**
+     *
+     */
     public function testAutomationsPauseAllWithoutId()
     {
         $error = null;
@@ -39,6 +52,9 @@ final class AutomationsTest extends MailChimpTestCase
         self::assertInstanceOf(MailchimpException::class, $error);
     }
 
+    /**
+     *
+     */
     public function testAutomationsStartAllWithoutId()
     {
         $error = null;

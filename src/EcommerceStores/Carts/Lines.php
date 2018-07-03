@@ -36,6 +36,9 @@ class Lines extends Carts
      */
     private $class_input;
 
+    /**
+     * the url component for this endpoint
+     */
     const URL_COMPONENT = '/lines/';
 
     /**
