@@ -4,7 +4,7 @@ namespace MailchimpAPI\Lists;
 
 use MailchimpAPI\MailchimpException;
 use MailchimpAPI\Lists;
-use MailchimpAPI\Lists\Segments\SegmentsMembers;
+use MailchimpAPI\Lists\Segments\Members;
 
 /**
  * Class Segments
@@ -75,12 +75,12 @@ class Segments extends Lists
 
     /**
      * @param null $class_input
-     * @return \MailchimpAPI\Lists\Members|SegmentsMembers
+     * @return \MailchimpAPI\Lists\Members|Members
      * @throws MailchimpException
      */
     public function members($class_input = null)
     {
-        $this->segment_members = new SegmentsMembers(
+        $this->segment_members = new Members(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,

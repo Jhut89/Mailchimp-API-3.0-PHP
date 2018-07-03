@@ -5,7 +5,7 @@ namespace MailchimpAPI\Lists;
 use MailchimpAPI\Lists;
 
 /**
- * Class MembersActivity
+ * Class Activity
  * @package MailchimpAPI\Lists
  */
 class Activity extends Lists
@@ -13,7 +13,7 @@ class Activity extends Lists
     const URL_COMPONENT = '/activity/';
 
     /**
-     * MembersActivity constructor.
+     * Activity constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $class_input

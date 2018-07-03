@@ -3,11 +3,9 @@
 namespace MailchimpAPI;
 
 use MailchimpAPI\Lists\AbuseReports;
-use MailchimpAPI\Lists\Activity;
 use MailchimpAPI\Lists\Clients;
 use MailchimpAPI\Lists\GrowthHistory;
 use MailchimpAPI\Lists\InterestCategories;
-use MailchimpAPI\Lists\Members;
 use MailchimpAPI\Lists\MergeFields;
 use MailchimpAPI\Lists\Segments;
 use MailchimpAPI\Lists\SignupForms;
@@ -69,7 +67,7 @@ class Lists extends Mailchimp
      */
     private $clients;
     /**
-     * @var Activity
+     * @var \MailchimpAPI\Lists\Activity
      */
     private $activity;
     /**
@@ -81,7 +79,7 @@ class Lists extends Mailchimp
      */
     private $segments;
     /**
-     * @var Members
+     * @var \MailchimpAPI\Lists\Members
      */
     private $members;
     /**
@@ -206,12 +204,12 @@ class Lists extends Mailchimp
 
     /**
      * @param null $class_input
-     * @return Activity
+     * @return \MailchimpAPI\Lists\Activity
      * @throws MailchimpException
      */
     public function activity($class_input = null)
     {
-        $this->activity = new Activity(
+        $this->activity = new Lists\Activity(
             $this->apikey,
             $this->subclass_resource,
             $class_input
@@ -251,12 +249,12 @@ class Lists extends Mailchimp
 
     /**
      * @param null $class_input
-     * @return Members
+     * @return \MailchimpAPI\Lists\Members
      * @throws MailchimpException
      */
     public function members($class_input = null)
     {
-        $this->members = new Members(
+        $this->members = new Lists\Members(
             $this->apikey,
             $this->subclass_resource,
             $class_input

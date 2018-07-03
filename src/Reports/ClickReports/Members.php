@@ -5,13 +5,13 @@ namespace MailchimpAPI\Reports\ClickReports;
 use MailchimpAPI\Reports\ClickReports;
 
 /**
- * Class SegmentsMembers
+ * Class Members
  * @package MailchimpAPI\Reports\Click_Reports
  */
 class Members extends ClickReports
 {
     /**
-     * SegmentsMembers constructor.
+     * Members constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $grandparent_resource

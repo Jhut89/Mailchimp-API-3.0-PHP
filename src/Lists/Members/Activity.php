@@ -5,15 +5,15 @@ namespace MailchimpAPI\Lists\Members;
 use MailchimpAPI\Lists\Members;
 
 /**
- * Class MembersActivity
- * @package MailchimpAPI\Lists\SegmentsMembers
+ * Class Activity
+ * @package MailchimpAPI\Lists\Members
  */
-class MembersActivity extends Members
+class Activity extends Members
 {
     const URL_COMPONENT = '/activity/';
 
     /**
-     * MembersActivity constructor.
+     * Activity constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $grandparent_resource

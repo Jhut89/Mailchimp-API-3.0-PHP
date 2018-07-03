@@ -5,10 +5,10 @@ namespace MailchimpAPI\Lists;
 use MailchimpAPI\Lists;
 use MailchimpAPI\Lists\Members\Notes;
 use MailchimpAPI\Lists\Members\Goals;
-use MailchimpAPI\Lists\Members\MembersActivity;
+use MailchimpAPI\Lists\Members\Activity;
 
 /**
- * Class SegmentsMembers
+ * Class Members
  * @package MailchimpAPI\Lists
  */
 class Members extends Lists
@@ -43,14 +43,14 @@ class Members extends Lists
      */
     private $goals;
     /**
-     * @var MembersActivity
+     * @var Activity
      */
     private $member_activity;
 
     const URL_COMPONENT = '/members/';
 
     /**
-     * SegmentsMembers constructor.
+     * Members constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $class_input
@@ -103,12 +103,12 @@ class Members extends Lists
 
     /**
      * @param null $class_input
-     * @return \MailchimpAPI\Lists\Activity|MembersActivity
+     * @return \MailchimpAPI\Lists\Activity|Activity
      * @throws \MailchimpAPI\MailchimpException
      */
     public function activity($class_input = null)
     {
-        $this->member_activity = new MembersActivity(
+        $this->member_activity = new Activity(
             $this->apikey,
             $this->subclass_resource,
             $this->grandchild_resource,

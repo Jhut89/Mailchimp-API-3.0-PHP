@@ -5,10 +5,10 @@ namespace MailchimpAPI\Lists\Segments;
 use MailchimpAPI\Lists\Segments;
 
 /**
- * Class SegmentsMembers
+ * Class Members
  * @package MailchimpAPI\Lists\Segments
  */
-class SegmentsMembers extends Segments
+class Members extends Segments
 {
     /**
      * @var array
@@ -20,7 +20,7 @@ class SegmentsMembers extends Segments
     const URL_COMPONENT = '/members/';
 
     /**
-     * SegmentsMembers constructor.
+     * Members constructor.
      * @param $apikey
      * @param $parent_resource
      * @param $grandparent_resource
