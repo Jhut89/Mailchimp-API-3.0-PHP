@@ -6,6 +6,4 @@ before-script:
   - composer update
 script: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
 matrix:
-  allow_failures:
-    - php: 5.4
   fast_finish: true
