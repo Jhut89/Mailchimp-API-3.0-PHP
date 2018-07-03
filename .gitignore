@@ -1,4 +1,4 @@
 testingWrapper.php
-composer.lock
+vendor/
 .idea/
 MailChimp-API.iml
