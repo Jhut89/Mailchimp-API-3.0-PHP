@@ -55,16 +55,20 @@ class MailchimpConnection implements HttpRequest
             $this->current_settings = $settings :
             $this->current_settings = new MailchimpSettings();
 
-        $this->handle = curl_init($this->current_request->getUrl());
+        $this->handle = curl_init();
+
         $this->prepareHandle();
         $this->setHandlerOptionsForMethod();
     }
 
     /**
-     *
+     * Prepares this connections handle for execution
      */
     private function prepareHandle()
     {
+        // set the URL for this request
+        $this->setOption(CURLOPT_URL, $this->current_request->getUrl());
+
         // set headers to be sent
         $this->setOption(CURLOPT_HTTPHEADER, $this->current_request->getHeaders());
 
@@ -84,6 +88,7 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
+     * Prepares the handler for a request based on the requests method
      * @return void
      */
     private function setHandlerOptionsForMethod()
@@ -121,14 +126,18 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
-     * @return array
+     * Gets the currently set curl option by key
+     * @param $key
+     * @return mixed
      */
-    public function getCurrentOptions()
+    public function getCurrentOption($key)
     {
-        return $this->current_options;
+        return $this->current_options[$key];
     }
 
     /**
+     * Bulk set curl options
+     * Update current settings
      * @param array $options
      */
     public function setCurrentOptions($options)
@@ -140,6 +149,8 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
+     * Sets a curl option on the handler
+     * Updates the current settings array with ne setting
      * @param $name
      * @param $value
      * @return mixed|void

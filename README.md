@@ -216,7 +216,9 @@ This library handles PUT and PATCH request similar to that of POST requests. Mea
 $mailchimp
     ->lists('1a2b3c4d')
     ->members('a1167f5be2df7113beb69c95ebcdb2fd')
-    ->patch([ "merge_fields" => ["FNAME" => "Jane"]]);
+    ->patch([
+        "merge_fields" => ["FNAME" => "Jane"]
+    ]);
 ```
 
 ### DELETE
@@ -243,7 +245,7 @@ $response->getHeaders(); // returns an array of headers in key => value format
 $response->getBody(); // return the raw text body of the response
 ```
 
-As an example, if I have an API key but want the contact email associated with its account I would:
+As an example, if I posses an API key but want the contact email associated with its account:
 
 ```php
 $mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
@@ -251,7 +253,7 @@ $account = $mailchimp
     ->account()
     ->get()
     
-$email = $account
+$contact_email = $account
     ->deserialize()
     ->email
     
@@ -403,15 +405,6 @@ By default this option is set to `false`.
 ````
 
 By default this option is set to `true`.
-
-### Request Headers
-To include the returned headers in the output from this library set:
-
-```php
-const HEADERS = true;
-```
-
-By default this option is set to `false`.
 
 
 \*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
