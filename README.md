@@ -56,6 +56,7 @@ older version by requiring the version you want:
 [![Latest Stable Version](https://poser.pugx.org/jhut89/mailchimp3php/v/stable?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php)
 [![Total Downloads](https://poser.pugx.org/jhut89/mailchimp3php/downloads?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php) 
 [![Slack Workspace](https://img.shields.io/badge/slack%20workspace-join-blue.svg?style=flat)](https://join.slack.com/t/mailchimp-api-30-php/shared_invite/enQtMzkwNTg3Mzc5NzI5LTdhOWE2ZGE1NzJmZGRjNDg2Mzg1MDYwZmVhNGM0MGJmMDY3NGVkOWQyZTI1Zjg1YTA2YjdkMDMxNjIyZjg5MGM)
+[![Trello Board](https://img.shields.io/badge/trello-view%20board-blue.svg?style=flat)](https://trello.com/b/N5DRSTgL/mailchimp-api-30-sdk)
 
 
 This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
