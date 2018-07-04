@@ -2,12 +2,14 @@
 
 namespace MailchimpAPI\Utilities;
 
+use MailchimpAPI\MailchimpException;
+
 class MailchimpSettings
 {
     // Mailchimp Settings
-    public $debug = false;
-    public $log_file = null;
-    public $verify_ssl = true;
+    private $debug = false;
+    private $log_file = null;
+    private $verify_ssl = true;
 
 
     /*************************************
@@ -17,7 +19,7 @@ class MailchimpSettings
     /**
      * @return bool
      */
-    public function isDebug()
+    public function shouldDebug()
     {
         return $this->debug;
     }
@@ -38,6 +40,11 @@ class MailchimpSettings
         return $this->verify_ssl;
     }
 
+    public function shouldDebugAndLog()
+    {
+        return ($this->shouldDebug() && $this->getLogFile());
+    }
+
     /*************************************
      * SETTERS
      *************************************/
@@ -51,11 +58,18 @@ class MailchimpSettings
     }
 
     /**
+     * Set the log file from an absolute path to a writable file
+     * log file must already exist to be writable
      * @param null $log_file
+     * @throws MailchimpException
      */
     public function setLogFile($log_file)
     {
-        $this->log_file = $log_file;
+        if (is_writable($log_file)) {
+            $this->log_file = $log_file;
+        } else {
+            throw new MailchimpException("Cannot write to provided log file");
+        }
     }
 
     /**
