@@ -17,7 +17,7 @@ Version 3.0.0 of this library will introduce several *new features*, and some **
 * Class names and directory structure changes
 
 If these changes are breaking for your app we suggest you wait on updating to 3.0.0. Upcoming changes can now be viewed in `master` (`dev-master` on [packagist](https://packagist.org/packages/jhut89/mailchimp3php)) before the release is made. As well feel free to pull in an
-older version by requiring the version you want:
+older version by requiring the version you want in your `composer.json`:
 
 ```json
 {
@@ -234,7 +234,8 @@ $mailchimp
 ```
 ## Handling A Response
 
-Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`. I suggest you become familiar with this class as there a a number of modifiers and getters for different pieces of a response.
+Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`.
+ I suggest you become familiar with this class as there are a number of modifiers and getters for different pieces of a response.
 
 There are a number of getters we can use to interact with pieces our `MailchimpResponse` instance. Some of the more commonly used ones are:
 
@@ -242,7 +243,7 @@ There are a number of getters we can use to interact with pieces our `MailchimpR
 $response->deserialize(); // returns a deserialized (to php object) resource returned by API
 $response->getRaw(); // return the raw text response
 $response->getHttpCode(); // returns an integer representation of the HTTP response code
-$response->getHeaders(); // returns an array of headers in key => value format
+$response->getHeaders(); // returns response headers as an array of key => value pairs
 $response->getBody(); // return the raw text body of the response
 ```
 
@@ -354,7 +355,8 @@ print $email; // outputs something like "example@domain.com"
       |    |----subReports()            
       |    |----sentTo()                
       |    |----locations()             
-      |    |----emailActivity()         
+      |    |----emailActivity() 
+      |    |----openDetails()        
       |    |----eepurl()                
       |    |----domainPerformance()     
       |    |----advice()                

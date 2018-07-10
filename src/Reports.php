@@ -9,6 +9,7 @@ use MailchimpAPI\Reports\ClickReports;
 use MailchimpAPI\Reports\DomainPerformance;
 use MailchimpAPI\Reports\EepurlReports;
 use MailchimpAPI\Reports\EmailActivity;
+use MailchimpAPI\Reports\OpenDetails;
 use MailchimpAPI\Reports\SentTo;
 use MailchimpAPI\Reports\SubReports;
 use MailchimpAPI\Reports\TopLocations;
@@ -46,6 +47,10 @@ class Reports extends Mailchimp
      * @var EmailActivity
      */
     private $email_activity;
+    /**
+     * @var OpenDetails
+     */
+    private $open_details;
     /**
      * @var EepurlReports
      */
@@ -239,5 +244,18 @@ class Reports extends Mailchimp
             $class_input
         );
         return $this->click_reports;
+    }
+
+    /**
+     * @return OpenDetails
+     * @throws MailchimpException
+     */
+    public function openDetails()
+    {
+        $this->open_details = new OpenDetails(
+            $this->apikey,
+            $this->subclass_resource
+        );
+        return $this->open_details;
     }
 }

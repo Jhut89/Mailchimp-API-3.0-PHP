@@ -13,7 +13,9 @@ class MailchimpConnection implements HttpRequest
      * Custom user agent for this library
      */
     const USER_AGENT = 'jhut89/Mailchimp-API-3.0-PHP (https://github.com/Jhut89/Mailchimp-API-3.0-PHP)';
+
     const TOKEN_REQUEST_URL = 'https://login.mailchimp.com/oauth2/token';
+
     const OAUTH_METADATA_URL = 'https://login.mailchimp.com/oauth2/metadata/';
 
     /**
