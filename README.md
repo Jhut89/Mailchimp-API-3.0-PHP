@@ -348,7 +348,9 @@ print $email; // outputs something like "example@domain.com"
       |    |----interestCategories()    
       |         |                       
       |         |----interests()        
-      |                                 
+      |    
+      |----ping()
+      |                             
       |----reports()                    
       |    |                            
       |    |----unsubscribes()          
@@ -356,6 +358,7 @@ print $email; // outputs something like "example@domain.com"
       |    |----sentTo()                
       |    |----locations()             
       |    |----emailActivity() 
+      |    |----googleAnalytics()
       |    |----openDetails()        
       |    |----eepurl()                
       |    |----domainPerformance()     

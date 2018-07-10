@@ -9,6 +9,7 @@ use MailchimpAPI\Reports\ClickReports;
 use MailchimpAPI\Reports\DomainPerformance;
 use MailchimpAPI\Reports\EepurlReports;
 use MailchimpAPI\Reports\EmailActivity;
+use MailchimpAPI\Reports\GoogleAnalytics;
 use MailchimpAPI\Reports\OpenDetails;
 use MailchimpAPI\Reports\SentTo;
 use MailchimpAPI\Reports\SubReports;
@@ -47,6 +48,10 @@ class Reports extends Mailchimp
      * @var EmailActivity
      */
     private $email_activity;
+    /**
+     * @var GoogleAnalytics
+     */
+    private $google_analytics;
     /**
      * @var OpenDetails
      */
@@ -257,5 +262,20 @@ class Reports extends Mailchimp
             $this->subclass_resource
         );
         return $this->open_details;
+    }
+
+    /**
+     * @param null $class_input
+     * @return GoogleAnalytics
+     * @throws MailchimpException
+     */
+    public function googleAnalytics($class_input = null)
+    {
+        $this->google_analytics = new GoogleAnalytics(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->google_analytics;
     }
 }
