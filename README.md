@@ -17,7 +17,7 @@ Version 3.0.0 of this library will introduce several *new features*, and some **
 * Class names and directory structure changes
 
 If these changes are breaking for your app we suggest you wait on updating to 3.0.0. Upcoming changes can now be viewed in `master` (`dev-master` on [packagist](https://packagist.org/packages/jhut89/mailchimp3php)) before the release is made. As well feel free to pull in an
-older version by requiring the version you want:
+older version by requiring the version you want in your `composer.json`:
 
 ```json
 {
@@ -56,6 +56,7 @@ older version by requiring the version you want:
 [![Latest Stable Version](https://poser.pugx.org/jhut89/mailchimp3php/v/stable?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php)
 [![Total Downloads](https://poser.pugx.org/jhut89/mailchimp3php/downloads?format=flat)](https://packagist.org/packages/jhut89/mailchimp3php) 
 [![Slack Workspace](https://img.shields.io/badge/slack%20workspace-join-blue.svg?style=flat)](https://join.slack.com/t/mailchimp-api-30-php/shared_invite/enQtMzkwNTg3Mzc5NzI5LTdhOWE2ZGE1NzJmZGRjNDg2Mzg1MDYwZmVhNGM0MGJmMDY3NGVkOWQyZTI1Zjg1YTA2YjdkMDMxNjIyZjg5MGM)
+[![Trello Board](https://img.shields.io/badge/trello-view%20board-blue.svg?style=flat)](https://trello.com/b/N5DRSTgL/mailchimp-api-30-sdk)
 
 
 This is a PHP library for interacting with [version 3.0 of MailChimp's API](https://developer.mailchimp.com)
@@ -233,7 +234,8 @@ $mailchimp
 ```
 ## Handling A Response
 
-Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`. I suggest you become familiar with this class as there a a number of modifiers and getters for different pieces of a response.
+Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`.
+ I suggest you become familiar with this class as there are a number of modifiers and getters for different pieces of a response.
 
 There are a number of getters we can use to interact with pieces our `MailchimpResponse` instance. Some of the more commonly used ones are:
 
@@ -241,7 +243,7 @@ There are a number of getters we can use to interact with pieces our `MailchimpR
 $response->deserialize(); // returns a deserialized (to php object) resource returned by API
 $response->getRaw(); // return the raw text response
 $response->getHttpCode(); // returns an integer representation of the HTTP response code
-$response->getHeaders(); // returns an array of headers in key => value format
+$response->getHeaders(); // returns response headers as an array of key => value pairs
 $response->getBody(); // return the raw text body of the response
 ```
 
@@ -309,7 +311,11 @@ print $email; // outputs something like "example@domain.com"
       |    |    |                       
       |    |    |----variants()         
       |    |    |----images()           
-      |    |                            
+      |    |     
+      |    |----promoRules()
+      |    |    |
+      |    |    |----promoCodes()
+      |    |                   
       |    |----orders()                
       |    |    |                       
       |    |    |----lines()            
@@ -346,14 +352,18 @@ print $email; // outputs something like "example@domain.com"
       |    |----interestCategories()    
       |         |                       
       |         |----interests()        
-      |                                 
+      |    
+      |----ping()
+      |                             
       |----reports()                    
       |    |                            
       |    |----unsubscribes()          
       |    |----subReports()            
       |    |----sentTo()                
       |    |----locations()             
-      |    |----emailActivity()         
+      |    |----emailActivity() 
+      |    |----googleAnalytics()
+      |    |----openDetails()        
       |    |----eepurl()                
       |    |----domainPerformance()     
       |    |----advice()                

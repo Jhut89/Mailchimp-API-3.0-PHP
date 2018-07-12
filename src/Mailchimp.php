@@ -84,6 +84,10 @@ class Mailchimp
      */
     private $lists;
     /**
+     * @var Ping
+     */
+    private $ping;
+    /**
      * @var Reports
      */
     private $reports;
@@ -253,6 +257,15 @@ class Mailchimp
     {
         $this->lists = new Lists($this->apikey, $class_input);
         return $this->lists;
+    }
+
+    /**
+     * @throws MailchimpException
+     */
+    public function ping()
+    {
+        $this->ping = new Ping($this->apikey);
+        return $this->ping;
     }
 
     /**
