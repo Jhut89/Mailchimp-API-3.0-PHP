@@ -6,6 +6,7 @@ use MailchimpAPI\EcommerceStores\Carts;
 use MailchimpAPI\EcommerceStores\Customers;
 use MailchimpAPI\EcommerceStores\Orders;
 use MailchimpAPI\EcommerceStores\Products;
+use MailchimpAPI\EcommerceStores\PromoRules;
 
 /**
  * Class EcommerceStores
@@ -45,6 +46,10 @@ class EcommerceStores extends Mailchimp
      * @var Carts
      */
     private $carts;
+    /**
+     * @var PromoRules
+     */
+    private $promor_rules;
 
     /**
      * the url component for this endpoint
@@ -130,5 +135,21 @@ class EcommerceStores extends Mailchimp
             $class_input
         );
         return $this->carts;
+    }
+
+    /**
+     * @param null $class_input
+     * @return PromoRules
+     * @throws MailchimpException
+     */
+    public function promoRules($class_input = null)
+    {
+
+        $this->promor_rules = new PromoRules(
+            $this->apikey,
+            $this->subclass_resource,
+            $class_input
+        );
+        return $this->promor_rules;
     }
 }

@@ -311,7 +311,11 @@ print $email; // outputs something like "example@domain.com"
       |    |    |                       
       |    |    |----variants()         
       |    |    |----images()           
-      |    |                            
+      |    |     
+      |    |----promoRules()
+      |    |    |
+      |    |    |----promoCodes()
+      |    |                   
       |    |----orders()                
       |    |    |                       
       |    |    |----lines()            
