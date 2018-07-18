@@ -7,13 +7,29 @@ use MailchimpAPI\Utilities\MailchimpRequest;
 use MailchimpAPI\Utilities\MailchimpSettings;
 use MailchimpTests\MailChimpTestCase;
 
+/**
+ * Class MailchimpConnectionTest
+ * @package MailchimpTests\UtilityTests
+ */
 final class MailchimpConnectionTest extends MailChimpTestCase
 {
+    /**
+     * @var MailchimpSettings
+     */
     protected $settings;
+    /**
+     * @var MailchimpRequest
+     */
     protected $request;
 
+    /**
+     * testable header string
+     */
     const HEADER_STRING = "Foo: Bar";
 
+    /**
+     * @var array
+     */
     private static $post_params = [
         "email_address" => "example@domain.com",
         "merge_fields" => [
@@ -21,6 +37,13 @@ final class MailchimpConnectionTest extends MailChimpTestCase
         ]
     ];
 
+    /**
+     * MailchimpConnectionTest constructor.
+     * @param null $name
+     * @param array $data
+     * @param string $dataName
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
@@ -60,6 +83,9 @@ final class MailchimpConnectionTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testPostConnection()
     {
         $request = $this->request;
@@ -78,6 +104,9 @@ final class MailchimpConnectionTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testPatchConnection()
     {
         $request = $this->request;
@@ -100,6 +129,9 @@ final class MailchimpConnectionTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testPutConnection()
     {
         $request = $this->request;
@@ -122,6 +154,9 @@ final class MailchimpConnectionTest extends MailChimpTestCase
         );
     }
 
+    /**
+     * @throws \MailchimpAPI\MailchimpException
+     */
     public function testDeleteConnection()
     {
         $request = $this->request;

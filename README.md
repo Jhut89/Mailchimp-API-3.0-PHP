@@ -73,10 +73,15 @@ composer require jhut89/mailchimp3php
 
 Alternatively you may add a require line to your projects `composer.json` for the package `jhut89/mailchimp3php`.
 
-Then run `composer update` and add composer autoloader to your project with:
+Then run `composer update` and add the composer autoloader to your project with:
 
 ```php
 require "vendor/autoload.php";
+```
+
+You can then use a use statement to pull in the Mailchimp class:
+```php
+use MailchimpAPI\Mailchimp;
 ```
 ## Instantiation
 
@@ -101,7 +106,7 @@ Mailchimp::getAuthUrl($client_id, $redirect_url);
 
 From there the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
 
-With that `code` you can now request an access token from mailchimp. You will need to call the `Mailchimp::oauthExchange()` method statically like this:
+With that `code` you can now request an access token from mailchimp. For this you will need to call the `Mailchimp::oauthExchange()` method statically like this:
 
 ```php
 $code = 'abc123abc123abc123abc123';
@@ -241,7 +246,6 @@ There are a number of getters we can use to interact with pieces our `MailchimpR
 
 ```php
 $response->deserialize(); // returns a deserialized (to php object) resource returned by API
-$response->getRaw(); // return the raw text response
 $response->getHttpCode(); // returns an integer representation of the HTTP response code
 $response->getHeaders(); // returns response headers as an array of key => value pairs
 $response->getBody(); // return the raw text body of the response
@@ -259,7 +263,7 @@ $contact_email = $account
     ->deserialize()
     ->email
     
-print $email; // outputs something like "example@domain.com"
+print $contact_email; // outputs something like "example@domain.com"
 ```
 
 ## <a name="method-chart-heading"></a>Method Chart (\*excluding verbs)
