@@ -6,17 +6,8 @@ use MailchimpAPI\MailchimpException;
 
 class MailchimpResponse
 {
-    // The head of the response document
-    private $head;
-
     // The headers received as an array of key value pairs
     private $headers = [];
-
-    // raw response
-    private $raw;
-
-    // MailchimpConnection
-    private $connection;
 
     // Response from MailChimp API
     private $body;
@@ -24,19 +15,11 @@ class MailchimpResponse
     // HTTP Response Code
     private $http_code;
 
-    public function __construct(MailchimpConnection $connection)
+    public function __construct($headers, $body, $http_code)
     {
-        $this->connection = $connection;
-    }
-
-    public function parseRaw($raw_response)
-    {
-        $this->setRaw($raw_response);
-        $this->http_code = $this->connection->getInfo(CURLINFO_HTTP_CODE);
-        $head_len  = $this->connection->getInfo(CURLINFO_HEADER_SIZE);
-
-        $this->setHead(substr($raw_response, 0, $head_len));
-        $this->setBody(substr($raw_response, $head_len, strlen($raw_response)));
+        $this->setHeaders($headers);
+        $this->setBody($body);
+        $this->setHttpCode($http_code);
     }
 
     /**
@@ -58,36 +41,9 @@ class MailchimpResponse
     /**
      * @return mixed
      */
-    public function getHead()
-    {
-        return $this->head;
-    }
-
-    /**
-     * @param mixed $head
-     */
-    public function setHead($head)
-    {
-        $this->head = $head;
-    }
-
-
-    /**
-     * @return mixed
-     */
     public function getHttpCode()
     {
         return $this->http_code;
-    }
-
-    /**
-     * @return mixed
-     *
-     * @throws MailchimpException when cant deserialize response
-     */
-    public function deserialize()
-    {
-        return $this->deserializeResponse($this->body);
     }
 
     /**
@@ -107,68 +63,26 @@ class MailchimpResponse
     }
 
     /**
-     * @param $response
      * @return mixed
-     * @throws MailchimpException
      */
-    public function deserializeResponse($response)
+    public function getBody()
     {
-        $decoded = json_decode($response);
+        return $this->body;
+    }
+
+    /**
+     * @return mixed
+     *
+     * @throws MailchimpException when cant deserialize response
+     */
+    public function deserialize()
+    {
+        $decoded = json_decode($this->body);
 
         if (!$decoded) {
             throw new MailchimpException("Unable to deserialize response");
         }
 
         return $decoded;
-    }
-
-    /**
-     * @param array $header
-     */
-    public function pushToHeaders($header)
-    {
-        $this->headers[$header[0]] = trim($header[1]);
-    }
-
-    /**
-     * Called statically during prepareHandle();
-     *
-     * @param $handle
-     * @param $header
-     * @return int
-     */
-    public function handleResponseHeader($handle, $header)
-    {
-        $header_length = strlen($header);
-        $header_array = explode(':', $header, 2);
-        if (count($header_array) == 2) {
-            $this->pushToHeaders($header_array);
-        }
-
-        return $header_length;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRaw()
-    {
-        return $this->raw;
-    }
-
-    /**
-     * @param mixed $raw
-     */
-    public function setRaw($raw)
-    {
-        $this->raw = $raw;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBody()
-    {
-        return $this->body;
     }
 }

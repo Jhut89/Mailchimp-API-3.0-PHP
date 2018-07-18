@@ -6,6 +6,12 @@ namespace MailchimpAPI\Utilities;
  * TODO should make over wire request
  */
 
+use MailchimpAPI\MailchimpException;
+
+/**
+ * Class MailchimpConnection
+ * @package MailchimpAPI\Utilities
+ */
 class MailchimpConnection implements HttpRequest
 {
 
@@ -14,8 +20,14 @@ class MailchimpConnection implements HttpRequest
      */
     const USER_AGENT = 'jhut89/Mailchimp-API-3.0-PHP (https://github.com/Jhut89/Mailchimp-API-3.0-PHP)';
 
+    /**
+     * the url used to request an access token from mailchimp
+     */
     const TOKEN_REQUEST_URL = 'https://login.mailchimp.com/oauth2/token';
 
+    /**
+     * the url used to request metadata about an access token
+     */
     const OAUTH_METADATA_URL = 'https://login.mailchimp.com/oauth2/metadata/';
 
     /**
@@ -29,9 +41,28 @@ class MailchimpConnection implements HttpRequest
     private $current_settings;
 
     /**
-     * @var MailchimpResponse
+     * raw response from mailchimp api
+     * @var string
      */
-    private $mc_response;
+    private $response;
+
+    /**
+     * response body
+     * @var string
+     */
+    private $response_body;
+
+    /**
+     * an integer representation of the http response code
+     * @var int
+     */
+    private $http_code;
+
+    /**
+     * the parsed response headers from the request
+     * @var array
+     */
+    private $headers = [];
 
     /**
      * @var resource
@@ -86,7 +117,8 @@ class MailchimpConnection implements HttpRequest
         // set verify ssl
         $this->setOption(CURLOPT_SSL_VERIFYPEER, $this->current_settings->shouldVerifySsl());
 
-        $this->setOption(CURLOPT_HEADERFUNCTION, [&$this->mc_response, "handleResponseHeader"]);
+        // set the callback to run against each of the response headers
+        $this->setOption(CURLOPT_HEADERFUNCTION, [&$this, "parseResponseHeader"]);
     }
 
     /**
@@ -118,13 +150,29 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
+     * @throws MailchimpException
      * @return MailchimpResponse
      */
     public function execute()
     {
-        $this->mc_response = new MailchimpResponse($this);
-        $this->mc_response->parseRaw($this->executeCurl());
-        return $this->mc_response;
+        $this->response = $this->executeCurl();
+        if (!$this->response) {
+            throw new MailchimpException("The curl request failed");
+        }
+
+        $this->http_code = $this->getInfo(CURLINFO_HTTP_CODE);
+        $head_len  = $this->getInfo(CURLINFO_HEADER_SIZE);
+        $this->response_body = substr(
+            $this->response,
+            $head_len,
+            strlen($this->response)
+        );
+
+        return new MailchimpResponse(
+            $this->headers,
+            $this->response_body,
+            $this->http_code
+        );
     }
 
     /**
@@ -186,5 +234,32 @@ class MailchimpConnection implements HttpRequest
     public function close()
     {
         curl_close($this->handle);
+    }
+
+    /**
+     * Called statically during prepareHandle();
+     *
+     * @param $handle
+     * @param $header
+     * @return int
+     */
+    private function parseResponseHeader($handle, $header)
+    {
+        $header_length = strlen($header);
+        $header_array = explode(':', $header, 2);
+        if (count($header_array) == 2) {
+            $this->pushToHeaders($header_array);
+        }
+
+        var_dump($header);
+        return $header_length;
+    }
+
+    /**
+     * @param array $header
+     */
+    private function pushToHeaders($header)
+    {
+        $this->headers[$header[0]] = trim($header[1]);
     }
 }
