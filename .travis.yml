@@ -5,6 +5,6 @@ php:
 before-script:
   - composer install
   - composer update
-script: build/build_script.sh;
+script: build/build_script.sh
 matrix:
   fast_finish: true

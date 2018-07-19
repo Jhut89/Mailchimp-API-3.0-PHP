@@ -422,7 +422,3 @@ By default this option is set to `true`.
 
 
 \*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
-
-
-
-
