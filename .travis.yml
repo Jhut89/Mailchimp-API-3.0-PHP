@@ -5,6 +5,6 @@ php:
 before-script:
   - composer install
   - composer update
-script: composer update && ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
+script: build/build_script.sh;
 matrix:
   fast_finish: true
