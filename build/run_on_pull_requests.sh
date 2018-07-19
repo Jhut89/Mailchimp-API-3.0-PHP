@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "This build was for a pull request"
+echo -e "\n ${GREEN}This build is for a pull request${NS} \n"
