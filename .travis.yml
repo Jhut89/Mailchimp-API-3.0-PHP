@@ -7,6 +7,8 @@ php:
 before-script:
   - composer install
   - composer update
-script: sudo build/build_script.sh
+script:
+  - sudo chmod +x ./build/build_script.sh
+  - ./build/build_script.sh
 matrix:
   fast_finish: true

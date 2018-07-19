@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
+echo "build script running"
+
 # Update composer & Run PHP Unit tests
-sudo composer update && ../vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
+composer update && ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
