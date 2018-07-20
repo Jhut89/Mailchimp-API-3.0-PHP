@@ -9,10 +9,6 @@ namespace MailchimpAPI;
  */
 class Account extends Mailchimp
 {
-    public function something()
-    {
-        print "this shouldnt be here!";
-    }
     /**
      * the url component for this endpoint
      */
