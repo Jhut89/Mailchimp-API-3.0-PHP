@@ -19,7 +19,7 @@ foreach ($file_report->files as $file => $report) {
     $comment = "FILE: `" . $file_under_test . "`";
     foreach ($report->messages as $message) {
         $comment .= "\n" . "`line: " . $message->line;
-        $comment .= "\n" . "message: " . $message->message . "`\n";
+        $comment .= "\n" . "message: " . $message->message . "`";
     }
 
     $request_params = ["body" => $comment];
@@ -34,14 +34,23 @@ foreach ($file_report->files as $file => $report) {
         "User-Agent: mc-linterbot"
     ];
 
+    print "\nReporting linting errors to github for $file_under_test...\n";
+
     $ch = curl_init("https://api.github.com/repos/" . $repo_slug . "/issues/" . $pull_request . "/comments");
     curl_setopt($ch, CURLOPT_HTTPHEADER, $auth);
+    curl_setopt($ch, CURLOPT_HEADER, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $serialized_params);
     $response = curl_exec($ch);
 
-    var_dump($response);
+    $http_code = intval(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+
+    if ($http_code > 199 && $http_code < 300) {
+        print "\nSuccessfully reported linting errors for $file_under_test...\n";
+    } else {
+        print "\nUnable to report errors\n";
+    }
 }
 
 
