@@ -40,7 +40,8 @@ for changed_file in $ALTERED_FILES; do
             echo -e "\n\n${RED}${BOLD}${file_report}${NS}\n"
 
             auth="Authorization: token ${LINTER_TOKEN}"
-            data="{\"body\": \""${file_report}"\"}"
+            escaped_report=$(printf "%q" "${file_report}")
+            data="{\"body\": \""${escaped_report}"\"}"
             url="https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
 
             curl -H "${auth}" -X POST -d "${data}" "${url}"
