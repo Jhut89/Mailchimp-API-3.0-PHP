@@ -34,17 +34,14 @@ for changed_file in $ALTERED_FILES; do
         if [ "${LINT_ERRORS}" = "true" ]; then
             PR_PASSING="false"
 
+
+            php "$(pwd)/travis/ReportError.php" "${changed_file}" "${json_file_report}"
+
+            #get a human readable report
             file_report=$(./vendor/bin/phpcs --standard=PSR12 "${changed_file}")
 
             # Echo a report to standard out so that we can see it in build log
             echo -e "\n\n${RED}${BOLD}${file_report}${NS}\n"
-
-            auth="Authorization: token ${LINTER_TOKEN}"
-            escaped_report=$(printf "%q" "${file_report}")
-            data="{\"body\": \""${escaped_report}"\"}"
-            url="https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
-
-            curl -H "${auth}" -X POST -d "${data}" "${url}"
 
             exit 1
         fi
