@@ -8,7 +8,7 @@ before-script:
   - composer install
   - composer update
 script:
-  - sudo chmod +x ./build/build_script.sh
-  - ./build/build_script.sh
+  - sudo chmod +x ./travis/*
+  - ./travis/build_script.sh
 matrix:
   fast_finish: true
