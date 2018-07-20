@@ -39,7 +39,11 @@ for changed_file in $ALTERED_FILES; do
             # Echo a report to standard out so that we can see it in build log
             echo -e "\n\n${RED}${BOLD}${file_report}${NS}\n"
 
-            curl -H "Authorization: token ${LINTER_TOKEN}" -X POST -d "{\"body\": \""${file_report}"\"}" "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
+            auth="Authorization: token ${LINTER_TOKEN}"
+            data="{\"body\": \""${file_report}"\"}"
+            url="https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
+
+            curl -H "${auth}" -X POST -d "${data}" "${url}"
 
             exit 1
         fi
