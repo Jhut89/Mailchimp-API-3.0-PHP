@@ -9,8 +9,12 @@ PR_PASSING="true"
 
 echo -e "\n${GREEN}${BOLD}This build is for a pull request${NS}\n"
 
+ALTERED_FILES=$(git diff --name-only $TRAVIS_COMMIT_RANGE)
+
+echo "${ALTERED_FILES}"
+
 #for each changed file -> lint -> comment
-for changed_file in $(git diff --name-only HEAD $(git merge-base HEAD $TRAVIS_BRANCH)); do
+for changed_file in $ALTERED_FILES; do
     # split file path into array
     IFS='/' read -r -a split <<< "${changed_file}"
     ROOT_DIR=${split[0]}
