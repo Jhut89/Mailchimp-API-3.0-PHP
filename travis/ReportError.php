@@ -16,10 +16,10 @@ if (!$file_report) {
 }
 
 foreach ($file_report->files as $file => $report) {
-    $comment = "FILE: $file_under_test";
+    $comment = "FILE: `" . $file_under_test . "`";
     foreach ($report->messages as $message) {
-        $comment .= "\n" . "line: " . $message->line;
-        $comment .= "\n" . "message: " . $message->message . "\n";
+        $comment .= "\n" . "`line: " . $message->line;
+        $comment .= "\n" . "message: " . $message->message . "`\n";
     }
 
     $request_params = ["body" => $comment];
