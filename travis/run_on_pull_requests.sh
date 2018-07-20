@@ -39,6 +39,7 @@ for changed_file in $(git diff --name-only HEAD $(git merge-base HEAD $TRAVIS_BR
             -d "{\"body\": \""${file_report}"\"}" \
             "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
 
+            exit 1
         fi
     else
         echo -e "${GREEN}${changed_file} is ${BOLD}NOT${NS}${GREEN} in src directory and will not be linted${NS}\n"
