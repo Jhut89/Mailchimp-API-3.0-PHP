@@ -34,7 +34,6 @@ for changed_file in $ALTERED_FILES; do
         if [ "${LINT_ERRORS}" = "true" ]; then
             PR_PASSING="false"
 
-
             php "$(pwd)/travis/ReportError.php" "${changed_file}" "${json_file_report}"
 
             #get a human readable report

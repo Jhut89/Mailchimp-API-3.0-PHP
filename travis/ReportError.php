@@ -29,7 +29,10 @@ foreach ($file_report->files as $file => $report) {
         exit(1);
     }
 
-    $auth = ["Authorization: token $linter_bot_token"];
+    $auth = [
+        "Authorization: token $linter_bot_token",
+        "User-Agent: mc-linterbot"
+    ];
 
     $ch = curl_init("https://api.github.com/repos/" . $repo_slug . "/issues/" . $pull_request . "/comments");
     curl_setopt($ch, CURLOPT_HTTPHEADER, $auth);
