@@ -8,7 +8,9 @@ before-script:
   - composer install
   - composer update
 script:
-  - sudo chmod +x ./travis/*
-  - ./travis/build_script.sh
+  - composer update && ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
+  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then git clone https://github.com/Jhut89/Mailchimp-API-3.0-PHP-travis.git travis; fi
+  - if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ ! -d "./travis" ]; then exit 1; fi
+  - if [ -d "./travis" ]; then sudo chmod +x ./travis/* && ./travis/build_script.sh; fi
 matrix:
   fast_finish: true
