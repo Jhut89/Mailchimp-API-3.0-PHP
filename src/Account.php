@@ -9,10 +9,6 @@ namespace MailchimpAPI;
  */
 class Account extends Mailchimp
 {
-    public function junk()
-    {
-        print "yo";
-    }
     /**
      * the url component for this endpoint
      */
