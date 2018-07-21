@@ -9,9 +9,6 @@ namespace MailchimpAPI;
  */
 class Account extends Mailchimp
 {
-    function junk() {
-        print "not linter approved";
-    }
     /**
      * the url component for this endpoint
      */
