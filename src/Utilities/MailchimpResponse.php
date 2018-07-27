@@ -75,12 +75,12 @@ class MailchimpResponse
      *
      * @throws MailchimpException when cant deserialize response
      */
-     public function deserialize($to_array = false)
-     {
-         $decoded = json_decode($this->body, (bool) $to_array);
-         if (!$decoded) {
-             throw new MailchimpException("Unable to deserialize response");
-         }
-         return $decoded;
-     }
+    public function deserialize($to_array = false)
+    {
+        $decoded = json_decode($this->body, (bool) $to_array);
+        if (!$decoded) {
+            throw new MailchimpException("Unable to deserialize response");
+        }
+        return $decoded;
+    }
 }
