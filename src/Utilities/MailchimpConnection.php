@@ -250,8 +250,7 @@ class MailchimpConnection implements HttpRequest
         if (count($header_array) == 2) {
             $this->pushToHeaders($header_array);
         }
-
-        var_dump($header);
+        
         return $header_length;
     }
 
