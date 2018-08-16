@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Ping;
+use MailchimpAPI\Resources\Ping;
 
 class PingTest extends MailChimpTestCase
 {

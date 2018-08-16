@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\BatchOperations;
+use MailchimpAPI\Resources\BatchOperations;
 
 /**
  * Class BatchOperationsTest

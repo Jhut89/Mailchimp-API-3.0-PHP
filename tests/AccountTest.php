@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Account;
+use MailchimpAPI\Resources\Account;
 
 /**
  * Class AccountTest

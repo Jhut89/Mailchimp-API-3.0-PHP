@@ -1,10 +1,10 @@
 <?php
 
-namespace MailchimpTests\Automations\Emails;
+namespace MailchimpTests\Resources\Automations\Emails;
 
-use MailchimpAPI\Automations;
-use MailchimpAPI\Automations\Emails;
-use MailchimpAPI\Automations\Emails\Queue;
+use MailchimpAPI\Resources\Automations;
+use MailchimpAPI\Resources\Automations\Emails;
+use MailchimpAPI\Resources\Automations\Emails\Queue;
 use MailchimpTests\MailChimpTestCase;
 
 /**
@@ -31,7 +31,7 @@ class QueueTest extends MailChimpTestCase
     public function testInstanceUrl()
     {
         $this->endpointUrlBuildTest(
-            Automations::URL_COMPONENT . 1 . Emails::URL_COMPONENT . 1 . Queue::URL_COMPONENT . md5(1),
+            Automations::URL_COMPONENT . 1 . Emails::URL_COMPONENT . 1 . Queue::URL_COMPONENT . 1,
             $this->mailchimp->automations(1)->emails(1)->queue(1),
             "The Queue instance endpoint should be constructed correctly"
         );

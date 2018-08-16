@@ -2,8 +2,8 @@
 
 namespace MailchimpTests\EcommerceStores;
 
-use MailchimpAPI\EcommerceStores;
-use MailchimpAPI\EcommerceStores\Orders;
+use MailchimpAPI\Resources\EcommerceStores;
+use MailchimpAPI\Resources\EcommerceStores\Orders;
 use MailchimpTests\MailChimpTestCase;
 
 /**
@@ -19,7 +19,7 @@ class OrdersTest extends MailChimpTestCase
     {
         $this->endpointUrlBuildTest(
             EcommerceStores::URL_COMPONENT . 1 . Orders::URL_COMPONENT,
-            $this->mailchimp->ecommStores(1)->orders(),
+            $this->mailchimp->ecommerceStores(1)->orders(),
             "The Orders collection endpoint should be constructed correctly"
         );
     }
@@ -31,7 +31,7 @@ class OrdersTest extends MailChimpTestCase
     {
         $this->endpointUrlBuildTest(
             EcommerceStores::URL_COMPONENT . 1 . Orders::URL_COMPONENT . 1,
-            $this->mailchimp->ecommStores(1)->orders(1),
+            $this->mailchimp->ecommerceStores(1)->orders(1),
             "The Orders instance endpoint should be constructed correctly"
         );
     }

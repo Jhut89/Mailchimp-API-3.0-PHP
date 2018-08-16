@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\AuthorizedApps;
+use MailchimpAPI\Resources\AuthorizedApps;
 
 /**
  * Class AuthorizedAppsTest

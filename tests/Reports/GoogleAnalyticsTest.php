@@ -2,8 +2,8 @@
 
 namespace MailchimpTests\Reports;
 
-use MailchimpAPI\Reports;
-use MailchimpAPI\Reports\GoogleAnalytics;
+use MailchimpAPI\Resources\Reports;
+use MailchimpAPI\Resources\Reports\GoogleAnalytics;
 use MailchimpTests\MailChimpTestCase;
 
 class GoogleAnalyticsTest extends MailChimpTestCase

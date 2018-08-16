@@ -4,9 +4,9 @@ namespace MailchimpTests\TestingUtilities;
 
 
 use MailchimpAPI\Mailchimp;
-use MailchimpAPI\Utilities\MailchimpRequest;
-use MailchimpAPI\Utilities\MailchimpSettings;
-use MailchimpAPI\Utilities\MailchimpConnection;
+use MailchimpAPI\Requests\MailchimpRequest;
+use MailchimpAPI\Settings\MailchimpSettings;
+use MailchimpAPI\Requests\MailchimpConnection;
 use PHPUnit_Framework_MockObject_MockBuilder as MockBuilder;
 use PHPUnit_Framework_MockObject_MockObject;
 
@@ -28,13 +28,13 @@ class StubbableMailchimp extends Mailchimp
 
     /**
      * StubableMailchimp constructor.
-     * @param $apikey
+     * @param $request
      * @param $mocked_connection
      * @throws \MailchimpAPI\MailchimpException
      */
-    public function __construct($apikey, $mocked_connection)
+    public function __construct($request, $mocked_connection)
     {
-        parent::__construct($apikey);
+        parent::__construct($request);
         $this->mocked_connection = $mocked_connection;
     }
 
@@ -72,13 +72,5 @@ class StubbableMailchimp extends Mailchimp
             ->method('execute')
             ->willReturn('not a response');
         return $mocked_connection;
-    }
-
-    /**
-     * Overrides resetRequest to keep state for tests
-     */
-    protected function resetRequest()
-    {
-        return;
     }
 }

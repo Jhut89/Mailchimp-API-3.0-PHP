@@ -2,8 +2,8 @@
 
 namespace MailchimpTests\Campaigns;
 
-use MailchimpAPI\Campaigns;
-use MailchimpAPI\Campaigns\Feedback;
+use MailchimpAPI\Resources\Campaigns;
+use MailchimpAPI\Resources\Campaigns\Feedback;
 use MailchimpTests\MailChimpTestCase;
 
 

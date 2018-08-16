@@ -3,7 +3,7 @@
 namespace MailchimpTests\UtilityTests;
 
 use MailchimpAPI\MailchimpException;
-use MailchimpAPI\Utilities\MailchimpRequest;
+use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpTests\MailChimpTestCase;
 
 final class MailchimpRequestTest extends MailChimpTestCase

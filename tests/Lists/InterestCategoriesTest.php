@@ -8,9 +8,9 @@
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists\InterestCategories;
+use MailchimpAPI\Resources\Lists\InterestCategories;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class InterestCategoriesTest

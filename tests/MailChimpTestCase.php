@@ -3,7 +3,7 @@
 namespace MailchimpTests;
 
 use MailchimpAPI\MailchimpException;
-use MailchimpAPI\Utilities\MailchimpConnection;
+use MailchimpAPI\Requests\MailchimpConnection;
 use MailchimpTests\TestingUtilities\StubbableMailchimp;
 use PHPUnit\Framework\TestCase;
 use MailchimpAPI\Mailchimp;
@@ -35,11 +35,11 @@ class MailChimpTestCase extends TestCase
      */
     protected $redirect_uri;
     /**
-     * @var \MailchimpAPI\Utilities\MailchimpRequest
+     * @var \MailchimpAPI\Requests\MailchimpRequest
      */
     protected $request;
     /**
-     * @var \MailchimpAPI\Utilities\MailchimpSettings
+     * @var \MailchimpAPI\Settings\MailchimpSettings
      */
     protected $settings;
 
@@ -94,7 +94,7 @@ class MailChimpTestCase extends TestCase
         $mc = $chain_to_be_tested;
         self::assertEquals(
             $expected_url,
-            $mc->request->getUrl(),
+            $mc->getRequest()->getUrl(),
             $message
         );
     }

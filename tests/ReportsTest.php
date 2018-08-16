@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Reports;
+use MailchimpAPI\Resources\Reports;
 
 /**
  * Class ReportsTest

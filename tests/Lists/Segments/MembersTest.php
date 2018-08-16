@@ -2,10 +2,10 @@
 
 namespace MailchimpTests\Lists\Segments;
 
-use MailchimpAPI\Lists\Segments\Members;
-use MailchimpAPI\Lists\Segments;
+use MailchimpAPI\Resources\Lists\Segments\Members;
+use MailchimpAPI\Resources\Lists\Segments;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class MembersTest

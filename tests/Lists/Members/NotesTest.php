@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/2/18
- * Time: 5:47 PM
- */
 
 namespace MailchimpTests\Lists\Members;
 
-use MailchimpAPI\Lists\Members\Notes;
-use MailchimpAPI\Lists;
-use MailchimpAPI\Lists\Members;
+use MailchimpAPI\Resources\Lists\Members\Notes;
+use MailchimpAPI\Resources\Lists;
+use MailchimpAPI\Resources\Lists\Members;
 use MailchimpTests\MailChimpTestCase;
 
 /**

@@ -2,9 +2,9 @@
 
 namespace MailchimpTests\EcommerceStores\PromoRules;
 
-use MailchimpAPI\EcommerceStores;
-use MailchimpAPI\EcommerceStores\PromoRules;
-use MailchimpAPI\EcommerceStores\PromoRules\PromoCodes;
+use MailchimpAPI\Resources\EcommerceStores;
+use MailchimpAPI\Resources\EcommerceStores\PromoRules;
+use MailchimpAPI\Resources\EcommerceStores\PromoRules\PromoCodes;
 use MailchimpTests\MailChimpTestCase;
 
 class PromoCodesTest extends MailChimpTestCase
@@ -16,7 +16,7 @@ class PromoCodesTest extends MailChimpTestCase
     {
         $this->endpointUrlBuildTest(
             EcommerceStores::URL_COMPONENT . 1 . PromoRules::URL_COMPONENT . 1 . PromoCodes::URL_COMPONENT,
-            $this->mailchimp->ecommStores(1)->promoRules(1)->promoCodes(),
+            $this->mailchimp->ecommerceStores(1)->promoRules(1)->promoCodes(),
             "The Promo Codes collection endpoint should be constructed correctly"
         );
     }
@@ -28,7 +28,7 @@ class PromoCodesTest extends MailChimpTestCase
     {
         $this->endpointUrlBuildTest(
             EcommerceStores::URL_COMPONENT . 1 . PromoRules::URL_COMPONENT . 1 . PromoCodes::URL_COMPONENT . 1,
-            $this->mailchimp->ecommStores(1)->promoRules(1)->promoCodes(1),
+            $this->mailchimp->ecommerceStores(1)->promoRules(1)->promoCodes(1),
             "The Promo Codes instance endpoint should be constructed correctly"
         );
     }

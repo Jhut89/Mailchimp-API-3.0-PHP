@@ -1,9 +1,9 @@
 <?php
 
-namespace MailchimpTests\Automations;
+namespace MailchimpTests\Resources\Automations;
 
-use MailchimpAPI\Automations;
-use MailchimpAPI\Automations\RemovedSubscribers;
+use MailchimpAPI\Resources\Automations;
+use MailchimpAPI\Resources\Automations\RemovedSubscribers;
 use MailchimpTests\MailChimpTestCase;
 
 /**

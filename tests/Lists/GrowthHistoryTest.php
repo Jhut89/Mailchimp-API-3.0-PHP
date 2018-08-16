@@ -8,9 +8,9 @@
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists\GrowthHistory;
+use MailchimpAPI\Resources\Lists\GrowthHistory;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class GrowthHistoryTest

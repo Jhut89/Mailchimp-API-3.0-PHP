@@ -2,8 +2,8 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Utilities\MailchimpSettings;
-use MailchimpAPI\Utilities\MailchimpRequest;
+use MailchimpAPI\Settings\MailchimpSettings;
+use MailchimpAPI\Requests\MailchimpRequest;
 
 final class MailchimpTest extends MailChimpTestCase
 {
@@ -11,10 +11,15 @@ final class MailchimpTest extends MailChimpTestCase
     {
         $expected_auth_string = "Authorization: apikey " . $this->apikey;
         $mc = $this->mailchimp;
+        $auth = $mc->request->getHeaders()[0];
 
         //ASSERTIONS
         self::assertEquals($this->apikey, $mc->apikey, "The apikey must  be set on the parent mailchimp class");
-        self::assertEquals($expected_auth_string, $mc->request->getAuth(), "The auth string must be correctly set");
+        self::assertEquals(
+            $expected_auth_string,
+            $auth,
+            "The auth string must be correctly set"
+        );
     }
 
     public function testGetAuthUrl()

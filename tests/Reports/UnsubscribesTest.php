@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/3/18
- * Time: 3:37 PM
- */
 
 namespace MailchimpTests\Reports;
 
-use MailchimpAPI\Reports\Unsubscribes;
+use MailchimpAPI\Resources\Reports\Unsubscribes;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Reports;
+use MailchimpAPI\Resources\Reports;
 
 class UnsubscribesTest extends MailChimpTestCase
 {

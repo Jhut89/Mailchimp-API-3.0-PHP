@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\FileManagerFolders;
+use MailchimpAPI\Resources\FileManagerFolders;
 
 class FileManagerFoldersTest extends MailChimpTestCase
 {
