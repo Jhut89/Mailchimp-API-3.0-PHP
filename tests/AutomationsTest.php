@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Automations;
+use MailchimpAPI\Resources\Automations;
 use MailchimpAPI\MailchimpException;
 
 /**

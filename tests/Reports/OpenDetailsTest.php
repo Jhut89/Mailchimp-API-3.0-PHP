@@ -2,8 +2,8 @@
 
 namespace MailchimpTests\Reports;
 
-use MailchimpAPI\Reports;
-use MailchimpAPI\Reports\OpenDetails;
+use MailchimpAPI\Resources\Reports;
+use MailchimpAPI\Resources\Reports\OpenDetails;
 use MailchimpTests\MailChimpTestCase;
 
 class OpenDetailsTest extends MailChimpTestCase
@@ -15,7 +15,7 @@ class OpenDetailsTest extends MailChimpTestCase
     {
         $this->endpointUrlBuildTest(
             Reports::URL_COMPONENT . 1 . OpenDetails::URL_COMPONENT,
-            $this->mailchimp->reports(1)->openDetails(),
+            $this->mailchimp->reports(1)->openReports(),
             "The Open Details collection endpoint should be constructed correctly"
         );
     }

@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Templates;
+use MailchimpAPI\Resources\Templates;
 
 /**
  * Class TemplatesTest

@@ -3,7 +3,7 @@
 namespace MailchimpTests;
 
 
-use MailchimpAPI\CampaignFolders;
+use MailchimpAPI\Resources\CampaignFolders;
 
 /**
  * Class CampaignFoldersTest

@@ -2,10 +2,9 @@
 
 namespace MailchimpAPI;
 
-use MailchimpAPI\Utilities\MailchimpConnection;
-use MailchimpAPI\Utilities\MailchimpRequest;
-use MailchimpAPI\Utilities\MailchimpResponse;
-use MailchimpAPI\Utilities\MailchimpSettings;
+use MailchimpAPI\Requests\MailchimpConnection;
+use MailchimpAPI\Requests\MailchimpRequest;
+use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
  * Class Mailchimp
@@ -14,7 +13,6 @@ use MailchimpAPI\Utilities\MailchimpSettings;
  */
 class Mailchimp
 {
-
     /**
      * @var MailchimpRequest $request
      */
@@ -26,390 +24,183 @@ class Mailchimp
     public $settings;
 
     /**
-     * @var MailchimpResponse $response
-     */
-    public $response;
-
-    /**
      * @var string
      */
     public $apikey;
 
     /**
-     * @var Account
-     */
-    private $account;
-    /**
-     * @var AuthorizedApps
-     */
-    private $apps;
-    /**
-     * @var Automations
-     */
-    private $automations;
-    /**
-     * @var BatchOperations
-     */
-    private $batches;
-    /**
-     * @var BatchWebhooks
-     */
-    private $batch_webhooks;
-    /**
-     * @var CampaignFolders
-     */
-    private $campaign_folders;
-    /**
-     * @var Campaigns
-     */
-    private $campaigns;
-    /**
-     * @var Conversations
-     */
-    private $conversations;
-    /**
-     * @var EcommerceStores
-     */
-    private $ecomm_stores;
-    /**
-     * @var FileManagerFiles
-     */
-    private $file_manager_files;
-    /**
-     * @var FileManagerFolders
-     */
-    private $file_manager_folders;
-    /**
-     * @var Lists
-     */
-    private $lists;
-    /**
-     * @var Ping
-     */
-    private $ping;
-    /**
-     * @var Reports
-     */
-    private $reports;
-    /**
-     * @var SearchCampaigns
-     */
-    private $search_campaigns;
-    /**
-     * @var SearchMembers
-     */
-    private $search_members;
-    /**
-     * @var TemplateFolders
-     */
-    private $template_folders;
-    /**
-     * @var Templates
-     */
-    private $templates;
-
-    /**
      * Mailchimp constructor.
      *
-     * @param $apikey
+     * @param $request
      *
      * @throws MailchimpException
      */
-    public function __construct($apikey)
+    public function __construct($request)
     {
-        $this->apikey = $apikey;
+        $this->apikey = $request;
         $this->request = new MailchimpRequest($this->apikey);
         $this->settings = new MailchimpSettings();
     }
 
     /**
-     * @return Account
-     * @throws MailchimpException
+     * Retrieves a new Account
+     * @return Resources\Account
      */
     public function account()
     {
-        $this->account = new Account($this->apikey);
-        return $this->account;
+        return new Resources\Account($this->request, $this->settings);
     }
 
     /**
-     * @param null $class_input
-     * @return AuthorizedApps
-     * @throws MailchimpException
+     * Retrieves a new AuthorizedApps instance.
+     * @param null $app_id The ID for an app if retrieving an instance
+     * @return Resources\AuthorizedApps
      */
-    public function apps($class_input = null)
+    public function apps($app_id = null)
     {
-        $this->apps = new AuthorizedApps($this->apikey, $class_input);
-        return $this->apps;
+        return new Resources\AuthorizedApps($this->request, $this->settings, $app_id);
     }
 
     /**
-     * @param null $class_input
-     * @return Automations
-     * @throws MailchimpException
+     * @param null $workflow_id
+     * @return Resources\Automations
      */
-    public function automations($class_input = null)
+    public function automations($workflow_id = null)
     {
-        $this->automations = new Automations($this->apikey, $class_input);
-        return $this->automations;
+        return new Resources\Automations($this->request, $this->settings, $workflow_id);
     }
 
     /**
-     * @param null $class_input
-     * @return BatchOperations
-     * @throws MailchimpException
+     * @param null $batch_id
+     * @return Resources\BatchOperations
      */
-    public function batches($class_input = null)
+    public function batches($batch_id = null)
     {
-        $this->batches = new BatchOperations($this->apikey, $class_input);
-        return $this->batches;
+        return new Resources\BatchOperations($this->request, $this->settings, $batch_id);
     }
 
     /**
-     * @param null $class_input
-     * @return BatchWebhooks
-     * @throws MailchimpException
+     * @param null $batch_webhook_id
+     * @return Resources\BatchWebhooks
      */
-    public function batchWebhooks($class_input = null)
+    public function batchWebhooks($batch_webhook_id = null)
     {
-        $this->batch_webhooks = new BatchWebhooks($this->apikey, $class_input);
-        return $this->batch_webhooks;
+        return new Resources\BatchWebhooks($this->request, $this->settings, $batch_webhook_id);
     }
 
     /**
-     * @param null $class_input
-     * @return CampaignFolders
-     * @throws MailchimpException
+     * @param null $folder_id
+     * @return Resources\CampaignFolders
      */
-    public function campaignFolders($class_input = null)
+    public function campaignFolders($folder_id = null)
     {
-        $this->campaign_folders = new CampaignFolders($this->apikey, $class_input);
-        return $this->campaign_folders;
+        return new Resources\CampaignFolders($this->request, $this->settings, $folder_id);
     }
 
     /**
-     * @param null $class_input
-     * @return Campaigns
-     * @throws MailchimpException
+     * @param null $campaign_id
+     * @return Resources\Campaigns
      */
-    public function campaigns($class_input = null)
+    public function campaigns($campaign_id = null)
     {
-        $this->campaigns = new Campaigns($this->apikey, $class_input);
-        return $this->campaigns;
+        return new Resources\Campaigns($this->request, $this->settings, $campaign_id);
     }
 
     /**
-     * @param null $class_input
-     * @return Conversations
-     * @throws MailchimpException
+     * @param null $conversation_id
+     * @return Resources\Conversations
      */
-    public function conversations($class_input = null)
+    public function conversations($conversation_id = null)
     {
-        $this->conversations = new Conversations($this->apikey, $class_input);
-        return $this->conversations;
+        return new Resources\Conversations($this->request, $this->settings, $conversation_id);
     }
 
+
     /**
-     * @param null $class_input
-     * @return EcommerceStores
-     * @throws MailchimpException
+     * @param null $store_id
+     * @return Resources\EcommerceStores
      */
-    public function ecommStores($class_input = null)
+    public function ecommerceStores($store_id = null)
     {
-        $this->ecomm_stores = new EcommerceStores($this->apikey, $class_input);
-        return $this->ecomm_stores;
+        return new Resources\EcommerceStores($this->request, $this->settings, $store_id);
     }
 
     /**
-     * @param null $class_input
-     * @return FileManagerFiles
-     * @throws MailchimpException
+     * @param null $file_id
+     * @return Resources\FileManagerFiles
      */
-    public function fileManagerFiles($class_input = null)
+    public function fileManagerFiles($file_id = null)
     {
-        $this->file_manager_files = new FileManagerFiles(
-            $this->apikey,
-            $class_input
-        );
-        return $this->file_manager_files;
+        return new Resources\FileManagerFiles($this->request, $this->settings, $file_id);
     }
 
     /**
-     * @param null $class_input
-     * @return FileManagerFolders
-     * @throws MailchimpException
+     * @param null $folder_id
+     * @return Resources\FileManagerFolders
      */
-    public function fileManagerFolders($class_input = null)
+    public function fileManagerFolders($folder_id = null)
     {
-        $this->file_manager_folders = new FileManagerFolders(
-            $this->apikey,
-            $class_input
-        );
-        return $this->file_manager_folders;
+        return new Resources\FileManagerFolders($this->request, $this->settings, $folder_id);
     }
 
     /**
-     * @param null $class_input
-     * @return Lists
-     * @throws MailchimpException
+     * @param null $list_id
+     * @return Resources\Lists
      */
-    public function lists($class_input = null)
+    public function lists($list_id = null)
     {
-        $this->lists = new Lists($this->apikey, $class_input);
-        return $this->lists;
+        return new Resources\Lists($this->request, $this->settings, $list_id);
     }
 
     /**
-     * @throws MailchimpException
+     * @return Resources\Ping
      */
     public function ping()
     {
-        $this->ping = new Ping($this->apikey);
-        return $this->ping;
+        return new Resources\Ping($this->request, $this->settings);
     }
 
     /**
-     * @param null $class_input
-     * @return Reports
-     * @throws MailchimpException
+     * @param null $campaign_id
+     * @return Resources\Reports
      */
-    public function reports($class_input = null)
+    public function reports($campaign_id = null)
     {
-        $this->reports = new Reports($this->apikey, $class_input);
-        return $this->reports;
+        return new Resources\Reports($this->request, $this->settings, $campaign_id);
     }
 
     /**
-     * @param null $class_input
-     * @return SearchCampaigns
-     * @throws MailchimpException
+     * @return Resources\SearchCampaigns
      */
-    public function searchCampaigns($class_input = null)
+    public function searchCampaigns()
     {
-        $this->search_campaigns = new SearchCampaigns($this->apikey, $class_input);
-        return $this->search_campaigns;
+        return new Resources\SearchCampaigns($this->request, $this->settings);
     }
 
     /**
-     * @param null $class_input
-     * @return SearchMembers
-     * @throws MailchimpException
+     * @return Resources\SearchMembers
      */
-    public function searchMembers($class_input = null)
+    public function searchMembers()
     {
-        $this->search_members = new SearchMembers($this->apikey, $class_input);
-        return $this->search_members;
+        return new Resources\SearchMembers($this->request, $this->settings);
     }
 
     /**
-     * @param null $class_input
-     * @return TemplateFolders
-     * @throws MailchimpException
+     * @param null $folder_id
+     * @return Resources\TemplateFolders
      */
-    public function templateFolders($class_input = null)
+    public function templateFolders($folder_id = null)
     {
-        $this->template_folders = new TemplateFolders($this->apikey, $class_input);
-        return $this->template_folders;
+        return new Resources\TemplateFolders($this->request, $this->settings, $folder_id);
     }
 
     /**
-     * @param null $class_input
-     * @return Templates
-     * @throws MailchimpException
+     * @param null $template_id
+     * @return Resources\Templates
      */
-    public function templates($class_input = null)
+    public function templates($template_id = null)
     {
-        $this->templates = new Templates($this->apikey, $class_input);
-        return $this->templates;
-    }
-
-
-    /*************************************
-     * BEGIN ENDPOINT VERB FUNCTIONS
-     *************************************/
-
-    /**
-     * @param array $query_params
-     * @return MailchimpResponse
-     * @throws MailchimpException
-     */
-    public function get($query_params = [])
-    {
-        $this->request->setMethod(MailchimpRequest::GET);
-        $this->request->setQueryString($query_params);
-
-        $connection = $this->getConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-
-        return $response;
-    }
-
-
-    /**
-     * @param array $params
-     * @return MailchimpResponse
-     * @throws MailchimpException
-     */
-    public function post($params = [])
-    {
-        $this->request->setMethod(MailchimpRequest::POST);
-        $this->request->setPayload($params);
-
-        $connection = $this->getConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-
-        return $response;
-    }
-
-    /**
-     * @param array $params
-     * @return MailchimpResponse
-     * @throws MailchimpException
-     */
-    public function patch($params = [])
-    {
-        $this->request->setMethod(MailchimpRequest::PATCH);
-        $this->request->setPayload($params);
-
-        $connection = $this->getConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-
-        return $response;
-    }
-
-    /**
-     * @param array $params
-     * @return MailchimpResponse
-     * @throws MailchimpException
-     */
-    public function put($params = [])
-    {
-        $this->request->setMethod(MailchimpRequest::PUT);
-        $this->request->setPayload($params);
-
-        $connection = $this->getConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-
-        return $response;
-    }
-
-    /**
-     * @return MailchimpResponse
-     * @throws MailchimpException
-     */
-    public function delete()
-    {
-        $this->request->setMethod(MailchimpRequest::DELETE);
-
-        $connection = $this->getConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-
-        return $response;
+        return new Resources\Templates($this->request, $this->settings, $template_id);
     }
 
     /**
@@ -460,38 +251,6 @@ class Mailchimp
     }
 
     /**
-     * @param $endpoint
-     * @param array $params
-     * @return MailchimpResponse
-     * @throws MailchimpException
-     */
-    protected function postToActionEndpoint($endpoint, $params = [])
-    {
-        $this->request->appendToEndpoint($endpoint);
-        $this->request->setMethod(MailchimpRequest::POST);
-        if (!empty($params)) {
-            $this->request->setPayload($params);
-        }
-
-        $connection = $this->getConnection($this->request, $this->settings);
-        $response = $connection->execute();
-        $this->resetRequest();
-        return $response;
-    }
-
-    /**
-     * @throws MailchimpException
-     */
-    protected function resetRequest()
-    {
-        if (isset($this->request)) {
-            unset($this->request);
-        }
-
-        $this->request = new MailchimpRequest($this->apikey);
-    }
-
-    /**
      * @param $oath_string
      * @return mixed
      * @throws MailchimpException
@@ -539,17 +298,6 @@ class Mailchimp
 
     /**
      * @param MailchimpRequest $request
-     * @param MailchimpSettings $settings
-     * @return MailchimpConnection
-     */
-    protected function getConnection(MailchimpRequest $request, MailchimpSettings $settings)
-    {
-        $connection = new MailchimpConnection($request, $settings);
-        return $connection;
-    }
-
-    /**
-     * @param MailchimpRequest $request
      * @return MailchimpConnection
      */
     protected static function getStaticConnection(MailchimpRequest $request)
@@ -566,16 +314,5 @@ class Mailchimp
     {
         $request = new MailchimpRequest();
         return $request;
-    }
-
-    /**
-     * @param $check mixed The resource to be checked for
-     * @throws MailchimpException
-     */
-    protected function throwIfNot($check)
-    {
-        if (!$check) {
-            throw new MailchimpException("You must provide an ID to " . debug_backtrace()[1]['function']);
-        }
     }
 }

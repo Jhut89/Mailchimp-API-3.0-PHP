@@ -2,8 +2,8 @@
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists;
-use MailchimpAPI\Lists\AbuseReports;
+use MailchimpAPI\Resources\Lists;
+use MailchimpAPI\Resources\Lists\AbuseReports;
 use MailchimpTests\MailChimpTestCase;
 
 /**

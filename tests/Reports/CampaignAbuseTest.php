@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/3/18
- * Time: 3:09 PM
- */
 
 namespace MailchimpTests\Reports;
 
-use MailchimpAPI\Reports\CampaignAbuse;
+use MailchimpAPI\Resources\Reports\CampaignAbuse;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Reports;
+use MailchimpAPI\Resources\Reports;
 
 /**
  * Class CampaignAbuseTest

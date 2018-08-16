@@ -2,9 +2,9 @@
 
 namespace MailchimpTests\UtilityTests;
 
-use MailchimpAPI\Utilities\MailchimpConnection;
-use MailchimpAPI\Utilities\MailchimpRequest;
-use MailchimpAPI\Utilities\MailchimpSettings;
+use MailchimpAPI\Requests\MailchimpConnection;
+use MailchimpAPI\Requests\MailchimpRequest;
+use MailchimpAPI\Settings\MailchimpSettings;
 use MailchimpTests\MailChimpTestCase;
 
 /**

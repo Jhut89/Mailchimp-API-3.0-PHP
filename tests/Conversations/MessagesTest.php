@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/1/18
- * Time: 10:41 PM
- */
 
 namespace MailchimpTests\Conversations;
 
-use MailchimpAPI\Conversations;
-use MailchimpAPI\Conversations\Messages;
+use MailchimpAPI\Resources\Conversations;
+use MailchimpAPI\Resources\Conversations\Messages;
 use MailchimpTests\MailChimpTestCase;
 
 /**

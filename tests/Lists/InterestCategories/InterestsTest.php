@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/2/18
- * Time: 5:33 PM
- */
 
 namespace MailchimpTests\Lists\InterestCategories;
 
-use MailchimpAPI\Lists\InterestCategories\Interest;
+use MailchimpAPI\Resources\Lists\InterestCategories\Interest;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
-use MailchimpAPI\Lists\InterestCategories;
+use MailchimpAPI\Resources\Lists;
+use MailchimpAPI\Resources\Lists\InterestCategories;
 
 /**
  * Class InterestsTest

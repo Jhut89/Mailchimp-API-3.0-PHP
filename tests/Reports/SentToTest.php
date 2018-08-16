@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/3/18
- * Time: 3:25 PM
- */
 
 namespace MailchimpTests\Reports;
 
-use MailchimpAPI\Reports;
-use MailchimpAPI\Reports\SentTo;
+use MailchimpAPI\Resources\Reports;
+use MailchimpAPI\Resources\Reports\SentTo;
 use MailchimpTests\MailChimpTestCase;
 
 /**

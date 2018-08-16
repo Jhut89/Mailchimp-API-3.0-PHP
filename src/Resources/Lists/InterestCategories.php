@@ -1,0 +1,34 @@
+<?php
+
+namespace MailchimpAPI\Resources\Lists;
+
+use MailchimpAPI\Requests\MailchimpRequest;
+use MailchimpAPI\Resources\Lists\InterestCategories\Interest;
+use MailchimpAPI\Resources\ApiResource;
+use MailchimpAPI\Settings\MailchimpSettings;
+
+
+class InterestCategories extends ApiResource
+{
+    /**
+     * the url component for this endpoint
+     */
+    const URL_COMPONENT = '/interest-categories/';
+
+    public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $interest_category_id)
+    {
+        parent::__construct($request, $settings);
+        $request->appendToEndpoint(self::URL_COMPONENT . $interest_category_id);
+    }
+
+    //SUBCLASS FUNCTIONS ------------------------------------------------------------
+
+    public function interests($interest_id = null)
+    {
+        return new Interest(
+            $this->getRequest(),
+            $this->getSettings(),
+            $interest_id
+        );
+    }
+}

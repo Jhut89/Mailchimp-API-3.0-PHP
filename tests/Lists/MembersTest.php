@@ -8,9 +8,9 @@
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists\Members;
+use MailchimpAPI\Resources\Lists\Members;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class MembersTest

@@ -2,9 +2,9 @@
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists\MergeFields;
+use MailchimpAPI\Resources\Lists\MergeFields;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class MergeFieldsTest

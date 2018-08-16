@@ -2,7 +2,7 @@
 
 namespace MailchimpTests;
 
-use MailchimpAPI\Conversations;
+use MailchimpAPI\Resources\Conversations;
 
 class ConversationsTest extends MailChimpTestCase
 {

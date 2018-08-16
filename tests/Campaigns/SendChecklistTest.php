@@ -2,8 +2,8 @@
 
 namespace MailchimpTests\Campaigns;
 
-use MailchimpAPI\Campaigns;
-use MailchimpAPI\Campaigns\SendChecklist;
+use MailchimpAPI\Resources\Campaigns;
+use MailchimpAPI\Resources\Campaigns\SendChecklist;
 use MailchimpTests\MailChimpTestCase;
 
 /**

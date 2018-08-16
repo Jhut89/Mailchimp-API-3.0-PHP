@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/3/18
- * Time: 3:12 PM
- */
 
 namespace MailchimpTests\Reports;
 
-use MailchimpAPI\Reports\CampaignAdvice;
+use MailchimpAPI\Resources\Reports\CampaignAdvice;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Reports;
+use MailchimpAPI\Resources\Reports;
 
 /**
  * Class CampaignAdviceTest
@@ -27,18 +21,6 @@ class CampaignAdviceTest extends MailChimpTestCase
             Reports::URL_COMPONENT . 1 . CampaignAdvice::URL_COMPONENT,
             $this->mailchimp->reports(1)->advice(),
             "The Campaign Advice collection endpoint should be constructed correctly"
-        );
-    }
-
-    /**
-     * @throws \MailchimpAPI\MailchimpException
-     */
-    public function testInstanceUrl()
-    {
-        $this->endpointUrlBuildTest(
-            Reports::URL_COMPONENT . 1 . CampaignAdvice::URL_COMPONENT . 1,
-            $this->mailchimp->reports(1)->advice(1),
-            "The Campaign Advice instance endpoint should be constructed correctly"
         );
     }
 }

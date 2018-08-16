@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/3/18
- * Time: 3:39 PM
- */
 
 namespace MailchimpTests\Reports\ClickReports;
 
-use MailchimpAPI\Reports\ClickReports\Members;
+use MailchimpAPI\Resources\Reports\ClickReports\Members;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Reports;
-use MailchimpAPI\Reports\ClickReports;
+use MailchimpAPI\Resources\Reports;
+use MailchimpAPI\Resources\Reports\ClickReports;
 
 class MembersTest extends MailChimpTestCase
 {

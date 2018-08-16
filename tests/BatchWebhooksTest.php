@@ -3,7 +3,7 @@
 namespace MailchimpTests;
 
 
-use MailchimpAPI\BatchWebhooks;
+use MailchimpAPI\Resources\BatchWebhooks;
 
 /**
  * Class BatchWebhooksTest

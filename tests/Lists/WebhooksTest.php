@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hutch
- * Date: 7/2/18
- * Time: 5:30 PM
- */
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists\Webhooks;
+use MailchimpAPI\Resources\Lists\Webhooks;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class WebhooksTest

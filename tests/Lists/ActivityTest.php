@@ -8,9 +8,9 @@
 
 namespace MailchimpTests\Lists;
 
-use MailchimpAPI\Lists\Activity;
+use MailchimpAPI\Resources\Lists\Activity;
 use MailchimpTests\MailChimpTestCase;
-use MailchimpAPI\Lists;
+use MailchimpAPI\Resources\Lists;
 
 /**
  * Class ActivityTest
@@ -27,18 +27,6 @@ class ActivityTest extends MailChimpTestCase
             Lists::URL_COMPONENT . 1 . Activity::URL_COMPONENT,
             $this->mailchimp->lists(1)->activity(),
             "The Activity collection endpoint should be constructed correctly"
-        );
-    }
-
-    /**
-     * @throws \MailchimpAPI\MailchimpException
-     */
-    public function testInstanceUrl()
-    {
-        $this->endpointUrlBuildTest(
-            Lists::URL_COMPONENT . 1 . Activity::URL_COMPONENT . 1,
-            $this->mailchimp->lists(1)->activity(1),
-            "The Activity instance endpoint should be constructed correctly"
         );
     }
 }
