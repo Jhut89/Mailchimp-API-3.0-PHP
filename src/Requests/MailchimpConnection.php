@@ -3,7 +3,9 @@
 namespace MailchimpAPI\Requests;
 
 use MailchimpAPI\MailchimpException;
+use MailchimpAPI\Responses\FailureResponse;
 use MailchimpAPI\Responses\MailchimpResponse;
+use MailchimpAPI\Responses\SuccessResponse;
 use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
@@ -166,11 +168,21 @@ class MailchimpConnection implements HttpRequest
             strlen($this->response)
         );
 
-        return new MailchimpResponse(
-            $this->headers,
-            $this->response_body,
-            $this->http_code
-        );
+        if ($this->isSuccess()) {
+            return new SuccessResponse(
+                $this->headers,
+                $this->response_body,
+                $this->http_code,
+                $this->current_request->getSuccessCallback()
+            );
+        } else {
+            return new FailureResponse(
+                $this->headers,
+                $this->response_body,
+                $this->http_code,
+                $this->current_request->getFailureCallback()
+            );
+        }
     }
 
     /**
@@ -258,5 +270,10 @@ class MailchimpConnection implements HttpRequest
     private function pushToHeaders($header)
     {
         $this->headers[$header[0]] = trim($header[1]);
+    }
+
+    private function isSuccess()
+    {
+        return ($this->http_code > 199 && $this->http_code < 300);
     }
 }

@@ -90,6 +90,16 @@ class MailchimpRequest
     private $headers;
 
     /**
+     * @var callable
+     */
+    private $success_callback;
+
+    /**
+     * @var callable
+     */
+    private $failure_callback;
+
+    /**
      * MailchimpRequest constructor.
      * @param $apikey
      * @throws MailchimpException
@@ -187,6 +197,22 @@ class MailchimpRequest
         return $this->base_url . $this->endpoint . $this->query_string;
     }
 
+    /**
+     * @return callable
+     */
+    public function getSuccessCallback()
+    {
+        return $this->success_callback;
+    }
+
+    /**
+     * @return callable
+     */
+    public function getFailureCallback()
+    {
+        return $this->failure_callback;
+    }
+
     /*************************************
      * SETTERS
      *************************************/
@@ -265,6 +291,22 @@ class MailchimpRequest
     public function setHeaders($headers)
     {
         $this->headers = $headers;
+    }
+
+    /**
+     * @param callable $success_callback
+     */
+    public function setSuccessCallback(callable $success_callback)
+    {
+        $this->success_callback = $success_callback;
+    }
+
+    /**
+     * @param callable $failure_callback
+     */
+    public function setFailureCallback(callable $failure_callback)
+    {
+        $this->failure_callback = $failure_callback;
     }
 
     /*************************************

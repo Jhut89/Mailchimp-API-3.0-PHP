@@ -4,7 +4,7 @@ namespace MailchimpAPI\Responses;
 
 use MailchimpAPI\MailchimpException;
 
-class MailchimpResponse
+abstract class MailchimpResponse
 {
     // The headers received as an array of key value pairs
     private $headers = [];
@@ -82,5 +82,15 @@ class MailchimpResponse
             throw new MailchimpException("Unable to deserialize response");
         }
         return $decoded;
+    }
+
+    public function wasSuccess()
+    {
+        return $this instanceof SuccessResponse;
+    }
+
+    public function wasFailure()
+    {
+        return $this instanceof FailureResponse;
     }
 }

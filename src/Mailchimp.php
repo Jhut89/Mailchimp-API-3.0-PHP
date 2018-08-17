@@ -31,13 +31,13 @@ class Mailchimp
     /**
      * Mailchimp constructor.
      *
-     * @param $request
+     * @param string $apikey
      *
      * @throws MailchimpException
      */
-    public function __construct($request)
+    public function __construct($apikey)
     {
-        $this->apikey = $request;
+        $this->apikey = $apikey;
         $this->request = new MailchimpRequest($this->apikey);
         $this->settings = new MailchimpSettings();
     }

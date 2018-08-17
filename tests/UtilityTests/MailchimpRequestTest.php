@@ -50,4 +50,31 @@ final class MailchimpRequestTest extends MailChimpTestCase
         $this->expectException(MailchimpException::class);
         $this->requestInstance->checkKey('not an API key');
     }
+
+    public function testPersistentCallbacks()
+    {
+        $foo = function () {
+            // do stuff
+        };
+
+        // set success callback
+        $this->mailchimp->request->setSuccessCallback($foo);
+        // set failure callback
+        $this->mailchimp->request->setFailureCallback($foo);
+
+        // from same request make a new AuthorizedApps
+        $apps = $this->mailchimp->apps();
+
+        self::assertEquals(
+            $foo,
+            $apps->getRequest()->getSuccessCallback(),
+            "the success callback after making a chain should be the same as when it was set"
+        );
+
+        self::assertEquals(
+            $foo,
+            $apps->getRequest()->getFailureCallback(),
+            "the failure callback after making a chain should be the same as when it was set"
+        );
+    }
 }
