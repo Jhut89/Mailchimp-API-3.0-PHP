@@ -4,6 +4,8 @@
 namespace MailchimpAPI\Responses;
 
 
+use MailchimpAPI\MailchimpException;
+
 class FailureResponse extends MailchimpResponse
 {
     public function __construct($headers, $body, $http_code, callable $failure_callback = null)
