@@ -1,4 +1,4 @@
-## VERSION 3.0.0 COMING
+## VERSION 3.0.0 COMING - August 27th 2018
 
 Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
 `master` is the current dev branch for version 3.0.0. A formal release with a tag will be made once it is considered stable.
@@ -9,6 +9,7 @@ Version 3.0.0 of this library will introduce several *new features*, and some **
 * Full PSR-4 Autoloading via _Composer_
 * Tests 
 * Programmatically alterable settings
+* Success & Failure Callbacks
 * Support for new endpoints
 
 ### Breaks From Older Versions
@@ -198,7 +199,7 @@ In this case I would not provide `members()` with an identifier as I want to pos
 ```php
 $merge_values = [
     "FNAME" => "John",
-     "LNAME" => "Doe"
+    "LNAME" => "Doe"
 ];
 
 $post_params = [
