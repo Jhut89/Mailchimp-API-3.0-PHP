@@ -303,7 +303,11 @@ print $contact_email; // outputs something like "example@domain.com"
       |    |----unschedule()*            
       |    |----checklist()             
       |    |----feedback()              
-      |    |----content()               
+      |    |----content()
+      |
+      |----connectedSites()
+      |    |
+      |    |----verifyScriptInstallation()*               
       |                                 
       |----conversations()              
       |    |                            
@@ -327,11 +331,21 @@ print $contact_email; // outputs something like "example@domain.com"
       |    |                            
       |    |----carts()                 
       |         |                       
-      |         |----lines()            
+      |         |----lines()
+      |
+      |----facebookAds()            
       |                                 
       |----fileManagerFiles()           
       |                                 
-      |----fileManagerFolders()         
+      |----fileManagerFolders()
+      |
+      |----googleAds()
+      |
+      |----landingPages()
+      |    |
+      |    |----publish()*
+      |    |----unpublish()*
+      |    |----content()         
       |                                 
       |----lists()                      
       |    |                            
