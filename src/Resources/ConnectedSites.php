@@ -49,5 +49,4 @@ class ConnectedSites extends ApiResource
         $this->throwIfNot("id", $this->site_id);
         $this->postToActionEndpoint(self::VERIFY_SCRIPT_INSTALL_URL_COMPONENT);
     }
-
 }
