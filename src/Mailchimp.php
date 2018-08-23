@@ -107,6 +107,15 @@ class Mailchimp
     }
 
     /**
+     * @param null $site_id
+     * @return Resources\ConnectedSites
+     */
+    public function connectedSites($site_id = null)
+    {
+        return new Resources\ConnectedSites($this->request, $this->settings, $site_id);
+    }
+
+    /**
      * @param null $conversation_id
      * @return Resources\Conversations
      */
@@ -126,6 +135,15 @@ class Mailchimp
     }
 
     /**
+     * @param null $outreach_id
+     * @return Resources\FacebookAds
+     */
+    public function facebookAds($outreach_id = null)
+    {
+        return new Resources\FacebookAds($this->request, $this->settings, $outreach_id);
+    }
+
+    /**
      * @param null $file_id
      * @return Resources\FileManagerFiles
      */
@@ -141,6 +159,24 @@ class Mailchimp
     public function fileManagerFolders($folder_id = null)
     {
         return new Resources\FileManagerFolders($this->request, $this->settings, $folder_id);
+    }
+
+    /**
+     * @param null $outreach_id
+     * @return Resources\GoogleAds
+     */
+    public function googleAds($outreach_id = null)
+    {
+        return new Resources\GoogleAds($this->request, $this->settings, $outreach_id);
+    }
+
+    /**
+     * @param null $page_id
+     * @return Resources\LandingPages
+     */
+    public function landingPages($page_id = null)
+    {
+        return new Resources\LandingPages($this->request, $this->settings, $page_id);
     }
 
     /**
