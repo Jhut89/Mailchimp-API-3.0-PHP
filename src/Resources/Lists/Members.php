@@ -9,13 +9,23 @@ use MailchimpAPI\Resources\Lists\Members\Goals;
 use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class Members
+ * @package MailchimpAPI\Resources\Lists
+ */
 class Members extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/members/';
 
+    /**
+     * Members constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param $member
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $member)
     {
         parent::__construct($request, $settings);
@@ -27,6 +37,10 @@ class Members extends ApiResource
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @param null $note_id
+     * @return Notes
+     */
     public function notes($note_id = null)
     {
         return new Notes(
@@ -35,7 +49,10 @@ class Members extends ApiResource
             $note_id
         );
     }
-    
+
+    /**
+     * @return Goals
+     */
     public function goals()
     {
         return new Goals(
@@ -43,7 +60,10 @@ class Members extends ApiResource
             $this->getSettings()
         );
     }
-    
+
+    /**
+     * @return Members\Activity
+     */
     public function activity()
     {
         return new Members\Activity(

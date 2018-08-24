@@ -13,6 +13,10 @@ use MailchimpAPI\Resources\Lists\SignupForms;
 use MailchimpAPI\Resources\Lists\Webhooks;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class Lists
+ * @package MailchimpAPI\Resources
+ */
 class Lists extends ApiResource
 {
     /**
@@ -25,6 +29,12 @@ class Lists extends ApiResource
      */
     const URL_COMPONENT = '/lists/';
 
+    /**
+     * Lists constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $list_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $list_id = null)
     {
         parent::__construct($request, $settings);
@@ -52,6 +62,10 @@ class Lists extends ApiResource
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @param null $webhook_id
+     * @return Webhooks
+     */
     public function webhooks($webhook_id = null)
     {
         return new Webhooks(
@@ -61,6 +75,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $form_id
+     * @return SignupForms
+     */
     public function signupForms($form_id = null)
     {
         return new SignupForms(
@@ -70,6 +88,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $merge_field_id
+     * @return MergeFields
+     */
     public function mergeFields($merge_field_id = null)
     {
         return new MergeFields(
@@ -79,6 +101,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $month
+     * @return GrowthHistory
+     */
     public function growthHistory($month = null)
     {
         return new GrowthHistory(
@@ -89,6 +115,9 @@ class Lists extends ApiResource
     }
 
 
+    /**
+     * @return Clients
+     */
     public function clients()
     {
         return new Clients(
@@ -97,6 +126,9 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @return Lists\Activity
+     */
     public function activity()
     {
         return new Lists\Activity(
@@ -105,6 +137,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $report_id
+     * @return AbuseReports
+     */
     public function abuseReports($report_id = null)
     {
         return new AbuseReports(
@@ -114,6 +150,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $segment_id
+     * @return Segments
+     */
     public function segments($segment_id = null)
     {
         return new Segments(
@@ -123,6 +163,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $member
+     * @return Lists\Members
+     */
     public function members($member = null)
     {
         return new Lists\Members(
@@ -132,6 +176,10 @@ class Lists extends ApiResource
         );
     }
 
+    /**
+     * @param null $interest_category_id
+     * @return InterestCategories
+     */
     public function interestCategories($interest_category_id = null)
     {
         return new InterestCategories(

@@ -8,12 +8,12 @@ use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
  * Class Conversations
- * @package MailchimpAPI
+ * @package MailchimpAPI\Resources
  */
 class Conversations extends ApiResource
 {
     /**
-     * the conversations endpoint url component
+     * The conversations endpoint url component
      */
     const URL_COMPONENT = '/conversations/';
 

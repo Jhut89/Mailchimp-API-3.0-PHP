@@ -12,7 +12,7 @@ use MailchimpAPI\Settings\MailchimpSettings;
 class FileManagerFiles extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/file-manager/files/';
 

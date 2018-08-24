@@ -8,12 +8,12 @@ use MailchimpAPI\Settings\MailchimpSettings;
 /**
  * Class Account
  * is a representation of the root of the mailchimp api
- * @package Mailchimp_API
+ * @package Mailchimp_API\Resources
  */
 class Account extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/';
 

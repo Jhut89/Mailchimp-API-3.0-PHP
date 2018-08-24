@@ -7,13 +7,23 @@ use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class ClickReports
+ * @package MailchimpAPI\Resources\Reports
+ */
 class ClickReports extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/click-details/';
 
+    /**
+     * ClickReports constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $link_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $link_id = null)
     {
         parent::__construct($request, $settings);
@@ -22,6 +32,10 @@ class ClickReports extends ApiResource
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @param null $member
+     * @return Members
+     */
     public function members($member = null)
     {
         return new Members(

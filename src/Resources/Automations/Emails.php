@@ -19,7 +19,7 @@ class Emails extends ApiResource
     protected $email_id;
 
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/emails/';
 

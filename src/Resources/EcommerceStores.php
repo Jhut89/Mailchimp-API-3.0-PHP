@@ -10,7 +10,6 @@ use MailchimpAPI\Resources\EcommerceStores\Products;
 use MailchimpAPI\Resources\EcommerceStores\PromoRules;
 use MailchimpAPI\Settings\MailchimpSettings;
 
-
 /**
  * Class EcommerceStores
  * @package MailchimpAPI\Resources
@@ -18,7 +17,7 @@ use MailchimpAPI\Settings\MailchimpSettings;
 class EcommerceStores extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/ecommerce/stores/';
 

@@ -7,13 +7,22 @@ use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class OpenDetails
+ * @package MailchimpAPI\Resources\Reports
+ */
 class OpenDetails extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/open-details/';
 
+    /**
+     * OpenDetails constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings)
     {
         parent::__construct($request, $settings);

@@ -7,13 +7,22 @@ use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class TopLocations
+ * @package MailchimpAPI\Resources\Reports
+ */
 class TopLocations extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/locations/';
 
+    /**
+     * TopLocations constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings)
     {
         parent::__construct($request, $settings);

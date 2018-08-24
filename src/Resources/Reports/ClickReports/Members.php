@@ -6,13 +6,23 @@ use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class Members
+ * @package MailchimpAPI\Resources\Reports\ClickReports
+ */
 class Members extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/members/';
 
+    /**
+     * Members constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $member
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $member = null)
     {
         parent::__construct($request, $settings);

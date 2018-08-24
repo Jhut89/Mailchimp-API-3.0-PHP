@@ -8,15 +8,21 @@ use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
  * Class EmailActivity
- * @package MailchimpAPI\Reports
+ * @package MailchimpAPI\Resources\Reports
  */
 class EmailActivity extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/email-activity/';
 
+    /**
+     * EmailActivity constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $member
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $member = null)
     {
         parent::__construct($request, $settings);

@@ -19,12 +19,12 @@ class ConnectedSites extends ApiResource
     private $site_id;
 
     /**
-     * the connected sites endpoint url component
+     * The connected sites endpoint url component
      */
     const URL_COMPONENT = "/connected-sites/";
 
     /**
-     * the conversations url component for verifying a script install
+     * The conversations url component for verifying a script install
      */
     const VERIFY_SCRIPT_INSTALL_URL_COMPONENT = "/actions/verify-script-installation/";
 
