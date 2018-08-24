@@ -12,62 +12,68 @@ use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
  * Class Campaigns
- * @package Mailchimp_API
+ * @package Mailchimp_API\Resources
  */
 class Campaigns extends ApiResource
 {
 
     /**
-     * @var string The identifier for a campaign instance
+     * @var string The campaign id
      */
     private $campaign_id;
 
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/campaigns/';
 
     /**
-     * the url component for canceling a campaign send
+     * The url component for canceling a campaign send
      */
     const CANCEL_URL_COMPONENT = '/actions/cancel-send/';
 
     /**
-     * the url component for pausing a campaign
+     * The url component for pausing a campaign
      */
     const PAUSE_URL_COMPONENT = '/actions/pause';
 
     /**
-     * the url component for replicating a campaign
+     * The url component for replicating a campaign
      */
     const REPLICATE_URL_COMPONENT = '/actions/replicate';
 
     /**
-     * the url component for resuming a paused campaign
+     * The url component for resuming a paused campaign
      */
     const RESUME_URL_COMPONENT = '/actions/resume';
 
     /**
-     * the url component for scheduling a campaign
+     * The url component for scheduling a campaign
      */
     const SCHEDULE_URL_COMPONENT = '/actions/schedule';
 
     /**
-     * the url component for sending a campaign
+     * The url component for sending a campaign
      */
     const SEND_URL_COMPONENT = '/actions/send';
 
     /**
-     * the url component for test sending a campaign
+     * The url component for test sending a campaign
      */
     const TEST_URL_COMPONENT = '/actions/test';
 
     /**
-     * the url component for un-scheduling a campaign
+     * The url component for un-scheduling a campaign
      */
     const UNSCHEDULE_URL_COMPONENT = '/actions/unschedule';
 
 
+    /**
+     * Campaigns constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $campaign_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $campaign_id = null)
     {
         parent::__construct($request, $settings);

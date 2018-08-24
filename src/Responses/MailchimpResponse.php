@@ -4,17 +4,36 @@ namespace MailchimpAPI\Responses;
 
 use MailchimpAPI\MailchimpException;
 
+/**
+ * Class MailchimpResponse
+ * @package MailchimpAPI\Responses
+ */
 abstract class MailchimpResponse
 {
-    // The headers received as an array of key value pairs
+    /**
+     * The headers returned from a request
+     * @var array
+     */
     private $headers = [];
 
-    // Response from MailChimp API
+    /**
+     * The body returned from a request
+     * @var string
+     */
     private $body;
 
-    // HTTP Response Code
+    /**
+     * The http response code for a request
+     * @var int
+     */
     private $http_code;
 
+    /**
+     * MailchimpResponse constructor.
+     * @param $headers
+     * @param $body
+     * @param $http_code
+     */
     public function __construct($headers, $body, $http_code)
     {
         $this->setHeaders($headers);
@@ -23,6 +42,7 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Get the response headers
      * @return array
      */
     public function getHeaders()
@@ -31,6 +51,7 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Sets the headers on thsi response object
      * @param array $headers
      */
     public function setHeaders($headers)
@@ -39,6 +60,7 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Gets the http code for this response object
      * @return mixed
      */
     public function getHttpCode()
@@ -47,6 +69,7 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Sets the http response code for this response object
      * @param mixed $http_code
      */
     public function setHttpCode($http_code)
@@ -55,6 +78,7 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Sets the body for this resposne object
      * @param mixed $body
      */
     public function setBody($body)
@@ -63,6 +87,7 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Gets the body for this response object
      * @return mixed
      */
     public function getBody()
@@ -71,8 +96,9 @@ abstract class MailchimpResponse
     }
 
     /**
+     * Deserializes the response body to PHP object or array
+     * @param bool $to_array should we deserialize to an array
      * @return mixed
-     *
      * @throws MailchimpException when cant deserialize response
      */
     public function deserialize($to_array = false)
@@ -84,11 +110,19 @@ abstract class MailchimpResponse
         return $decoded;
     }
 
+    /**
+     * Return whether $this is a SuccessResponse
+     * @return bool
+     */
     public function wasSuccess()
     {
         return $this instanceof SuccessResponse;
     }
 
+    /**
+     * Return whether $this is a SuccessResponse
+     * @return bool
+     */
     public function wasFailure()
     {
         return $this instanceof FailureResponse;

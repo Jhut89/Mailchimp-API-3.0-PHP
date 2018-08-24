@@ -7,6 +7,10 @@ use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class Segments
+ * @package MailchimpAPI\Resources\Lists
+ */
 class Segments extends ApiResource
 {
     /**
@@ -15,10 +19,16 @@ class Segments extends ApiResource
     private $segment_id;
 
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/segments/';
 
+    /**
+     * Segments constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $segment_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $segment_id = null)
     {
         parent::__construct($request, $settings);
@@ -43,6 +53,10 @@ class Segments extends ApiResource
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @param null $member
+     * @return Segments\Members
+     */
     public function members($member = null)
     {
         return new Segments\Members(

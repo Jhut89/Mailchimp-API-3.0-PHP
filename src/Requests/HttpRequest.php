@@ -2,17 +2,13 @@
 
 namespace MailchimpAPI\Requests;
 
-
 /**
- * An interface around HTTP methods
- *
- * This makes testing cURL dependencies easier
- *
  * Interface HttpRequest
- * @package Mailchimp_API\Utilities
+ * @package MailchimpAPI\Requests
  */
 interface HttpRequest
 {
+
     /**
      * @param $name
      * @param $value

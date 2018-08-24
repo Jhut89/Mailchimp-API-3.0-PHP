@@ -4,11 +4,23 @@ namespace MailchimpAPI\Settings;
 
 use MailchimpAPI\MailchimpException;
 
+/**
+ * Class MailchimpSettings
+ * @package MailchimpAPI\Settings
+ */
 class MailchimpSettings
 {
-    // Mailchimp Settings
+    /**
+     * @var bool
+     */
     private $debug = false;
+    /**
+     * @var null
+     */
     private $log_file = null;
+    /**
+     * @var bool
+     */
     private $verify_ssl = true;
 
 
@@ -40,6 +52,9 @@ class MailchimpSettings
         return $this->verify_ssl;
     }
 
+    /**
+     * @return bool
+     */
     public function shouldDebugAndLog()
     {
         return ($this->shouldDebug() && $this->getLogFile());

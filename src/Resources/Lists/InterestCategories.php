@@ -8,13 +8,23 @@ use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
 
+/**
+ * Class InterestCategories
+ * @package MailchimpAPI\Resources\Lists
+ */
 class InterestCategories extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/interest-categories/';
 
+    /**
+     * InterestCategories constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param $interest_category_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $interest_category_id)
     {
         parent::__construct($request, $settings);
@@ -23,6 +33,10 @@ class InterestCategories extends ApiResource
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @param null $interest_id
+     * @return Interest
+     */
     public function interests($interest_id = null)
     {
         return new Interest(

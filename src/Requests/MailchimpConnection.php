@@ -10,7 +10,7 @@ use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
  * Class MailchimpConnection
- * @package MailchimpAPI\Utilities
+ * @package MailchimpAPI\Requests
  */
 class MailchimpConnection implements HttpRequest
 {
@@ -21,55 +21,59 @@ class MailchimpConnection implements HttpRequest
     const USER_AGENT = 'jhut89/Mailchimp-API-3.0-PHP (https://github.com/Jhut89/Mailchimp-API-3.0-PHP)';
 
     /**
-     * the url used to request an access token from mailchimp
+     * The url used to request an access token from mailchimp
      */
     const TOKEN_REQUEST_URL = 'https://login.mailchimp.com/oauth2/token';
 
     /**
-     * the url used to request metadata about an access token
+     * The url used to request metadata about an access token
      */
     const OAUTH_METADATA_URL = 'https://login.mailchimp.com/oauth2/metadata/';
 
     /**
+     * The current request object passed into this connection
      * @var MailchimpRequest
      */
     private $current_request;
 
     /**
+     * The current settings object passed into this connection
      * @var MailChimpSettings
      */
     private $current_settings;
 
     /**
-     * raw response from mailchimp api
+     * Raw response from mailchimp api
      * @var string
      */
     private $response;
 
     /**
-     * response body
+     * Response body
      * @var string
      */
     private $response_body;
 
     /**
-     * an integer representation of the http response code
+     * An integer representation of the http response code
      * @var int
      */
     private $http_code;
 
     /**
-     * the parsed response headers from the request
+     * The parsed response headers from the request
      * @var array
      */
     private $headers = [];
 
     /**
+     * The curl handle for this connection
      * @var resource
      */
     private $handle;
 
     /**
+     * A holder for the option that are set on this connections handle
      * @var array
      */
     private $current_options = [];
@@ -96,6 +100,7 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * Prepares this connections handle for execution
+     * @return void
      */
     private function prepareHandle()
     {
@@ -150,6 +155,7 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
+     * Executes a connection with the current request and settings
      * @throws MailchimpException
      * @return MailchimpResponse
      */
@@ -186,7 +192,7 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
-     * Gets the currently set curl option by key
+     * Gets the currently set curl options by key
      * @param $key
      * @return mixed
      */
@@ -211,9 +217,7 @@ class MailchimpConnection implements HttpRequest
     /**
      * Sets a curl option on the handler
      * Updates the current settings array with ne setting
-     * @param $name
-     * @param $value
-     * @return mixed|void
+     * @inheritdoc
      */
     public function setOption($name, $value)
     {
@@ -222,7 +226,7 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
-     * @return mixed
+     * @inheritdoc
      */
     public function executeCurl()
     {
@@ -230,8 +234,7 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
-     * @param $name
-     * @return mixed
+     * @inheritdoc
      */
     public function getInfo($name)
     {
@@ -239,7 +242,7 @@ class MailchimpConnection implements HttpRequest
     }
 
     /**
-     * @return mixed|void
+     * @inheritdoc
      */
     public function close()
     {
@@ -272,6 +275,10 @@ class MailchimpConnection implements HttpRequest
         $this->headers[$header[0]] = trim($header[1]);
     }
 
+    /**
+     * A function for evaluating if a connection was successful
+     * @return bool
+     */
     private function isSuccess()
     {
         return ($this->http_code > 199 && $this->http_code < 300);

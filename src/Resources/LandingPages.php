@@ -14,12 +14,12 @@ use MailchimpAPI\Settings\MailchimpSettings;
 class LandingPages extends ApiResource
 {
     /**
-     * @var null
+     * @var null The landing page id
      */
     private $page_id;
 
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = "/landing-pages/";
 

@@ -5,13 +5,23 @@ namespace MailchimpAPI\Resources;
 use MailchimpAPI\Requests\MailchimpRequest;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class TemplateFolders
+ * @package MailchimpAPI\Resources
+ */
 class TemplateFolders extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/template-folders/';
 
+    /**
+     * TemplateFolders constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $folder_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $folder_id = null)
     {
         parent::__construct($request, $settings);

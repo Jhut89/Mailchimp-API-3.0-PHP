@@ -7,10 +7,14 @@ use MailchimpAPI\Resources\ApiResource;
 use MailchimpAPI\Settings\MailchimpSettings;
 
 
+/**
+ * Class Activity
+ * @package MailchimpAPI\Resources\Lists
+ */
 class Activity extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/activity/';
 

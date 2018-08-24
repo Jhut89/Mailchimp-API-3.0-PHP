@@ -7,12 +7,12 @@ use MailchimpAPI\Settings\MailchimpSettings;
 
 /**
  * Class AuthorizedApps
- * @package MailchimpAPI
+ * @package MailchimpAPI\Resources
  */
 class AuthorizedApps extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/authorized-apps/';
 

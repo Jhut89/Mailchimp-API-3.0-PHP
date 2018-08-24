@@ -17,13 +17,23 @@ use MailchimpAPI\Resources\Reports\TopLocations;
 use MailchimpAPI\Resources\Reports\Unsubscribes;
 use MailchimpAPI\Settings\MailchimpSettings;
 
+/**
+ * Class Reports
+ * @package MailchimpAPI\Resources
+ */
 class Reports extends ApiResource
 {
     /**
-     * the url component for this endpoint
+     * The url component for this endpoint
      */
     const URL_COMPONENT = '/reports/';
 
+    /**
+     * Reports constructor.
+     * @param MailchimpRequest $request
+     * @param MailchimpSettings $settings
+     * @param null $campaign_id
+     */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings, $campaign_id = null)
     {
         parent::__construct($request, $settings);
@@ -32,6 +42,10 @@ class Reports extends ApiResource
 
     //SUBCLASS FUNCTIONS ------------------------------------------------------------
 
+    /**
+     * @param null $member
+     * @return Unsubscribes
+     */
     public function unsubscribes($member = null)
     {
         return new Unsubscribes(
@@ -41,6 +55,9 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @return SubReports
+     */
     public function subReports()
     {
         return new SubReports(
@@ -49,6 +66,10 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @param null $member
+     * @return SentTo
+     */
     public function sentTo($member = null)
     {
         return new SentTo(
@@ -58,6 +79,9 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @return TopLocations
+     */
     public function locations()
     {
         return new TopLocations(
@@ -66,6 +90,10 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @param null $member
+     * @return EmailActivity
+     */
     public function emailActivity($member = null)
     {
         return new EmailActivity(
@@ -75,6 +103,9 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @return EepurlReports
+     */
     public function eepurlReports()
     {
         return new EepurlReports(
@@ -83,6 +114,9 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @return DomainPerformance
+     */
     public function domainPerformance()
     {
         return new DomainPerformance(
@@ -91,6 +125,9 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @return CampaignAdvice
+     */
     public function advice()
     {
         return new CampaignAdvice(
@@ -99,6 +136,10 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @param null $report_id
+     * @return CampaignAbuse
+     */
     public function abuse($report_id = null)
     {
         return new CampaignAbuse(
@@ -108,6 +149,10 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @param null $link_id
+     * @return ClickReports
+     */
     public function clickReports($link_id = null)
     {
         return new ClickReports(
@@ -117,6 +162,9 @@ class Reports extends ApiResource
         );
     }
 
+    /**
+     * @return OpenDetails
+     */
     public function openReports()
     {
         return new OpenDetails(
@@ -124,7 +172,11 @@ class Reports extends ApiResource
             $this->getSettings()
         );
     }
-    
+
+    /**
+     * @param null $profile_id
+     * @return GoogleAnalytics
+     */
     public function googleAnalytics($profile_id = null)
     {
         return new GoogleAnalytics(
