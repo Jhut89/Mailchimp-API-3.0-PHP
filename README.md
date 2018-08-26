@@ -13,6 +13,7 @@
     - [DELETE](#delete)
   - [Handling A Response](#handling-a-response)
   - [Method Chart (\*excluding verbs)](#method-chart-heading)
+  - [Wiki](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki) - See for more in depth documentation
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
