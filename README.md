@@ -1,34 +1,3 @@
-## VERSION 3.0.0 COMING - August 27th 2018
-
-Version 3.0.0 of this library will introduce several *new features*, and some **breaking changes**.
-`master` is the current dev branch for version 3.0.0. A formal release with a tag will be made once it is considered stable.
-
-### Incoming Features
-
-* Namespaced classes
-* Full PSR-4 Autoloading via _Composer_
-* Tests 
-* Programmatically alterable settings
-* Success & Failure Callbacks
-* Support for new endpoints
-
-### Breaks From Older Versions
-
-* No non-autoloading option
-* Class names and directory structure changes
-
-If these changes are breaking for your app we suggest you wait on updating to 3.0.0. Upcoming changes can now be viewed in `master` (`dev-master` on [packagist](https://packagist.org/packages/jhut89/mailchimp3php)) before the release is made. As well feel free to pull in an
-older version by requiring the version you want in your `composer.json`:
-
-```json
-{
-  "require": {
-    "jhut89/mailchimp3php": "2.3.*"
-  }
-}
-
-``` 
-
 # Table Of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -44,10 +13,6 @@ older version by requiring the version you want in your `composer.json`:
     - [DELETE](#delete)
   - [Handling A Response](#handling-a-response)
   - [Method Chart (\*excluding verbs)](#method-chart-heading)
-  - [Settings](#settings)
-    - [Debugger](#debugger)
-    - [SSL Verify](#ssl-verify)
-    - [Request Headers](#request-headers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -178,6 +143,7 @@ $mailchimp
     ->get();
 ```
 
+> You can read about `GET` requests in depth here: https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Get-Requests
 ### POST
 
 While being able to retrieve data from your account is great we also need to be able to post new data. This can be done by calling the `POST()` method at the end of a chain. As an example subscribing an address to a list would look like this:
@@ -214,6 +180,7 @@ $mailchimp
     ->members()
     ->post($post_params);
 ```
+> You can read about `POST` requests in depth here: https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Post-Requests
 
 ### PATCH &amp; PUT
 
@@ -227,6 +194,7 @@ $mailchimp
         "merge_fields" => ["FNAME" => "Jane"]
     ]);
 ```
+> You can read about `PATCH` & `PUT` requests in depth here: https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Patch-&-Put-Requests
 
 ### DELETE
 
@@ -238,6 +206,7 @@ $mailchimp
     ->members('a1167f5be2df7113beb69c95ebcdb2fd')
     ->delete();
 ```
+> You can read about `DELETE` requests in depth here: https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Delete-Requests
 ## Handling A Response
 
 Methods named for http verbs such as `get()` ,`post()`, `patch()`, `put()`, or `delete()` kick off an over the wire request to MailChimp's A.P.I. Given a successful request these methods return an instance of a `MailchimpResponse`.
@@ -266,6 +235,8 @@ $contact_email = $account
     
 print $contact_email; // outputs something like "example@domain.com"
 ```
+
+> You can read about how to work with responses in depth here: https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Handling-A-Response
 
 ## <a name="method-chart-heading"></a>Method Chart (\*excluding verbs)
 
@@ -408,33 +379,6 @@ print $contact_email; // outputs something like "example@domain.com"
 \*Please see [MailChimp's API Documentation](http://developer.mailchimp.com/documentation/mailchimp/reference/overview/) for what verbs are appropriate where.
 
 \** Methods marked with a `*` make a network request 
-## Settings
-
-This library offers several setting that can be altered by changing the value of the class constants at the begining of the `Mailchimp` class in the `mailchimpRoot.php` file. Be sure to check them out to see if they can be altered to fit your project a little better.
-
-### Debugger
-This library has a very small debug function that will allow you to output some request information and what was returned. This can be turned on by setting:
-
-```php
-const DEBUGGER = true;
-```
-The debugger can also log to a file if you provide a file for it to write to using `const DEBUGGER_LOG_FILE` like this:
-
-```php
-const DEBUGGER_LOG_FILE = 'path/to/some/file.php';
-```
-
-By default this option is set to `false`.
-
-### SSL Verify
-`CURLOPT_SSL_VERIFYPEER` can be disabled by setting:
-
-```php
- const VERIFY_SSL = false;
-````
-
-By default this option is set to `true`.
-
 
 \*\*Please watch for updates, and feel free to Fork or Pull Request. Check out the Wiki for a little more info on contributing.
 
