@@ -9,7 +9,7 @@
   - [Constructing a Request](#constructing-a-request)
     - [GET](#get)
     - [POST](#post)
-    - [PATCH &amp; PUT](#patch-&amp;-put)
+    - [PATCH &amp; PUT](#patch-put-heading)
     - [DELETE](#delete)
   - [Handling A Response](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Handling-A-Response)
   - [Callbacks](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Callbacks)
@@ -184,7 +184,7 @@ $mailchimp
 ```
 > You can read about `POST` requests in depth here: https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Post-Requests
 
-### PATCH &amp; PUT
+### <a name="patch-put-heading"></a> PATCH &amp; PUT
 
 This library handles PUT and PATCH request similar to that of POST requests. Meaning that `PUT()` & `PATCH()` both accept an array of key-value pairs that represent the data you wish altered/provided to MailChimp. As an example if I was patching the subscriber that we subscribed above, to have a new first name, that would look like this.
 
