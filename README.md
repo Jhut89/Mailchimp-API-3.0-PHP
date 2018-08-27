@@ -11,7 +11,8 @@
     - [POST](#post)
     - [PATCH &amp; PUT](#patch-&amp;-put)
     - [DELETE](#delete)
-  - [Handling A Response](#handling-a-response)
+  - [Handling A Response](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Handling-A-Response)
+  - [Callbacks](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki/Callbacks)
   - [Method Chart (\*excluding verbs)](#method-chart-heading)
   - [Wiki](https://github.com/Jhut89/Mailchimp-API-3.0-PHP/wiki) - See for more in depth documentation
 
