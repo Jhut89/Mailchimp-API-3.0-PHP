@@ -339,7 +339,8 @@ print $contact_email; // outputs something like "example@domain.com"
       |    |    |                       
       |    |    |---notes()             
       |    |    |---goals()             
-      |    |    |---activity()          
+      |    |    |---activity()
+      |    |    |---tags()          
       |    |                            
       |    |----interestCategories()    
       |         |                       
