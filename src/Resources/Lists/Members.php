@@ -71,4 +71,15 @@ class Members extends ApiResource
             $this->getSettings()
         );
     }
+
+    /**
+     * @return Members\Tags
+     */
+    public function tags()
+    {
+        return new Members\Tags(
+            $this->getRequest(),
+            $this->getSettings()
+        );
+    }
 }
