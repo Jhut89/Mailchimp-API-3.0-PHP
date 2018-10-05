@@ -82,7 +82,7 @@ class MailchimpRequest
 
     /**
      * The payload that is serialized and sent
-     * @var array
+     * @var object
      */
     private $payload;
 
@@ -118,6 +118,7 @@ class MailchimpRequest
     public function __construct($apikey = null)
     {
         if (!$apikey) {
+            $this->setHeaders([]);
             return;
         }
 
@@ -200,9 +201,13 @@ class MailchimpRequest
     /**
      * Get the headers
      * @return array
+     * @throws MailchimpException
      */
     public function getHeaders()
     {
+        if (!is_array($this->headers)) {
+            throw new MailchimpException("Request headers must be of type array");
+        }
         return $this->headers;
     }
 
@@ -423,6 +428,9 @@ class MailchimpRequest
         $request_vars = get_object_vars($this);
         foreach ($request_vars as $key => $value) {
             $this->$key = null;
+            if ($key == 'headers') {
+                $this->$key = [];
+            }
         }
         self::__construct($apikey);
     }
