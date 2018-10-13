@@ -287,15 +287,15 @@ class Mailchimp
     }
 
     /**
-     * @param $oath_string
+     * @param $oauth_string
      * @return mixed
      * @throws MailchimpException
      */
-    private static function requestAccessToken($oath_string)
+    private static function requestAccessToken($oauth_string)
     {
         $request = self::getStaticRequest();
         $request->setMethod("POST");
-        $request->setPayload($oath_string);
+        $request->setPayload($oauth_string);
         $request->setBaseUrl(MailchimpConnection::TOKEN_REQUEST_URL);
 
         $connection = self::getStaticConnection($request);
