@@ -268,7 +268,7 @@ class MailchimpRequest
      * @param boolean $shouldSerialize
      * @throws MailchimpException when cant serialize payload
      */
-    public function setPayload($payload, $shouldSerialize = true))
+    public function setPayload($payload, $shouldSerialize = true)
     {
         if ($shouldSerialize) {
             $payload = $this->serializePayload($payload);
