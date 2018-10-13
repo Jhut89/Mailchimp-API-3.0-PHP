@@ -295,7 +295,7 @@ class Mailchimp
     {
         $request = self::getStaticRequest();
         $request->setMethod("POST");
-        $request->setPayload($oauth_string);
+        $request->setPayload($oauth_string, false);
         $request->setBaseUrl(MailchimpConnection::TOKEN_REQUEST_URL);
 
         $connection = self::getStaticConnection($request);

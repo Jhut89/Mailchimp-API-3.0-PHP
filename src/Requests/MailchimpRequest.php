@@ -265,11 +265,12 @@ class MailchimpRequest
     /**
      * Sets the payload for a request
      * @param mixed $payload
+     * @param boolean $shouldSerialize
      * @throws MailchimpException when cant serialize payload
      */
-    public function setPayload($payload)
+    public function setPayload($payload, $shouldSerialize = true))
     {
-        if (is_array($payload)) {
+        if ($shouldSerialize) {
             $payload = $this->serializePayload($payload);
         }
         $this->payload = $payload;
