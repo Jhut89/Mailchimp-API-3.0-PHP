@@ -269,8 +269,9 @@ class MailchimpRequest
      */
     public function setPayload($payload)
     {
-        if (is_array($payload))
+        if (is_array($payload)) {
             $payload = $this->serializePayload($payload);
+        }
         $this->payload = $payload;
     }
 
