@@ -118,7 +118,7 @@ $mailchimp
     ->get();
 ```
 
-Notice that I provided a `list_id` to the `lists()` method, as there would be no way to retrieve a list of subscribers from a lists collection. The above request however will only return 10 subscriber instances from the members collection. This is because MailChimp's API uses pagination (documented [HERE](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/#parameters)) that defaults to `count=10` and `offset=0`. This library allows you to alter query string parameters by by passing them as an argument to the `GET()` method. We do this by providing an array of key-value pairs where the keys are the query parameter you wish to provide/alter and its value is the parameter's value. As an example if I wanted to retrieve the second 100 subscribers from my list I could:
+Notice that I provided a `list_id` to the `lists()` method, as there would be no way to retrieve a list of subscribers from a lists collection. The above request however will only return 10 subscriber instances from the members collection. This is because MailChimp's API uses pagination (documented [HERE](http://developer.mailchimp.com/documentation/mailchimp/guides/get-started-with-mailchimp-api-3/#parameters)) that defaults to `count=10` and `offset=0`. This library allows you to alter query string parameters by passing them as an argument to the `GET()` method. We do this by providing an array of key-value pairs where the keys are the query parameter you wish to provide/alter and its value is the parameter's value. As an example if I wanted to retrieve the second 100 subscribers from my list I could:
 
 ```php
 $mailchimp
@@ -142,6 +142,15 @@ Going a little further we can retrieve a single list member by giving the `membe
 $mailchimp
     ->lists('1a2b3c4d')
     ->members('8bdbf060209f35b52087992a3cbdf4d7')
+    ->get();
+```
+
+Alternatively in place of providing an md5 hash as the identifier to the `members()` function you can also simply provide the email address as a string and this library will do the hashing for you. Like this:
+
+```php
+$mailchimp
+    ->lists('1a2b3c4d')
+    ->members('example@domain.com')
     ->get();
 ```
 
