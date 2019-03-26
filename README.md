@@ -145,7 +145,7 @@ $mailchimp
     ->get();
 ```
 
-Alternatively in place of providing an md5 hash as the identifier to the `members()` function you can also simply provide the email address as a string and this library will do the hashing for you. Like this:
+Alternatively, in place of providing an md5 hash as the identifier to the `members()` function you can provide a contact's email address as a string and this library will do the hashing for you. Like this:
 
 ```php
 $mailchimp
