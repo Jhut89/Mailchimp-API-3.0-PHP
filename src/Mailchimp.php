@@ -240,6 +240,16 @@ class Mailchimp
     }
 
     /**
+     * @param null $domain_name
+     *
+     * @return Resources\VerifiedDomains
+     */
+    public function verifiedDomains($domain_name = null)
+    {
+        return new Resources\VerifiedDomains($this->request, $this->settings, $domain_name);
+    }
+
+    /**
      * @param $client_id
      * @param $redirect_uri
      * @return string
