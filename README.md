@@ -381,10 +381,12 @@ print $contact_email; // outputs something like "example@domain.com"
       |----templateFolders()            
       |                                 
       |----templates()                  
-           |                            
-           |----defaultContent()        
-                                    
-                                    
+      |    |                            
+      |    |----defaultContent()        
+      |                             
+      |----verifiedDomains()
+           |
+           |----verify()                            
                                     
                                     
 
