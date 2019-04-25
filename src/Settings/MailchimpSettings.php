@@ -22,6 +22,10 @@ class MailchimpSettings
      * @var bool
      */
     private $verify_ssl = true;
+    /**
+     * @var array
+     */
+    private $custom_curl_settings = [];
 
 
     /*************************************
@@ -60,6 +64,15 @@ class MailchimpSettings
         return ($this->shouldDebug() && $this->getLogFile());
     }
 
+
+    /**
+     * @return array
+     */
+    public function getCustomCurlSettings()
+    {
+        return $this->custom_curl_settings;
+    }
+
     /*************************************
      * SETTERS
      *************************************/
@@ -93,5 +106,18 @@ class MailchimpSettings
     public function setVerifySsl($verify_ssl)
     {
         $this->verify_ssl = (bool) $verify_ssl;
+    }
+
+    /**
+     * Set custom curl options by providing a map of
+     * option => value
+     *
+     * @param array $options
+     */
+    public function setCustomCurlOptions(array $options)
+    {
+        foreach ($options as $option => $value) {
+            $this->custom_curl_settings[$option] = $value;
+        }
     }
 }

@@ -12,6 +12,7 @@ interface HttpRequest
     /**
      * @param $name
      * @param $value
+     *
      * @return mixed
      */
     public function setOption($name, $value);
@@ -23,6 +24,7 @@ interface HttpRequest
 
     /**
      * @param $name
+     *
      * @return mixed
      */
     public function getInfo($name);
