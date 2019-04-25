@@ -81,8 +81,11 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * MailchimpConnection constructor.
-     * @param MailchimpRequest $request
+     *
+     * @param MailchimpRequest       $request
      * @param MailchimpSettings|null $settings
+     *
+     * @throws MailchimpException
      */
     public function __construct(MailchimpRequest &$request, MailchimpSettings &$settings = null)
     {
@@ -100,7 +103,10 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * Prepares this connections handle for execution
+     *
      * @return void
+     *
+     * @throws MailchimpException
      */
     private function prepareHandle()
     {
@@ -124,6 +130,23 @@ class MailchimpConnection implements HttpRequest
 
         // set the callback to run against each of the response headers
         $this->setOption(CURLOPT_HEADERFUNCTION, [&$this, "parseResponseHeader"]);
+
+        // if an custom curl settings are present set them now
+        $this->setCustomHandleOptions($this->current_settings->getCustomCurlSettings());
+    }
+
+    /**
+     * Set custom curl handler options
+     *
+     * @param array $options
+     */
+    private function setCustomHandleOptions(array $options)
+    {
+        if (!empty($options)) {
+            foreach ($options as $option => $value) {
+                $this->setOption($option, $value);
+            }
+        }
     }
 
     /**
@@ -156,8 +179,8 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * Executes a connection with the current request and settings
-     * @throws MailchimpException
      * @return MailchimpResponse
+     * @throws MailchimpException
      */
     public function execute()
     {
@@ -167,7 +190,7 @@ class MailchimpConnection implements HttpRequest
         }
 
         $this->http_code = $this->getInfo(CURLINFO_HTTP_CODE);
-        $head_len  = $this->getInfo(CURLINFO_HEADER_SIZE);
+        $head_len = $this->getInfo(CURLINFO_HEADER_SIZE);
         $this->response_body = substr(
             $this->response,
             $head_len,
@@ -193,7 +216,9 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * Gets the currently set curl options by key
+     *
      * @param $key
+     *
      * @return mixed
      */
     public function getCurrentOption($key)
@@ -204,6 +229,7 @@ class MailchimpConnection implements HttpRequest
     /**
      * Bulk set curl options
      * Update current settings
+     *
      * @param array $options
      */
     public function setCurrentOptions($options)
@@ -254,6 +280,7 @@ class MailchimpConnection implements HttpRequest
      *
      * @param $handle
      * @param $header
+     *
      * @return int
      */
     private function parseResponseHeader($handle, $header)
@@ -263,7 +290,7 @@ class MailchimpConnection implements HttpRequest
         if (count($header_array) == 2) {
             $this->pushToHeaders($header_array);
         }
-        
+
         return $header_length;
     }
 

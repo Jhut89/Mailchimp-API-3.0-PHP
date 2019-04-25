@@ -112,7 +112,9 @@ class MailchimpRequest
 
     /**
      * MailchimpRequest constructor.
+     *
      * @param $apikey
+     *
      * @throws MailchimpException
      */
     public function __construct($apikey = null)
@@ -244,6 +246,7 @@ class MailchimpRequest
 
     /**
      * Set the api key
+     *
      * @param mixed $apikey
      */
     public function setApikey($apikey)
@@ -264,8 +267,10 @@ class MailchimpRequest
 
     /**
      * Sets the payload for a request
-     * @param mixed $payload
+     *
+     * @param mixed   $payload
      * @param boolean $shouldSerialize
+     *
      * @throws MailchimpException when cant serialize payload
      */
     public function setPayload($payload, $shouldSerialize = true)
@@ -278,6 +283,7 @@ class MailchimpRequest
 
     /**
      * Sets the endpoint for the request
+     *
      * @param mixed $endpoint
      */
     public function setEndpoint($endpoint)
@@ -287,7 +293,9 @@ class MailchimpRequest
 
     /**
      * Sets the request method
+     *
      * @param mixed $method
+     *
      * @throws MailchimpException
      */
     public function setMethod($method)
@@ -301,6 +309,7 @@ class MailchimpRequest
 
     /**
      * Sets the base URL
+     *
      * @param mixed $base_url
      */
     public function setBaseUrl($base_url)
@@ -310,6 +319,7 @@ class MailchimpRequest
 
     /**
      * Sets the query string from an array
+     *
      * @param array $query_array
      */
     public function setQueryString($query_array)
@@ -319,6 +329,7 @@ class MailchimpRequest
 
     /**
      * Sets the request headers
+     *
      * @param array $headers
      */
     public function setHeaders($headers)
@@ -328,6 +339,7 @@ class MailchimpRequest
 
     /**
      * Sets the success callback
+     *
      * @param callable $success_callback
      */
     public function setSuccessCallback(callable $success_callback)
@@ -337,6 +349,7 @@ class MailchimpRequest
 
     /**
      * Sets the failure callback
+     *
      * @param callable $failure_callback
      */
     public function setFailureCallback(callable $failure_callback)
@@ -350,7 +363,9 @@ class MailchimpRequest
 
     /**
      * JSON serializes the current payload
+     *
      * @param $payload
+     *
      * @return mixed
      * @throws MailchimpException
      */
@@ -367,7 +382,9 @@ class MailchimpRequest
 
     /**
      * Construct a query string from an array
+     *
      * @param array $query_input
+     *
      * @return string
      */
     public function constructQueryParams($query_input)
@@ -383,6 +400,7 @@ class MailchimpRequest
 
     /**
      * Adds a new header
+     *
      * @param string $header_string
      */
     public function addHeader($header_string)
@@ -395,6 +413,7 @@ class MailchimpRequest
 
     /**
      * Pushes a string to the end of the current endpoint
+     *
      * @param string $string
      */
     public function appendToEndpoint($string)
@@ -404,7 +423,9 @@ class MailchimpRequest
 
     /**
      * Checks for a valid API key
+     *
      * @param $exp_apikey
+     *
      * @throws MailchimpException
      */
     public function checkKey($exp_apikey)
