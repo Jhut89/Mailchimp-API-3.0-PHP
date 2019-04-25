@@ -277,8 +277,7 @@ class Mailchimp
     public static function getAuthUrl(
         $client_id,
         $redirect_uri
-    )
-    {
+    ) {
         $encoded_uri = urlencode($redirect_uri);
 
         $authUrl = "https://login.mailchimp.com/oauth2/authorize";
@@ -303,8 +302,7 @@ class Mailchimp
         $client_id,
         $client_sec,
         $redirect_uri
-    )
-    {
+    ) {
         $encoded_uri = urldecode($redirect_uri);
 
         $oauth_string = "grant_type=authorization_code";
@@ -371,6 +369,8 @@ class Mailchimp
      * @param MailchimpRequest $request
      *
      * @return MailchimpConnection
+     *
+     * @throws MailchimpException
      */
     protected static function getStaticConnection(MailchimpRequest $request)
     {
