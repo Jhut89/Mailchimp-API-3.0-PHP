@@ -114,7 +114,7 @@ class MailchimpSettings
      *
      * @param array $options
      */
-    public function setCustomCurlOptions(array $options)
+    public function setCustomCurlSettings(array $options)
     {
         foreach ($options as $option => $value) {
             $this->custom_curl_settings[$option] = $value;

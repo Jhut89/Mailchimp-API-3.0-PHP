@@ -269,6 +269,8 @@ class Mailchimp
     }
 
     /**
+     * Concatenate the auth URL given a client_id and redirect URI
+     *
      * @param $client_id
      * @param $redirect_uri
      *
@@ -289,6 +291,8 @@ class Mailchimp
     }
 
     /**
+     * Handle the "handshake" to retrieve an api key via OAuth
+     *
      * @param $code
      * @param $client_id
      * @param $client_sec
@@ -311,26 +315,32 @@ class Mailchimp
         $oauth_string .= "&redirect_uri=" . $encoded_uri;
         $oauth_string .= "&code=" . $code;
 
-        $access_token = self::requestAccessToken($oauth_string);
-        $apiKey = self::requestKeyFromToken($access_token);
+        $request = new MailchimpRequest();
+
+        $access_token = self::requestAccessToken($oauth_string, $request);
+        $request->reset();
+
+        $apiKey = self::requestKeyFromToken($access_token, $request);
 
         return $apiKey;
     }
 
     /**
-     * @param $oauth_string
+     * Request an access token from Mailchimp
+     *
+     * @param string           $oauth_string
+     * @param MailchimpRequest $request
      *
      * @return mixed
      * @throws MailchimpException
      */
-    private static function requestAccessToken($oauth_string)
+    private static function requestAccessToken($oauth_string, MailchimpRequest $request)
     {
-        $request = self::getStaticRequest();
         $request->setMethod("POST");
         $request->setPayload($oauth_string, false);
         $request->setBaseUrl(MailchimpConnection::TOKEN_REQUEST_URL);
 
-        $connection = self::getStaticConnection($request);
+        $connection = new MailchimpConnection($request);
         $response = $connection->execute();
 
         $access_token = $response->deserialize()->access_token;
@@ -345,46 +355,25 @@ class Mailchimp
     }
 
     /**
-     * @param $access_token
+     * Construct an API key by requesting an access tokens data center
+     *
+     * @param string           $access_token
+     * @param MailchimpRequest $request
      *
      * @return string
      * @throws MailchimpException
      */
-    private static function requestKeyFromToken($access_token)
+    private static function requestKeyFromToken($access_token, MailchimpRequest $request)
     {
-        $request = self::getStaticRequest();
         $request->setMethod("GET");
         $request->setBaseUrl(MailchimpConnection::OAUTH_METADATA_URL);
         $request->addHeader('Authorization: OAuth ' . $access_token);
 
-        $connection = self::getStaticConnection($request);
+        $connection = new MailchimpConnection($request);
         $response = $connection->execute();
 
         $dc = $response->deserialize()->dc;
 
         return $access_token . '-' . $dc;
-    }
-
-    /**
-     * @param MailchimpRequest $request
-     *
-     * @return MailchimpConnection
-     *
-     * @throws MailchimpException
-     */
-    protected static function getStaticConnection(MailchimpRequest $request)
-    {
-        $connection = new MailchimpConnection($request);
-        return $connection;
-    }
-
-    /**
-     * @return MailchimpRequest
-     * @throws MailchimpException
-     */
-    protected static function getStaticRequest()
-    {
-        $request = new MailchimpRequest();
-        return $request;
     }
 }
