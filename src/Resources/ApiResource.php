@@ -224,8 +224,8 @@ abstract class ApiResource
     /**
      * Makes a post request to an action endpoint on an API resource
      *
-     * @param       $endpoint
-     * @param array $params
+     * @param string $endpoint
+     * @param array  $params
      *
      * @return MailchimpResponse
      * @throws MailchimpException
