@@ -28,7 +28,8 @@ abstract class ApiResource
 
     /**
      * ApiResource constructor.
-     * @param MailchimpRequest $request
+     *
+     * @param MailchimpRequest       $request
      * @param MailchimpSettings|null $settings
      */
     public function __construct(MailchimpRequest $request, MailchimpSettings $settings = null)
@@ -75,7 +76,9 @@ abstract class ApiResource
 
     /**
      * Makes a get request using the current request
+     *
      * @param array $query_params an array of query parameters you want to send
+     *
      * @return MailchimpResponse
      * @throws MailchimpException
      */
@@ -94,7 +97,9 @@ abstract class ApiResource
 
     /**
      * Makes a post request using the current request
+     *
      * @param array $params the payload you want to send
+     *
      * @return MailchimpResponse
      * @throws MailchimpException
      */
@@ -112,7 +117,9 @@ abstract class ApiResource
 
     /**
      * Makes a patch request using the current request
+     *
      * @param array $params the payload you want to send
+     *
      * @return MailchimpResponse
      * @throws MailchimpException
      */
@@ -130,7 +137,9 @@ abstract class ApiResource
 
     /**
      * Makes a put request using the current request
+     *
      * @param array $params the payload you want to send
+     *
      * @return MailchimpResponse
      * @throws MailchimpException
      */
@@ -168,9 +177,12 @@ abstract class ApiResource
 
     /**
      * Returns a new connection from a request and settings
-     * @param MailchimpRequest $request
+     *
+     * @param MailchimpRequest  $request
      * @param MailchimpSettings $settings
+     *
      * @return MailchimpConnection
+     * @throws MailchimpException
      */
     protected function getConnection(MailchimpRequest $request, MailchimpSettings $settings)
     {
@@ -189,8 +201,10 @@ abstract class ApiResource
 
     /**
      * Throws an exception if $check evaluates false
-     * @param string $type the type of check
-     * @param mixed $check the variable under test
+     *
+     * @param string $type  the type of check
+     * @param mixed  $check the variable under test
+     *
      * @throws MailchimpException
      */
     protected function throwIfNot($type, $check)
@@ -209,8 +223,10 @@ abstract class ApiResource
 
     /**
      * Makes a post request to an action endpoint on an API resource
-     * @param $endpoint
-     * @param array $params
+     *
+     * @param string $endpoint
+     * @param array  $params
+     *
      * @return MailchimpResponse
      * @throws MailchimpException
      */
