@@ -30,6 +30,7 @@ abstract class MailchimpResponse
 
     /**
      * MailchimpResponse constructor.
+     *
      * @param $headers
      * @param $body
      * @param $http_code
@@ -51,7 +52,8 @@ abstract class MailchimpResponse
     }
 
     /**
-     * Sets the headers on thsi response object
+     * Sets the headers on this response object
+     *
      * @param array $headers
      */
     public function setHeaders($headers)
@@ -70,6 +72,7 @@ abstract class MailchimpResponse
 
     /**
      * Sets the http response code for this response object
+     *
      * @param mixed $http_code
      */
     public function setHttpCode($http_code)
@@ -78,7 +81,8 @@ abstract class MailchimpResponse
     }
 
     /**
-     * Sets the body for this resposne object
+     * Sets the body for this response object
+     *
      * @param mixed $body
      */
     public function setBody($body)
@@ -97,13 +101,15 @@ abstract class MailchimpResponse
 
     /**
      * Deserializes the response body to PHP object or array
+     *
      * @param bool $to_array should we deserialize to an array
+     *
      * @return mixed
      * @throws MailchimpException when cant deserialize response
      */
     public function deserialize($to_array = false)
     {
-        $decoded = json_decode($this->body, (bool) $to_array);
+        $decoded = json_decode($this->body, (bool)$to_array);
         if (!$decoded) {
             throw new MailchimpException("Unable to deserialize response");
         }
