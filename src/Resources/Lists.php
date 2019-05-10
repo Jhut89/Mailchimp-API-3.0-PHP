@@ -50,8 +50,7 @@ class Lists extends ApiResource
      */
     public function batchSubscribe($members = [], $update_existing = false)
     {
-
-        $this->throwIfNot("id", $this->subclass_resource);
+        $this->throwIfNot("id", $this->list_id);
         $params = [
             'members' => $members,
             'update_existing' => $update_existing
