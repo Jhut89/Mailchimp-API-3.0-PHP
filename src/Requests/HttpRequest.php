@@ -30,6 +30,11 @@ interface HttpRequest
     public function getInfo($name);
 
     /**
+     * @return string
+     */
+    public function getError();
+
+    /**
      * @return mixed
      */
     public function close();

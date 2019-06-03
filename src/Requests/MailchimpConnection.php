@@ -186,7 +186,7 @@ class MailchimpConnection implements HttpRequest
     {
         $this->response = $this->executeCurl();
         if (!$this->response) {
-            throw new MailchimpException("The curl request failed");
+            throw new MailchimpException("The curl request failed: " . $this->getError());
         }
 
         $this->http_code = $this->getInfo(CURLINFO_HTTP_CODE);
@@ -265,6 +265,14 @@ class MailchimpConnection implements HttpRequest
     public function getInfo($name)
     {
         return curl_getinfo($this->handle, $name);
+    }
+
+    /**
+     * @return string
+     */
+    public function getError()
+    {
+        return curl_error($this->handle);
     }
 
     /**
