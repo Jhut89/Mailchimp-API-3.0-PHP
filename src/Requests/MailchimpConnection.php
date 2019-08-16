@@ -179,10 +179,13 @@ class MailchimpConnection implements HttpRequest
 
     /**
      * Executes a connection with the current request and settings
+     *
+     * @param bool $close close this connection after execution
+     *
      * @return MailchimpResponse
      * @throws MailchimpException
      */
-    public function execute()
+    public function execute($close = true)
     {
         $this->response = $this->executeCurl();
         if (!$this->response) {
@@ -196,6 +199,10 @@ class MailchimpConnection implements HttpRequest
             $head_len,
             strlen($this->response)
         );
+
+        if ($close) {
+            $this->close();
+        }
 
         if ($this->isSuccess()) {
             return new SuccessResponse(
