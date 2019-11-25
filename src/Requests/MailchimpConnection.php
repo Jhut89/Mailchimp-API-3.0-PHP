@@ -82,7 +82,7 @@ class MailchimpConnection implements HttpRequest
     /**
      * MailchimpConnection constructor.
      *
-     * @param MailchimpRequest       $request
+     * @param MailchimpRequest $request
      * @param MailchimpSettings|null $settings
      *
      * @throws MailchimpException
@@ -117,7 +117,7 @@ class MailchimpConnection implements HttpRequest
         $this->setOption(CURLOPT_HTTPHEADER, $this->current_request->getHeaders());
 
         // set custom user-agent
-        $this->setOption(CURLOPT_USERAGENT, self::USER_AGENT);
+        $this->setOption(CURLOPT_USERAGENT, $this->getUserAgentString());
 
         // make response returnable
         $this->setOption(CURLOPT_RETURNTRANSFER, true);
@@ -324,5 +324,19 @@ class MailchimpConnection implements HttpRequest
     private function isSuccess()
     {
         return ($this->http_code > 199 && $this->http_code < 300);
+    }
+
+    /**
+     * Builds a custom user agent string to pass to Mailchimp depending on the option being passed through
+     * when constructing the class
+     *
+     * @return string
+     */
+    private function getUserAgentString()
+    {
+        if (!empty($this->current_settings->getCustomUserAgent())) {
+            return self::USER_AGENT . ';' . $this->current_settings->getCustomUserAgent();
+        }
+        return self::USER_AGENT;
     }
 }

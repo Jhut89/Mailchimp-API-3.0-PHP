@@ -32,14 +32,29 @@ class Mailchimp
      * Mailchimp constructor.
      *
      * @param string $apikey
+     * @param array $options
      *
      * @throws MailchimpException
      */
-    public function __construct($apikey)
+    public function __construct($apikey, array $options)
     {
         $this->apikey = $apikey;
         $this->request = new MailchimpRequest($this->apikey);
         $this->settings = new MailchimpSettings();
+
+        if (isset($options['user_agent'])) {
+            $this->setCustomUserAgent($options['user_agent']);
+        }
+    }
+
+    /**
+     * Set's the custom user agent string to be sent to Mailchimp
+     *
+     * @param $user_agent
+     */
+    public function setCustomUserAgent($user_agent)
+    {
+        $this->settings->setCustomUserAgent($user_agent);
     }
 
     /**
@@ -279,7 +294,8 @@ class Mailchimp
     public static function getAuthUrl(
         $client_id,
         $redirect_uri
-    ) {
+    )
+    {
         $encoded_uri = urlencode($redirect_uri);
 
         $authUrl = "https://login.mailchimp.com/oauth2/authorize";
@@ -306,7 +322,8 @@ class Mailchimp
         $client_id,
         $client_sec,
         $redirect_uri
-    ) {
+    )
+    {
         $encoded_uri = urldecode($redirect_uri);
 
         $oauth_string = "grant_type=authorization_code";
@@ -328,7 +345,7 @@ class Mailchimp
     /**
      * Request an access token from Mailchimp
      *
-     * @param string           $oauth_string
+     * @param string $oauth_string
      * @param MailchimpRequest $request
      *
      * @return mixed
@@ -357,7 +374,7 @@ class Mailchimp
     /**
      * Construct an API key by requesting an access tokens data center
      *
-     * @param string           $access_token
+     * @param string $access_token
      * @param MailchimpRequest $request
      *
      * @return string

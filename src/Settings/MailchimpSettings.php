@@ -26,6 +26,10 @@ class MailchimpSettings
      * @var array
      */
     private $custom_curl_settings = [];
+    /**
+     * @var string
+     */
+    private $custom_user_agent = '';
 
 
     /*************************************
@@ -73,9 +77,26 @@ class MailchimpSettings
         return $this->custom_curl_settings;
     }
 
+
+    /**
+     * @return string
+     */
+    public function getCustomUserAgent()
+    {
+        return $this->custom_user_agent;
+    }
+
     /*************************************
      * SETTERS
      *************************************/
+
+    /**
+     * @param string $userAgentString
+     */
+    public function setCustomUserAgent($userAgentString)
+    {
+        $this->custom_user_agent = (string)$userAgentString;
+    }
 
     /**
      * @param bool $debug
