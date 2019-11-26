@@ -36,7 +36,7 @@ class Mailchimp
      *
      * @throws MailchimpException
      */
-    public function __construct($apikey, array $options)
+    public function __construct($apikey, $options = [])
     {
         $this->apikey = $apikey;
         $this->request = new MailchimpRequest($this->apikey);
