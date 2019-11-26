@@ -56,4 +56,15 @@ final class MailchimpTest extends MailChimpTestCase
             "The settings must be an instance of a MailChimpSettings"
         );
     }
+
+    public function testSetUserAgentString()
+    {
+        $mc = $this->mailchimp;
+        $mc->setCustomUserAgent('Test Agent');
+
+        self::assertTrue(
+            $this->mailchimp->settings->getCustomUserAgent() == 'Test Agent',
+            "Agent string is not being saved correctly"
+        );
+    }
 }
