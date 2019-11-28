@@ -3,6 +3,7 @@
 namespace MailchimpAPI\Settings;
 
 use MailchimpAPI\MailchimpException;
+use MailchimpAPI\Requests\MailchimpConnection;
 
 /**
  * Class MailchimpSettings
@@ -26,10 +27,6 @@ class MailchimpSettings
      * @var array
      */
     private $custom_curl_settings = [];
-    /**
-     * @var string
-     */
-    private $custom_user_agent = '';
 
 
     /*************************************
@@ -77,15 +74,6 @@ class MailchimpSettings
         return $this->custom_curl_settings;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getCustomUserAgent()
-    {
-        return $this->custom_user_agent;
-    }
-
     /*************************************
      * SETTERS
      *************************************/
@@ -93,9 +81,10 @@ class MailchimpSettings
     /**
      * @param string $userAgentString
      */
-    public function setCustomUserAgent($userAgentString)
+    public function setCustomUserAgentString($userAgentString)
     {
-        $this->custom_user_agent = (string)$userAgentString;
+        $user_agent_String = MailchimpConnection::USER_AGENT . ';' . (string)$userAgentString;
+        $this->setCustomCurlSettings(['CURLOPT_USERAGENT' => $user_agent_String]);
     }
 
     /**

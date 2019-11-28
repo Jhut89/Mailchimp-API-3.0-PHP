@@ -50,11 +50,11 @@ class Mailchimp
     /**
      * Set's the custom user agent string to be sent to Mailchimp
      *
-     * @param $user_agent
+     * @param $user_agent_string
      */
-    public function setCustomUserAgent($user_agent)
+    public function setCustomUserAgent($user_agent_string)
     {
-        $this->settings->setCustomUserAgent($user_agent);
+        $this->settings->setCustomUserAgentString($user_agent_string);
     }
 
     /**

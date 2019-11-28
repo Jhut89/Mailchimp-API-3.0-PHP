@@ -2,6 +2,7 @@
 
 namespace MailchimpTests;
 
+use MailchimpAPI\Requests\MailchimpConnection;
 use MailchimpAPI\Settings\MailchimpSettings;
 use MailchimpAPI\Requests\MailchimpRequest;
 
@@ -60,10 +61,11 @@ final class MailchimpTest extends MailChimpTestCase
     public function testSetUserAgentString()
     {
         $mc = $this->mailchimp;
-        $mc->setCustomUserAgent('Test Agent');
+        $customUserAgentString = "Test Agent";
+        $mc->setCustomUserAgent($customUserAgentString);
 
         self::assertTrue(
-            $this->mailchimp->settings->getCustomUserAgent() == 'Test Agent',
+            $this->mailchimp->settings->getCustomCurlSettings()['CURLOPT_USERAGENT'] == MailchimpConnection::USER_AGENT . ';' . $customUserAgentString,
             "Agent string is not being saved correctly"
         );
     }
