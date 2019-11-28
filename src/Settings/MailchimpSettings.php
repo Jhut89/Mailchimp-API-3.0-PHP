@@ -79,12 +79,12 @@ class MailchimpSettings
      *************************************/
 
     /**
-     * @param string $userAgentString
+     * @param string $user_agent_string
      */
-    public function setCustomUserAgentString($userAgentString)
+    public function setCustomUserAgentString($user_agent_string)
     {
-        $user_agent_String = MailchimpConnection::USER_AGENT . ';' . (string)$userAgentString;
-        $this->setCustomCurlSettings(['CURLOPT_USERAGENT' => $user_agent_String]);
+        $custom_user_agent_string = MailchimpConnection::USER_AGENT . ';' . (string)$user_agent_string;
+        $this->setCustomCurlSettings(['CURLOPT_USERAGENT' => $custom_user_agent_string]);
     }
 
     /**
