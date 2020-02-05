@@ -456,7 +456,7 @@ class MailchimpRequest
             }
             
             $this->$key = null;
-            if ($key == 'headers') {
+            if ('headers' === $key) {
                 $this->$key = [];
             }
         }
