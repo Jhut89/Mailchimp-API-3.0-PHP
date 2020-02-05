@@ -451,6 +451,10 @@ class MailchimpRequest
         $apikey = $this->apikey;
         $request_vars = get_object_vars($this);
         foreach ($request_vars as $key => $value) {
+            if (in_array($key, ['success_callback', 'failure_callback'], true)) {
+                continue;
+            }
+            
             $this->$key = null;
             if ($key == 'headers') {
                 $this->$key = [];
