@@ -1,8 +1,6 @@
 <?php
 
-
 namespace MailchimpAPI\Responses;
-
 
 /**
  * Class SuccessResponse
