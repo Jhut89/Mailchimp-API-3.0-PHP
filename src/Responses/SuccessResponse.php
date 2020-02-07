@@ -1,8 +1,6 @@
 <?php
 
-
 namespace MailchimpAPI\Responses;
-
 
 /**
  * Class SuccessResponse
@@ -23,7 +21,7 @@ class SuccessResponse extends MailchimpResponse
         parent::__construct($headers, $body, $http_code);
 
         if ($success_callback) {
-            call_user_func($success_callback);
+            call_user_func($success_callback, $this);
         }
     }
 }

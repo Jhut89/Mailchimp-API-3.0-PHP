@@ -1,8 +1,6 @@
 <?php
 
-
 namespace MailchimpAPI\Responses;
-
 
 /**
  * Class FailureResponse
@@ -23,7 +21,7 @@ class FailureResponse extends MailchimpResponse
         parent::__construct($headers, $body, $http_code);
 
         if ($failure_callback) {
-            call_user_func($failure_callback);
+            call_user_func($failure_callback, $this);
         }
     }
 }
