@@ -82,4 +82,15 @@ class Members extends ApiResource
             $this->getSettings()
         );
     }
+
+    /**
+     * @return Members\Events
+     */
+    public function events()
+    {
+        return new Members\Events(
+            $this->getRequest(),
+            $this->getSettings()
+        );
+    }
 }
