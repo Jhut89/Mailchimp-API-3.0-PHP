@@ -1,6 +1,6 @@
 <?php
 
-namespace MailchimpTests\Resources\Automations;
+namespace MailchimpTests\Automations;
 
 use MailchimpAPI\Resources\Automations;
 use MailchimpAPI\Resources\Automations\Emails;
