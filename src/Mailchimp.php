@@ -273,12 +273,14 @@ class Mailchimp
      *
      * @param $client_id
      * @param $redirect_uri
+     * @param $state
      *
      * @return string
      */
     public static function getAuthUrl(
         $client_id,
-        $redirect_uri
+        $redirect_uri,
+        $state = null
     ) {
         $encoded_uri = urlencode($redirect_uri);
 
@@ -286,6 +288,10 @@ class Mailchimp
         $authUrl .= "?client_id=" . $client_id;
         $authUrl .= "&redirect_uri=" . $encoded_uri;
         $authUrl .= "&response_type=code";
+
+        if ($state !== null) {
+            $authUrl .= "&state=" . $state;
+        }
 
         return $authUrl;
     }
