@@ -5,7 +5,7 @@
 - [MAILCHIMP API 3.0 PHP](#mailchimp-api-3.0-php)
   - [Installation](#installation)
   - [Instantiation](#instantiation)
-  - [Oauth](#oauth)
+  - [OAuth](#oauth)
   - [Constructing a Request](#constructing-a-request)
     - [GET](#get)
     - [POST](#post)
@@ -59,9 +59,9 @@ $mailchimp = new Mailchimp('123abc123abc123abc123abc-us0');
 
 To instantiate you will need a new instance of the `Mailchimp` class with your MailChimp account's API key as its only argument.
 
-## Oauth
+## OAuth
 
-If you are using [Oauth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token, this library can handle the "handshake" for you.
+If you are using [OAuth](http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/) to obtain an access token, this library can handle the "handshake" for you.
  
 You must first send the user to your applications `authorize_uri`. You can get this url by calling the `Mailchimp::getAuthUrl()` statically:
 
@@ -70,6 +70,20 @@ $client_id =   '12345676543';
 $redirect_url =  'https://www.some-domain.com/callback_file.php';
 
 Mailchimp::getAuthUrl($client_id, $redirect_url);
+```
+
+Optionally, if you need to pass state information along with your request so that the callback response can be routed correctly,
+you can include a [state parameter](https://auth0.com/docs/protocols/state-parameters):
+
+
+```php 
+$client_id =   '12345676543';
+$redirect_url =  'https://www.some-domain.com/callback_file.php';
+
+// state information encoded into a string to be included in the URL, for example data encoded in a JWT token
+$state = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'; 
+
+Mailchimp::getAuthUrl($client_id, $redirect_url, $state);
 ```
 
 From there the user will input their username and password to approve your application and will be redirected to the `redirect_uri` you set along with a `code`.
