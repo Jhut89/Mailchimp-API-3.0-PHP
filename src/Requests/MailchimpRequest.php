@@ -210,6 +210,7 @@ class MailchimpRequest
         if (!is_array($this->headers)) {
             throw new MailchimpException("Request headers must be of type array");
         }
+        $this->headers[] = 'Expect:';
         return $this->headers;
     }
 
