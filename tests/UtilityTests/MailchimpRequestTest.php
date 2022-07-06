@@ -26,11 +26,9 @@ final class MailchimpRequestTest extends MailChimpTestCase
 
     public function testExpectHeaderNotSet()
     {
-        error_log(print_r($this->requestInstance->getHeaders(), true));
         $expected = 'Expect:';
         $actual = $this->requestInstance->getHeaders()[1];
-
-        self::assertEquals($expected, $actual, "Expect header should never be set");
+        self::assertEquals($expected, $actual, "Expect header should be empty");
     }
 
     public function testApikeySet()
